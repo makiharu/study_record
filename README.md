@@ -1,24 +1,34 @@
-# README
+# アプリ名
+studyメーター/kirokuraku
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+日々の学習記録を楽しく、記録・管理できるアプリ。プログラミング学習版。
+(日々のタスクを設定し、そのタスクの達成度合いに応じて、それをグラフで表せるようにする/githubのように草を生やせる)
 
-Things you may want to cover:
+掲示板としての機能も持っており、学習における悩みなども投稿することができる。
 
-* Ruby version
+（プロフィール欄には、自分の主な使用言語をタグとして持てる。）
+いいね機能やチャット機能もついており、ユーザー同志で交流がはかれる。
 
-* System dependencies
 
-* Configuration
+### サイトテーマ
+日々の学習進捗を可視化して管理することで、モチベーションの維持を図る。
 
-* Database creation
+### テーマを選んだ理由
+元々記録をつけることが好きなため、楽しみながら、手軽に記録管理をしてみたかったため。
+また、他人の学習記録も見れるようにすることで、刺激を受けられるようにしている。
 
-* Database initialization
+ツイッターで、よく駆け出しエンジニアというハッシュタグがあり、日々学習目標を宣言しているのを見かけるが、それらの記録もツイートだと流れてしまうので、「studyメーター」という箱の中で、学習記録の管理ができれば、みなが自分の学習を楽に振り返ることができるようになり、より楽しく学習ができるようになるのではないかと思ったため。
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+### ターゲットユーザ
+駆け出しエンジニア
 
-* Deployment instructions
+### 主な利用シーン
+日々の学習記録管理。
 
-* ...
+## 設計書
+
+
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1VXXK2aaEtTotuBBTq_cba7Fc8ofdQfr5OiF6ub-zRdE/edit#gid=0
