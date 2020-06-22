@@ -28,7 +28,8 @@ study_record
 日々の学習記録管理。
 
 ## 設計書
-https://docs.google.com/spreadsheets/d/1VXXK2aaEtTotuBBTq_cba7Fc8ofdQfr5OiF6ub-zRdE/edit#gid=0
+
+
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1VXXK2aaEtTotuBBTq_cba7Fc8ofdQfr5OiF6ub-zRdE/edit#gid=0
