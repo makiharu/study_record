@@ -15,8 +15,12 @@
 		<tbody>
 			<% @users.each do |user| %>
 			<tr>
-				<td><%= user.name %></td>
+				<td><%= user.id %></td>
+				<td><%= link_to user.name, admin_user_path(user) %></td>
 				<td><%= user.email %></td>
+				<td><%= user.created_at %></td>
+
+				<!--ステータスの変更をできるようにすること-->
 				<td><%= user.is_deleted %></td>
 
 			</tr>
