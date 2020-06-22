@@ -75,11 +75,11 @@ nav {
 	width: 100%;
 	padding: 20px 4% 10px;/*header内側の余白*/
 	background-color: rgba(0,0,0,0.8);
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	display: flex;/*header直下の子要素のレイアウト*/
 	align-items: center;/*縦方向の中心*/
-
+	color:white;
 
 }
 
