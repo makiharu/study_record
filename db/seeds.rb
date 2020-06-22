@@ -11,3 +11,17 @@ Admin.create!(
 	password: 'password'
 	)
 
+
+50.times do |n|
+	name = Faker::Name.name
+	email = "example#{n}@gmail.com"
+	is_deleted = Faker::Boolean.boolean
+
+	user = User.create!(
+		name: name,
+		email: email,
+		password: 'password',
+		is_deleted: is_deleted
+)
+
+end

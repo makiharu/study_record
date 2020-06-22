@@ -7,7 +7,8 @@
     <ul>
       <% if admin_signed_in? %>
       　<li><%= "ようこそ、管理人さん！" %></li>
-        <li><%= link_to '  タグ一覧', user_users_path, class: 'glyphicon glyphicon-log-in' %></li>
+        <li><%= link_to '  会員一覧', admin_users_path, class: 'glyphicon glyphicon-log-in' %></li>
+          <li><%= link_to '  タグ一覧', admin_tags_path, class: 'glyphicon glyphicon-log-in' %></li>
         <li><%#= link_to '  使い方ガイド修正フォーム', home_about_path, class: 'glyphicon glyphicon-log-in' %></li>
         <li><%= link_to '  掲示板一覧', admin_boards_path, class: 'glyphicon glyphicon-log-in' %></li>
 
