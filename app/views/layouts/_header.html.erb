@@ -1,0 +1,20 @@
+<h1>
+   <%= link_to "Study record", root_path, id: "logo" %>
+</h1>
+
+<nav class="pc-nav">
+  <ul>
+    <% if user_signed_in? %>
+    　<li><%= "ようこそ、#{current_user.name}さん！" %></li>
+      <li><%= link_to '  マイページ', user_users_path, class: 'glyphicon glyphicon-log-in' %></li>
+      <li><%= link_to '  使い方ガイド', home_about_path, class: 'glyphicon glyphicon-log-in' %></li>
+      <li><%= link_to '  掲示板一覧', public_boards_path, class: 'glyphicon glyphicon-log-in' %></li>
+      <li><%= link_to '  ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-in' %></li>
+
+    <% else %>
+      <li><%#= link_to '  ', '#', class: 'glyphicon glyphicon-log-in' %></li>
+      <li><%= link_to '  新規登録', new_user_registration_path, class: 'glyphicon glyphicon-log-in' %></li>
+      <li><%= link_to '  ログイン', new_user_session_path, class: 'glyphicon glyphicon-log-in' %></li>
+  　<% end %>
+  </ul>
+</nav>

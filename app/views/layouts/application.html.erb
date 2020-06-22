@@ -10,6 +10,32 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <!--ヘッダーをadminかユーザーログインかで切替表示-->
+    <div class="header">
+      <% if admin_signed_in? %>
+        <%= render 'layouts/admin_header' %>
+      <% else %>
+        <%= render 'layouts/header' %>
+      <% end %>
+    </div>
+
+    <div class="container">
+      <!--送ったフラッシュメッセージをページ上部に表示する-->
+      <div class="row">
+        <div class="col-xs-12">
+          <%= flash[:notice] %>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <%= yield %>
+    </div>
+
+    <div class="footer">
+      <%= link_to '運営情報', '#' %>
+    </div>
+
   </body>
 </html>
