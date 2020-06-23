@@ -1,2 +1,41 @@
-<h1>Public::Boards#new</h1>
-<p>Find me in app/views/public/boards/new.html.erb</p>
+<div class="row">
+	<div class="col-xs-12">
+
+	<!--プレビュー機能があると良い-->
+
+
+	<h2>新規投稿</h2>
+		<%= form_with(model: @board, url:  public_boards_path, local: true) do |f| %>
+
+		<!--エラーメッセ-->
+
+			<div class="field">
+				<%= f.label :タイトル %>
+				<%= f.text_field :title, class: 'form-control' %>
+			</div>
+
+			<div class="field">
+				<%= f.label :件名 %>
+				<%= f.text_field :subject, class: 'form-control' %>
+			</div>
+
+			<div class="field">
+				<%= f.label :本文 %>
+				<%= f.text_area :body, class: 'form-control' %>
+			</div>
+
+			<div class="field">
+				<%= f.attachment_field :image, placeholder: 'プロフィール画像', class: 'board-image-form' %>
+			</div>
+
+
+			<div class="action">
+				<%= f.submit '投稿する', class: 'form-control' %>
+			</div>
+
+
+
+		<% end %>
+	</div>
+
+</div>

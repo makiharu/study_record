@@ -1,2 +1,30 @@
-<h1>Public::Boards#index</h1>
-<p>Find me in app/views/public/boards/index.html.erb</p>
+<div class="row">
+
+
+
+		<h2>掲示板一覧</h2>
+		<table class="table" %>
+			<% @boards.each do |board| %>
+			<tr>
+				<thead>
+					<th>画像</th>
+					<th>ユーザー名</th>
+					<th>タイトル</th>
+					<th>投稿日時</th>
+					<th></th>
+				</thead>
+				<tbody>
+					<tr>
+						<td><%= attachment_image_tag(board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td>
+						<td><%= board.user.name %></td>
+						<td><%= board.title %></td>
+						<td><%= l board.created_at %></td>
+					</tr>
+				</tbody>
+
+
+			<% end %>
+		</table>
+	</div>
+
+</div>

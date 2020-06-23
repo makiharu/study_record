@@ -27,9 +27,10 @@ ActiveRecord::Schema.define(version: 2020_06_22_014108) do
   create_table "boards", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
+    t.string "subject"
     t.text "body"
     t.string "image_id"
-    t.boolean "board_status"
+    t.boolean "display", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
