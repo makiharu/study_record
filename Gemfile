@@ -42,6 +42,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-byebug'
+  gem 'rubocop', require: false # オプションfalse
+  gem 'dotenv-rails'#環境変数としてgitの外で管理する
 end
 
 group :development do
@@ -53,7 +55,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'annotate' # 追加
-  gem 'rubocop', require: false # オプションfalse
 end
 
 group :test do
@@ -81,3 +82,7 @@ gem 'enum_help'
 gem 'rails-i18n'
 
 gem 'faker'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
