@@ -1,2 +1,37 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="row">
+	<div class="col-xs-6 col-offset-6">
+
+		<h2>会員情報編集</h2>
+		<%= form_with(model: @user, url: admin_user_path(@user), local: true) do |f| %>
+		<%#= render partial: 'layouts/error_messages', locals: { obj: @genre} %>
+
+			<%= f.label :氏名 %>
+			<%= f.text_field :name, class: 'form-control' %><hr />
+
+			<%= f.label :メールアドレス %>
+			<%= f.email_field :email, class: 'form-control' %><hr />
+
+
+			<%= f.label :会員ステータス %>
+
+				<!--退会処理をここでもできるようにする-->
+				<!--管理人はユーザーを退会させる権限を持つ-->
+			<%# if @user.is_deleted == true %>
+			<%= f.check_box :is_deleted, {}, 'false', 'true' %>
+
+
+			  <%= f.radio_button :is_deleted, :'0' %>有効会員
+			  <%= f.radio_button :is_deleted, :'1' %>退会済み
+			<%# end %>
+
+			<hr />
+
+
+
+		<%= f.submit '変更を保存する', class: 'btn btn-default btn-success' %>
+
+		<% end %>
+
+	</div>
+
+</div>

@@ -18,10 +18,17 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user
+      redirect_to admin_user_path
       flash[:notice] = 'success'
     end
   end
 
   def hide; end
+
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :is_deleted)
+  end
 end
