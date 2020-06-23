@@ -1,27 +1,22 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :admins
   devise_for :users
 
-
-  #   devise_for :admins, controllers: {
-  #   sessions:      'admins/sessions',
-  #   passwords:     'admins/passwords',
-  #   registrations: 'admins/registrations'
+  # devise_for :users, controllers: {
+  #   sessions:      'users/sessions',
+  #   passwords:     'users/passwords',
+  #   registrations: 'users/registrations'
   # }
-  #
-  # devise_for :admin, skip: :all
-  #   devise_scope :admin do
-  #     get 'admins/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
-  #     post 'admins/sign_in' => 'admins/sessions#create', as: 'admin_session'
-  #     delete 'admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
-  #   end
+
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords',
+    registrations: 'admins/registrations'
+  }
 
   root 'home#top'
   get 'home/about'
-
-
 
   namespace :public do
     resources :boards, only: %i[new create index show edit]
