@@ -1,0 +1,55 @@
+<!--ユーザーのマイページにも飛べるようにする-->
+<div class="row">
+	<div class="col-xs-6 col-offset-6">
+
+
+
+
+	<!--サイドバーから管理者のみ設定できる項目を入れる-->
+
+	<h2>会員情報</h2>
+
+	<table class="table">
+			<tr>
+				<th>ユーザー名</th>
+				<td><%= attachment_image_tag(@user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td>
+			</tr>
+
+			<tr>
+				<th>登録ID</th>
+				<td><%= @user.id %></td>
+			</tr>
+			<tr>
+				<th>登録日時</th>
+				<td><%= l @user.created_at %></td>
+			</tr>
+			<tr>
+				<th>氏名</th>
+				<td><%= @user.name %></td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td><%= @user.email %></td>
+			</tr>
+			<tr>
+				<th>ユーザーページ</th>
+				<td><%= link_to '確認する', '#', class: 'btn btn-default btn-sm btn-outline-primary' %></td>
+			</tr>
+			<tr>
+				<th>会員ステータス</th>
+				<td><%= @user.is_deleted %></td>
+			</tr>
+	</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-6 col-offset-6">
+
+		<%= link_to '編集する', edit_manage_user_path(@user), class: 'btn btn-default btn-primary' %>
+
+		<hr />
+		<%= link_to '戻る', :back, class: 'btn btn-default btn-outline-dark' %>
+	</div>
+</div>
+

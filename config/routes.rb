@@ -1,33 +1,33 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :users
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks' # SNS認証時のコールバック処理
+  }
+
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords'
+  }
 
   root 'home#top'
   get 'home/about'
 
-  namespace :user do
+  namespace :public do
+    resources :boards, only: %i[new create index show edit]
     resources :users, only: %i[index show edit]
     resources :boards, only: %i[new index show edit]
     get 'todolists/complete'
+
+    get 'board_comments/index'
+    get 'board_comments/edit'
   end
 
-  # namespace :public do
-  #   resources :boards, only: %i[new create index show edit]
-
-# get 'board_comments/index'
-  # get 'board_comments/edit'
-  # end
-  #
-    namespace :public do
-      resources :boards, only: %i[new create index show edit]
-
-      get 'board_comments/index'
-      get 'board_comments/edit'
-  end
-
-  namespace :admin do
+  namespace :manage do
     get 'home/top'
     resources :users, except: [:destroy]
     resources :boards, only: %i[index show update]
