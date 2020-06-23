@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
 
-  # devise_for :users, controllers: {
-  #   sessions:      'users/sessions',
-  #   passwords:     'users/passwords',
-  #   registrations: 'users/registrations'
-  # }
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks' # SNS認証時のコールバック処理
+  }
 
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
-    passwords: 'admins/passwords',
-    registrations: 'admins/registrations'
+    passwords: 'admins/passwords'
   }
 
   root 'home#top'

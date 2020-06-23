@@ -18,7 +18,7 @@ Admin.create!(
   email = "example#{n}@gmail.com"
   is_deleted = Faker::Boolean.boolean
 
-  user = User.create!(
+  User.create!(
     name: name,
     email: email,
     password: 'password',
