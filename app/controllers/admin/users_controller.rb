@@ -25,7 +25,6 @@ class Admin::UsersController < ApplicationController
 
   def hide; end
 
-
   private
 
   def user_params

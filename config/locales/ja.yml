@@ -6,11 +6,18 @@ ja:
       name:
         - "#{last_name} #{first_name}"
 
-  # enums:
-  #   todolist:
-  #     time_category:
-  #       today: "本日のリスト一覧"
-  #       week: "今週のリスト一覧"
-  #       month: "今月のリスト一覧"
+
+
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+
+  #enums:
+  # todolist:
+  #   time_category:
+  #     today: "本日のリスト一覧"
+  #     week: "今週のリスト一覧"
+  #     month: "今月のリスト一覧"
 
 

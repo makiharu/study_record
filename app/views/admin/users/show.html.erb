@@ -11,7 +11,7 @@
 
 	<table class="table">
 			<tr>
-				<th>ユーザー名</th> <%#= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+				<th>ユーザー名</th>
 				<td><%= attachment_image_tag(@user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td>
 			</tr>
 
@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<th>登録日時</th>
-				<td><%= @user.created_at %></td>
+				<td><%= l @user.created_at %></td>
 			</tr>
 			<tr>
 				<th>氏名</th>
