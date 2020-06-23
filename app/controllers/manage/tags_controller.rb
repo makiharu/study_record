@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::TagsController < ApplicationController
+class Manage::TagsController < ApplicationController
   def new; end
 
   def index; end

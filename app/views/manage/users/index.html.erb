@@ -16,7 +16,7 @@
 			<% @users.each do |user| %>
 			<tr>
 				<td><%= user.id %></td>
-				<td><%= link_to user.name, admin_user_path(user) %></td>
+				<td><%= link_to user.name, manage_user_path(user) %></td>
 				<td><%= user.email %></td>
 				<td><%= l user.created_at %></td>
 
