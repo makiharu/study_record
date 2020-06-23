@@ -13,11 +13,18 @@ Rails.application.routes.draw do
     get 'todolists/complete'
   end
 
-  namespace :public do
-    resources :boards, only: %i[new index show edit]
+  # namespace :public do
+  #   resources :boards, only: %i[new create index show edit]
 
-    get 'board_comments/index'
-    get 'board_comments/edit'
+# get 'board_comments/index'
+  # get 'board_comments/edit'
+  # end
+  #
+    namespace :public do
+      resources :boards, only: %i[new create index show edit]
+
+      get 'board_comments/index'
+      get 'board_comments/edit'
   end
 
   namespace :admin do
