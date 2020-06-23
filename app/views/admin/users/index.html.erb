@@ -18,7 +18,7 @@
 				<td><%= user.id %></td>
 				<td><%= link_to user.name, admin_user_path(user) %></td>
 				<td><%= user.email %></td>
-				<td><%= user.created_at %></td>
+				<td><%= l user.created_at %></td>
 
 				<!--ステータスの変更をできるようにすること-->
 				<td><%= user.is_deleted %></td>
@@ -29,6 +29,8 @@
 		</tbody>
 
 	</table>
+				<!--ページャ実装-->
+			<%= paginate @users %>
 
 
 </div>
