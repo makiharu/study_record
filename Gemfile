@@ -86,3 +86,5 @@ gem 'faker'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+
+gem 'font-awesome-rails'
