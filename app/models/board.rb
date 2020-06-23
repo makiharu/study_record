@@ -1,5 +1,7 @@
-class Board < ApplicationRecord
-	belongs_to :user
+# frozen_string_literal: true
 
-	attachment :image
+class Board < ApplicationRecord
+  belongs_to :user
+
+  attachment :image
 end

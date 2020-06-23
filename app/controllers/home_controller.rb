@@ -1,7 +1,7 @@
-class HomeController < ApplicationController
-  def top
-  end
+# frozen_string_literal: true
 
-  def about
-  end
+class HomeController < ApplicationController
+  def top; end
+
+  def about; end
 end

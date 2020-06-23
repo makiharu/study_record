@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class Public::BoardCommentsControllerTest < ActionDispatch::IntegrationTest
@@ -10,5 +12,4 @@ class Public::BoardCommentsControllerTest < ActionDispatch::IntegrationTest
     get public_board_comments_edit_url
     assert_response :success
   end
-
 end

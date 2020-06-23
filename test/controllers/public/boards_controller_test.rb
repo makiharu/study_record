@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class Public::BoardsControllerTest < ActionDispatch::IntegrationTest
@@ -20,5 +22,4 @@ class Public::BoardsControllerTest < ActionDispatch::IntegrationTest
     get public_boards_edit_url
     assert_response :success
   end
-
 end

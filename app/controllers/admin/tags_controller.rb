@@ -1,17 +1,13 @@
+# frozen_string_literal: true
+
 class Admin::TagsController < ApplicationController
-  def new
-  end
+  def new; end
 
-  def index
-  end
+  def index; end
 
-  def edit
-  end
+  def edit; end
 
-  def update
-  end
+  def update; end
 
-  def destroy
-  end
-
+  def destroy; end
 end

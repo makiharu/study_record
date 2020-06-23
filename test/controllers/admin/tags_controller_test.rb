@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class Admin::TagsControllerTest < ActionDispatch::IntegrationTest
@@ -15,5 +17,4 @@ class Admin::TagsControllerTest < ActionDispatch::IntegrationTest
     get admin_tags_edit_url
     assert_response :success
   end
-
 end

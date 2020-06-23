@@ -1,0 +1,42 @@
+AllCops:
+  # 除外するディレクトリ
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - db/migrate/*
+    - vendor/**/*
+
+
+#https://gist.github.com/linyows/ace586b118f87291ed3e
+#以下を規約チェックの対象外とする
+
+# "Missing magic comment # frozen_string_literal: true."を無効
+# #全てのファイルの先頭に記載されるため、設定をオフにする.
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# # Missing top-level class documentation comment.を無効
+# ドキュメントの無い public class を許可する
+Style/Documentation:
+  Enabled: false
+
+
+# Prefer single-quoted strings when you don't need string interpolation or special symbols.を無効
+#引用符の使用が構成された設定と一致するかどうかを確認
+Style/StringLiterals:
+  Enabled: false
+
+# "Line is too long"を無効
+Metrics/LineLength:
+  Enabled: false
+
+# Use nested module/class definitions instead of compact style. を無効
+#子クラスとモジュールのスタイルをチェック
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+
+# 日本語のコメントを許可する
+Style/AsciiComments:
+  Enabled: false
+

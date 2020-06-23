@@ -1,12 +1,9 @@
+# frozen_string_literal: true
+
 class User::UsersController < ApplicationController
+  def index; end
 
-  def index
+  def show; end
 
-  end
-
-  def show
-  end
-
-  def edit
-  end
+  def edit; end
 end

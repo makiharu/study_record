@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class Admin::SearchControllerTest < ActionDispatch::IntegrationTest
@@ -5,5 +7,4 @@ class Admin::SearchControllerTest < ActionDispatch::IntegrationTest
     get admin_search_search_url
     assert_response :success
   end
-
 end
