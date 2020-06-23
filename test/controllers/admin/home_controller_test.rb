@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class Admin::HomeControllerTest < ActionDispatch::IntegrationTest
@@ -5,5 +7,4 @@ class Admin::HomeControllerTest < ActionDispatch::IntegrationTest
     get admin_home_top_url
     assert_response :success
   end
-
 end
