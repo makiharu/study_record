@@ -1,5 +1,6 @@
-class Admin::UsersController < ApplicationController
+# frozen_string_literal: true
 
+class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
@@ -18,12 +19,9 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user
-      flash[:notice] = "success"
+      flash[:notice] = 'success'
     end
-
   end
 
-  def hide
-  end
-
+  def hide; end
 end

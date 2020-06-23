@@ -51,6 +51,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'annotate' #追加
+  gem 'rubocop', require: false  #オプションfalse
 end
 
 group :test do
