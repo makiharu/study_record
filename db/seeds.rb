@@ -27,8 +27,9 @@ Admin.create!(
   )
 end
 
+
 # 50boards
-50.times do |_n|
+50.times do |n|
   user_id = rand(1..50)
   title = Faker::Games::Pokemon.name
   subject = "質問したいことがあります。その{n}"
