@@ -1,33 +1,36 @@
-<div class="row">
-  <div class="col-xs-8 col-xs-offset-2">
-  	  <h3>掲示板一覧</h3>
-  	<div class="text-right">
-		<%= link_to "+", new_public_board_path, class: " btn btn-dark", style: "border-radius: 50%" %>
+<div class="d-flex align-items-center">
+	<h1>掲示板一覧</h1>
+	<div class="ml-auto">
+
+		<!--ボタンの位置とレイアウト検討-->
+		<%= link_to '新規作成 +', new_public_board_path, class: "btn btn-outline-dark" %>
+		<%= link_to "+", new_public_board_path, class: "btn btn-info", style: "border-radius: 50%" %>
 	</div>
-
-
-		<table class="table table-hover">
-			<thead>
-				<th>画像</th>
-				<th>ユーザー名</th>
-				<th>タイトル</th>
-				<th>投稿日時</th>
-				<th></th>
-			</thead>
-			<tbody>
-				<% @boards.each do |board| %>
-				<tr>
-
-					<td><%= attachment_image_tag(board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td>
-					<td><%= board.user.name %></td>
-					<td><%= board.title %></td>
-					<td><%= l board.created_at %></td>
-				</tr>
-				<% end %>
-			</tbody>
-
-		</table>
-		<%= paginate @boards %>
-	</div>
-
 </div>
+
+
+<table class="table table-hover">
+	<thead>
+		<th>画像</th>
+		<th>ユーザー名</th>
+		<th>タイトル</th>
+		<th>投稿日時</th>
+		<th>詳細</th>
+	</thead>
+	<tbody>
+		<% @boards.each do |board| %>
+		<tr>
+
+			<td><%= attachment_image_tag(board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td>
+			<td><%= board.user.name %></td>
+			<td><%= link_to board.title %></td>
+			<td><%= l board.created_at %></td>
+			<td><%= link_to '詳細', public_board_path(board), class: 'btn btn-outline-info' %></td>
+
+		</tr>
+		<% end %>
+	</tbody>
+
+</table>
+
+<%= paginate @boards %>
