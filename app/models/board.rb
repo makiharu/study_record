@@ -1,6 +1,7 @@
 class Board < ApplicationRecord
   belongs_to :user
-  has_many :board_tag, dependent: :destroy
+  has_many :board_tags, dependent: :destroy
+  has_many :board_comments, dependent: :destroy
 
   attachment :image
 

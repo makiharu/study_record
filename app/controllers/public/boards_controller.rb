@@ -25,7 +25,8 @@ class Public::BoardsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @board.update(board_params)

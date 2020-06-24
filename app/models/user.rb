@@ -6,14 +6,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[twitter facebook] # 追加
-  # 　deviseでOmniAuthの機能を使うことができるようになる
 
   has_many :boards, dependent: :destroy
   has_many :todolists, dependent: :destroy
+  has_many :boards, dependent: :destroy
+
   attachment :profile_image
 
   validates :name, presence: true
 
+  # deviseでOmniAuthの機能を使うことができるようになる
   # find_or_create_for_oauthメソッド => コールバック用コントローラーで呼び出す
   # new_with_sessionメソッド => ユーザー登録用コントローラーから呼び出す
 

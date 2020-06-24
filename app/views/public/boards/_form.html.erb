@@ -1,22 +1,4 @@
-<div class="row">
-	<div class="col-xs-12">
-
-	<!--プレビュー機能があると良い-->
-
-
-	<h2>編集フォーム</h2>
-
-	<!--投稿フォームうまくいかない-->
-	<%= render 'form', board: @board %>
-	</div>
-
-</div>
-
-
-
-<h1>test</h1>
-
-<%= form_with(model: @board, url: public_board_path, local: true) do |f| %>
+<%= form_with(model: board, url: public_boards_path, local: true) do |f| %>
 <%#= form_for board do |f| %>
 
 <!--url:  public_boards_path-->
