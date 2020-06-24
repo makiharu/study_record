@@ -7,9 +7,8 @@
 	<h2>新規投稿</h2>
 		<%= form_with(model: @board, url:  public_boards_path, local: true) do |f| %>
 
-		<!--エラーメッセ-->
-		<%= render partial: 'shared/error_messages', locals: { obj: @board} %>
-
+			<!--partial: 'shared/error_messages'だとエラーになる-->
+			<%= render 'shared/error_messages', obj: @board %>
 
 			<div class="field">
 				<%= f.label :タイトル %>

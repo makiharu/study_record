@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      board: 掲示板
+    attributes:
+      board:
+        title: タイトル
+        subject: 件名
+        body: 本文
