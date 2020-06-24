@@ -4,7 +4,7 @@ class Public::BoardCommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-
+  	binding.pry
   end
 
   def destroy; end

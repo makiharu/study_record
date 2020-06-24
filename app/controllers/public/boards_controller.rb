@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Public::BoardsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_board, only: %i[show edit update]
@@ -24,7 +22,8 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
-    @board_comment = @board.board_comments.new
+    #@board_comment = @board.board_comments.new
+    @board_comment = BoardComment.new
     #binding.pry
   end
 
@@ -48,5 +47,8 @@ class Public::BoardsController < ApplicationController
 
   def set_board
     @board = Board.find(params[:id])
+    #@name = controller.action_name
+    @name = action_name
   end
+
 end
