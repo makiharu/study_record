@@ -10,7 +10,7 @@ class Public::BoardsController < ApplicationController
     @board = Board.new(board_params)
     @board.user_id = current_user.id
     if @board.save
-      redirect_to public_boards_path
+      redirect_to public_board_path(@board)
       flash[:notice] = "success"
     else
       render :new

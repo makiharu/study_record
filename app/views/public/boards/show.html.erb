@@ -22,7 +22,7 @@
           <p class="text-right font-weight-bold mr-10">
             <%= link_to public_user_path(@board.user) do %>
               <%= @board.user.name %>
-              <%= attachment_image_tag @board.user.profile_image, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
+              <%= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
             <% end %>
          </p>
       </div>
