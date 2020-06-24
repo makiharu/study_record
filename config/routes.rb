@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   namespace :public do
     resources :boards, only: %i[new create index show edit]
     resources :users, only: %i[index show edit]
-    resources :boards, only: %i[new index show edit]
     get 'todolists/complete'
 
     get 'board_comments/index'

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Public::BoardsController < ApplicationController
+
+  before_action :authenticate_user!
+
   def new
     @board = Board.new
   end
@@ -9,14 +12,15 @@ class Public::BoardsController < ApplicationController
     @board = Board.new(board_params)
     @board.user_id = current_user.id
     if @board.save
-      redirect_to board_path
+      redirect_to public_boards_path
+      flash[:notice] = "success"
     else
       render :new
     end
   end
 
   def index
-    @boards = Board.all
+    @boards = Board.page(params[:page]).per(10)
   end
 
   def show; end
