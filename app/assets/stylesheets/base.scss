@@ -18,7 +18,7 @@ body {
 
 
 .container {
-  padding-top: 30px; /*上部に余白を作る*/
+  padding-top: 20px; /*上部に余白を作る*/
 }
 
 
@@ -65,6 +65,11 @@ li {
 
 nav {
 	margin: 0 0 0 auto;/*左マージンにauto*/
+}
+
+
+.pagination {
+	justify-content: center;/*ページネーション全体に適用*/
 }
 
 

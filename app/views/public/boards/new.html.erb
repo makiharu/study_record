@@ -8,6 +8,8 @@
 		<%= form_with(model: @board, url:  public_boards_path, local: true) do |f| %>
 
 		<!--エラーメッセ-->
+		<%= render partial: 'shared/error_messages', locals: { obj: @board} %>
+
 
 			<div class="field">
 				<%= f.label :タイトル %>

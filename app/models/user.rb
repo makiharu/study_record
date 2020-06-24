@@ -7,13 +7,20 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[twitter facebook] # 追加
   # 　deviseでOmniAuthの機能を使うことができるようになる
-  has_many :boards
+
+
+  has_many :boards, dependent: :destroy
+  has_many :todolists, dependent: :destroy
   attachment :profile_image
+
+  validates :name, presence: true
+
+
 
   # find_or_create_for_oauthメソッド => コールバック用コントローラーで呼び出す
   # new_with_sessionメソッド => ユーザー登録用コントローラーから呼び出す
 
-  class << self
+  #class << self
     def find_or_create_for_oauth(auth)
       find_or_create_by!(email: auth.info.email) do |user|
         user.provider = auth.provider
@@ -33,5 +40,5 @@ class User < ApplicationRecord
         super
       end
     end
-  end
+  #end
 end
