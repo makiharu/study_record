@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   namespace :public do
     resources :boards, only: %i[new create index edit show update] do
       resource :board_comments, only: %i[create]
-
     end
 
     resources :users, only: %i[index show edit update]

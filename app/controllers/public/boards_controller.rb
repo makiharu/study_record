@@ -22,13 +22,12 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
-    #@board_comment = @board.board_comments.new(board_id: @board.id)
+    # @board_comment = @board.board_comments.new(board_id: @board.id)
     @board_comment = BoardComment.new
     @board_comment.board_id = @board.id
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @board.update(board_params)
@@ -47,7 +46,6 @@ class Public::BoardsController < ApplicationController
 
   def set_board
     @board = Board.find(params[:id])
-    #@name = action_name
+    # @name = action_name
   end
-
 end
