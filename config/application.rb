@@ -16,7 +16,7 @@ module StudyRecord
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :ja # タイムゾーンの設定
 
-    #正規表現を使い、config/locales以下のディレクトリ内にある全てのymlファイルを読み込む
+    # 正規表現を使い、config/locales以下のディレクトリ内にある全てのymlファイルを読み込む
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
 
     # Settings in config/environments/* take precedence over those specified here.

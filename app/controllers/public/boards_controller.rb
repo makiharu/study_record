@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Public::BoardsController < ApplicationController
-
   before_action :authenticate_user!
-  before_action :set_board, only: %i[show edit update ]
+  before_action :set_board, only: %i[show edit update]
 
   def new
     @board = Board.new
@@ -24,11 +23,9 @@ class Public::BoardsController < ApplicationController
     @boards = Board.page(params[:page]).per(10)
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @board.update(board_params)
@@ -38,7 +35,6 @@ class Public::BoardsController < ApplicationController
       render :edit
     end
   end
-
 
   private
 
