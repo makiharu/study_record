@@ -23,7 +23,7 @@
 
 			<td><%= attachment_image_tag(board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td>
 			<!--ユーザーページへのリンク-->
-			<td><%= link_to　'#', board.user.name %></td>
+			<td><%= link_to board.user.name, '#' %></td>
 			<td><%= board.title %></td>
 			<td><%= l board.created_at %></td>
 			<td><%= link_to '詳細', public_board_path(board), class: 'btn btn-outline-info' %></td>

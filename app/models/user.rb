@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :todolists, dependent: :destroy
   attachment :profile_image
 
+  validates :name, presence: true
+
 
 
   # find_or_create_for_oauthメソッド => コールバック用コントローラーで呼び出す
