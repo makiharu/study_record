@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_06_24_003505) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false
     t.string "profile_image_id"
     t.string "uid"
     t.string "provider"
