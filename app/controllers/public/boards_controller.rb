@@ -23,7 +23,10 @@ class Public::BoardsController < ApplicationController
     @boards = Board.page(params[:page]).per(10)
   end
 
-  def show; end
+  def show
+    @board_comment = @board.board_comments.new
+    #binding.pry
+  end
 
   def edit
   end

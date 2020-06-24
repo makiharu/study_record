@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :boards, only: %i[new create index edit show update]
 
     #patch '/public/boards/:id' => 'boards#update'
+    resources :board_comments, only: %i[create destroy]
     resources :users, only: %i[index show edit update]
 
     get 'todolists/complete'
