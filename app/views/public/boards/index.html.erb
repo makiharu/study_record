@@ -10,24 +10,27 @@
 
 
 <table class="table table-hover">
-	<thead>
-		<th>画像</th>
+	<thead class="thead-light">
 		<th>ユーザー名</th>
 		<th>タイトル</th>
+		<th >件名</th>
 		<th>投稿日時</th>
 		<th>詳細</th>
 	</thead>
 	<tbody>
 		<% @boards.each do |board| %>
 		<tr>
-
-			<td><%= attachment_image_tag(board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td>
-			<!--ユーザーページへのリンク-->
-			<td><%= link_to board.user.name, '#' %></td>
+			<td><!--ユーザーページへのリンクに後ほど変更-->
+				<%= link_to public_board_path(board) do %>
+					<%= attachment_image_tag(board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '30x30') %><br />
+					<p><%= board.user.name %></p>
+				<% end %>
+			</td>
 			<td><%= board.title %></td>
+			<td><%= board.subject %></td>
 			<td><%= l board.created_at %></td>
-			<td><%= link_to '詳細', public_board_path(board), class: 'btn btn-outline-info' %></td>
 
+			<td><%= link_to '詳細', public_board_path(board), class: 'btn btn-outline-info' %></td>
 		</tr>
 		<% end %>
 	</tbody>

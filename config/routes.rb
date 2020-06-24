@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
@@ -18,7 +17,10 @@ Rails.application.routes.draw do
   get 'home/about'
 
   namespace :public do
-    resources :boards, only: %i[new create index show edit]
+    resources :boards, only: %i[new create index edit show update]
+
+    #patch '/public/boards/:id' => 'boards#update'
+    resources :board_comments, only: %i[create destroy]
     resources :users, only: %i[index show edit update]
 
     get 'todolists/complete'
