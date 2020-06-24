@@ -1,19 +1,33 @@
-<!--form_withのURL指定のエラー回避のため、POST用とPATCH用とで条件分岐する-->
-<!--controller_name : コントローラとアクションの情報を取り出すメソッド, コントローラを確認-->
+<%#= form_with(model: board, url: public_board_path, local: true) do |f| %>
 
-<% if controller_name == "edit" %>
-<%# if @name == "edit" %>
-	<%= form_with(model: board, url: public_board_path, local: true) do |f| %>
-	  <%= render 'shared/error_messages', obj: board %>
-	  <%= render 'form_group', f:f %>
+<%= form_for [:public, board] do |f| %>
 
-	<% end %>
-<% else %>
-    <%# binding.pry %>
-	<%= form_with(model: board, url: public_boards_path, local: true) do |f| %>
-	  <%= render 'shared/error_messages', obj: board %>
-	  <%= render 'form_group', f:f %>
-	<% end %>
+	<%= render 'shared/error_messages', obj: board %>
+
+	<div class="form-group">
+		<%= f.label :タイトル %>
+		<%= f.text_field :title, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :件名 %>
+		<%= f.text_field :subject, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :本文 %>
+		<%= f.text_area :body, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.attachment_field :image, placeholder: 'プロフィール画像', class: 'board-image-form' %>
+	</div>
+
+
+	<div class="actions">
+		<%= f.submit '投稿する', class: 'form-control' %>
+	</div>
+
 <% end %>
 
 

@@ -17,10 +17,11 @@ Rails.application.routes.draw do
   get 'home/about'
 
   namespace :public do
-    resources :boards, only: %i[new create index edit show update]
+    resources :boards, only: %i[new create index edit show update] do
+      resource :board_comments, only: %i[create]
 
-    #patch '/public/boards/:id' => 'boards#update'
-    resources :board_comments, only: %i[create destroy]
+    end
+
     resources :users, only: %i[index show edit update]
 
     get 'todolists/complete'
