@@ -9,7 +9,8 @@ class User < ApplicationRecord
   # 　deviseでOmniAuthの機能を使うことができるようになる
 
 
-  has_many :boards
+  has_many :boards, dependent: :destroy
+  has_many :todolists, dependent: :destroy
   attachment :profile_image
 
 
