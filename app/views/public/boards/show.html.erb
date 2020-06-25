@@ -36,7 +36,7 @@
   <div class="comments">
       <h4>コメント一覧</h4>
       <!--namespaceを使用していることを忘れずに-->
-      <%= render 'public/board_comments/comments', board: @board %>
+      <%= render 'public/board_comments/comments', board: @board, board_comment: @board_comment %>
 
   </div>
 
@@ -68,4 +68,7 @@
 </div>
 
 <%# end %>
+
+<!-- 戻るボタンが必要-->
+<%#= link_to '戻る',
 

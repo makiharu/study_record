@@ -10,6 +10,9 @@
             <%= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
       </span>
 
+      <%# binding.pry %>
+	  <%= link_to '削除', public_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
+	  <%#= link_to '編集', %>
 
 
     </div>
