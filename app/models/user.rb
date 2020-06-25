@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
 
   has_many :boards, dependent: :destroy
+  has_many :board_comments, dependent: :destroy
   has_many :todolists, dependent: :destroy
   attachment :profile_image
 

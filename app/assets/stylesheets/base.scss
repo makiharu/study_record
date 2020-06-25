@@ -92,3 +92,12 @@ nav {
 	color:white;
 }
 
+
+
+.flash-messages { /*フラッシュメッセージ cssが効かない*/
+    position: fixed;
+    top: 60px;
+    color: black;
+
+}
+

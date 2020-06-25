@@ -1,0 +1,20 @@
+<!--each_with_indexは回したときにそれぞれの要素が何番目か返してくれるメソッド-->
+<% board.board_comments.each_with_index do |comment, i| %>
+  <div class="comment-list">
+
+  	<p>NO. <%= i + 1 %></p>
+    <p><%= simple_format(comment.comment) %></p>
+    <div class="comment-bottom">
+      <span id="time"><%= l comment.created_at %></span>
+      <span><%= comment.user.name %>
+            <%= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
+      </span>
+
+      <%# binding.pry %>
+	  <%= link_to '削除', public_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
+	  <%#= link_to '編集', %>
+
+
+    </div>
+  </div>
+<% end %>

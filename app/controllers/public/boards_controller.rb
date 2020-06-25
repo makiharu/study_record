@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Public::BoardsController < ApplicationController
 
   before_action :authenticate_user!
@@ -25,9 +23,11 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
-    # @board_comment = @board.board_comments.new(board_id: @board.id)
+    #@board_comment = @board.board_comments.new(board_id: @board.id)
     @board_comment = BoardComment.new
     @board_comment.board_id = @board.id
+
+    #@board_comment = BoardComment.new(board_id: @board.id)
 
   end
 
