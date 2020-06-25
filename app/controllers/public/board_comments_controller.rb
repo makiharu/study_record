@@ -11,12 +11,19 @@ class Public::BoardCommentsController < ApplicationController
     board_comment = current_user.board_comments.new(board_comment_params)
     board_comment.board_id = board.id
     #binding.pry
-    board_comment.save
-    redirect_to public_board_path(board)
+    if board_comment.save
+      redirect_to public_board_path(board)
+      flash[:notice] = "success!"
+    else
+      redirect_back(fallback_location: root_path)
+      flash[:notice] = "failed"
+
+    end
 
   end
 
-  def destroy; end
+  def destroy
+  end
 
   def edit; end
 
