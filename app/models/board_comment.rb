@@ -6,7 +6,7 @@ class BoardComment < ApplicationRecord
 	validates :comment, presence: true
 
 	#引数で渡されたユーザidがテーブル内に存在するかどうか判定
-	def comment_likes_by?(user)
+	def comment_liked_by?(user)
 		comment_likes.where(user_id: user.id).exists?
 	end
 end

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
 
     #ここのところ修正
-    resources :board_comments, only: [:destroy]
+    #resources :board_comments, only: [:destroy]
 
     resources :relationships, only: %i[create destroy]
 

@@ -19,7 +19,8 @@ class Public::BoardsController < ApplicationController
   end
 
   def index
-    @boards = Board.page(params[:page]).per(10)
+    #@boards = Board.page(params[:page]).per(10)
+    @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
