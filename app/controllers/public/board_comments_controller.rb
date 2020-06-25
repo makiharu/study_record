@@ -1,6 +1,7 @@
 class Public::BoardCommentsController < ApplicationController
 
   before_action :authenticate_user!
+  # before_action :ensure_correct_user,only: [:destroy]
 
   def index; end
 
@@ -38,5 +39,13 @@ class Public::BoardCommentsController < ApplicationController
   def board_comment_params
   	params.require(:board_comment).permit(:comment)
   end
+
+   # def ensure_correct_user
+   #      board_comment = BoardComment.find(params[:id])
+
+   #      if book_comment.user_id != current_user.id
+   #        redirect_to root_path
+   #      end
+   #  end
 
 end

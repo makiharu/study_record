@@ -27,8 +27,7 @@ class Public::BoardsController < ApplicationController
     @board_comment = BoardComment.new
     @board_comment.board_id = @board.id
 
-  #   if params[:board_id]
-  #   @one_comment = BoardComment.find(params[:board_id])
+     @one_comment = BoardComment.find_by(params[:board_comment_id])
   #   binding.pry
   # end
 
