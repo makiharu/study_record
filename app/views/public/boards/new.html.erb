@@ -7,6 +7,7 @@
 	<h2>新規投稿</h2>
 		<%= form_with(model: @board, url:  public_boards_path, local: true) do |f| %>
 
+<<<<<<< HEAD
 		<!--エラーメッセ-->
 		<%= render partial: 'shared/error_messages', locals: { obj: @board} %>
 
@@ -38,6 +39,10 @@
 
 
 		<% end %>
+=======
+	<!--投稿フォーム-->
+	<%= render 'form', board: @board, obj: @board %>
+>>>>>>> test
 	</div>
 
 </div>

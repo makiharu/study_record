@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+<<<<<<< HEAD
 
 
   # find_or_create_for_oauthメソッド => コールバック用コントローラーで呼び出す
@@ -41,4 +42,18 @@ class User < ApplicationRecord
       end
     end
   #end
+=======
+  def self.find_for_oauth(auth)
+    user = User.where(uid: auth.uid, provider: auth.provider).first
+
+    user ||= User.create(
+      uid: auth.uid,
+      provider: auth.provider,
+      email: auth.info.email,
+      password: Devise.friendly_token[0, 20]
+    )
+
+    user
+end
+>>>>>>> test
 end

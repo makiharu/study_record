@@ -13,7 +13,7 @@ class Public::BoardsController < ApplicationController
     @board = Board.new(board_params)
     @board.user_id = current_user.id
     if @board.save
-      redirect_to public_boards_path
+      redirect_to public_board_path(@board)
       flash[:notice] = "success"
     else
       render :new
@@ -25,10 +25,15 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
+<<<<<<< HEAD
+=======
+    # @board_comment = @board.board_comments.new(board_id: @board.id)
+    @board_comment = BoardComment.new
+    @board_comment.board_id = @board.id
+>>>>>>> test
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @board.update(board_params)
@@ -48,5 +53,9 @@ class Public::BoardsController < ApplicationController
 
   def set_board
     @board = Board.find(params[:id])
+<<<<<<< HEAD
+=======
+    # @name = action_name
+>>>>>>> test
   end
 end

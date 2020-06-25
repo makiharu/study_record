@@ -18,7 +18,14 @@ Rails.application.routes.draw do
   get 'home/about'
 
   namespace :public do
+<<<<<<< HEAD
     resources :boards, only: %i[new create index show edit]
+=======
+    resources :boards, only: %i[new create index edit show update] do
+      resource :board_comments, only: %i[create]
+    end
+
+>>>>>>> test
     resources :users, only: %i[index show edit update]
 
     get 'todolists/complete'

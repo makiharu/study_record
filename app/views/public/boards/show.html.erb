@@ -5,9 +5,29 @@
   </div>
 </div>
 
+<<<<<<< HEAD
 <div class="board-show">
   <div class="board-header">
     <h4><%= @board.title %></h4>
+=======
+
+
+  <div class="board-show">
+    <div class="board-header">
+      <h4><%= @board.title %></h4>
+    </div>
+    <div class="board-body">
+      <p class="board-text"><%= simple_format(@board.body) %></p>
+    </div>
+    <div class="board-profile">
+          <p class="text-right font-weight-bold mr-10">
+            <%= link_to public_user_path(@board.user) do %>
+              <%= @board.user.name %>
+              <%= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
+            <% end %>
+         </p>
+      </div>
+>>>>>>> test
   </div>
   <div class="board-body">
     <p class="board-text"><%= simple_format(@board.body) %></p>
@@ -18,4 +38,35 @@
     	<% end %>
     </p>
   </div>
+<<<<<<< HEAD
 </div>
+=======
+
+<!--条件分岐で、boar_idの有無で判断しないと、エラーでshowのviewが見れない-->
+  <%# if params[:board_id] %>
+
+   <div class="answer-body">
+
+      <!--namespaceを使用する場合は、先頭に指定してあげる必要がある-->
+      <%= form_for([:public, @board, @board_comment], local: true) do |f| %>
+      <%#= form_with(model: [@board, @board_comment], url: public_board_board_comments_path,local: true) do |f| %>
+
+         <%= f.hidden_field :board_id %>
+        <div class="form-group">
+          <%= f.text_area :comment, class: 'form-control', rows: 6 %>
+        </div>
+
+
+        <div class="actions">
+          <%= f.submit '送信する', class: 'btn btn-outline-info' %>
+
+        </div>
+
+      <% end %>
+    </div>
+</div>
+
+<%# end %>
+
+
+>>>>>>> test

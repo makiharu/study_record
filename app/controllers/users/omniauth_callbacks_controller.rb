@@ -31,6 +31,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def after_omniauth_failure_path_for(scope)
   #   super(scope)
   # end
+<<<<<<< HEAD
   private
 
   # Facebook／Twitter連携では処理を共通化
@@ -49,4 +50,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url
     end
 end
+=======
+>>>>>>> test
 end
