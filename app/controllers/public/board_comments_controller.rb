@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
 class Public::BoardCommentsController < ApplicationController
-<<<<<<< HEAD
 
   before_action :authenticate_user!
 
   def index; end
-
-=======
-  before_action :authenticate_user!
 
   def create
     board = Board.find(params[:id])
@@ -20,6 +16,4 @@ class Public::BoardCommentsController < ApplicationController
 
   def edit; end
 
->>>>>>> test
-  def edit; end
 end

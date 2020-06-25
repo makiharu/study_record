@@ -25,12 +25,10 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
-<<<<<<< HEAD
-=======
     # @board_comment = @board.board_comments.new(board_id: @board.id)
     @board_comment = BoardComment.new
     @board_comment.board_id = @board.id
->>>>>>> test
+
   end
 
   def edit; end
@@ -53,9 +51,7 @@ class Public::BoardsController < ApplicationController
 
   def set_board
     @board = Board.find(params[:id])
-<<<<<<< HEAD
-=======
     # @name = action_name
->>>>>>> test
+
   end
 end

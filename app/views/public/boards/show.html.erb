@@ -5,11 +5,7 @@
   </div>
 </div>
 
-<<<<<<< HEAD
-<div class="board-show">
-  <div class="board-header">
-    <h4><%= @board.title %></h4>
-=======
+
 
 
   <div class="board-show">
@@ -27,20 +23,11 @@
             <% end %>
          </p>
       </div>
->>>>>>> test
-  </div>
-  <div class="board-body">
-    <p class="board-text"><%= simple_format(@board.body) %></p>
-    <p class="text-right font-weight-bold mr-10">
-    	<%= link_to public_user_path(@board.user) do %>
-	    	<%= @board.user.name %>
-	    	<%= attachment_image_tag @board.user.profile_image, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
-    	<% end %>
-    </p>
-  </div>
-<<<<<<< HEAD
 </div>
-=======
+
+
+<!--条件分岐で、boar_idの有無で判断しないと、エラーでshowのviewが見れない-->
+  <%# if params[:board_id] %>
 
 <!--条件分岐で、boar_idの有無で判断しないと、エラーでshowのviewが見れない-->
   <%# if params[:board_id] %>
@@ -68,5 +55,3 @@
 
 <%# end %>
 
-
->>>>>>> test
