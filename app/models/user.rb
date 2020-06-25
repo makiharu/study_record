@@ -5,15 +5,16 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable # omniauth_providers: %i[twitter facebook] # 追加
+         :omniauthable, omniauth_providers: %i[twitter facebook] # 追加
+  # 　deviseでOmniAuthの機能を使うことができるようになる
+
 
   has_many :boards, dependent: :destroy
   has_many :todolists, dependent: :destroy
-  has_many :boards, dependent: :destroy
-
   attachment :profile_image
 
   validates :name, presence: true
+
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -25,6 +26,5 @@ class User < ApplicationRecord
       password: Devise.friendly_token[0, 20]
     )
 
-    user
 end
 end

@@ -5,9 +5,12 @@
 
 
 	<h2>新規投稿</h2>
+		<%= form_with(model: @board, url:  public_boards_path, local: true) do |f| %>
+
 
 	<!--投稿フォーム-->
 	<%= render 'form', board: @board, obj: @board %>
+
 	</div>
 
 </div>

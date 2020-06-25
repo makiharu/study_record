@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
@@ -20,7 +21,6 @@ Rails.application.routes.draw do
     resources :boards, only: %i[new create index edit show update] do
       resource :board_comments, only: %i[create]
     end
-
     resources :users, only: %i[index show edit update]
 
     get 'todolists/complete'

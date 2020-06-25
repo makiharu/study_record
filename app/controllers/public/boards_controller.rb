@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class Public::BoardsController < ApplicationController
+
   before_action :authenticate_user!
-  before_action :set_board, only: %i[show edit update]
+  before_action :set_board, only: %i[show edit update ]
 
   def new
     @board = Board.new
@@ -25,6 +28,7 @@ class Public::BoardsController < ApplicationController
     # @board_comment = @board.board_comments.new(board_id: @board.id)
     @board_comment = BoardComment.new
     @board_comment.board_id = @board.id
+
   end
 
   def edit; end
@@ -32,11 +36,12 @@ class Public::BoardsController < ApplicationController
   def update
     if @board.update(board_params)
       redirect_to public_board_path(@board)
-      flash[:notice] = "successful!"
+      flash[:notice] = "successful"
     else
       render :edit
     end
   end
+
 
   private
 
@@ -47,5 +52,6 @@ class Public::BoardsController < ApplicationController
   def set_board
     @board = Board.find(params[:id])
     # @name = action_name
+
   end
 end

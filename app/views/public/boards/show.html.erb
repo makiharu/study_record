@@ -1,13 +1,10 @@
-<!--mr-1 :0.25rem /mr/mt/mb/ml-->
-<div class="d-flex align-items-center mt-3 mb-2">
-  <div class="mr-auto p-1">
-    <h2>掲示板詳細</h2>
-  </div>
-  <div class="ml-auto">
-    <%= link_to '一覧', public_boards_path, class: 'btn btn-outline-dark' %>
-    <%= link_to '編集', edit_public_board_path(@board), class: 'btn btn-outline-dark' %>
+<div class="d-flex align-items-center mt-4 mb-4">
+  <div class="ml-auto boards__linkBox">
+<!--     <%#= link_to '一覧', boards_path, class: 'btn btn-outline-dark' %>
+    <%#= link_to '編集', edit_board_path(@board), class: 'btn btn-outline-dark' %> -->
   </div>
 </div>
+
 
 
 
@@ -26,20 +23,11 @@
             <% end %>
          </p>
       </div>
-  </div>
-
-
-<!--回答一覧-->
-
-<div class="comments">
-  <h4>回答一覧</h4>
 </div>
 
-<!--パーシャルで設定 回答フォーム-->
-<div class="answer-form">
-  <div class="answer-header">
-    <h4>質問に回答する</h4>
-  </div>
+
+<!--条件分岐で、boar_idの有無で判断しないと、エラーでshowのviewが見れない-->
+  <%# if params[:board_id] %>
 
 <!--条件分岐で、boar_idの有無で判断しないと、エラーでshowのviewが見れない-->
   <%# if params[:board_id] %>
@@ -66,5 +54,4 @@
 </div>
 
 <%# end %>
-
 
