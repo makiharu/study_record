@@ -24,9 +24,13 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
-    #@board_comment = @board.board_comments.new(board_id: @board.id)
     @board_comment = BoardComment.new
     @board_comment.board_id = @board.id
+
+  #   if params[:board_id]
+  #   @one_comment = BoardComment.find(params[:board_id])
+  #   binding.pry
+  # end
 
     #@board_comment = BoardComment.new(board_id: @board.id)
 
