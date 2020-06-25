@@ -39,9 +39,9 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 plugin :tmp_restart
 
 # ポート9292でSSL接続する
-if ENV.fetch('RAILS_ENV') { 'development' } == 'development'
-  ssl_bind '0.0.0.0', '9292', {
-    key: 'tmp/server.key',
-    cert: 'tmp/server.crt'
-  }
-end
+# if ENV.fetch('RAILS_ENV') { 'development' } == 'development'
+#   ssl_bind '0.0.0.0', '9292', {
+#     key: 'tmp/server.key',
+#     cert: 'tmp/server.crt'
+#   }
+# end

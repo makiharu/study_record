@@ -1,11 +1,13 @@
-<div class="d-flex align-items-center mt-4 mb-4">
-  <div class="ml-auto boards__linkBox">
-<!--     <%#= link_to '一覧', boards_path, class: 'btn btn-outline-dark' %>
-    <%#= link_to '編集', edit_board_path(@board), class: 'btn btn-outline-dark' %> -->
+<!--mr-1 :0.25rem /mr/mt/mb/ml-->
+<div class="d-flex align-items-center mt-3 mb-2">
+  <div class="mr-auto p-1">
+    <h2>掲示板詳細</h2>
+  </div>
+  <div class="ml-auto">
+    <%= link_to '一覧', public_boards_path, class: 'btn btn-outline-dark' %>
+    <%= link_to '編集', edit_public_board_path(@board), class: 'btn btn-outline-dark' %>
   </div>
 </div>
-
-
 
 
   <div class="board-show">
@@ -29,16 +31,41 @@
 <!--条件分岐で、boar_idの有無で判断しないと、エラーでshowのviewが見れない-->
   <%# if params[:board_id] %>
 
-<!--条件分岐で、boar_idの有無で判断しないと、エラーでshowのviewが見れない-->
-  <%# if params[:board_id] %>
 
-   <div class="answer-body">
 
+  <div class="comments">
+      <h4>コメント一覧</h4>
+      <%= @board_comment.comment %>
+      <%#= render 'board_comments/comments' %>
+
+
+      <% @board.board_comments.each do |comment| %>
+        <div class="comment-list">
+          <p><%= simple_format(comment.comment) %></p>
+          <div class="comment-bottom">
+            <span id="time"><%= l comment.created_at %></span>
+            <span><%= comment.user.name %>
+                  <%= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+
+  </div>
+
+
+
+
+<!--パーシャルで設定 回答フォーム-->
+   <div class="answer-form">
+      <div class="board-header">
+        <h4>コメントを書き込む</h4>
+    </div>
       <!--namespaceを使用する場合は、先頭に指定してあげる必要がある-->
       <%= form_for([:public, @board, @board_comment], local: true) do |f| %>
       <%#= form_with(model: [@board, @board_comment], url: public_board_board_comments_path,local: true) do |f| %>
 
-         <%= f.hidden_field :board_id %>
+         <%#= f.hidden_field :board_id %>
         <div class="form-group">
           <%= f.text_area :comment, class: 'form-control', rows: 6 %>
         </div>
