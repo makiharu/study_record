@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
 
   devise_for :users, controllers: {
@@ -19,14 +17,20 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :boards, only: %i[new create index edit show update] do
-      resource :board_comments, only: [:create]
+      #resource :board_likes, only: [:create, :destroy]
+      resource :board_comments, only: [:create, :destroy] do
+        resource :comment_likes, only: [:create, :destroy]
+      end
     end
 
+    #ここのところ修正
     resources :board_comments, only: [:destroy]
+
+    resources :relationships, only: %i[create destroy]
+
     resources :users, only: %i[index show edit update]
 
     get 'todolists/complete'
-
     get 'board_comments/index'
     get 'board_comments/edit'
   end

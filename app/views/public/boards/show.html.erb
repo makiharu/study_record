@@ -28,18 +28,16 @@
 </div>
 
 
-<!--条件分岐で、boar_idの有無で判断しないと、エラーでshowのviewが見れない-->
-  <%# if params[:board_id] %>
-
-
 
   <div class="comments">
       <h4>コメント一覧</h4>
       <!--namespaceを使用していることを忘れずに-->
       <%= render 'public/board_comments/comments', board: @board, board_comment: @board_comment %>
+       <%#= render 'public/board_comments/comments', board: @board, board: @board %>
+
+       テスト<i class="fa fa-heart" aria-hidden="true" style="color: red;">いいね</i>
 
   </div>
-
 
 
 

@@ -15,8 +15,12 @@
  *= require_self
  */
 
+
 @import "bootstrap";
 @import "base";
 @import "board";
 @import "board_comment";
-@import "toastr"
+
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
