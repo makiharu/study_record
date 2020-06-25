@@ -10,6 +10,10 @@ class Board < ApplicationRecord
   validates :body, presence: true, length: { maximum: 2000 }
   validates :display, inclusion: {in: [true, false]}
 
+ #  	#引数で渡されたユーザidがテーブル内に存在するかどうか判定
+	# def comment_likes_by?(user)
+	# 	comment_likes.where(user_id: current_user.id)
+	# end
 
 end
 

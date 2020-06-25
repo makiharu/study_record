@@ -19,13 +19,17 @@ class Public::BoardsController < ApplicationController
   end
 
   def index
-    @boards = Board.page(params[:page]).per(10)
+    #@boards = Board.page(params[:page]).per(10)
+    @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
-    #@board_comment = @board.board_comments.new(board_id: @board.id)
     @board_comment = BoardComment.new
     @board_comment.board_id = @board.id
+
+     @one_comment = BoardComment.find_by(params[:board_comment_id])
+  #   binding.pry
+  # end
 
     #@board_comment = BoardComment.new(board_id: @board.id)
 

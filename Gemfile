@@ -69,6 +69,8 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap-sass'
+
 gem 'devise'
 gem 'jquery-rails'
 
@@ -87,6 +89,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
-gem 'font-awesome-rails'
+gem 'font-awesome-sass'
 
 gem 'toastr-rails'
