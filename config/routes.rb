@@ -19,8 +19,10 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :boards, only: %i[new create index edit show update] do
-      resource :board_comments, only: %i[create]
+      resource :board_comments, only: [:create]
     end
+
+    resources :board_comments, only: [:destroy]
     resources :users, only: %i[index show edit update]
 
     get 'todolists/complete'

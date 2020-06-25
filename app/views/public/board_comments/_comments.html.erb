@@ -1,0 +1,14 @@
+<% board.board_comments.each do |comment| %>
+  <div class="comment-list">
+    <p><%= simple_format(comment.comment) %></p>
+    <div class="comment-bottom">
+      <span id="time"><%= l comment.created_at %></span>
+      <span><%= comment.user.name %>
+            <%= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
+      </span>
+    </div>
+  </div>
+<% end %>
+
+
+<h1>テスト</h1>

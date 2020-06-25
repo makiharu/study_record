@@ -17,12 +17,15 @@ class Public::BoardCommentsController < ApplicationController
     else
       redirect_back(fallback_location: root_path)
       flash[:alert] = "投稿できませんでした"
-
     end
 
   end
 
   def destroy
+    board_comment = BoardComment.find(params[:id])
+    board_comment.destroy
+    #redirect_to public_board_path(board_comment)
+    redirect_to public_boards
   end
 
   def edit; end
