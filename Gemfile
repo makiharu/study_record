@@ -88,3 +88,5 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
 gem 'font-awesome-rails'
+
+gem 'toastr-rails'

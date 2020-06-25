@@ -13,10 +13,10 @@ class Public::BoardCommentsController < ApplicationController
     #binding.pry
     if board_comment.save
       redirect_to public_board_path(board)
-      flash[:notice] = "success!"
+      flash[:notice] = "投稿しました"
     else
       redirect_back(fallback_location: root_path)
-      flash[:notice] = "failed"
+      flash[:alert] = "投稿できませんでした"
 
     end
 
