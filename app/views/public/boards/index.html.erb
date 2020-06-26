@@ -1,6 +1,19 @@
 <div class="d-flex align-items-center">
 	<h1>掲示板一覧</h1>
 	<div class="ml-auto">
+		  <!--全件取得されてしまう,ransack検討-->
+			    <%= form_tag public_boards_path, method: :get, class: 'boards__searchForm' do %>
+			      <%= select_tag :tag_id,
+			                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+			                     {
+			                       prompt: 'タグで絞り込み',
+			                       class: 'form-control boards__select',
+			                       onchange: 'submit(this.form);'
+			                     }
+			      %>
+			    <% end %>
+
+		<!--検索機能修正必要-->
 
 		<!--ボタンの位置とレイアウト検討-->
 		<%= link_to '新規作成 +', new_public_board_path, class: "btn btn-outline-dark" %>

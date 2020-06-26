@@ -1,7 +1,10 @@
 class Board < ApplicationRecord
   belongs_to :user
-  has_many :board_tag, dependent: :destroy
-  has_many :board_comments, dependent: :destroy
+  has_many :board_tags, dependent: :delete_all
+  has_many :tags, through: :board_tags
+  #through :中間テーブルを通して、boardモデルを結びつけるための設定,
+
+  has_many :board_comments, dependent: :delete_all
 
   attachment :image
 

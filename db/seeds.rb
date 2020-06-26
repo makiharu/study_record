@@ -27,23 +27,47 @@ Admin.create!(
   )
 end
 
+#tag_list
+Tag.create([
+{ name: 'HTML & CSS'},
+{ name: 'JavaScript'},
+{ name: 'jQuery' },
+{ name: 'Ruby'},
+{ name: 'Ruby on Rails'},
+{ name: 'PHP'},
+{ name: 'Java'},
+{ name: 'Python'},
+{ name: 'Command Line'},
+{ name: 'Git'},
+{ name: 'SQL'},
+{ name: 'Sass'},
+{ name: 'React'},
+{ name: 'Node.js'},
+{ name: 'その他'}
+])
 
-# 50boards
-50.times do |n|
-  user_id = rand(1..50)
-  title = Faker::Games::Pokemon.name
-  subject = "質問したいことがあります。その{n}"
-  body = "質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。
-          質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。
-          質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。
-          質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。
-          質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。
-          質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。"
 
-  Board.create!(
-    user_id: user_id,
-    title: title,
-    subject: subject,
-    body: body
-  )
+if Rails.env == 'development'
+
+  # 50boards
+  50.times do |n|
+    user_id = rand(1..50)
+    title = Faker::Games::Pokemon.name
+    subject = "質問したいことがあります。その#{n}"
+    body = "質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。
+            質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。
+            質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。
+            質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。
+            質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。
+            質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。"
+
+    Board.create!(
+      user_id: user_id,
+      title: title,
+      subject: subject,
+      body: body
+    )
+  end
 end
+
+
