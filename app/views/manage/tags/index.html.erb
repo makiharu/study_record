@@ -1,10 +1,28 @@
-<div class="d-flex">
-	<h1>タグ一覧</h1>
-	<div class="ml-auto">
-		<%= link_to "追加", new_manage_tag_path, class: "btn btn-info", style: "border-radius: 50%" %>
+<div class='row'>
+	<div class='col-md-3'>
+		<h3>タグ追加</h3>
+
+
+
+
+
+		<%= render 'form', tag: @tag %>
 
 	</div>
-</div>
+
+
+
+
+<!-- <div class="d-flex"> colの書き方で統一した方が良さそう-->
+<div class="col-md-9">
+	<h3>タグ一覧</h3>
+	<!-- <div class="mr-auto"> -->
+	<div class="float-right">
+		<%= link_to "追加", new_manage_tag_path, class: "btn btn-info", style: "border-radius: 50%" %>
+	</div>
+
+	<!-- </div> -->
+<!-- </div> -->
 
 
 <table class="table table-hover">
@@ -30,5 +48,9 @@
 </table>
 
 <%= paginate @tags %>
+
+</div>
+
+</div>
 
 
