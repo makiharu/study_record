@@ -5,9 +5,11 @@
 </div>
 
 <div class='row'>
-	<div class='col-md-offset-9'>
+	<div class='col-md-9'>
 
-		<%= render 'form', tag: @tag %>
+		<%= render 'form', tag: @tag, obj: @tag %>
 
 	</div>
 </div>
+
+<%#= form_with model: [:admin, @user], local: true do |f| %>

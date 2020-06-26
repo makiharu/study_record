@@ -1,17 +1,17 @@
 <!--form_withのnamespaceの書き方-->
 <%= form_with model: [:manage, tag], local: true do |f| %>
-<%= render partial: 'shared/error_messages', locals: { obj: tag} %>
+    <%= render partial: 'shared/error_messages', locals: { obj: tag} %>
 
-<div class="form-group">
-	<%= f.label 'タグ名' %>
-	<%= f.text_field :name, class: 'form-control' %>
-</div>
-<div class="form-group">
-	<span><%= f.radio_button :is_void, :"false" %>有効</span>
-	<span><%= f.radio_button :is_void, :"true" %>無効</span>
-</div>
+	<div class="form-group">
+		<%= f.label 'タグ名' %>
+		<%= f.text_field :name, class: 'form-control' %>
+	</div>
+	<div class="form-group">
+		<span><%= f.radio_button :is_void, :"false" %>有効</span>
+		<span><%= f.radio_button :is_void, :"true" %>無効</span>
+	</div>
 
-<div class="actions">
-	<%= f.submit '追加', class: 'btn btn-primary' %>
-</div>
+	<div class="actions">
+		<%= f.submit '追加', class: 'btn btn-primary' %>
+	</div>
 <% end %>

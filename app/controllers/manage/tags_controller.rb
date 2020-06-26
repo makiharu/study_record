@@ -1,6 +1,6 @@
-# frozen_string_literal: true
-
 class Manage::TagsController < ApplicationController
+  before_action :set_tag, only: %i[edit update destroy]
+
   def new
   	@tag = Tag.new
   end
@@ -22,7 +22,14 @@ class Manage::TagsController < ApplicationController
 
   def edit; end
 
-  def update; end
+  def update
+  	if @tag.update(tag_params)
+  		redirect_to manage_tags_path
+  		flash[:notice] = "タグを編集しました"
+  	else
+  		render :edit
+  	end
+  end
 
   def destroy; end
 
@@ -30,5 +37,9 @@ class Manage::TagsController < ApplicationController
 
   def tag_params
   	params.require(:tag).permit(:name, :is_void)
+  end
+
+  def set_tag
+  	@tag = Tag.find(params[:id])
   end
 end

@@ -6,7 +6,7 @@
 
 
 
-		<%= render 'form', tag: @tag %>
+		<%= render 'form', tag: @tag, obj: @tag %>
 
 	</div>
 
@@ -31,7 +31,7 @@
 		<th>タグ名</th>
 		<th>作成日時</th>
 		<th>ステータス</th>
-		<th>編集</th>
+		<th></th>
 	</thead>
 	<tbody>
 		<% @tags.each do |tag| %>
@@ -41,7 +41,7 @@
 			<td><%= l tag.created_at %></td>
 			<!--boolean型の日本語化、これでもok-->
 			<td><%= tag.is_void ? '無効' : '有効' %></td>
-			<td><%= link_to "変更", '#', class: 'btn btn-outline-info', style: "border-radius: 50%" %></td>
+			<td><%= link_to "変更", edit_manage_tag_path(tag), class: 'btn btn-outline-info', style: "border-radius: 50%" %></td>
 		</tr>
 		<% end %>
 	</tbody>
