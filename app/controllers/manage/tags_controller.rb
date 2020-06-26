@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class Manage::TagsController < ApplicationController
-  def new; end
+  def new
+  	@tag = Tag.new
+  end
 
-  def index; end
+  def index
+  	@tags = Tag.all.page(params[:page]).per(20)
+  end
 
   def edit; end
 

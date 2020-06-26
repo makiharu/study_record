@@ -1,2 +1,34 @@
-<h1>Admin::Tags#index</h1>
-<p>Find me in app/views/admin/tags/index.html.erb</p>
+<div class="d-flex">
+	<h1>タグ一覧</h1>
+	<div class="ml-auto">
+		<%= link_to "追加", new_manage_tag_path, class: "btn btn-info", style: "border-radius: 50%" %>
+
+	</div>
+</div>
+
+
+<table class="table table-hover">
+	<thead class="thead">
+		<th>タグID</th>
+		<th>タグ名</th>
+		<th>作成日時</th>
+		<th>ステータス</th>
+		<th>編集</th>
+	</thead>
+	<tbody>
+		<% @tags.each do |tag| %>
+		<tr>
+			<td><%= tag.id %></td>
+			<td><%= tag.name %></td>
+			<td><%= l tag.created_at %></td>
+			<!--boolean型の日本語化、これでもok-->
+			<td><%= tag.is_void ? '無効' : '有効' %></td>
+			<td><%= link_to "変更", '#', class: 'btn btn-outline-info', style: "border-radius: 50%" %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= paginate @tags %>
+
+

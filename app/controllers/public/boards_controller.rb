@@ -19,7 +19,7 @@ class Public::BoardsController < ApplicationController
   end
 
   def index
-     @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
+    @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
     @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
 
   end
