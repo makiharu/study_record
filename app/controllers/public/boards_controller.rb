@@ -36,7 +36,10 @@ class Public::BoardsController < ApplicationController
 
   end
 
-  def edit; end
+  def edit
+   # @user = User.find(params[:user_id])
+    @board.user_id = current_user.id
+  end
 
   def update
     if @board.update(board_params)
