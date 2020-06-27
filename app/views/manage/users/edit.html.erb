@@ -1,36 +1,52 @@
 <div class="row">
-	<div class="col-xs-6 col-offset-6">
+	<div class="col-md-6 offset-md-6">
+		<div class="float-right">
+			<%= link_to '戻る', manage_user_path(@user), class: 'btn btn-outline-dark' %>
+		</div>
 
-		<h2>会員情報編集</h2>
-		<%= form_with(model: @user, url: admin_user_path(@user), local: true) do |f| %>
-		<%#= render partial: 'layouts/error_messages', locals: { obj: @genre} %>
+		<h3>会員情報編集</h3>
 
-			<%= f.label :氏名 %>
-			<%= f.text_field :name, class: 'form-control' %><hr />
+		<div class="form-set">
 
-			<%= f.label :メールアドレス %>
-			<%= f.email_field :email, class: 'form-control' %><hr />
+			<%= form_with model: [:manage, @user], local: true do |f| %>
+			<%= render partial: 'shared/error_messages', locals: { obj: @user} %>
 
+			<div class="form-group">
+				<%= f.label :氏名 %>
+				<%= f.text_field :name, class: 'form-control' %><hr />
+			</div>
 
-			<%= f.label :会員ステータス %>
+			<div class="form-group">
+				<%= f.label :メールアドレス %>
+				<%= f.email_field :email, class: 'form-control' %><hr />
+			</div>
+
+			<div class="form-group">
+				<%= f.label :会員ステータス %>
 
 				<!--退会処理をここでもできるようにする-->
 				<!--管理人はユーザーを退会させる権限を持つ-->
-			<%# if @user.is_deleted == true %>
-			<%= f.check_box :is_deleted, {}, 'false', 'true' %>
+				<% if @user.is_deleted == false %>
+				<%#= f.check_box :is_deleted, {}, 'false', 'true' %>
 
-
-			  <%= f.radio_button :is_deleted, :'0' %>有効会員
-			  <%= f.radio_button :is_deleted, :'1' %>退会済み
-			<%# end %>
-
-			<hr />
-
-
-
-		<%= f.submit '変更を保存する', class: 'btn btn-default btn-success' %>
-
-		<% end %>
+				<%= f.radio_button :is_deleted, :'0' %>
+				  有効会員
+				<%= f.radio_button :is_deleted, :'1' %>
+				　 退会済み
+				<% else %>
+				<%= f.radio_button :is_deleted, :'0' %>
+				   有効会員
+				<%= f.radio_button :is_deleted, :'1' %>
+				　　退会済み
+				<% end %><hr />
+			</div>
+			<div class="actions">
+			  <div style="text-align:center;">
+				<%= f.submit '変更を保存する', class: 'btn btn-outline-success' %>
+			  </div>
+			</div>
+			<% end %>
+		</div>
 
 	</div>
 
