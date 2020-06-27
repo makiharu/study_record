@@ -2,16 +2,16 @@ class Manage::TagsController < ApplicationController
   before_action :set_tag, only: %i[edit update destroy]
 
   def new
-  	@tag = Tag.new
   end
 
   def create
   	@tag = Tag.new(tag_params)
   	if @tag.save
-  		redirect_to manage_tags_path
-  		flash[:notice] = "タグを追加しました"
+  	  redirect_to manage_tags_path
+  	  flash[:notice] = "タグを追加しました"
   	else
-  		render :new
+  	  redirect_back(fallback_location: root_path)
+  	  flash[:alert] = "タグが追加できていません"
   	end
   end
 
@@ -20,11 +20,13 @@ class Manage::TagsController < ApplicationController
   	@tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
   end
 
-  def edit; end
+  def edit
+  	@tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
+  end
 
   def update
   	if @tag.update(tag_params)
-  		redirect_to manage_tags_path
+  		redirect_to edit_manage_tag_path(@tag)
   		flash[:notice] = "タグを編集しました"
   	else
   		render :edit

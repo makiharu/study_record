@@ -1,15 +1,44 @@
-<div class='row'>
-	<div class='col-md-9 col-md-offset-3'>
-		<h3>タグ編集</h3>
-	</div>
-</div>
+<!--サイドバー作成-->
+<!--ステータスを無効にしたら、掲示板追加の時に、タグ選択に現れない-->
 
 <div class='row'>
-	<div class='col-md-9'>
+  <div class='col-md-3'>
+  	<h3>編集画面</h3>
 
+	<div class="tag-form">
+	  <div class="tag-heading">
+	    <h5>タグ編集</h5>
+	  </div>
+
+	  <div class="tag-body">
 		<%= render 'form', tag: @tag, obj: @tag %>
-
-	</div>
+	  </div>
+  </div>
 </div>
 
-<%#= form_with model: [:admin, @user], local: true do |f| %>
+  <div class="col-md-8 offset-md-1">
+  	<div class="float-right">
+	  	<%= link_to '一覧画面に戻る', manage_tags_path, class: 'btn btn-success' %>
+	</div>
+
+  	<div class="tag-heading">
+	  	<h3>タグ詳細</h3>
+
+	</div>
+  	<div class="tag-form">
+  		<div class="tag-body">
+  		  <p style="font-size:20px;">
+  		  	<span class="label label-default">
+  		  	  タグ名: <%= @tag.name %>
+	  	　　</span><hr /></p>
+  		  <p style="font-size:20px;">
+	  	    <span class="label label-default">
+
+	  	      ステータス: <%= @tag.is_void ? '無効' : '有効' %>
+	  	    </span></p>
+
+	    </div>
+  	</div>
+  </div>
+</div>
+
