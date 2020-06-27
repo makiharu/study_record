@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :boards, only: %i[new create index edit show update] do
       #resource :board_likes, only: [:create, :destroy]
-      resource :board_comments, only: [:create, :destroy] do
+      resources :board_comments, only: [:create, :destroy] do
         resource :comment_likes, only: [:create, :destroy]
       end
     end

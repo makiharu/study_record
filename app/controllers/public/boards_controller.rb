@@ -30,14 +30,10 @@ class Public::BoardsController < ApplicationController
     @new_comment.user_id = current_user.id
 
     @board_comments = @board.board_comments
-    #@board_comment = BoardComment.find_by(params[:board_comment_id])
-
-    #@board_comment = BoardComment.new(board_id: @board.id)
 
   end
 
   def edit
-   # @user = User.find(params[:user_id])
     @board.user_id = current_user.id
   end
 
