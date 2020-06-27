@@ -46,21 +46,21 @@
     </div>
   </div>
 
-
-<!--   <div class="border-left" style="padding:30px;"></div> --左ボーダー -->
 </div>
 
 
 
 
-<!--パーシャルで設定 回答フォーム-->
+<!--パーシャルで設定 回答フォーム--------------------------------------------->
+<!--namespaceを使用しているためか、パーシャルがうまくいかない-->
+<%#= render partial: 'board_comments/form', local: {board: @board, new_comment: @new_comment} %>
     <div class="comment-form">
         <h4>コメントを書き込む</h4>
     </div>
     <div class="comment-form">
       <!--namespaceを使用する場合は、先頭に指定してあげる必要がある-->
-      <%= form_for([:public, @board, @new_comment], local: true) do |f| %>
-      <%#= form_with(model: [@board, @board_comment], url: public_board_board_comments_path,local: true) do |f| %>
+      <%#= form_for([:public, @board, @new_comment], local: true) do |f| %>
+      <%= form_with model: [:public, @board, @new_comment], local: true do |f| %>
 
          <%#= f.hidden_field :board_id %>
         <div class="form-group">
@@ -70,16 +70,14 @@
 
         <div class="actions">
           <%= f.submit '送信する', class: 'btn btn-outline-info' %>
+          <%= link_to '戻る', public_boards_path, class: 'btn btn-outline-dark' %>
         </div>
 
       <% end %>
+
     </div>
+
 </div>
 
 
-
-<%# end %>
-
-<!-- 戻るボタンが必要-->
-<%#= link_to '戻る',
 
