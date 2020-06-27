@@ -1,30 +1,46 @@
-.actions {
-	margin-top: 40px;
-	margin-bottom: 100px;
-}
 
 /*掲示板フォームの画像投稿*/
 .board-image-form {
 	margin-top: 30px;
 }
 
-.board-show {
-	margin: 30px auto;
-	border: 3px solid black;
 
+.board-heading {
+  margin-bottom: 50px;
 }
 
-.board-header {
-	background-color: gray;
+
+
+.board-heading h4 {/*蛍光マーカー風*/
+  background: linear-gradient(transparent 70%, yellow 70%);
+  position: relative;
+  padding-bottom: 3px;
+  width: 30%;
 }
+
+.comment-heading h4 {
+  border-bottom: solid 5px yellow; /*色が途中で変わるような線*/
+  position: relative;
+  padding-bottom: 3px;
+  width: 30%;
+}
+
+
 
 .board-body {
-	padding: 5px;
+  padding: 3px 0 5px 0;
 
 }
 
 .board-profile {
-	margin-top: 15px; /*質問の投稿者*/
+  margin-top: 15px; /*質問の投稿者*/
+  padding-bottom: 15px;
 }
 
+.board-profile p {
+	background: linear-gradient(transparent 50%, deepskyblue 70%);
+	padding: 3px;
+	width: 25%;
+	float: right;
+}
 

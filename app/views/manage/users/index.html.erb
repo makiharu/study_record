@@ -1,7 +1,7 @@
 <div class="row">
-
+	<div class="form-set">
 	<table class="table table-hover">
-		<thead>
+		<thead class="thead">
 			<tr>
 				<th>会員NO.</th>
 				<th>名前</th>
@@ -33,8 +33,8 @@
 			<% end %>
 		</tbody>
 	</table>
+
+	<!--ページャ実装-->
+	<%= paginate @users %>
+	</div>
 </div>
-
-<!--ページャ実装-->
-
-<%= paginate @users %>

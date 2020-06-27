@@ -26,14 +26,21 @@ class Manage::TagsController < ApplicationController
 
   def update
   	if @tag.update(tag_params)
-  		redirect_to edit_manage_tag_path(@tag)
+  		redirect_to manage_tag_path(@tag)
   		flash[:notice] = "タグの変更を保存しました"
   	else
   		render :edit
   	end
   end
 
-  def destroy; end
+  def destroy
+    if @tag.destroy
+      redirect_to redirect_to manage_tag_path(@tag)
+      flash[:danger] = "タグを削除しました"
+    else
+      render :edit
+    end
+  end
 
   private
 

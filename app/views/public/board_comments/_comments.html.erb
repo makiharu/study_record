@@ -1,5 +1,5 @@
 <!--each_with_indexは回したときにそれぞれの要素が何番目か返してくれるメソッド-->
-<% board.board_comments.each_with_index do |comment, i| %>
+<% board_comments.each_with_index do |comment, i| %>
   <div class="comment-list">
 
   	<p>NO. <%= i + 1 %></p>
@@ -10,29 +10,28 @@
             <%= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
       </span>
 
-      <%# binding.pry %>
-	  <%= link_to '削除', public_board_board_comments_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
+	  <%= link_to '削除', public_board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
 	  <%#= link_to '編集', %>
 
     <%#= render 'public/comment_likes/likes', board_comment: board_comment %>
 
 
     <!--コメントいいね   問題箇所--------------------------------->
-    <% if one_comment.comment_liked_by?(current_user) %>
-    <%# binding.pry %>
+    <% if comment.comment_liked_by?(current_user) %>
       <li>
-        <%= link_to public_board_board_comments_comment_likes_path(one_comment.id), method: :delete do %>
+        <%= link_to public_board_board_comment_comment_likes_path(comment.board_id, comment.id), method: :delete do %>
         <i class="fa fa-heart" aria-hidden="true" style="color: red;">いいね</i>
-        <%= one_comment.comment_likes.count %>
+        <%= comment.comment_likes.count %>
         <% end %>
       </li>
     <% else %>
 
       <li>
-        <%= link_to public_board_board_comments_comment_likes_path(one_comment.id), method: :post do %>
+        <%= link_to public_board_board_comment_comment_likes_path(comment.board_id, comment.id), method: :post do %>
+
 
         <i class="fa fa-heart-o" aria-hidden="true" style="color: red;">いいね</i>
-        <%= one_comment.comment_likes.count %>
+        <%= comment.comment_likes.count %>
         <% end %>
       </li>
     <% end %>

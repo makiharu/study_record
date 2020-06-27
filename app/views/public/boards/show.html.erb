@@ -10,47 +10,56 @@
 </div>
 
 
-  <div class="board-show">
-    <div class="board-header">
+<div class="form-set">
+  <div class="board-heading">
       <h4><%= @board.title %></h4>
       <% @board.tags.each do |tag| %>
         <span class="badge badge-info"><%= tag.name %></span>
       <% end %>
-    </div>
-    <div class="board-body">
+  </div>
+  <div class="board-body">
       <p class="board-text"><%= simple_format(@board.body) %></p>
-    </div>
-    <div class="board-profile">
-          <p class="text-right font-weight-bold mr-10">
-            <%= link_to public_user_path(@board.user) do %>
-              <%= @board.user.name %>
-              <%= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
-            <% end %>
-         </p>
-      </div>
+  </div>
+  <div class="board-profile">
+      <span id="time">投稿日時: <%= l @board.created_at %></span>
+      <p class="text-right font-weight-bold mr-10">
+        <%= link_to public_user_path(@board.user) do %>
+          <%= @board.user.name %>
+          <%= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
+        <% end %>
+     </p>
+     <span class="border-left" style="padding:10px;"></span>
+  </div>
+  <!--左ボーダー -->
 </div>
 
 
 
-  <div class="comments">
+
+<div class="comments">
+  <div class="form-set">
+    <div class="comment-heading">
       <h4>コメント一覧</h4>
       <!--namespaceを使用していることを忘れずに-->
-      <%#= render 'public/board_comments/comments', board: @board, board_comment: @board_comment %>
-
       <!--one_commentと定義して試した-->
-      <%= render 'public/board_comments/comments', board: @board, one_comment: @one_comment %>
-
+      <%= render 'public/board_comments/comments', board_comments: @board_comments, board_comment: @board_comment %>
+    </div>
   </div>
+
+
+<!--   <div class="border-left" style="padding:30px;"></div> --左ボーダー -->
+</div>
+
 
 
 
 <!--パーシャルで設定 回答フォーム-->
-    <div class="comment-header">
+    <div class="comment-form">
         <h4>コメントを書き込む</h4>
     </div>
     <div class="comment-form">
       <!--namespaceを使用する場合は、先頭に指定してあげる必要がある-->
-      <%= form_for([:public, @board, @board_comment], local: true) do |f| %>
+      <%= form_for([:public, @board, @new_comment], local: true) do |f| %>
       <%#= form_with(model: [@board, @board_comment], url: public_board_board_comments_path,local: true) do |f| %>
 
          <%#= f.hidden_field :board_id %>
@@ -66,6 +75,8 @@
       <% end %>
     </div>
 </div>
+
+
 
 <%# end %>
 
