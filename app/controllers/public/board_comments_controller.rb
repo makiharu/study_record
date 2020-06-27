@@ -9,7 +9,6 @@ class Public::BoardCommentsController < ApplicationController
     board = Board.find(params[:board_id])
     board_comment = current_user.board_comments.new(board_comment_params)
     board_comment.board_id = board.id
-    #binding.pry
     if board_comment.save
       redirect_to public_board_path(board)
       flash[:notice] = "投稿しました"

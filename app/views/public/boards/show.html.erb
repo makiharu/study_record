@@ -42,7 +42,7 @@
       <h4>コメント一覧</h4>
       <!--namespaceを使用していることを忘れずに-->
       <!--one_commentと定義して試した-->
-      <%= render 'public/board_comments/comments', board: @board, one_comment: @one_comment %>
+      <%= render 'public/board_comments/comments', board_comments: @board_comments, board_comment: @board_comment %>
     </div>
   </div>
 
@@ -59,7 +59,7 @@
     </div>
     <div class="comment-form">
       <!--namespaceを使用する場合は、先頭に指定してあげる必要がある-->
-      <%= form_for([:public, @board, @board_comment], local: true) do |f| %>
+      <%= form_for([:public, @board, @new_comment], local: true) do |f| %>
       <%#= form_with(model: [@board, @board_comment], url: public_board_board_comments_path,local: true) do |f| %>
 
          <%#= f.hidden_field :board_id %>
