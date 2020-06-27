@@ -8,14 +8,14 @@
   <div class="row">
     <div class="flash-messages">
 
-      <% flash.each do |type, msg| %>
-        <p><% type = 'success' if type == 'notice' %></p>
-        <p><% type = 'error' if type == 'alert' %></p>
+      <% flash.each do |key, value| %>
+        <p><% key = 'success' if key == 'notice' %></p>
+        <p><% key = 'error' if key == 'alert' %></p>
+        <%= content_tag :div, value, class: "'alert alert-#{key}" %>
 
-      <script>
-        toastr['<%= type %>']('<%= msg %>');
-      </script>
       <% end %>
     </div>
   </div>
 </div>
+
+

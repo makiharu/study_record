@@ -21,14 +21,30 @@
     </div>
 
 
-    <div class="flash-message">
-      <%= render 'shared/flash' %>
-    </div>
+
+
 
 
     <div class="container">
+
+    <!--送ったフラッシュメッセージをヘッダー下に表示する、位置に注意-->
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="flash-message">
+              <% flash.each do |key, value| %>
+                <% key = "info" if key == "notice" %>
+                <% key = "danger" if key == "alert" %>
+                <%= content_tag :div, value, class: "alert alert-#{key}" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
       <%= yield %>
+
     </div>
+
+
 
     <!--リスト作ってパーシャルでかく-->
     <!--   <div class="footer">
