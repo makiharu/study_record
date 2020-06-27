@@ -1,6 +1,10 @@
 
 <div class="comment-form">
     <h4>コメントを書き込む</h4>
+    <div class="float-right">
+      <%= link_to '戻る', public_boards_path, class: 'btn btn-outline-dark' %>
+	</div>
+
 </div>
 <div class="comment-form">
   <!--namespaceを使用する場合は、先頭に指定してあげる必要がある-->
@@ -14,7 +18,8 @@
 
 
     <div class="actions">
-      <%= f.submit '送信する', class: 'btn btn-outline-info' %>
+      <%= f.submit '送信する', class: 'btn btn-outline-info' %><hr />
+       <%= link_to '戻る', public_boards_path, class: 'btn btn-outline-dark' %>
     </div>
 
   <% end %>
