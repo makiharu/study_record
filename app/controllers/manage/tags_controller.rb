@@ -1,13 +1,47 @@
-# frozen_string_literal: true
-
 class Manage::TagsController < ApplicationController
-  def new; end
+  before_action :set_tag, only: %i[edit update destroy]
 
-  def index; end
+  def new
+  end
 
-  def edit; end
+  def create
+  	@tag = Tag.new(tag_params)
+  	if @tag.save
+  	  redirect_to manage_tags_path
+  	  flash[:notice] = "タグを追加しました"
+  	else
+  	  redirect_back(fallback_location: root_path)
+  	  flash[:alert] = "タグが追加できていません"
+  	end
+  end
 
-  def update; end
+  def index
+  	@tag = Tag.new
+  	@tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
+  end
+
+  def edit
+  	@tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
+  end
+
+  def update
+  	if @tag.update(tag_params)
+  		redirect_to edit_manage_tag_path(@tag)
+  		flash[:notice] = "タグを編集しました"
+  	else
+  		render :edit
+  	end
+  end
 
   def destroy; end
+
+  private
+
+  def tag_params
+  	params.require(:tag).permit(:name, :is_void)
+  end
+
+  def set_tag
+  	@tag = Tag.find(params[:id])
+  end
 end

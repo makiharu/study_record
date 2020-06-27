@@ -1,0 +1,41 @@
+.tag-form {
+	border: 2px solid gray;
+	padding: 20px;
+	background-color: white;
+}
+
+
+.tag-heading {
+  margin-bottom: 50px;
+}
+
+
+.tag-heading h5 {
+  border-bottom: solid 5px yellow; /*色が途中で変わるような線*/
+  position: relative;
+  padding-bottom: 3px;
+}
+
+h5:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 5px deepskyblue; /*色が途中で変わるような線*/
+  bottom: -5px;
+  width: 30%;
+}
+
+
+
+/*これも候補,一旦外す
+.tag-heading h5 {
+	background: linear-gradient(transparent 70%, yellow 70%);
+}
+*/  /*蛍光マーカー風*/
+
+
+.tag-body {
+	background-color: white;
+	boarder: 3px solid darkskyblue;
+    border-radius: 30px;
+}

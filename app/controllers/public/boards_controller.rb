@@ -19,8 +19,9 @@ class Public::BoardsController < ApplicationController
   end
 
   def index
-    #@boards = Board.page(params[:page]).per(10)
+    @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
     @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
+
   end
 
   def show
@@ -35,7 +36,10 @@ class Public::BoardsController < ApplicationController
 
   end
 
-  def edit; end
+  def edit
+   # @user = User.find(params[:user_id])
+    @board.user_id = current_user.id
+  end
 
   def update
     if @board.update(board_params)
@@ -49,8 +53,11 @@ class Public::BoardsController < ApplicationController
 
   private
 
+
   def board_params
-    params.require(:board).permit(:title, :subject, :body)
+    params.require(:board).permit(:title, :subject, :body, tag_ids: [])
+    #複数のモデルが渡ってくるので、配列として、このような書き方
+    #モデル名の単数形_ids 従属するモデルのid（主キー）の配列を返す
   end
 
   def set_board

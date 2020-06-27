@@ -13,6 +13,9 @@
   <div class="board-show">
     <div class="board-header">
       <h4><%= @board.title %></h4>
+      <% @board.tags.each do |tag| %>
+        <span class="badge badge-info"><%= tag.name %></span>
+      <% end %>
     </div>
     <div class="board-body">
       <p class="board-text"><%= simple_format(@board.body) %></p>
@@ -42,10 +45,10 @@
 
 
 <!--パーシャルで設定 回答フォーム-->
-   <div class="answer-form">
-      <div class="board-header">
+    <div class="comment-header">
         <h4>コメントを書き込む</h4>
     </div>
+    <div class="comment-form">
       <!--namespaceを使用する場合は、先頭に指定してあげる必要がある-->
       <%= form_for([:public, @board, @board_comment], local: true) do |f| %>
       <%#= form_with(model: [@board, @board_comment], url: public_board_board_comments_path,local: true) do |f| %>
@@ -58,7 +61,6 @@
 
         <div class="actions">
           <%= f.submit '送信する', class: 'btn btn-outline-info' %>
-
         </div>
 
       <% end %>

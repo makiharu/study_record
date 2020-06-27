@@ -11,19 +11,20 @@
 .board-show {
 	margin: 30px auto;
 	border: 3px solid black;
-	padding: 25px;
-	border-radius: 10px;
+
 }
 
+.board-header {
+	background-color: gray;
+}
 
 .board-body {
 	padding: 5px;
-	border: 2px solid gray; /*質問内容*/
+
 }
 
 .board-profile {
 	margin-top: 15px; /*質問の投稿者*/
 }
-
 
 
