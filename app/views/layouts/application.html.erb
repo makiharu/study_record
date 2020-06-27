@@ -21,14 +21,19 @@
     </div>
 
 
-    <div class="flash-message">
-      <%= render 'shared/flash' %>
-    </div>
+
+
 
 
     <div class="container">
+
+      <%= render 'shared/flash_messages' %>
+
       <%= yield %>
+
     </div>
+
+
 
     <!--リスト作ってパーシャルでかく-->
     <!--   <div class="footer">

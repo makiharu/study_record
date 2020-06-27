@@ -27,7 +27,7 @@ class Manage::TagsController < ApplicationController
   def update
   	if @tag.update(tag_params)
   		redirect_to edit_manage_tag_path(@tag)
-  		flash[:notice] = "タグを編集しました"
+  		flash[:notice] = "タグの変更を保存しました"
   	else
   		render :edit
   	end

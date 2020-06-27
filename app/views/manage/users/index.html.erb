@@ -1,6 +1,6 @@
 <div class="row">
 
-	<table class="table">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>会員NO.</th>
@@ -8,6 +8,7 @@
 				<th>メールアドレス</th>
 				<th>登録日</th>
 				<th>ステータス</th>
+				<th>詳細</th>
 			</tr>
 
 		</thead>
@@ -21,16 +22,19 @@
 				<td><%= l user.created_at %></td>
 
 				<!--ステータスの変更をできるようにすること-->
-				<td><%= user.is_deleted %></td>
-
+				<td><%if user.is_deleted == false %>
+                      <span>有効会員</span>
+              		<% else %>
+                  	  <span>退会済み</span>
+              		<% end %>
+              	</td>
+              	<td><%= link_to '詳細', manage_user_path(user), class: 'btn btn-outline-info' %></td>
 			</tr>
 			<% end %>
-
 		</tbody>
-
 	</table>
-				<!--ページャ実装-->
-			<%= paginate @users %>
-
-
 </div>
+
+<!--ページャ実装-->
+
+<%= paginate @users %>

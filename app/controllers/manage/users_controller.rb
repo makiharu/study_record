@@ -4,7 +4,7 @@ class Manage::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.page(params[:page]).per(20)
+    @users = User.all.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def show
@@ -18,8 +18,8 @@ class Manage::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = 'success'
-      redirect_to admin_user_path
+      redirect_to manage_user_path(@user)
+      flash[:notice] = '変更内容を保存しました'
     else
       render :edit
 

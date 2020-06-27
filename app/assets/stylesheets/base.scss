@@ -85,7 +85,6 @@ nav {
 	display: flex;/*header直下の子要素のレイアウト*/
 	align-items: center;/*縦方向の中心*/
 	color:white;
-
 }
 
 .footer span {
@@ -107,6 +106,12 @@ nav {
 }
 
 .table-hover tbody { /*全体のテーブルbodyの色*/
+	background-color: white;
+}
+
+.form-set { /*全体のフォームに適用*/
+	border: 2px solid gray;
+	padding: 20px;
 	background-color: white;
 }
 
