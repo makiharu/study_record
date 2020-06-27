@@ -101,8 +101,8 @@ nav {
 }
 
 
-.table-hover thead { /*全体のテーブルのthead色*/
-	background-color: #a9a9a9;/*灰色*/
+.thead {
+  	background-color: #a9a9a9;
 }
 
 .table-hover tbody { /*全体のテーブルbodyの色*/
@@ -116,3 +116,12 @@ nav {
 }
 
 
+
+.form-group {
+	margin-bottom: 40px;
+}
+
+.actions { /*formボタン*/
+	margin-top: 40px;
+	margin-bottom: 50px;
+}
