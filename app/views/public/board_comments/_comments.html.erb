@@ -11,9 +11,7 @@
       </span>
 
 	  <%= link_to '削除', public_board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
-	  <%#= link_to '編集', %>
-
-    <%#= render 'public/comment_likes/likes', board_comment: board_comment %>
+	  <%= link_to '編集', edit_public_board_board_comment_path(comment.id), class: 'btn btn-outline-success' %>
 
 
     <!--コメントいいね   問題箇所--------------------------------->

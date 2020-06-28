@@ -49,7 +49,6 @@ class Public::BoardsController < ApplicationController
 
   private
 
-
   def board_params
     params.require(:board).permit(:title, :subject, :body, tag_ids: [])
     #複数のモデルが渡ってくるので、配列として、このような書き方

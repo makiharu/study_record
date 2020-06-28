@@ -1,2 +1,33 @@
-<h1>Public::BoardComments#edit</h1>
-<p>Find me in app/views/public/board_comments/edit.html.erb</p>
+<h3>編集画面</h3>
+
+<div class="text-right">
+  <p><%= link_to '戻る', public_boards_path, class: 'btn btn-outline-dark' %></p>
+</div>
+
+<div class="form-set">
+	<div class="label-name">
+		<label class="label">ユーザー名</label>
+		<%= @board_comment.user.name %>
+		<%#= f.text_field :title, class: 'form-control' %>
+	</div>
+	<%= form_with model: [:public, @board_comment],url: public_board_board_comment_path, local: true do |f| %>
+
+		<%= render 'shared/error_messages', obj: @board_comment %>
+
+
+		<div class="form-group">
+			<%= f.label :コメント %>
+			<%= f.text_area :comment, class: 'form-control', rows: 6 %>
+		</div>
+
+		<div class="actions">
+			<!--ボタンサイズ調整-->
+			<%= f.submit '投稿する', class: 'btn btn-outline-info form-control' %><hr />
+			<%= link_to '戻る', public_boards_path, class: 'btn btn-outline-dark' %>
+		</div>
+	<% end %>
+
+</div>
+
+<!--boards/showhtml.erbと同様、ネストが深すぎるためなのか、パーシャルがうまく使えない-->
+<%#= render 'form', board_comment: @board_comment, new_comment: @new_comment, obj: @board_comment %>

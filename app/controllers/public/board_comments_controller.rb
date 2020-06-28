@@ -31,7 +31,21 @@ class Public::BoardCommentsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @board_comment = BoardComment.find(params[:board_id])
+    @board_comment.user_id = current_user.id
+  end
+
+  def update
+    board_comment = BoardComment.find(params[:board_id])
+    if board_comment.update(board_comment_params)
+      redirect_back(fallback_location: root_path)
+      flash[:success] = 'コメントの内容を保存しました'
+    else
+      rendirect_to public_board_path(params[:board_id])
+    end
+  end
+
 
   private
 
