@@ -23,13 +23,12 @@ Rails.application.routes.draw do
       end
     end
 
-    #ここのところ修正
-    #resources :board_comments, only: [:destroy]
-
     resources :relationships, only: %i[create destroy]
 
     resources :users, only: %i[index show edit update]
-
+    #   resources :todolists
+    # end
+    resources :todolists
     get 'todolists/complete'
     get 'board_comments/index'
     get 'board_comments/edit'

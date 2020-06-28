@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_101054) do
   create_table "todolists", force: :cascade do |t|
     t.integer "user_id"
     t.string "content"
-    t.integer "time_category", default: 1
+    t.integer "time_category", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

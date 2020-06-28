@@ -1,10 +1,89 @@
-user show プロフ
-グラフ
-
 <!--サイドバー index,showページ共通-->
 
 <%= link_to 'マイページ', public_users_path, class: 'btn btn-outline-success' %>
 
 
-
 <%= link_to 'プロフィール編集', edit_public_user_path(@user), class: 'btn btn-outline-success' %>
+
+<div class="row">
+	<div class="col-md-4">
+		<div class="form-set">
+			<table class="table">
+				<tr>
+					<th>名前</th>
+					<td><%= @user.name %></td>
+				</tr>
+				<tr>
+					<th>コメント</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>達成したリスト数</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>お気に入り投稿数</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>投稿数</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>フォロー一覧</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>フォロワー一覧</th>
+					<td></td>
+				<tr>
+					<th>設定</th>
+					<td><%= link_to '設定', edit_public_user_path(@user) %></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-8">
+		<!--todolistフォーム-->
+		<div class="form-set">
+			<div class="todolists">
+
+				<% @todolists.each do |todolist| %>
+					No.
+					<%= todolist.content %>
+				<% end %>
+			</div>
+		</div>
+
+		<!--todolistの作成については、current_userのみに表示されるように設定する必要があり-->
+		<div class="form-set">
+			<div class="todolist-form">
+				<h4>To doリスト作成</h4>
+				<%= form_with model: [:public, @todolist], local: true do |f| %>
+				  <%= render 'shared/error_messages', obj: @todolist %>
+					<div class="form-group">
+						<%= f.label :内容 %>
+						<%= f.text_field :content %>
+					</div>
+					<div class="form-group">
+						<%= f.label :ラジオボタン %>
+						<%#= f.text_field :name %>
+					</div>
+					<div class="actions">
+						<%= f.submit '作成' %>
+					</div>
+
+				<% end %>
+			</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+
