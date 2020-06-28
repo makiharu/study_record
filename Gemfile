@@ -89,3 +89,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
 gem 'font-awesome-sass'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
