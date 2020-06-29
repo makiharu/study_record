@@ -8,7 +8,7 @@ class Public::TodolistsController < ApplicationController
   end
 
   def create
-    binding.pry
+    #binding.pry
     @todolist = Todolist.new(todolist_params)
     @todolist.user_id = current_user.id
     if @todolist.save
@@ -33,7 +33,6 @@ class Public::TodolistsController < ApplicationController
 
   def complete
     #binding.pry
-    @todolists = Todolist.all
     # タスクが完了したら、そのデータを非表示にする
     @completed_list = Todolist.new(todolist_params)
     @completed_list.user_id = current_user.id
@@ -60,7 +59,7 @@ class Public::TodolistsController < ApplicationController
 
   def destroy
     if @todolist.destroy
-      redirect_to public_user_path(@todolist.user_id)
+      redirect_to public_todolists_path
       flash[:alert] = "削除しました"
     else
       render :edit

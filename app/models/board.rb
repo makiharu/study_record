@@ -5,7 +5,7 @@ class Board < ApplicationRecord
   # through :中間テーブルを通して、boardモデルを結びつけるための設定,
 
   has_many :board_comments, dependent: :delete_all
-
+  has_many :board_likes, dependent: :delete_all
   attachment :image
 
   validates :title, presence: true, length: { maximum: 20 }
@@ -14,7 +14,7 @@ class Board < ApplicationRecord
   validates :display, inclusion: { in: [true, false] }
 
   #  	#引数で渡されたユーザidがテーブル内に存在するかどうか判定
-  # def comment_likes_by?(user)
-  # 	comment_likes.where(user_id: current_user.id)
-  # end
+  def board_liked_by?(user)
+    board_likes.where(user_id: user.id).exists?
+  end
 end

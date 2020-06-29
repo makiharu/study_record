@@ -12,10 +12,34 @@
 
 <div class="form-set">
   <div class="board-heading">
+    <div class="text-left">
       <h4><%= @board.title %></h4>
       <% @board.tags.each do |tag| %>
         <span class="badge badge-info"><%= tag.name %></span>
       <% end %>
+    </div>
+      <div class="text-right">
+
+        <!--掲示板お気に入りボタン---------------------------->
+        <% if @board.board_liked_by?(current_user) %>
+        <li>気になる:
+          <%= link_to public_board_board_likes_path(@board), method: :delete do %>
+          <i class="far fa-surprise fa-2x"></i>
+          <span class="balloon3-left"><%= @board.board_likes.count %></span>
+          <% end %>
+        </li>
+        <% else %>
+        <li>気になる:
+          <%= link_to public_board_board_likes_path(@board), method: :post do %>
+          <i class="far fa-surprise fa-2x"></i>
+          <span class="balloon3-left"><%= @board.board_likes.count %></span>
+          <% end %>
+        </li>
+        <% end %>
+        <!--掲示板お気に入りボタン---------------------------->
+
+
+      </div>
   </div>
   <div class="board-body">
       <p class="board-text"><%= simple_format(@board.body) %></p>
