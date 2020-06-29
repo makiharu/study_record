@@ -23,5 +23,5 @@
 	</div>
 
 
-<%= link_to '削除する', public_todolist_path(@todolist), class: 'btn btn-dark' %>
+<%= link_to '削除する', public_todolist_path(@todolist),method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
 <%= link_to '戻る', public_user_path(current_user), class: 'btn btn-dark' %>

@@ -51,8 +51,8 @@ class Public::TodolistsController < ApplicationController
   end
 
   def destroy
-    if @todilist.destroy
-      public_user_path(@todolist.user_id)
+    if @todolist.destroy
+      redirect_to public_user_path(@todolist.user_id)
       flash[:alert] = "削除しました"
     else
       render :edit
