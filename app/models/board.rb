@@ -8,7 +8,7 @@ class Board < ApplicationRecord
 
   attachment :image
 
-  validates :title, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :title, presence: true, length: { maximum: 20 }
   validates :subject, presence: true, length: { maximum: 20 }
   validates :body, presence: true, length: { maximum: 1500 }
   validates :display, inclusion: { in: [true, false] }

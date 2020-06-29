@@ -12,24 +12,20 @@ class Public::TodolistsController < ApplicationController
     @todolist.user_id = current_user.id
     if @todolist.save
       redirect_to public_todolists_path
-      flash[:notice] = "todoリストを作成しました"
+      flash[:notice] = "リストを作成しました"
     else
       @todolists = Todolist.all
       redirect_back(fallback_location: root_path)
-      flash[:warning] = "もう一度やり直してください。30文字以内です。"
+      flash[:warning] = "作成できませんでした。リスト内容は30文字以内です。"
     end
   end
 
   def index
-    #@todolists = Todolist.all
     @todolist = Todolist.new
     @todolists = Todolist.all
     @finish_list = Todolist.new
 
-    if params[:todolist_id]
-      @finish_list = Todolist.find(params[:todolist_id])
-      @todolists = Todolist.all
-    end
+
   end
 
   def complete
