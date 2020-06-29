@@ -43,47 +43,51 @@
 			</table>
 		</div>
 	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-8">
+
+<!--todoリストお引っ越し-->
+
+
+	<div class="col-md-7">
 		<!--todolistフォーム-->
 		<div class="form-set">
-			<div class="todolists">
-
-				<% @todolists.each do |todolist| %>
-					No.
-					<%= todolist.content %>
-				<% end %>
+			<h3>Todo リスト</h3>
+			<div class="text-right">
+				<%= link_to '+', new_public_todolist_path, class: 'btn btn-outline-primary', style: 'border-radius:50%' %>
 			</div>
+			<%#= form_with model: [:public, @todolist] do |f| %>
+			<%= form_with(model: @todolist, url: public_todolists_complete_path, local: true) do |f| %>
+			<table class="table-hover">
+				<thead>
+					<th colspan="1">リスト一覧</th>
+					<th></th>
+					<th></th>
+				</thead>
+				<tbody>
+				    <!--each_with_indexは回したときにそれぞれの要素が何番目か返してくれるメソッド-->
+					<% @todolists.each_with_index do |todolist, i| %>
+					<tr>
+						<th><%= "No. #{i + 1}" %></th>
+						<td><%= todolist.content %></td>
+						<!--check_box-->
+						<td><%= f.check_box :content %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+				<%= f.submit '完了報告', class: 'btn btn-outline-success' %>
+			<% end %>
+
 		</div>
+
+
 
 		<!--todolistの作成については、current_userのみに表示されるように設定する必要があり-->
-		<div class="form-set">
-			<div class="todolist-form">
-				<h4>To doリスト作成</h4>
-				<%= form_with model: [:public, @todolist], local: true do |f| %>
-				  <%= render 'shared/error_messages', obj: @todolist %>
-					<div class="form-group">
-						<%= f.label :内容 %>
-						<%= f.text_field :content %>
-					</div>
-					<div class="form-group">
-						<%= f.label :ラジオボタン %>
-						<%#= f.text_field :name %>
-					</div>
-					<div class="actions">
-						<%= f.submit '作成' %>
-					</div>
+		<% render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
 
-				<% end %>
-			</div>
-			</div>
-		</div>
-
-	</div>
 
 </div>
+
 
 
 

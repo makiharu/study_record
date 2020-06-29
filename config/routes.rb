@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     # end
     resources :todolists
     get 'todolists/complete'
+    post 'todolists/complete'
     get 'board_comments/index'
     get 'board_comments/edit'
   end

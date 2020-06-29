@@ -1,0 +1,52 @@
+
+	<div class="col-md-7">
+		<!--todolistフォーム-->
+		<div class="form-set">
+			<h3>Todo リスト</h3>
+			<table class="table-hover">
+				<thead>
+					<th colspan="1">本日のリスト</th>
+				</thead>
+				<tbody>
+				<!--each_with_indexは回したときにそれぞれの要素が何番目か返してくれるメソッド-->
+					<% @todolists.each_with_index do |todolist, i| %>
+					<tr>
+						<th><%= "No. #{i + 1}" %></th>
+						<td><%= todolist.content %></td>
+					<% end %>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<!--todolistの作成については、current_userのみに表示されるように設定する必要があり-->
+		<% if user_signed_in? %>
+		<div class="form-set">
+			<div class="todolist-form">
+				<h4>Todoリスト作成</h4>
+				<%= form_with model: [:public, @todolist], local: true do |f| %>
+				  <%= render 'shared/error_messages', obj: @todolist %>
+					<div class="form-group">
+						<%= f.label :内容 %>
+						<%= f.text_field :content %>
+					</div>
+					<div class="form-group">
+						<%= f.label :ラジオボタン %>
+						<%#= f.text_field :name %>
+					</div>
+					<div class="actions">
+						<%= f.submit '作成' %>
+					</div>
+
+				<% end %>
+			</div>
+		</div>
+		<% end %>
+
+
+</div>
+
+
+
+

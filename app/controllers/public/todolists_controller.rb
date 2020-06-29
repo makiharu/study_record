@@ -4,6 +4,7 @@ class Public::TodolistsController < ApplicationController
 
   def new
   	@todolist = Todolist.new
+    @todolists = Todolist.all
   end
 
   def create
@@ -15,14 +16,23 @@ class Public::TodolistsController < ApplicationController
   	else
   		render :index
   	end
-
   end
 
   def index
   	@todolists = Todolist.all
   end
 
-  def complete; end
+  def complete
+    #checkboxから値が送られてきたら、そのデータを非表示にする
+    @todolist = Todolist.new(todolist_params)
+    @todolist.user_id = current_user.id
+    if @todolist.save
+      redirect_to public_user_path(@todolist.user_id)
+      flash[:notice] = "todoリストを作成しました"
+    else
+      render :index
+    end
+  end
 
   private
 
