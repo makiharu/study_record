@@ -16,7 +16,7 @@ class Public::TodolistsController < ApplicationController
     else
       @todolists = Todolist.all
       redirect_back(fallback_location: root_path)
-      flash[:warning] = "もう一度やり直してください"
+      flash[:warning] = "もう一度やり直してください。30文字以内です。"
     end
   end
 
