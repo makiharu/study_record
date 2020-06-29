@@ -23,33 +23,22 @@ class Public::TodolistsController < ApplicationController
 
   def index
     @todolist = Todolist.new
-    #binding.pry
-    #ラジオボタンが0番,1番,2番で振り分けたい
-    if params[:time_category] == 'today'
-    #params[:time_category] == 0
-      #params[:time_category][:today]
-      @todolists = Todolist.wherer(time_category: 'today')
-    elsif params[:time_category] == 1
-      #params[:time_category][:week]
-      @todolists = Todolist.wherer(time_category: 1)
-    elsif params[:time_category] == 2
-      #params[:time_category][:month]
-      @todolists = Todolist.wherer(time_category: 2)
-    else
-      @todolists = Todolist.all
-    end
+    #ラジオボタンで場合分けをするよりも変数名を別にした方がわかりやすい
+    @today_todolists = Todolist.where(time_category: 'today')
+    @week_todolists = Todolist.where(time_category: 'week')
+    @month_todolists = Todolist.where(time_category: 'month')
 
-    @finish_list = Todolist.new
+    @completed_list = Todolist.new
   end
 
   def complete
+    #binding.pry
     @todolists = Todolist.all
-    # checkboxから値が送られてきたら、そのデータを非表示にする
-    @finish_list = Todolist.new
-    @finish_list.user_id = current_user.id
-    if @finish_list.save
-      redirect_to root_path
-      #redirect_to public_todolists_complete_path
+    # タスクが完了したら、そのデータを非表示にする
+    @completed_list = Todolist.new(todolist_params)
+    @completed_list.user_id = current_user.id
+    if @completed_list.save
+      redirect_to public_todolists_complete_path
       flash[:notice] = "報告完了しました"
     else
       redirect_to public_todolists_path
@@ -77,6 +66,13 @@ class Public::TodolistsController < ApplicationController
       render :edit
     end
   end
+
+  # def empty
+  #   user = User.find(current_user.id)
+  #   user.todolists.destroy_all
+  #   redirect_to public_todolists_path, danger: "リストを全て削除しました"
+  # end
+
 
   private
 
