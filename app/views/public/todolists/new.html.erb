@@ -3,16 +3,13 @@
 		<%= render 'form', todolist: @todolist, obj: @todolist %>
 	</div>
 
-
-
 	<div class="col-md-7">
-		<!--todolistフォーム-->
 		<div class="form-set">
 			<h3>本日のTodo リスト</h3>
 			<div class="text-right">
 				<%= link_to 'マイプロフィール', public_user_path(current_user.id), class: 'btn btn-outline-success' %>
 			</div>
-			<table class="table-hover">
+			<table class="table-hover table-responsive">
 				<thead>
 					<th colspan="1">リスト一覧</th>
 				</thead>

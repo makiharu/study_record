@@ -8,7 +8,6 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[twitter facebook] # 追加
   # 　deviseでOmniAuthの機能を使うことができるようになる
 
-
   has_many :boards, dependent: :destroy
   has_many :board_comments, dependent: :destroy
   has_many :comment_likes, dependent: :destroy
@@ -24,7 +23,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
-
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 
@@ -34,22 +32,18 @@ class User < ApplicationRecord
       email: auth.info.email,
       password: Devise.friendly_token[0, 20]
     )
-
   end
 
-   def follow(other_user)
-    unless self == other_user
-      self.relationships.find_or_create_by(follow_id: other_user.id)
-    end
-  end
+  def follow(other_user)
+    relationships.find_or_create_by(follow_id: other_user.id) unless self == other_user
+ end
 
   def unfollow(other_user)
-    relationship = self.relationships.find_by(follow_id: other_user.id)
-    relationship.destroy if relationship
+    relationship = relationships.find_by(follow_id: other_user.id)
+    relationship&.destroy
   end
 
   def following?(other_user)
-    self.followings.include?(other_user)
+    followings.include?(other_user)
   end
-
 end

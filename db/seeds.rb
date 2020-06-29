@@ -27,25 +27,24 @@ Admin.create!(
   )
 end
 
-#tag_list
+# tag_list
 Tag.create([
-{ name: 'HTML & CSS'},
-{ name: 'JavaScript'},
-{ name: 'jQuery' },
-{ name: 'Ruby'},
-{ name: 'Ruby on Rails'},
-{ name: 'PHP'},
-{ name: 'Java'},
-{ name: 'Python'},
-{ name: 'Command Line'},
-{ name: 'Git'},
-{ name: 'SQL'},
-{ name: 'Sass'},
-{ name: 'React'},
-{ name: 'Node.js'},
-{ name: 'その他'}
-])
-
+             { name: 'HTML & CSS' },
+             { name: 'JavaScript' },
+             { name: 'jQuery' },
+             { name: 'Ruby' },
+             { name: 'Ruby on Rails' },
+             { name: 'PHP' },
+             { name: 'Java' },
+             { name: 'Python' },
+             { name: 'Command Line' },
+             { name: 'Git' },
+             { name: 'SQL' },
+             { name: 'Sass' },
+             { name: 'React' },
+             { name: 'Node.js' },
+             { name: 'その他' }
+           ])
 
 if Rails.env == 'development'
 
@@ -69,5 +68,3 @@ if Rails.env == 'development'
     )
   end
 end
-
-
