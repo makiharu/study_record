@@ -12,10 +12,17 @@
 
 <div class="form-set">
   <div class="board-heading">
+    <div class="text-left">
       <h4><%= @board.title %></h4>
       <% @board.tags.each do |tag| %>
         <span class="badge badge-info"><%= tag.name %></span>
       <% end %>
+    </div>
+      <div class="text-right">
+         <!--お気に入りボタン-->
+        <i class="far fa-surprise fa-2x"></i>
+        <span class="balloon3-left">34</span>
+      </div>
   </div>
   <div class="board-body">
       <p class="board-text"><%= simple_format(@board.body) %></p>

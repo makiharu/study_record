@@ -1,11 +1,11 @@
 <div class="row">
 	<div class="col-md-5">
 		<div class="form-set">
-			<h4>今週のタスク</h4>
+			<h4>今週のTo doリスト</h4>
 			<%= render 'public/todolists/index', todolists: @week_todolists %>
 		</div>
 		<div class="form-set">
-			<h4>今月のタスク</h4>
+			<h4>今月のTo doリスト</h4>
 			<%= render 'public/todolists/index', todolists: @month_todolists %>
 		</div>
 	</div>
@@ -14,15 +14,12 @@
 
 	<div class="col-md-7">
 		<div class="form-set">
-			<h3>Todo リスト</h3>
-			<div class="text-right">
-				<%= link_to 'リセット', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-danger', style: 'border-radius:50%' %>
-			</div>
+			<h3>本日のTo do リスト</h3>
 
 			<%= form_with(model: @completed_list, url: public_todolists_complete_path, local: true) do |f| %>
 			<table class="table-hover table-responsive">
 				<thead>
-					<th colspan="3">本日のリスト一覧</th>
+					<th colspan="3">リスト一覧</th>
 					<th></th>
 					<th></th>
 					<th></th>
@@ -35,8 +32,11 @@
 						<td><%= todolist.content %></td>
 						<!--check_box-->
 						<td style="width:13%">
-							<%= f.check_box :content %>
+							<%= f.hidden_field :content, content: 'todolist[#{i}[name]' %>
+							<%= f.check_box :content, name: 'todolist[#{i}][content]' %>
 							<%#= f.check_box :content, "内容", {include_hidden: false} %>
+		<%#= f.text_field :name, name: "item[#{index}][name]" %>
+      <%#= f.check_box :delete_flag, name: "item[#{index}][delete_flag]" %>
 						</td>
 						<td>
 							<%= link_to edit_public_todolist_path(todolist), class: 'btn btn-outline-success', style: 'border-radius: 30%' do %>
@@ -50,6 +50,8 @@
 
 			<%= f.submit '完了報告', class: 'btn btn-outline-success' %>
 			<% end %>
+
+
 		</div>
 
 		<!--todolistフォーム-->
@@ -57,6 +59,10 @@
 			<div class="todolt-form">
 				<h4>To doリスト作成</h4>
 				<%= render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
+
+				<div class="text-right">
+					<%= link_to 'リセット', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-danger', style: 'border-radius:50%' %>
+				</div>
 			</div>
 		</div>
 	</div>

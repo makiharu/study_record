@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :relationships, only: %i[create destroy]
 
     resources :users, only: %i[index show edit update]
-    resources :todolists
+    resources :todolists, except: [:show]
     get 'todolists/complete'
     post 'todolists/complete'
 

@@ -125,3 +125,33 @@ nav {
 	margin-top: 40px;
 	margin-bottom: 50px;
 }
+
+
+
+.balloon3-left { /*吹き出し*/
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 0 5px;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  color: #FFF;
+  font-size: 20px;
+  font-weight: bold;
+  background: #ffd700;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.balloon3-left:before { /*吹き出し*/
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -25px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #ffd700;
+  z-index: 0;
+}
