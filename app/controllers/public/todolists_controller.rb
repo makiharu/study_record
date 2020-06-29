@@ -15,7 +15,9 @@ class Public::TodolistsController < ApplicationController
   		redirect_to public_user_path(@todolist.user_id)
   		flash[:notice] = "todoリストを作成しました"
   	else
-  		render :index
+      @todolists = Todolist.all
+  		redirect_back(fallback_location: root_path)
+      flash[:warning] = "もう一度やり直してください"
   	end
   end
 

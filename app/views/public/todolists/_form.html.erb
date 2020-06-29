@@ -1,7 +1,8 @@
 <% if user_signed_in? %>
 <div class="form-set">
+	<h4>Todoリスト作成</h4>
 	<div class="todolist-form">
-		<h4>Todoリスト作成</h4>
+
 		<%= form_with model: [:public, todolist], local: true do |f| %>
 		<%= render 'shared/error_messages', obj: todolist %>
 		<div class="form-group">
@@ -13,7 +14,7 @@
 			<%#= f.text_field :name %>
 		</div>
 		<div class="actions">
-			<%= f.submit '作成' %>
+			<%= f.submit '保存する', class: 'btn btn-outline-info' %>
 		</div>
 
 		<% end %>

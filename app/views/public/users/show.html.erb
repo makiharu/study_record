@@ -1,6 +1,6 @@
 <!--サイドバー index,showページ共通-->
 
-<%= link_to 'マイページ', public_users_path, class: 'btn btn-outline-success' %>
+<%= link_to 'ユーザー一覧', public_users_path, class: 'btn btn-outline-success' %>
 
 
 <%= link_to 'プロフィール編集', edit_public_user_path(@user), class: 'btn btn-outline-success' %>
@@ -8,6 +8,7 @@
 <div class="row">
 	<div class="col-md-4">
 		<div class="form-set">
+			<h4>プロフィール</h4>
 			<table class="table">
 				<tr>
 					<th>名前</th>
@@ -30,11 +31,11 @@
 					<td></td>
 				</tr>
 				<tr>
-					<th>フォロー一覧</th>
+					<th>フォローリスト</th>
 					<td></td>
 				</tr>
 				<tr>
-					<th>フォロワー一覧</th>
+					<th>フォロワーリスト</th>
 					<td></td>
 				<tr>
 					<th>設定</th>
