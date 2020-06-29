@@ -48,7 +48,7 @@
 <!--todoリストお引っ越し-->
 
 
-	<div class="col-md-7">
+	<div class="col-md-8">
 		<!--todolistフォーム-->
 		<div class="form-set">
 			<h3>Todo リスト</h3>
@@ -59,7 +59,9 @@
 			<%= form_with(model: @todolist, url: public_todolists_complete_path, local: true) do |f| %>
 			<table class="table-hover">
 				<thead>
-					<th colspan="1">リスト一覧</th>
+					<th>リスト一覧</th>
+					<th></th>
+					<th></th>
 					<th></th>
 					<th></th>
 				</thead>
@@ -71,6 +73,11 @@
 						<td><%= todolist.content %></td>
 						<!--check_box-->
 						<td><%= f.check_box :content %></td>
+						<td>
+							<%= link_to edit_public_todolist_path, class: 'btn btn-outline-success', style: 'border-radius: 50%' do %>
+								<i class="fas fa-cogs"></i>
+							<% end %>
+						</td>
 					</tr>
 					<% end %>
 				</tbody>

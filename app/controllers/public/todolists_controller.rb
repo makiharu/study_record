@@ -1,6 +1,7 @@
 class Public::TodolistsController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :set_todolist, only: %i[edit update destroy]
 
   def new
   	@todolist = Todolist.new
@@ -34,10 +35,37 @@ class Public::TodolistsController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    if @todolist.update(todolist_params)
+      redirect_to public_users_path
+      flash[:notice] = "内容を保存しました"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @todilist.destroy
+      redirect_to public_users_path
+    else
+      render :edit
+    end
+  end
+
+
+
   private
 
   def todolist_params
   	params.require(:todolist).permit(:content)
+  end
+
+  def set_todolist
+    @todolist = Todolist.find(params[:id])
   end
 end
 
