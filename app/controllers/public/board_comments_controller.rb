@@ -1,5 +1,4 @@
 class Public::BoardCommentsController < ApplicationController
-
   before_action :authenticate_user!
   # before_action :ensure_correct_user,only: [:destroy]
 
@@ -16,7 +15,6 @@ class Public::BoardCommentsController < ApplicationController
       redirect_back(fallback_location: root_path)
       flash[:alert] = "投稿できませんでした"
     end
-
   end
 
   def destroy
@@ -46,19 +44,17 @@ class Public::BoardCommentsController < ApplicationController
     end
   end
 
-
   private
 
   def board_comment_params
-  	params.require(:board_comment).permit(:comment)
+    params.require(:board_comment).permit(:comment)
   end
 
-   # def ensure_correct_user
-   #      board_comment = BoardComment.find(params[:id])
+  # def ensure_correct_user
+  #      board_comment = BoardComment.find(params[:id])
 
-   #      if book_comment.user_id != current_user.id
-   #        redirect_to root_path
-   #      end
-   #  end
-
+  #      if book_comment.user_id != current_user.id
+  #        redirect_to root_path
+  #      end
+  #  end
 end

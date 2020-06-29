@@ -1,0 +1,37 @@
+<!-- 
+	<div class="text-right">
+		<%#= link_to '+', new_public_todolist_path, class: 'btn btn-outline-primary', style: 'border-radius:50%' %>
+	</div>
+	<%#= form_with model: [:public, @todolist] do |f| %>
+	<%#= form_with(model: finish_list, url: public_todolists_complete_path, local: true) do |f| %>
+	<table class="table-hover">
+		<thead>
+			<th>リスト一覧</th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</thead>
+		<tbody> -->
+		    <!--each_with_indexは回したときにそれぞれの要素が何番目か返してくれるメソッド-->
+			<% todolists.each_with_index do |todolist, i| %>
+			<tr>
+				<th><%= "No. #{i + 1}" %></th>
+				<td><%= todolist.content %></td>
+				<!--check_box-->
+				<td style="width:13%"><%= f.check_box :content %></td>
+				<td>
+					<%= link_to edit_public_todolist_path(todolist), class: 'btn btn-outline-success', style: 'border-radius: 50%' do %>
+						<i class="fas fa-cogs"></i>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+
+
+
+
+<!-- 		</tbody>
+	</table>
+		<%#= f.submit '完了報告', class: 'btn btn-outline-success' %>
+	<%# end %> -->

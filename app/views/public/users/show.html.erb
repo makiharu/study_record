@@ -46,52 +46,23 @@
 	</div>
 
 
-<!--todoリストお引っ越し-->
-
-
+<!--todolist完了で受け取った値をグラフで表示する-->
 	<div class="col-md-8">
-		<!--todolistフォーム-->
+		<div class="text-right">
+			<%= link_to 'todoリスト設定ページ', public_todolists_path, class: 'btn btn-outline-success' %>
+		</div>
 		<div class="form-set">
-			<h3>Todo リスト</h3>
-			<div class="text-right">
-				<%= link_to '+', new_public_todolist_path, class: 'btn btn-outline-primary', style: 'border-radius:50%' %>
-			</div>
-			<%#= form_with model: [:public, @todolist] do |f| %>
-			<%= form_with(model: @todolist, url: public_todolists_complete_path, local: true) do |f| %>
-			<table class="table-hover">
-				<thead>
-					<th>リスト一覧</th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</thead>
-				<tbody>
-				    <!--each_with_indexは回したときにそれぞれの要素が何番目か返してくれるメソッド-->
-					<% @todolists.each_with_index do |todolist, i| %>
-					<tr>
-						<th><%= "No. #{i + 1}" %></th>
-						<td><%= todolist.content %></td>
-						<!--check_box-->
-						<td style="width:13%"><%= f.check_box :content %></td>
-						<td>
-							<%= link_to edit_public_todolist_path(todolist), class: 'btn btn-outline-success', style: 'border-radius: 50%' do %>
-								<i class="fas fa-cogs"></i>
-							<% end %>
-						</td>
-					</tr>
-					<% end %>
-				</tbody>
-			</table>
-				<%= f.submit '完了報告', class: 'btn btn-outline-success' %>
+			<h3>ユーザーグラフ</h3>
+			<p>テスト</p>
+			<% if params[:todolist_id] %>
+			<%= @finish_list.id %>
 			<% end %>
-
 		</div>
 
 
 
-		<!--todolistの作成については、current_userのみに表示されるように設定する必要があり-->
-		<% render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
+
+	</div>
 
 
 </div>
