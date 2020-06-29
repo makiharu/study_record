@@ -6,3 +6,11 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: 次回から自動的にログイン
+
+
+      board:
+        title: タイトル
+        body: 本文
+
+      todolist:
+        content: 内容

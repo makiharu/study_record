@@ -1,14 +1,14 @@
-# frozen_string_literal: true
-
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update]
 
   def index
-  	@user = current_user.id
+    @users = User.all
   end
 
   def show
+    @todolist = Todolist.new
+    @todolists = Todolist.all
   end
 
   def edit

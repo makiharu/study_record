@@ -3,7 +3,7 @@ class CreateTodolists < ActiveRecord::Migration[5.2]
     create_table :todolists do |t|
       t.integer :user_id
       t.string :content
-      t.integer :time_category, default: 1
+      t.integer :time_category, default: 0
 
       t.timestamps
     end

@@ -1,14 +1,11 @@
 <div class="row">
-    <div class="col-nd-3 col-md-offset-3">
+    <div class="col-md-6">
+      <div class="form-set">
       <h3>会員編集</h3>
-    </div>
-</div>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
     <div class="form-horizontal">
-
-      <%= form_with(model: @user, url: public_user_path, local: true) do |f| %>
+      <%= form_with model: [:public, @user], local: true do |f| %>
+      <%#= form_with(model: @user, url: public_user_path, local: true) do |f| %>
         <%= render 'shared/error_messages', obj: @user %>
 
         <div class="field">
@@ -35,17 +32,22 @@
 
         <div class="actions">
            <%= f.submit "変更を保存する", class: "btn btn-outline-primary" %>
-        </div>
-
-        <div class="actions">
-           <%= link_to "戻る", public_user_path(@user), class: "btn btn-outline-dark" %>
+            <%= link_to "戻る", public_user_path(@user), class: "btn btn-outline-dark" %>
         </div>
 
       <% end %>
+    </div>
 
   </div>
+</div>
 
+<div class="col-md-5 offset-md-1">
+  <div class="form-set">
+    <h3>ラベルフォーム</h3>
+
+    <%#= render 'manage/tags/form', tag: @tag, obj: @tag %>
+  </div>
 
 </div>
 
-<h1>ラベルフォーム</h1>
+
