@@ -72,9 +72,9 @@
 						<th><%= "No. #{i + 1}" %></th>
 						<td><%= todolist.content %></td>
 						<!--check_box-->
-						<td><%= f.check_box :content %></td>
+						<td style="width:13%"><%= f.check_box :content %></td>
 						<td>
-							<%= link_to edit_public_todolist_path, class: 'btn btn-outline-success', style: 'border-radius: 50%' do %>
+							<%= link_to edit_public_todolist_path(todolist), class: 'btn btn-outline-success', style: 'border-radius: 50%' do %>
 								<i class="fas fa-cogs"></i>
 							<% end %>
 						</td>

@@ -41,7 +41,7 @@ class Public::TodolistsController < ApplicationController
 
   def update
     if @todolist.update(todolist_params)
-      redirect_to public_users_path
+      redirect_to public_user_path(@todolist.user_id)
       flash[:notice] = "内容を保存しました"
     else
       render :edit
@@ -50,7 +50,8 @@ class Public::TodolistsController < ApplicationController
 
   def destroy
     if @todilist.destroy
-      redirect_to public_users_path
+      public_user_path(@todolist.user_id)
+      flash[:alert] = "削除しました"
     else
       render :edit
     end
