@@ -67,11 +67,11 @@ class Public::TodolistsController < ApplicationController
     end
   end
 
-  # def empty
-  #   user = User.find(current_user.id)
-  #   user.todolists.destroy_all
-  #   redirect_to public_todolists_path, danger: "リストを全て削除しました"
-  # end
+  def empty
+    user = User.find(current_user.id)
+    user.todolists.destroy_all
+    redirect_to public_todolists_path, danger: "リストを全て削除しました"
+  end
 
 
   private
@@ -79,10 +79,6 @@ class Public::TodolistsController < ApplicationController
   def todolist_params
     params.require(:todolist).permit(:content, :time_category)
   end
-
-  # def finish_list_params
-  #   params.require(:todolist).permit(:todolist_id)
-  # end
 
   def set_todolist
     @todolist = Todolist.find(params[:id])

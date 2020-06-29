@@ -25,11 +25,13 @@ Rails.application.routes.draw do
     resources :relationships, only: %i[create destroy]
 
     resources :users, only: %i[index show edit update]
-    #   resources :todolists
-    # end
     resources :todolists
     get 'todolists/complete'
     post 'todolists/complete'
+
+    #todolistの中身をリセットさせるために追加
+    delete '/todolists_delete' => 'todolists#empty', as: 'todolists_delete'
+
     get 'board_comments/index'
     get 'board_comments/edit'
   end
