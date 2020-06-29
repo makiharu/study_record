@@ -6,14 +6,16 @@
 			<%= f.text_field :content, class: 'form-control' %>
 		</div>
 		<div class="form-group">
-			<%= f.radio_button :time_category, :today, checked: true %>
-			<%= f.label :本日, class: 'time_category' %>
+			<%= f.radio_button :time_category, :today, {value: 0, style: 'display: inline-block;'} %>
+			<%= f.label :time_category_today, "本日", class: 'time_category' %>
 
-			<%= f.radio_button :time_category, :week %>
-			<%= f.label :今週, class: 'time_category' %>
 
-			<%= f.radio_button :time_category, :month %>
-			<%= f.label :今月, class: 'time_category' %>
+			<%= f.radio_button :time_category, :week, { value: 1, style: 'display: inline-block;'} %>
+			<%= f.label :time_category_week, "今週", class: 'time_category' %>
+
+
+			<%= f.radio_button :time_category, :month, { value: 2, style: 'display: inline-block;'} %>
+			<%= f.label :time_category_month, "今月", class: 'time_category' %>
 		</div>
 		<div class="action">
 			<%= f.submit '保存する', class: 'btn btn-outline-info' %>

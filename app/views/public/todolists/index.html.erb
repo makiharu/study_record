@@ -1,5 +1,3 @@
-<!--カレントユーザーのみアクセスできるように-->
-<!--ここの部分は工程が多くなるので、余裕があれば、細かくやる程度で-->
 <div class="row">
 	<div class="col-md-5">
 		<div class="form-set">
@@ -10,8 +8,6 @@
 			<h4>今月のTo do</h4>
 			<%= render 'public/todolists/index', todolists: @todolists, todolist: @todolist %>
 		</div>
-<!---------ここまで------------------------------->
-
 	</div>
 
 
@@ -35,7 +31,6 @@
 					<th></th>
 				</thead>
 				<tbody>
-					<%#= render 'public/todolists/index', todolists: @todolists, todolist: @todolist, f: f %>
 					<% @todolists.each_with_index do |todolist, i| %>
 					<tr>
 						<th><%= "#{i + 1}: " %></th>
@@ -54,11 +49,11 @@
 			<%= f.submit '完了報告', class: 'btn btn-outline-success' %>
 			<% end %>
 		</div>
+
 		<!--todolistフォーム-->
 		<div class="form-set">
 			<div class="todolt-form">
 				<h4>To doリスト作成</h4>
-				<!--todolist新規作成フォーム-->
 				<%= render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
 			</div>
 		</div>

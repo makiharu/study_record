@@ -8,6 +8,7 @@ class Public::TodolistsController < ApplicationController
   end
 
   def create
+    binding.pry
     @todolist = Todolist.new(todolist_params)
     @todolist.user_id = current_user.id
     if @todolist.save
@@ -22,22 +23,37 @@ class Public::TodolistsController < ApplicationController
 
   def index
     @todolist = Todolist.new
-    @todolists = Todolist.all
+    #binding.pry
+    #ラジオボタンが0番,1番,2番で振り分けたい
+    if params[:time_category] == 'today'
+    #params[:time_category] == 0
+      #params[:time_category][:today]
+      @todolists = Todolist.wherer(time_category: 'today')
+    elsif params[:time_category] == 1
+      #params[:time_category][:week]
+      @todolists = Todolist.wherer(time_category: 1)
+    elsif params[:time_category] == 2
+      #params[:time_category][:month]
+      @todolists = Todolist.wherer(time_category: 2)
+    else
+      @todolists = Todolist.all
+    end
+
     @finish_list = Todolist.new
-
-
   end
 
   def complete
+    @todolists = Todolist.all
     # checkboxから値が送られてきたら、そのデータを非表示にする
     @finish_list = Todolist.new
     @finish_list.user_id = current_user.id
     if @finish_list.save
-      #redirect_to public_user_path(@finish_list.user_id)
-      redirect_back(fallback_location: root_path)
+      redirect_to root_path
+      #redirect_to public_todolists_complete_path
       flash[:notice] = "報告完了しました"
     else
-      render :index
+      redirect_to public_todolists_path
+      flash[:alert] = "もう一度やり直してください"
     end
   end
 
@@ -46,7 +62,7 @@ class Public::TodolistsController < ApplicationController
 
   def update
     if @todolist.update(todolist_params)
-      redirect_to public_todolists_path
+      redirect_to public_todolists_complete_path
       flash[:notice] = "内容を保存しました"
     else
       render :edit
@@ -65,7 +81,7 @@ class Public::TodolistsController < ApplicationController
   private
 
   def todolist_params
-    params.require(:todolist).permit(:content)
+    params.require(:todolist).permit(:content, :time_category)
   end
 
   # def finish_list_params
