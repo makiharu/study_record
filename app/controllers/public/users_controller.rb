@@ -6,7 +6,11 @@ class Public::UsersController < ApplicationController
     @users = User.all
   end
 
-  def show; end
+  def show
+    @chart = {'2019-06-01' => 60, '2019-06-02' => 65, '2019-06-03' => 64}
+    @data = {'Ruby' => 30, 'HTML&CSS' => 80, 'JS' => 50}
+    #@data = {'ラベル名' => 達成したリストの数...}
+  end
 
   def edit; end
 
