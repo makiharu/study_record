@@ -51,5 +51,3 @@ class Manage::TodolistsController < ApplicationController
     @tag = Tag.find(params[:id])
   end
 end
-
-end
