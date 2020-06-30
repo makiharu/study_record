@@ -22,9 +22,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :relationships, only: %i[create destroy]
+    resources :users, only: %i[index show edit update] do
+      resources :relationships, only: %i[create destroy]
+      get :follows, on: :member
+      get :followers, on: :member
+    end
 
-    resources :users, only: %i[index show edit update]
     resources :todolists, except: [:show]
     get 'todolists/complete'
     post 'todolists/complete'

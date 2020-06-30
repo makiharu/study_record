@@ -15,14 +15,23 @@ class User < ApplicationRecord
   has_many :todolists, dependent: :destroy
   has_many :board_likes, dependent: :destroy
 
-  has_many :relationships
-  has_many :followings, through: :relationships, source: :follow
-  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
-  has_many :followers, through: :reverse_of_relationships, source: :user
+  #follow-follower
+  has_many :active_relationships, class_name: 'Relationship', foreign_key: :following_id
+  has_many :follows, through: :active_relationships, source: :follower
+
+  has_many :passive_relationships, class_name: 'Relationship', foreign_key: :follower_id
+  has_many :followers, through: :passive_relationships, source: :following
+
 
   attachment :profile_image
 
   validates :name, presence: true
+
+  def followed_by?(user)
+# フォローされているpassiveユーザーの中から、引数に渡されたuserがいるかどうかjudge
+    passive_relationships.find_by(following_id: user.id).present?
+  end
+
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -35,16 +44,4 @@ class User < ApplicationRecord
     )
   end
 
-  def follow(other_user)
-    relationships.find_or_create_by(follow_id: other_user.id) unless self == other_user
- end
-
-  def unfollow(other_user)
-    relationship = relationships.find_by(follow_id: other_user.id)
-    relationship&.destroy
-  end
-
-  def following?(other_user)
-    followings.include?(other_user)
-  end
 end

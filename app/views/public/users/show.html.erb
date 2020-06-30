@@ -13,6 +13,7 @@
 				<tr>
 					<th>名前</th>
 					<td><%= @user.name %></td>
+					<%= @user.email %>
 				</tr>
 				<tr>
 					<th>コメント</th>
@@ -35,8 +36,23 @@
 					<td></td>
 				</tr>
 				<tr>
-					<th>フォロワーリスト</th>
+					<th>フォロワーリス</th>
 					<td></td>
+				</tr>
+				<!--追加-->
+				<tr>
+					<% if @user != current_user %>
+						<% if @user.followed_by?(current_user) %>
+						<th>フォロー済: </th>
+						<td><%= link_to public_user_relationship_path(@user.id), method: :delete do %><i class="far fa-thumbs-up fa-lg"></i><% end %></td>
+					<% else %>
+						<th>フォローする: </th>
+						<td><%= link_to public_user_relationships_path(@user.id), method: :post do %>
+						  	<i class="far fa-thumbs-up fa-lg"></i></td>
+						  	<% end %>
+						<% end %>
+					<% end %>
+				</tr>
 				<tr>
 					<th>設定</th>
 					<td><%= link_to '設定', edit_public_user_path(@user) %></td>
@@ -59,11 +75,7 @@
 			<% end %>
 		</div>
 
-
-
-
 	</div>
-
 
 </div>
 
