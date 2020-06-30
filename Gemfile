@@ -89,6 +89,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
 gem 'font-awesome-sass'
+gem 'chartkick'
 
 gem 'dotenv-rails'
 group :production do

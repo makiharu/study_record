@@ -90,13 +90,25 @@
 		</div>
 		<div class="form-set">
 			<h3>ユーザーグラフ</h3>
-			<p>テスト</p>
+			<p>テスト: コントローラから値を渡している</p>
+			<%= pie_chart @data %>
+
+			<p>テスト6</p>
+			<%= pie_chart @chart,
+				id: 'data-chart',
+                 width: '300px',
+                 height: '300px',
+                 colors: [['#adff2f'],['#ffd700'],['#00bfff']] %>
+
+
 			<% if params[:todolist_id] %>
 			<%= @finish_list.id %>
 			<% end %>
 		</div>
 
+
 	</div>
+
 
 </div>
 
