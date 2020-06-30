@@ -8,7 +8,7 @@ class Public::TodolistsController < ApplicationController
   end
 
   def create
-    #binding.pry
+    # binding.pry
     @todolist = Todolist.new(todolist_params)
     @todolist.user_id = current_user.id
     if @todolist.save
@@ -23,7 +23,7 @@ class Public::TodolistsController < ApplicationController
 
   def index
     @todolist = Todolist.new
-    #ラジオボタンで場合分けをするよりも変数名を別にした方がわかりやすい
+    # ラジオボタンで場合分けをするよりも変数名を別にした方がわかりやすい
     @today_todolists = Todolist.where(time_category: 'today')
     @week_todolists = Todolist.where(time_category: 'week')
     @month_todolists = Todolist.where(time_category: 'month')
@@ -32,7 +32,7 @@ class Public::TodolistsController < ApplicationController
   end
 
   def complete
-    #binding.pry
+    # binding.pry
     # タスクが完了したら、そのデータを非表示にする
     @completed_list = Todolist.new(todolist_params)
     @completed_list.user_id = current_user.id
@@ -44,7 +44,6 @@ class Public::TodolistsController < ApplicationController
       flash[:alert] = "もう一度やり直してください"
     end
   end
-
 
   def edit; end
 
@@ -71,7 +70,6 @@ class Public::TodolistsController < ApplicationController
     user.todolists.destroy_all
     redirect_to public_todolists_path, danger: "リストを全て削除しました"
   end
-
 
   private
 

@@ -64,10 +64,34 @@
   <div class="form-set">
     <div class="comment-heading">
       <h4>コメント一覧</h4>
-      <%= render 'public/board_comments/comments', board_comments: @board_comments, board_comment: @board_comment %>
+      <!--each_with_indexは回したときにそれぞれの要素が何番目か返してくれるメソッド-->
+      <% @board_comments.each_with_index do |comment, i| %>
+        <div class="comment-list">
+
+          <p>NO. <%= i + 1 %></p>
+          <p><%= simple_format(comment.comment) %></p>
+          <div class="comment-bottom">
+            <span id="time"><%= l comment.created_at %></span>
+            <span>
+                <%= link_to public_user_path(comment.user) do %>
+                  <%= comment.user.name %>
+                  <%= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
+                <% end %>
+            </span>
+
+          <%= link_to '削除', public_board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
+          <%= link_to '編集', edit_public_board_board_comment_path(comment.id), class: 'btn btn-outline-success' %>
+
+            <!--コメントに対するいいねボタン-->
+            <%= render 'public/board_comments/comment_likes', comment: comment %>
+
+          </div>
+        </div>
+      <% end %>
+
+
     </div>
   </div>
-
 </div>
 
 

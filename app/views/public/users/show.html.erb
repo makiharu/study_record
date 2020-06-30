@@ -13,6 +13,7 @@
 				<tr>
 					<th>名前</th>
 					<td><%= @user.name %></td>
+					<%= @user.email %>
 				</tr>
 				<tr>
 					<th>コメント</th>
@@ -32,11 +33,47 @@
 				</tr>
 				<tr>
 					<th>フォローリスト</th>
-					<td></td>
+					<td>
+					<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
+					<% if @user.followings.count != 0 %>
+						<%= link_to @user.followings.count, follows_public_user_path %>
+					<% else %>
+						<%= @user.followings.count %>
+					<% end %>
+					</td>
 				</tr>
 				<tr>
 					<th>フォロワーリスト</th>
-					<td></td>
+					<td>
+					<% if @user.followers.count != 0 %>
+						<%= link_to @user.followers.count, followers_public_user_path %>
+					<% else %>
+						<%= @user.followers.count %>
+					<% end %>
+					</td>
+				</tr>
+				<!--追加-->
+				<tr>
+					<% if @user != current_user %>
+						<% if @user.followed_by?(current_user) %>
+						<th>フォロー済: </th>
+						<td><%= link_to public_user_relationship_path(@user.id), method: :delete do %>
+							  <i class="far fa-thumbs-up fa-lg">
+							  	<%= @user.followings.count %>
+							  </i>
+							<% end %>
+						</td>
+					<% else %>
+						<th>フォローする: </th>
+						<td><%= link_to public_user_relationships_path(@user.id), method: :post do %>
+						  	  <i class="far fa-thumbs-up fa-lg">
+						  	  	<%= @user.followers.count %>
+						  	  </i>
+						  	<% end %>
+						</td>
+						<% end %>
+					<% end %>
+				</tr>
 				<tr>
 					<th>設定</th>
 					<td><%= link_to '設定', edit_public_user_path(@user) %></td>
@@ -59,11 +96,7 @@
 			<% end %>
 		</div>
 
-
-
-
 	</div>
-
 
 </div>
 
