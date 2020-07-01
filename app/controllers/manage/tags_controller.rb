@@ -20,12 +20,14 @@ class Manage::TagsController < ApplicationController
   end
 
   def edit
-    @tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
+
+  #  @tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def update
+    #binding.pry
     if @tag.update(tag_params)
-      redirect_to manage_tag_path(@tag)
+      redirect_to manage_tags_path
       flash[:notice] = "タグの変更を保存しました"
     else
       render :edit
@@ -34,7 +36,7 @@ class Manage::TagsController < ApplicationController
 
   def destroy
     if @tag.destroy
-      redirect_to redirect_to manage_tag_path(@tag)
+      redirect_to manage_tags_path
       flash[:danger] = "タグを削除しました"
     else
       render :edit

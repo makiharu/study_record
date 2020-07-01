@@ -14,7 +14,7 @@
 				  <span class="label label-default">
 							ステータス: <%= @tag.is_void ? '無効' : '有効' %>
 						</span><hr /></p>
-				<%= link_to '削除する', manage_tag_path(tag), method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
+				<%= link_to '削除する', manage_tag_path(@tag), method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
 			</div>
 		</div>
 	</div>
