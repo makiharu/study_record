@@ -1,5 +1,6 @@
 class Manage::TodolistsController < ApplicationController
-  #before_action :set_tag, only: %i[edit update destroy]
+  before_action :authenticate_admin!
+  before_action :set_tag, only: %i[edit update destroy]
 
   def new; end
 
