@@ -52,27 +52,12 @@
 					<% end %>
 					</td>
 				</tr>
-				<!--追加-->
 				<tr>
-					<% if @user != current_user %>
-						<% if @user.followed_by?(current_user) %>
-						<th>フォロー済: </th>
-						<td><%= link_to public_user_relationship_path(@user.id), method: :delete do %>
-							  <i class="far fa-thumbs-up fa-lg">
-							  	<%= @user.followings.count %>
-							  </i>
-							<% end %>
-						</td>
-					<% else %>
-						<th>フォローする: </th>
-						<td><%= link_to public_user_relationships_path(@user.id), method: :post do %>
-						  	  <i class="far fa-thumbs-up fa-lg">
-						  	  	<%= @user.followers.count %>
-						  	  </i>
-						  	<% end %>
-						</td>
-						<% end %>
-					<% end %>
+					<!------------フォローボタン----------------------------------->
+					<span id="follow_buttons_<%= @user.id %>">
+						<%= render partial: 'public/relationships/follow', locals: { user: @user } %>
+					</span>
+					<!------------フォローボタン----------------------------------->
 				</tr>
 				<tr>
 					<th>設定</th>
@@ -101,9 +86,6 @@
                  colors: [['#adff2f'],['#ffd700'],['#00bfff']] %>
 
 
-			<% if params[:todolist_id] %>
-			<%= @finish_list.id %>
-			<% end %>
 		</div>
 
 
