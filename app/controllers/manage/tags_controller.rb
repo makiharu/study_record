@@ -21,12 +21,11 @@ class Manage::TagsController < ApplicationController
   end
 
   def edit
-
-  #  @tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
+    #  @tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def update
-    #binding.pry
+    # binding.pry
     if @tag.update(tag_params)
       redirect_to manage_tags_path
       flash[:notice] = "タグの変更を保存しました"
