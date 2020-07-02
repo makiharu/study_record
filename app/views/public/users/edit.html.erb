@@ -8,20 +8,25 @@
       <%#= form_with(model: @user, url: public_user_path, local: true) do |f| %>
         <%= render 'shared/error_messages', obj: @user %>
 
-        <div class="field">
+        <div class="form-group">
           <%= attachment_image_tag(@user, :profile_image, :fill, 200, 200,fallback: 'no_image.jpg', size: '60x60') %><hr />
           <%= f.attachment_field :profile_image %><hr />
 
         </div>
 
-        <div class="field">
+        <div class="form-group">
           <%= f.label :"ユーザー名" %>
           <%= f.text_field :name, class: 'form-control' %><hr />
         </div>
 
         <div class="form-group">
       	   <%= f.label :メールアドレス %>
-      	   <%= f.email_field :email, class: 'form-control'  %><hr />
+      	   <%= f.email_field :email, class: 'form-control' %><hr />
+        </div>
+
+        <div class="form-group">
+          <%= f.label :自己紹介 %>
+          <%= f.text_area :introduction, class: 'form-control' %><hr />
         </div>
 
         <div class="form-group">
