@@ -1,0 +1,13 @@
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-set">
+		<h4>ラベル編集画面</h4>
+		<%= render 'manage/todolists/form', todolist: @todolist, obj: @todolist %>
+
+		<div class="text-right">
+			<p><%= link_to '削除', manage_todolist_path(@todolist), method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-default btn-danger' %></p>
+		</div>
+	</div>
+</div>
+
+

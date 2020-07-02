@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(version: 2020_07_01_223940) do
     t.integer "user_id"
     t.string "content"
     t.integer "time_category", default: 0
-    t.boolean "finished", default: false
+    t.integer "label", default: 0
+    t.boolean "done", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "label"
   end
 
   create_table "user_lists", force: :cascade do |t|

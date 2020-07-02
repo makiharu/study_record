@@ -6,13 +6,27 @@
 			<%= f.text_field :content, class: 'form-control' %>
 		</div>
 		<div class="form-group">
+			<%= f.label :種別 %>
+			<%= f.collection_select :label, Todolist.all,:id, :label, :include_blank => true %>
+			<%#= f.collection_select :delivery_id, current_end_user.deliveries, :id, :view_address_and_name,:include_blank => true %>
+			 <%#= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+		</div>
+		<!--編集ページの時のみ表示する-->
+		<% if controller.action_name == 'edit' %>
+		<div class="form-group">
+			<%#= f.radio_button :done, { value: false } %>
+			<%= f.label :ステータス %>
+			<%= f.radio_button :done, :false, {value: "false", style: 'display: inline-block;'} %>未完
+			<%= f.radio_button :done, :true, {value: "true", style: 'display: inline-block'} %>達成
+
+		</div>
+		<% end %>
+		<div class="form-group">
 			<%= f.radio_button :time_category, :today, {value: "today", style: 'display: inline-block;'} %>
 			<%= f.label :time_category_today, "本日", class: 'time_category' %>
 
-
 			<%= f.radio_button :time_category, :week, { value: "week", style: 'display: inline-block;'} %>
 			<%= f.label :time_category_week, "今週", class: 'time_category' %>
-
 
 			<%= f.radio_button :time_category, :month, { value: "month", style: 'display: inline-block;'} %>
 			<%= f.label :time_category_month, "今月", class: 'time_category' %>
@@ -20,6 +34,7 @@
 		<div class="action">
 			<%= f.submit '保存する', class: 'btn btn-outline-info' %>
 		</div>
+
 	<% end %>
 </div>
 

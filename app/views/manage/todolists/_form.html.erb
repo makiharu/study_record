@@ -1,0 +1,22 @@
+<div class="todolist-form">
+	<%= form_with model: [:manage, todolist], local: true do |f| %>
+		<%= render 'shared/error_messages', obj: todolist %>
+
+		<div class="form-group">
+			<%= f.label :ラベル名 %>
+			<%= f.number_field :label, class: 'form-control' %>
+			<%#= f.collection_select :label, Todolist.all,:id, :label, :include_blank => true %>
+			<%#= f.collection_select :delivery_id, current_end_user.deliveries, :id, :view_address_and_name,:include_blank => true %>
+			 <%#= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+
+		</div>
+
+
+		<div class="action">
+			<%= f.submit '保存する', class: 'btn btn-outline-info' %>
+		</div>
+		<%= f.hidden_field :done %>
+	<% end %>
+</div>
+
+
