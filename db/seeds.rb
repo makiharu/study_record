@@ -46,6 +46,8 @@ Tag.create([
              { name: 'その他' }
            ])
 
+
+
 if Rails.env == 'development'
 
   # 50boards
@@ -62,7 +64,6 @@ if Rails.env == 'development'
     Board.create!(
       user_id: user_id,
       title: title,
-      subject: subject,
       body: body
     )
   end

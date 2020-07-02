@@ -13,10 +13,9 @@
 				<tr>
 					<th>名前</th>
 					<td><%= @user.name %></td>
-					<%= @user.email %>
 				</tr>
 				<tr>
-					<th>コメント</th>
+					<th>自己紹介</th>
 					<td></td>
 				</tr>
 				<tr>
@@ -84,9 +83,17 @@
                  width: '300px',
                  height: '300px',
                  colors: [['#adff2f'],['#ffd700'],['#00bfff']] %>
-
-
 		</div>
+
+		<div class="form-set">
+			<h4>今週のTo doリスト</h4>
+			<%= render 'public/todolists/index', todolists: @week_todolists %>
+		</div>
+		<div class="form-set">
+			<h4>今月のTo doリスト</h4>
+			<%= render 'public/todolists/index', todolists: @month_todolists %>
+		</div>
+	</div>
 
 
 	</div>

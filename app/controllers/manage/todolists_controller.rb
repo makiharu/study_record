@@ -1,32 +1,34 @@
 class Manage::TodolistsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_tag, only: %i[edit update destroy]
+  before_action :set_todolist, only: %i[edit update destroy]
 
-  def new; end
-
-  def create
-    @tag = Tag.new(tag_params)
-    if @tag.save
-      redirect_to manage_tags_path
-      flash[:notice] = "タグを追加しました"
-    else
-      redirect_back(fallback_location: root_path)
-      flash[:alert] = "タグが追加できていません"
-    end
+  def new
+    @todolist = Todolist.new
   end
 
+  # def create
+  #   @todolist = Todolist.new(todolist_params)
+  #   if @todolist.save
+  #     redirect_to manage_todolists_path
+  #     flash[:notice] = "タグを追加しました"
+  #   else
+  #     redirect_back(fallback_location: root_path)
+  #     flash[:alert] = "タグが追加できていません"
+  #   end
+  # end
+
   def index
-    @tag = Tag.new
-    @tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
+    @todolist = Todolist.new
+    @todolists = Todolist.all.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def edit
-    @tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
+    @todolists = Todolist.all.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def update
-    if @tag.update(tag_params)
-      redirect_to manage_tag_path(@tag)
+    if @todolist.update(todolist_params)
+      redirect_to manage_todolists_path
       flash[:notice] = "タグの変更を保存しました"
     else
       render :edit
@@ -34,8 +36,8 @@ class Manage::TodolistsController < ApplicationController
   end
 
   def destroy
-    if @tag.destroy
-      redirect_to redirect_to manage_tag_path(@tag)
+    if @todolist.destroy
+      redirect_to manage_todolists_path
       flash[:danger] = "タグを削除しました"
     else
       render :edit
@@ -44,11 +46,11 @@ class Manage::TodolistsController < ApplicationController
 
   private
 
-  def tag_params
-    params.require(:tag).permit(:name, :is_void)
+  def todolist_params
+    params.require(:todolist).permit(:content, :label, :done)
   end
 
-  def set_tag
-    @tag = Tag.find(params[:id])
+  def set_todolist
+    @todolist = Todolist.find(params[:id])
   end
 end

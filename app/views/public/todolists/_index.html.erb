@@ -1,16 +1,22 @@
-
-<table class="table-hover table-sm table-responsive">
+<table class="table table-hover table-responsive">
+	<thead>
+		<th>No.</th>
+		<th>リスト名</th>
+		<th>種別</th>
+		<th>編集</th>
+		<th></th>
+	</thead>
 
 	<tbody>
-		<!--each_with_indexは回したときにそれぞれの要素が何番目か返してくれるメソッド-->
-		<!--2番と３番のみ呼び出す-->
-		<%# if radio_button ==  %>
 		<% todolists.each_with_index do |todolist, i| %>
 		<div class="time_category_lists">
 		<tr>
 			<th><%= "#{i + 1}: " %></th>
 			<td ><%= todolist.content %></td>
-			<td style="width: 5%">
+			<td>
+				<span class="badge badge-secondary""><%= todolist.label %></span>
+			</td>
+			<td>
 				<%= link_to edit_public_todolist_path(todolist), class: 'btn btn-sm btn-outline-success', style: 'border-radius: 30%' do %>
 				<i class="fas fa-cogs"></i>
 				<% end %>
@@ -19,6 +25,5 @@
 		</div>
 		<% end %>
 
-		<%# end %>
 	</tbody>
 </table>

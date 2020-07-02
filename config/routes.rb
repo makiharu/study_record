@@ -29,22 +29,22 @@ Rails.application.routes.draw do
       get :followers, on: :member
     end
 
+    # get 'todolists/complete'
+    # post 'todolists/complete', as: 'todolists_compelte'
     resources :todolists, except: [:show]
-    get 'todolists/complete'
-    post 'todolists/complete'
 
     # todolistの中身をリセットさせるために追加
     delete '/todolists_delete' => 'todolists#empty', as: 'todolists_delete'
 
-    get 'board_comments/index'
-    get 'board_comments/edit'
+    # get 'board_comments/index'
+    # get 'board_comments/edit'
   end
 
   namespace :manage do
     get 'home/top'
     resources :users, except: [:destroy]
     resources :boards, only: %i[index show update]
-
+    resources :todolists, except: [:show]
     resources :tags, except: [:show]
 
     get 'search/search'
