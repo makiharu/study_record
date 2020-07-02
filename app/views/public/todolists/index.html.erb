@@ -26,6 +26,7 @@
 	<div class="col-md-7">
 		<div class="form-set">
 			<h3>本日のTo do リスト</h3>
+<<<<<<< HEAD
 			<% if @today_todolists.exists? %>
 			<div class="text-right">
 				<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#demoNormalModal">
@@ -53,6 +54,9 @@
 				    </div>
 				</div>
 			</div>
+=======
+		<% if @today_todolists.exists? %>
+>>>>>>> origin/develop
 
 			<table class="table table-hover table-responsive">
 				<thead>
@@ -103,9 +107,21 @@
 			<span class="text-right">
 				<p><%= link_to '完了報告', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-info' %></p>
 			</span>
+<<<<<<< HEAD
+=======
+			<span class="text-right">
+				<p><%= link_to 'リセット', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-danger', style: 'border-radius:50%' %></p>
+			</span>
+>>>>>>> origin/develop
+
+		<% else %>
+		<!--todoリストをまだ一つも作成していない場合-->
+			Todoリストをまだ設定していませんか？<br />
+			To doリスト作成欄からTo doリストを作成してみましょう！
+		<% end %>
 
 
-
+<<<<<<< HEAD
 		<% else %>
 		<!--todoリストをまだ一つも作成していない場合-->
 			Todoリストをまだ設定していませんか？<br />
@@ -114,6 +130,8 @@
 
 		</div>
 
+=======
+>>>>>>> origin/develop
 	</div>
 
 </div>

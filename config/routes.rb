@@ -29,8 +29,13 @@ Rails.application.routes.draw do
       get :followers, on: :member
     end
 
+<<<<<<< HEAD
     get 'todolists/complete'
     post 'todolists/complete', as: 'todolists_compelte'
+=======
+    # get 'todolists/complete'
+    # post 'todolists/complete', as: 'todolists_compelte'
+>>>>>>> origin/develop
     resources :todolists, except: [:show]
 
     # todolistの中身をリセットさせるために追加
