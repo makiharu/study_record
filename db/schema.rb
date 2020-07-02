@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_29_143757) do
+ActiveRecord::Schema.define(version: 2020_07_01_223940) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_143757) do
   create_table "boards", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
-    t.string "subject"
     t.text "body"
     t.string "image_id"
     t.boolean "display", default: true
@@ -82,6 +81,15 @@ ActiveRecord::Schema.define(version: 2020_06_29_143757) do
     t.integer "user_id"
     t.string "content"
     t.integer "time_category", default: 0
+    t.integer "label", default: 0
+    t.boolean "done", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_lists", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "todolist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

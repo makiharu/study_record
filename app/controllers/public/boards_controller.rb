@@ -46,7 +46,7 @@ class Public::BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:title, :subject, :body, tag_ids: [])
+    params.require(:board).permit(:title, :body, tag_ids: [])
     # 複数のモデルが渡ってくるので、配列として、このような書き方
     # モデル名の単数形_ids 従属するモデルのid（主キー）の配列を返す
   end
