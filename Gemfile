@@ -94,6 +94,7 @@ gem 'omniauth-twitter'
 
 gem 'chartkick'
 gem 'font-awesome-sass'
+gem 'ransack'
 
 gem 'dotenv-rails'
 group :production do

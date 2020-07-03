@@ -13,6 +13,22 @@
 			      %>
 			    <% end %>
 
+			   <!--タイトルと本文の検索-->
+			   <!--orでつなげることで複数のカラムが検索できる-->
+			   <%= search_form_for(@search, url: public_boards_path) do |f| %>
+			   	<%= f.label :title_or_body_cont, '検索はこちら' %>
+			   <p><%= f.search_field :title_or_body_cont %></p>
+			    <p><%= f.submit '検索する' %></p>
+			   	<%#= f.text_field :title_cont %>
+
+			   <% end %>
+
+
+			   <%= search_form_for(@search, url: public_boards_path) do |f| %>
+			   <%= text_field_tag :q, nil %>
+			    <p><%= f.submit '検索する' %></p>
+			   <% end %>
+
 		<!--検索機能修正必要-->
 
 		<!--ボタンの位置とレイアウト検討-->
@@ -44,4 +60,4 @@
 
 </table>
 
-<%= paginate @boards %>
+<%= paginate @page_boards %>
