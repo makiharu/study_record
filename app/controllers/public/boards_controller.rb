@@ -18,15 +18,14 @@ class Public::BoardsController < ApplicationController
   end
 
   def index
-    #@boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
+    # @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
     @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
     @search = Board.ransack(params[:q])
     @searchboards = @search.result
     @page_boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
 
-    @board = Board.all
-  #  @board_tags = BoardTag.all
-
+    # @board = Board.all
+    #  @board_tags = BoardTag.all
   end
 
   def show

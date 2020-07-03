@@ -13,6 +13,7 @@
   <body>
 
     <!--ヘッダーをadminかユーザーログインかで切替表示-->
+
     <div class="header">
       <% if admin_signed_in? %>
         <%= render 'shared/admin_header' %>
@@ -22,16 +23,12 @@
     </div>
 
 
-
-    <div class="container">
-
       <%= render 'shared/flash_messages' %>
 
+    <div class="container">
       <%= yield %>
 
     </div>
-
-
 
     <!--リスト作ってパーシャルでかく-->
     <!--   <div class="footer">

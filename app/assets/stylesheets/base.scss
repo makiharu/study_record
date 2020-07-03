@@ -2,13 +2,6 @@
 	box-sizing: border-box;
 }
 
-#logo {
-	font-family: 'Nothing You Could Do', cursive;
-	text-decoration: none;
-  	color: #4b4b4b;
-}
-
-
 body {
    margin: 0;
    padding: 0;
@@ -17,9 +10,21 @@ body {
 }
 
 
+
+#logo {
+	font-family: 'Nothing You Could Do', cursive;
+	text-decoration: none;
+  	color: #4b4b4b;
+}
+
+
+
 .container {
   padding-top: 20px; /*上部に余白を作る*/
+
 }
+
+
 
 
 a {
@@ -71,8 +76,6 @@ nav {
 .pagination {
 	justify-content: center;/*ページネーション全体に適用*/
 }
-
-
 
 
 

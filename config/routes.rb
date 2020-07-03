@@ -20,8 +20,8 @@ Rails.application.routes.draw do
       resources :board_comments, only: %i[create destroy edit update destroy] do
         resource :comment_likes, only: %i[create destroy]
       end
-    get 'search/search'
-  end
+      get 'search/search'
+    end
 
     resources :users, only: %i[index show edit update] do
       resources :relationships, only: %i[create destroy]
