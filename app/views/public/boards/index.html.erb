@@ -1,10 +1,13 @@
+<!--タグで切り替えができるように、ジャンルバーのようなものを作成する-->
+
+
 <div class="d-flex align-items-center">
 	<h1>掲示板一覧</h1>
 	<div class="ml-auto">
 		  <!--全件取得されてしまう,ransack検討-->
-			    <%= form_tag public_boards_path, method: :get, class: 'boards__searchForm' do %>
+			    <%= form_tag public_boards_path, method: :get, html: {class: 'boards_searchForm'} do %>
 			      <%= select_tag :tag_id,
-			                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+			                     options_from_collection_for_select(Tag.where(is_void: false), :id, :name, params[:tag_id]),
 			                     {
 			                       prompt: 'タグで絞り込み',
 			                       class: 'form-control boards__select',
@@ -15,7 +18,7 @@
 
 			   <!--タイトルと本文の検索-->
 			   <!--orでつなげることで複数のカラムが検索できる-->
-			   <%= search_form_for(@search, url: public_boards_path) do |f| %>
+			   <%= search_form_for(@search, url: public_boards_path, html: {class: 'form-inline'}) do |f| %>
 			   	<%= f.label :title_or_body_cont, '検索はこちら' %>
 			   <p><%= f.search_field :title_or_body_cont %></p>
 			    <p><%= f.submit '検索する' %></p>
@@ -23,11 +26,6 @@
 
 			   <% end %>
 
-
-			   <%= search_form_for(@search, url: public_boards_path) do |f| %>
-			   <%= text_field_tag :q, nil %>
-			    <p><%= f.submit '検索する' %></p>
-			   <% end %>
 
 		<!--検索機能修正必要-->
 
@@ -43,6 +41,7 @@
 		<th>画像</th>
 		<th>ユーザー名</th>
 		<th>タイトル</th>
+		<th>タグ</th>
 		<th>投稿日時</th>
 		<th>詳細</th>
 	</thead>
@@ -51,7 +50,11 @@
 		<tr>
 			<td><%= attachment_image_tag(board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td>
 			<td><%= link_to board.user.name, public_user_path(board.user) %></td>
-			<td><%= board.title %></td>
+			<td><%#= board.board.title %>
+				<%= board.title %>
+			</td>
+			<td><span class="badge badge-secondary"><%= board.tags.name %></span>
+			</td>
 			<td><%= l board.created_at %></td>
 			<td><%= link_to '詳細', public_board_path(board), class: 'btn btn-outline-info' %></td>
 		</tr>

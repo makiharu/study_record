@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root 'home#top'
+  get 'home/about', to: 'home#about'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
@@ -11,21 +14,18 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords'
   }
 
-  root 'home#top'
-  get 'home/about'
-
   namespace :public do
     resources :boards, only: %i[new create index edit show update] do
       resource :board_likes, only: %i[create destroy]
       resources :board_comments, only: %i[create destroy edit update destroy] do
         resource :comment_likes, only: %i[create destroy]
       end
-    end
+    get 'search/search'
+  end
 
     resources :users, only: %i[index show edit update] do
       resources :relationships, only: %i[create destroy]
-      get :follows, on: :member # =>memberありの場合: follows_public_user_path
-      # memberなしの場合:public_user_follows_path
+      get :follows, on: :member
       get :followers, on: :member
     end
 
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :todolists, except: [:show]
 
     # todolistの中身をリセットさせるために追加
-    delete '/todolists_delete' => 'todolists#empty', as: 'todolists_delete'
+    delete '/todolists_delete', to: 'todolists#empty', as: 'todolists_delete'
 
     # get 'board_comments/index'
     # get 'board_comments/edit'
