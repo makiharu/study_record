@@ -1,59 +1,54 @@
-<!--サイドバー index,showページ共通-->
-
-<%= link_to 'ユーザー一覧', public_users_path, class: 'btn btn-outline-success' %>
-
-
-<%= link_to 'プロフィール編集', edit_public_user_path(@user), class: 'btn btn-outline-success' %>
-
 <div class="row">
 	<div class="col-md-4">
-		<div class="form-set">
-			<h4>プロフィール</h4>
-			<table class="table table-responsive">
+		<table class="table table-hover">
+			<thead class="thead">
+			<tr>
+				<th><h4><i class="fas fa-user-graduate"></i>    プロフィール</h4></th>
+			</tr>
+
+		</thead>
+
+			<tbody>
 				<tr>
-					<th>名前</th>
-					<td><%= @user.name %></td>
+					<th><%= @user.name %></th>
 				</tr>
 				<tr>
 					<th>自己紹介</th>
 					<td><%= @user.introduction %></td>
-
-					<td></td>
-
 				</tr>
 				<tr>
 					<!--今までの合計のリスト数-->
-					<th>達成したリスト数</th>
-					<td><%= @user.todolists.count %></td>
+					<th>
+						達成リスト数<span class="badge badge-dark"><%= @user.todolists.count %></span>
+					</th>
 				</tr>
 				<tr>
 					<th>お気に入り投稿一覧</th>
 					<td></td>
 				</tr>
 				<tr>
-					<th>投稿数</th>
-					<td><%= @user.boards.count %></td>
+					<th>
+						投稿数<span class="badge badge-dark"><%= @user.boards.count %></span>
+					</th>
 				</tr>
 				<tr>
-					<th>フォローリスト</th>
-					<td>
+					<th>
 					<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
 					<% if @user.followings.count != 0 %>
-						<%= link_to @user.followings.count, follows_public_user_path %>
+						  フォローリスト<span class="badge badge-info"><%= link_to @user.followings.count, follows_public_user_path %></span>
 					<% else %>
-						<%= @user.followings.count %>
+						  フォローリスト<span class="badge badge-dark"><%= @user.followings.count %></span>
 					<% end %>
-					</td>
+					</th>
 				</tr>
 				<tr>
-					<th>フォロワーリスト</th>
-					<td>
+					<th>
 					<% if @user.followers.count != 0 %>
-						<%= link_to @user.followers.count, followers_public_user_path %>
+						  フォロワーリスト<span class="badge badge-info"><%= link_to @user.followings.count, follows_public_user_path %></span>
 					<% else %>
-						<%= @user.followers.count %>
+						  フォロワーリスト<span class="badge badge-dark"><%= @user.followers.count %></span>
 					<% end %>
-					</td>
+					</th>
 				</tr>
 				<tr>
 					<!------------フォローボタン----------------------------------->
@@ -63,19 +58,21 @@
 					<!------------フォローボタン----------------------------------->
 				</tr>
 				<tr>
-					<th>設定</th>
-					<td><%= link_to '設定', edit_public_user_path(@user) %></td>
+					<th class="col-3">
+					<%= link_to edit_public_user_path(@user), class: 'btn btn-outline-success btn-block' do %>
+						<span>設定
+							<i class="fas fa-cogs"></i>
+						</span>
+					<% end %>
+					</th>
 				</tr>
+			</tbody>
 			</table>
-		</div>
 	</div>
 
 
 <!--todolist完了で受け取った値をグラフで表示する-->
 	<div class="col-md-8">
-		<div class="text-right">
-			<%= link_to 'todoリスト設定ページ', public_todolists_path, class: 'btn btn-outline-success' %>
-		</div>
 		<div class="form-set">
 			<h3>ユーザーグラフ</h3>
 			<p>テスト: コントローラから値を渡している</p>
@@ -91,21 +88,27 @@
 
 		<div class="form-set">
 			<h4>今週のTo doリスト</h4>
-			<%= render 'public/todolists/index', todolists: @week_todolists %>
+			<% if @week_todolists.exists? %>
+				<%= render 'public/todolists/index', todolists: @week_todolists %>
+			<% else %>
+				<%= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
+			<% end %>
+
 
 		</div>
 		<div class="form-set">
 			<h4>今月のTo doリスト</h4>
-			<%= render 'public/todolists/index', todolists: @month_todolists %>
+			<% if @month_todolists.exists? %>
+				<%= render 'public/todolists/index', todolists: @month_todolists %>
+			<% else %>
+				<%= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
+			<% end %>
 		</div>
 
 	</div>
-
-
-	</div>
-
-
 </div>
+
+
 
 
 

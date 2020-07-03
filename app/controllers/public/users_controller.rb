@@ -19,7 +19,6 @@ class Public::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      binding.pry
       redirect_to public_user_path(@user)
       flash[:notice] = "変更内容を保存しました"
     else
