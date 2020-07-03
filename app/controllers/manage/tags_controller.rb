@@ -11,7 +11,7 @@ class Manage::TagsController < ApplicationController
       flash[:notice] = "タグを追加しました"
     else
       redirect_back(fallback_location: root_path)
-      flash[:alert] = "タグが追加できていません"
+      flash[:alert] = "タグの追加に失敗しました"
     end
   end
 
@@ -20,9 +20,7 @@ class Manage::TagsController < ApplicationController
     @tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
   end
 
-  def edit
-    #  @tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
-  end
+  def edit; end
 
   def update
     # binding.pry

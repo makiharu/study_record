@@ -1,14 +1,14 @@
 <div class="row">
-	<div class="col-md-6 offset-md-6">
+	<div class="col-md-8 offset-1">
 		<div class="float-right">
-			<%= link_to '戻る', manage_user_path(@user), class: 'btn btn-outline-dark' %>
+			<%= link_to '戻る', manage_users_path, class: 'btn btn-dark' %>
 		</div>
 
 		<h3>会員情報編集</h3>
 
 		<div class="form-set">
 
-			<%= form_with model: [:manage, @user], local: true do |f| %>
+		<%= form_with model: [:manage, @user], local: true do |f| %>
 			<%= render partial: 'shared/error_messages', locals: { obj: @user} %>
 
 			<div class="form-group">
@@ -29,23 +29,25 @@
 				<% if @user.is_deleted == false %>
 				<%#= f.check_box :is_deleted, {}, 'false', 'true' %>
 
-				<%= f.radio_button :is_deleted, :'0' %>
-				  有効会員
-				<%= f.radio_button :is_deleted, :'1' %>
-				　 退会済み
+				<%= f.radio_button :is_deleted, :false %>
+				  <span class="badge badge-primary">有効会員</span>
+				<%= f.radio_button :is_deleted, :true %>
+				　 <span class="badge badge-danger">退会済み</span>
 				<% else %>
-				<%= f.radio_button :is_deleted, :'0' %>
-				   有効会員
-				<%= f.radio_button :is_deleted, :'1' %>
-				　　退会済み
+				<%= f.radio_button :is_deleted, :false %>
+				   <span class="badge badge-primary">有効会員</span>
+				<%= f.radio_button :is_deleted, :true %>
+				　　<span class="badge badge-danger">退会済み</span>
 				<% end %><hr />
 			</div>
+
 			<div class="actions">
-			  <div style="text-align:center;">
-				<%= f.submit '変更を保存する', class: 'btn btn-outline-success' %>
+				<div style="text-align:center;">
+				<%= f.submit '変更を保存する', class: 'btn btn-outline-success btn-block' %>
 			  </div>
 			</div>
-			<% end %>
+		<% end %>
+
 		</div>
 
 	</div>
