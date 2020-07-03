@@ -8,7 +8,6 @@ class Public::TodolistsController < ApplicationController
   end
 
   def create
-
     @todolist = Todolist.new(todolist_params)
     @todolist.user_id = current_user.id
     if @todolist.save
@@ -27,7 +26,6 @@ class Public::TodolistsController < ApplicationController
     @today_todolists = Todolist.where(time_category: 'today')
     # @week_todolists = Todolist.where(time_category: 'week')
     # @month_todolists = Todolist.where(time_category: 'month')
-
   end
 
   def edit; end
@@ -75,8 +73,8 @@ class Public::TodolistsController < ApplicationController
     bindign.pry
     @completed_list = Todolist.new(completed_params)
     @compeleted_list.save
-    #@finished_lists = Todolist.where(time_category: "today")
-   # @finishe_list = Todolist.find_by(done: params[:todolist][:time_category])
+    # @finished_lists = Todolist.where(time_category: "today")
+    # @finishe_list = Todolist.find_by(done: params[:todolist][:time_category])
   end
 
   private
