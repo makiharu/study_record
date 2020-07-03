@@ -46,12 +46,10 @@ Tag.create([
              { name: 'その他' }
            ])
 
-
-
 if Rails.env == 'development'
 
   # 50boards
-  50.times do |n|
+  50.times do |_n|
     user_id = rand(1..50)
     title = Faker::Games::Pokemon.name
     body = "質問内容です。質問内容です。質問内容です。答えてください。答えてください。答えてください。

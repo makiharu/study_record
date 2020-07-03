@@ -3,7 +3,11 @@ class Manage::UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
   def index
+    # 検索
     @users = User.all.order(created_at: :desc).page(params[:page]).per(20)
+    @search = User.ransack(params[:q])
+    @users = @search.result
+    # @pagers = User.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show; end

@@ -2,13 +2,6 @@
 	box-sizing: border-box;
 }
 
-#logo {
-	font-family: 'Nothing You Could Do', cursive;
-	text-decoration: none;
-  	color: #4b4b4b;
-}
-
-
 body {
    margin: 0;
    padding: 0;
@@ -17,9 +10,21 @@ body {
 }
 
 
+
+#logo {
+	font-family: 'Nothing You Could Do', cursive;
+	text-decoration: none;
+  	color: #4b4b4b;
+}
+
+
+
 .container {
   padding-top: 20px; /*上部に余白を作る*/
+
 }
+
+
 
 
 a {
@@ -30,7 +35,7 @@ a {
 .header {
 	width: 100%;
 	padding: 20px 4% 10px;/*header内側の余白*/
-	background-color: #009966;/*背景色 #009966*/
+	background-color: #ffffff;/*背景色 #009966*/
 	top: 0;
 	display: flex;/*header直下の子要素のレイアウト*/
 	align-items: center;/*縦方向の中心*/
@@ -74,8 +79,6 @@ nav {
 
 
 
-
-
 .footer {
 	width: 100%;
 	padding: 20px 4% 10px;/*header内側の余白*/
@@ -102,7 +105,7 @@ nav {
 
 
 .thead {
-  	background-color: #a9a9a9;
+  	background-color: #f5f5f5;
 }
 
 .table-hover tbody { /*全体のテーブルbodyの色*/

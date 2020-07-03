@@ -16,19 +16,23 @@
 				</tr>
 				<tr>
 					<th>自己紹介</th>
+					<td><%= @user.introduction %></td>
+
 					<td></td>
+
 				</tr>
 				<tr>
+					<!--今までの合計のリスト数-->
 					<th>達成したリスト数</th>
-					<td></td>
+					<td><%= @user.todolists.count %></td>
 				</tr>
 				<tr>
-					<th>お気に入り投稿数</th>
+					<th>お気に入り投稿一覧</th>
 					<td></td>
 				</tr>
 				<tr>
 					<th>投稿数</th>
-					<td></td>
+					<td><%= @user.boards.count %></td>
 				</tr>
 				<tr>
 					<th>フォローリスト</th>
@@ -88,11 +92,13 @@
 		<div class="form-set">
 			<h4>今週のTo doリスト</h4>
 			<%= render 'public/todolists/index', todolists: @week_todolists %>
+
 		</div>
 		<div class="form-set">
 			<h4>今月のTo doリスト</h4>
 			<%= render 'public/todolists/index', todolists: @month_todolists %>
 		</div>
+
 	</div>
 
 

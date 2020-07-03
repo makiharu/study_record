@@ -1,6 +1,19 @@
 <div class="row">
-	<div class="form-set">
-	<table class="table table-hove table-responsive">
+	<div class="col-md-3">
+		<h4>会員検索</h4>
+
+		<div class="form-set">
+		   <%= search_form_for(@search, url: manage_users_path, html: {class: 'form-inline'}) do |f| %>
+			   <%= f.label :name_or_email_cont, '検索はこちらから' %>
+			   <%= f.search_field :name_or_email_cont %>
+			   <div class="actions">
+			   <%= f.submit '検索する', class: 'btn-outline-primary' %>
+			   </div>
+		   <% end %>
+	    </div>
+	</div>
+	<div class="col-md-9">
+	<table class="table table-hover">
 		<thead class="thead">
 			<tr>
 				<th>会員NO.</th>
@@ -14,6 +27,7 @@
 		</thead>
 
 		<tbody>
+		<% if @users.any? %>
 			<% @users.each do |user| %>
 			<tr>
 				<td><%= user.id %></td>
@@ -23,18 +37,22 @@
 
 				<!--ステータスの変更をできるようにすること-->
 				<td><%if user.is_deleted == false %>
-                      <span>有効会員</span>
+                      <span class="badge badge-pill badge-primary">有効会員</span>
               		<% else %>
-                  	  <span>退会済み</span>
+                  	  <span class="badge badge-pill badge-danger">退会済み</span>
               		<% end %>
               	</td>
-              	<td><%= link_to '詳細', manage_user_path(user), class: 'btn btn-outline-info' %></td>
+              	<td><%= link_to '詳細', manage_user_path(user), class: 'btn btn-outline-primary' %></td>
 			</tr>
 			<% end %>
+		<% else %>
+			<h2>検索結果は0件です</h2>
+		<% end %>
 		</tbody>
 	</table>
 
-	<!--ページャ実装-->
-	<%= paginate @users %>
+	<%#= paginate @pagers %>
 	</div>
 </div>
+
+
