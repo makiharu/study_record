@@ -1,4 +1,4 @@
-<div class="todolist-form">
+<div class="form-horizontal">
 	<%= form_with model: [:public, todolist], local: true do |f| %>
 		<%= render 'shared/error_messages', obj: todolist %>
 		<div class="form-group">
@@ -7,11 +7,10 @@
 		</div>
 		<div class="form-group">
 
-			<%= f.label :ラベル %>
-
-
+			<!--属性追加-->
 			<%= f.fields_for :label_lists do |list| %>
-				<%= list.label :label_id %>
+				<%= list.label :ラベル, class: 'label_id' %>
+				<%#= list.label :label_id %>
 				<%= list.collection_select :label_id, Label.all, :id, :name, :include_blank => true %>
 			<% end %>
 

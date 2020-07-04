@@ -2,7 +2,7 @@
 	<section class="py-2">
 		<h2 class="mb-3 text-center">To doリスト設定ページ</h2>
 		<div class="introduction">
-			<p class="text-center">リストの内容をクリアしたら、達成ボタンを押して、進捗をグラフで確認しよう。</p>
+			<p class="text-center">リストの内容をクリアしたら、達成ボタンを押して、進捗をグラフで確認してみましょう。</p>
 		</div>
 	</section>
 </div>
@@ -10,9 +10,15 @@
 <div class="row">
 	<!--todolistフォーム-->
 	<div class="col-md-5">
-		<div class="todolist-set">
-			<h4>To doリスト作成</h4>
-			<%= render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
+		<div class="card" style="width: 20rem;">
+			<div class="card-header">
+				To doリスト作成
+			</div>
+	  		<div class="card-body">
+				<p class="card-text"></p>
+				<!-- <h4>To doリスト作成</h4> -->
+				<%= render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
+			</div>
 		</div>
 	</div>
 
