@@ -11,6 +11,7 @@ class Public::TodolistsController < ApplicationController
     @todolist = Todolist.new(todolist_params)
     @todolist.user_id = current_user.id
     if @todolist.save
+    binding.pry
       redirect_to public_todolists_path
       flash[:notice] = "リストを作成しました"
     else
@@ -22,6 +23,7 @@ class Public::TodolistsController < ApplicationController
 
   def index
     @todolist = Todolist.new
+    @todolist.label_lists.build
     # ラジオボタンで場合分けをするよりも変数名を別にした方がわかりやすい
     @today_todolists = Todolist.where(time_category: 'today')
     # @week_todolists = Todolist.where(time_category: 'week')
@@ -80,7 +82,7 @@ class Public::TodolistsController < ApplicationController
   private
 
   def todolist_params
-    params.require(:todolist).permit(:content, :time_category, :done)
+    params.require(:todolist).permit(:content, :time_category, :done, label_lists_attributes: [:label_id])
   end
 
   def completed_params

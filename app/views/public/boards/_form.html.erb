@@ -27,6 +27,8 @@
     <!--第三引数には、checkboxのvalueに渡すプロパティを指定している。ここでは第二引数で、tagオブジェクトを渡しているので、
     	個々のtagオブジェクトのidの値がcheckboxのvalueにセットされる-->
     <!--第四引数には、各チェックボックスのラベル名として、tagオブジェクトのnameプロパティの値をラベル名として指定している-->
+
+    <!--無効のものは表示させないようにする-->
 	    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
 	      <div class="form-check">
 	        <%= tag.label class: 'form-check-label' do %>

@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 2020_07_04_070338) do
   end
 
   create_table "labels", force: :cascade do |t|
-    t.integer "label_id"
     t.string "name"
     t.boolean "is_void", default: false
     t.datetime "created_at", null: false
