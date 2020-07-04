@@ -1,66 +1,85 @@
 <!--タグで切り替えができるように、ジャンルバーのようなものを作成する-->
+<div class="row">
+<div class="col-md-3">
+	<h4 class="board-head">掲示板一覧</h4>
+	<div class="card card-default">
+		<div class="card-heading thead">
+			<h5 class="text-center">掲示板内検索</h5>
+		</div>
+		<table class="table">
+		   <!--タイトルと本文の検索-->
+		   <!--orでつなげることで複数のカラムが検索できる-->
+		   <%= search_form_for(@search, url: public_boards_path, html: {class: 'form-inline'}) do |f| %>
+		   	<%#= f.label :title_or_body_cont, '検索はこちら' %>
+		   <p><%= f.search_field :title_or_body_cont, class: 'searchform', placeholder: '検索はこちら' %>
 
-
-<div class="d-flex align-items-center">
-	<h1>掲示板一覧</h1>
-	<div class="ml-auto">
-		  <!--全件取得されてしまう,ransack検討-->
-			    <%= form_tag public_boards_path, method: :get, html: {class: 'boards_searchForm'} do %>
-			      <%= select_tag :tag_id,
-			                     options_from_collection_for_select(Tag.where(is_void: false), :id, :name, params[:tag_id]),
-			                     {
-			                       prompt: 'タグで絞り込み',
-			                       class: 'form-control boards__select',
-			                       onchange: 'submit(this.form);'
-			                     }
-			      %>
-			    <% end %>
-
-			   <!--タイトルと本文の検索-->
-			   <!--orでつなげることで複数のカラムが検索できる-->
-			   <%= search_form_for(@search, url: public_boards_path, html: {class: 'form-inline'}) do |f| %>
-			   	<%= f.label :title_or_body_cont, '検索はこちら' %>
-			   <p><%= f.search_field :title_or_body_cont %></p>
-			    <p><%= f.submit '検索する' %></p>
-			   	<%#= f.text_field :title_cont %>
-
-			   <% end %>
-
-
-		<!--検索機能修正必要-->
-
-		<!--ボタンの位置とレイアウト検討-->
-		<%= link_to '新規作成 +', new_public_board_path, class: "btn btn-outline-dark" %>
-		<%= link_to "+", new_public_board_path, class: "btn btn-info", style: "border-radius: 50%" %>
+		   </p>
+			   <%#= button_tag type="submit", class: 'btn btn-primary' do %>
+				<i class="fas fa-search"><%= f.submit %></i>
+			   <%# end %>
+			<% end %>
+			<tbody>
+				<% @tags.each do |tag| %>
+				<% if tag.is_void == false %>
+					<tr>
+						<td>
+							<%= link_to public_boards_path do  %>
+							<%= tag.name %>
+							<span class="badge badge-info"><%= tag.board_tags.count %></span>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+				<% end %>
+			</tbody>
+		</table>
 	</div>
 </div>
 
 
-<table class="table table-hover">
-	<thead>
-		<th>画像</th>
-		<th>ユーザー名</th>
-		<th>タイトル</th>
-		<th>タグ</th>
-		<th>投稿日時</th>
-		<th>詳細</th>
-	</thead>
-	<tbody>
-		<% @boards.each do |board| %>
-		<tr>
-			<td><%= attachment_image_tag(board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td>
-			<td><%= link_to board.user.name, public_user_path(board.user) %></td>
-			<td><%#= board.board.title %>
-				<%= board.title %>
-			</td>
-			<td><span class="badge badge-secondary"><%= board.tags.name %></span>
-			</td>
-			<td><%= l board.created_at %></td>
-			<td><%= link_to '詳細', public_board_path(board), class: 'btn btn-outline-info' %></td>
-		</tr>
-		<% end %>
-	</tbody>
 
-</table>
+<div class="col-md-9">
+	<div class="board-title">
+	<p class="text-right">
+		<%= link_to '新規作成 +', new_public_board_path, class: "btn btn-outline-dark" %>
+		<%= link_to "+", new_public_board_path, class: "btn btn-info", style: "border-radius: 50%" %>
+	</p>
+	</div>
 
-<%= paginate @page_boards %>
+	<table class="table table-hover table-responsive">
+		<thead class="thead">
+		<!-- 	<th>画像</th> -->
+			<th>ユーザー名</th>
+			<th>タイトル</th>
+			<th>タグ</th>
+			<th>投稿日時</th>
+			<th>詳細</th>
+		</thead>
+		<tbody>
+			<% @boards.each do |board| %>
+			<%# @board_tags.each do |board_tag| %>
+			<tr>
+				<!-- <td><%#= attachment_image_tag(board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td> -->
+				<td><%= link_to board.user.name, public_user_path(board.user) %></td>
+				<td>
+					<%= board.title %>
+				</td>
+				<td>
+					<% board.board_tags.each do |board_tag| %>
+					<span class="badge badge-secondary">
+						<%= board_tag.tag.name %>
+					</span>
+					<% end %>
+				</td>
+				<td><%= l board.created_at %></td>
+				<td><%= link_to '詳細', public_board_path(board), class: 'btn btn-outline-info' %></td>
+			</tr>
+			<% end %>
+		</tbody>
+
+	</table>
+
+<%#= paginate @page_boards %>
+
+	</div>
+</div>

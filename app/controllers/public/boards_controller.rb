@@ -22,10 +22,11 @@ class Public::BoardsController < ApplicationController
     @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
     @search = Board.ransack(params[:q])
     @searchboards = @search.result
-    @page_boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
+    #@page_boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
+    @tags = Tag.all
 
     # @board = Board.all
-    #  @board_tags = BoardTag.all
+    @board_tags = BoardTag.all
   end
 
   def show

@@ -7,14 +7,12 @@
 			</tr>
 
 		</thead>
-
 			<tbody>
 				<tr>
 					<th><%= @user.name %></th>
 				</tr>
 				<tr>
-					<th>自己紹介</th>
-					<td><%= @user.introduction %></td>
+					<td>自己紹介: <%= @user.introduction %></td>
 				</tr>
 				<tr>
 					<!--今までの合計のリスト数-->
@@ -44,7 +42,7 @@
 				<tr>
 					<th>
 					<% if @user.followers.count != 0 %>
-						  フォロワーリスト<span class="badge badge-info"><%= link_to @user.followings.count, follows_public_user_path %></span>
+						  フォロワーリスト<span class="badge badge-info"><%= link_to @user.followers.count, follows_public_user_path %></span>
 					<% else %>
 						  フォロワーリスト<span class="badge badge-dark"><%= @user.followers.count %></span>
 					<% end %>
