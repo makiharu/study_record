@@ -66,4 +66,3 @@ class Manage::BoardsController < ApplicationController
   end
 end
 
-end
