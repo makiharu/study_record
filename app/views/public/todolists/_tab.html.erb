@@ -1,38 +1,3 @@
-<div class="row">
-	<section class="py-2">
-		<h2 class="mb-3 text-center">To doリスト設定ページ</h2>
-		<div class="introduction">
-			<p class="text-center">リストの内容をクリアしたら、達成ボタンを押して、進捗をグラフで確認しよう。</p>
-		</div>
-	</section>
-</div>
-
-<div class="row">
-	<!--todolistフォーム-->
-	<div class="col-md-5">
-		<div class="todolist-set">
-			<h4>To doリスト作成</h4>
-			<%= render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
-		</div>
-	</div>
-
-	<div class="col-md-7">
-		<ul class="nav nav-tabs">
-			<li class="nav-item">
-				<a href="#list-tab1" class="nav-link active" data-toggle="tab">未達成</a>
-			</li>
-			<li class="nav-item">
-				<a href="#list-tab2" class="nav-link" data-toggle="tab">達成済み</a>
-			</li>
-		</ul>
-
-		<div class="tab-content">
-			<div id="list-tab1" class="tab-pane active">
-				<div class="form-set">
-				<h3>本日のTo do リスト</h3>
-
-					<%#= render 'public/todolists/index', todolists: @todolists %>
-			<!--ここから--------------------------------------------------------------->
 				<% if @today_todolists.exists? %>
 					<div class="text-right">
 						<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#demoNormalModal">
@@ -72,7 +37,7 @@
 						</thead>
 						<tbody>
 						<% @today_todolists.each_with_index do |todolist, i| %>
-							<% if todolist.done == false %>
+							<% if todolist.done == true %>
 							<tr>
 								<th><%= "#{i + 1}: " %></th>
 								<td><%= todolist.content.truncate(30) %></td>
@@ -117,15 +82,3 @@
 					Todoリストをまだ設定していませんか？<br />
 					To doリスト作成欄からTo doリストを作成してみましょう！
 				<% end %>
-				<!--ここまで--------------------------------------------------------------->
-				</div>
-			</div>
-
-			<div id="list-tab2" class="tab-pane">
-				<div class="form-set">
-				<h3>達成済みリスト</h3>
-					<%= render 'public/todolists/tab', todolists: @todolists %>
-				</div>
-			</div>
-		</div>
-	</div>

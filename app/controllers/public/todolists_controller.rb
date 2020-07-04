@@ -11,7 +11,6 @@ class Public::TodolistsController < ApplicationController
     @todolist = Todolist.new(todolist_params)
     @todolist.user_id = current_user.id
     if @todolist.save
-    binding.pry
       redirect_to public_todolists_path
       flash[:notice] = "リストを作成しました"
     else
@@ -57,22 +56,8 @@ class Public::TodolistsController < ApplicationController
     redirect_to public_todolists_path, danger: "１日分のリストを全てリセットしました"
   end
 
-  # def finish
-  #   # binding.pry
-  #   # タスクが完了したら、そのデータを非表示にする
-  #   @finished_list = Todolist.new(finished_params)
-  #   @finished_list.user_id = current_user.id
-  #   if @finished_list.save
-  #     redirect_to public_todolists_complete_path
-  #     flash[:notice] = "報告完了しました"
-  #   else
-  #     redirect_to public_todolists_path
-  #     flash[:alert] = "もう一度やり直してください"
-  #   end
-  # end
-
   def compelte
-    bindign.pry
+   # bindign.pry
     @completed_list = Todolist.new(completed_params)
     @compeleted_list.save
     # @finished_lists = Todolist.where(time_category: "today")
