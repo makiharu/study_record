@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
       new_user_session_path
     end
   end
+
+  def login_admin
+    current_admin.present?
+  end
 end

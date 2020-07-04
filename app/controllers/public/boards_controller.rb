@@ -1,5 +1,6 @@
 class Public::BoardsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, unless: :login_admin
+  before_action :authenticate_admin!, if: :login_admin
   before_action :set_board, only: %i[show edit update]
 
   def new
@@ -32,7 +33,9 @@ class Public::BoardsController < ApplicationController
   def show
     @new_comment = BoardComment.new
     @new_comment.board_id = @board.id
+    if current_user.present?
     @new_comment.user_id = current_user.id
+    end
 
     @board_comments = @board.board_comments
   end

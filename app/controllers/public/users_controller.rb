@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, unless: :login_admin
+  before_action :authenticate_admin!, if: :login_admin
   before_action :set_user, only: %i[show edit update]
 
   def index

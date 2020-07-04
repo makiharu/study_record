@@ -1,5 +1,6 @@
 <!--フォローボタン-->
 <% if user != current_user %>
+
 	<% if user.followed_by?(current_user) %>
 	<th>フォロー済: </th>
 	<td><%= link_to public_user_relationship_path(user.id), method: :delete, remote: true do %>
@@ -18,3 +19,4 @@
 	</td>
 	<% end %>
 <% end %>
+

@@ -48,6 +48,8 @@
 					<% end %>
 					</th>
 				</tr>
+				<!--adminはページアクセスのみなので、ここは非表示-->
+				<% if @user = current_user %>
 				<tr>
 					<!------------フォローボタン----------------------------------->
 					<span id="follow_buttons_<%= @user.id %>">
@@ -64,6 +66,7 @@
 					<% end %>
 					</th>
 				</tr>
+				<% end %>
 			</tbody>
 			</table>
 	</div>
