@@ -1,12 +1,11 @@
 <!-- Modal -->
-<!--exampleModalが必要-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="tagModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="labelModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-    	<%= form_with model: [:manage, tag], local: true do |f| %>
-			<%= render partial: 'shared/error_messages', locals: { obj: tag} %>
+    	<%= form_with model: [:manage, label], local: true do |f| %>
+			<%= render partial: 'shared/error_messages', locals: { obj: label} %>
 	    	<div class="modal-header">
-	        	<h5 class="modal-title" id="exampleModalLabel">タグ追加</h5>
+	        	<h5 class="modal-title" id="labelModalLabel">ラベル追加</h5>
 	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          		<span aria-hidden="true">&times;</span>
 	        	</button>
@@ -15,7 +14,7 @@
 	      		<div class="text-left">
 
 				<div class="form-group">
-					<%= f.label 'タグ名', class: "form-control-label" %>
+					<%= f.label 'ラベル名', class: "form-control-label" %>
 					<%= f.text_field :name, class: 'form-control' %>
 				</div>
 				<div class="form-group">

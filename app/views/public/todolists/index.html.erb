@@ -15,11 +15,8 @@
 		<!--todolistフォーム-->
 	<div class="col-md-5">
 		<div class="form-set">
-			<div class="todolt-form">
-				<h4>To doリスト作成</h4>
-				<%= render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
-
-			</div>
+			<h4>To doリスト作成</h4>
+		<%= render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
 		</div>
 	</div>
 
@@ -76,14 +73,14 @@
 							<th><%= "#{i + 1}: " %></th>
 							<td><%= todolist.content.truncate(30) %></td>
 							<td>
-								<span class="badge badge-secondary"><%= todolist.label %></span>
+								<span class="badge badge-secondary"><%#= todolist.label %></span>
 							</td>
 							<!--テスト-->
 							<td><%= todolist.done %></td>
 							<td>
 								<%= form_with model: [:public, todolist], local: true do |f| %>
 
-									<%= f.hidden_field :label, :value => todolist.label %>
+									<%#= f.hidden_field :label, :value => todolist.label %>
 									<%= f.hidden_field :done, :value => true %><!--完了:trueを送りたい-->
 									<%= f.hidden_field :time_category, :value => todolist.time_category %>
 									<%= f.hidden_field :content, :value => todolist.content %>
