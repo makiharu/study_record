@@ -1,116 +1,72 @@
 <div class="row">
 	<div class="col-md-4">
-		<table class="table table-hover">
-			<thead class="thead">
-			<tr>
-				<th><h4><i class="fas fa-user-graduate"></i>    プロフィール</h4></th>
-			</tr>
-
-		</thead>
-			<tbody>
-				<tr>
-					<th><%= @user.name %></th>
-				</tr>
-				<tr>
-					<td>自己紹介: <%= @user.introduction %></td>
-				</tr>
-				<tr>
-					<!--今までの合計のリスト数-->
-					<th>
-						達成リスト数<span class="badge badge-dark"><%= @user.todolists.count %></span>
-					</th>
-				</tr>
-				<tr>
-					<th>お気に入り投稿一覧</th>
-					<td></td>
-				</tr>
-				<tr>
-					<th>
-						投稿数<span class="badge badge-dark"><%= @user.boards.count %></span>
-					</th>
-				</tr>
-				<tr>
-					<th>
-					<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
-					<% if @user.followings.count != 0 %>
-						  フォローリスト<span class="badge badge-info"><%= link_to @user.followings.count, follows_public_user_path %></span>
-					<% else %>
-						  フォローリスト<span class="badge badge-dark"><%= @user.followings.count %></span>
-					<% end %>
-					</th>
-				</tr>
-				<tr>
-					<th>
-					<% if @user.followers.count != 0 %>
-						  フォロワーリスト<span class="badge badge-info"><%= link_to @user.followers.count, follows_public_user_path %></span>
-					<% else %>
-						  フォロワーリスト<span class="badge badge-dark"><%= @user.followers.count %></span>
-					<% end %>
-					</th>
-				</tr>
-				<!--adminはページアクセスのみなので、ここは非表示-->
-				<% if @user = current_user %>
-				<tr>
-					<!------------フォローボタン----------------------------------->
-					<span id="follow_buttons_<%= @user.id %>">
-						<%= render partial: 'public/relationships/follow', locals: { user: @user } %>
-					</span>
-					<!------------フォローボタン----------------------------------->
-				</tr>
-				<tr>
-					<th class="col-3">
-					<%= link_to edit_public_user_path(@user), class: 'btn btn-outline-success btn-block' do %>
-						<span>設定
-							<i class="fas fa-cogs"></i>
-						</span>
-					<% end %>
-					</th>
-				</tr>
-				<% end %>
-			</tbody>
-			</table>
-	</div>
+		<!--プロフィール-->
+		<%= render 'public/users/profile', user: @user %>
 
 
-<!--todolist完了で受け取った値をグラフで表示する-->
-	<div class="col-md-8">
-		<div class="form-set">
-			<h3>ユーザーグラフ</h3>
-			<p>テスト: コントローラから値を渡している</p>
-			<%= pie_chart @data %>
-
-
-			<%= pie_chart @test %>
-
-
-			<p>テスト6</p>
-			<%= pie_chart @chart,
-				id: 'data-chart',
-                 width: '300px',
-                 height: '300px',
-                 colors: [['#adff2f'],['#ffd700'],['#00bfff']] %>
-		</div>
-
-		<div class="form-set">
-			<h4>今週のTo doリスト</h4>
-			<% if @week_todolists.exists? %>
+		<div class="card">
+		  <div class="card-header">
+		    <h5>今週のTo doリスト</h5>
+		  </div>
+		  <div class="card-body">
+		    <% if @week_todolists.exists? %>
 				<%= render 'public/todolists/index', todolists: @week_todolists %>
 			<% else %>
 				<%= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
 			<% end %>
-
-
+		  </div>
 		</div>
-		<div class="form-set">
-			<h4>今月のTo doリスト</h4>
-			<% if @month_todolists.exists? %>
-				<%= render 'public/todolists/index', todolists: @month_todolists %>
-			<% else %>
-				<%= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
-			<% end %>
+
+
+		<div class="card">
+			<div class="card-header">
+			  <h5>今月のTo doリスト</h5>
+			</div>
+			<div class="card-body">
+				<% if @month_todolists.exists? %>
+					<%= render 'public/todolists/index', todolists: @month_todolists %>
+				<% else %>
+					<%= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
+				<% end %>
+			</div>
 		</div>
 
 	</div>
+
+
+
+
+
+
+	<!--todolist完了で受け取った値をグラフで表示する-->
+	<div class="col-md-8">
+		<div class="card">
+			<div class="card-header">
+				<h5>ユーザーグラフ</h5>
+			</div>
+
+			<div class="card-body">
+				<div class="card-text">
+					<p>テスト: コントローラから値を渡している</p>
+				</div>
+				<%= pie_chart @data %>
+			</div>
+
+			<div class="card-body">
+				<%= pie_chart @test %>
+
+				<div class="card-text">
+					<p>テスト6</p>
+				</div>
+				<%= pie_chart @chart,
+					id: 'data-chart',
+	                 width: '300px',
+	                 height: '300px',
+	                 colors: [['#adff2f'],['#ffd700'],['#00bfff']] %>
+	        </div>
+		</div>
+	</div>
+
 </div>
 
 
