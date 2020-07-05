@@ -18,9 +18,22 @@
 					<td>登録日: <%= l user.created_at %></td>
 				</tr>
 				<tr>
-					<!--今までの合計のリスト数-->
+					<td>本日の達成リスト数 :
+			<!-- 		<%# @today_count = Todolist.where(created_at: Time.zone.now.all_day).count %>
+				<%#= @today_count %> -->
+					</td>
+				</tr>
+				<tr>
 					<td>
-						達成リスト数<span class="badge badge-dark"><%= user.todolists.count %></span>
+						達成リスト数<span class="badge badge-dark"><%= @done_list_sum %></span>
+						<%#= user.todolists.count %>
+						<%#= user.todolists.pluck(:done).count %>
+						<%#= Todolist.where(done: true).pluck(:done).count %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						合計リスト数<span class="badge badge-dark"><%= user.todolists.count %></span>
 					</td>
 				</tr>
 				<tr>

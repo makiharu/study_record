@@ -14,6 +14,10 @@ class User < ApplicationRecord
 
   has_many :todolists, dependent: :destroy
   has_many :board_likes, dependent: :destroy
+  has_many :done_todolists, -> { where(done: true) }, class_name: 'Todolist'
+
+  has_many :labels, through: :done_todolists
+  #has_many :done_labels, through: :done_todolists, class_name: 'Label', source: :label_id
 
   # follow-follower
   has_many :active_relationships, class_name: 'Relationship', foreign_key: :following_id
@@ -25,6 +29,29 @@ class User < ApplicationRecord
   attachment :profile_image
 
   validates :name, presence: true
+
+#  def self.hoge
+#    where(done: true)
+#  end
+
+  # user紐づくtodolists取得する
+  # 各todolist紐づく複数ラベル取得
+  def hoge
+    #labels
+    #=> [ label<id: 1, name: 'html'>, label<id: 2, name: 'css', label<id: 1, name: 'html'> ]
+    #done_todolists = todolists.only_done
+    #labels = done_todolists.map { |list| list.labels.pluck(:name) }.flatten
+    #=> ['html', 'css', 'html', 'html']
+    #labels.group_by(&:itself).map{ |key, value| [key, value.count] }.to_h
+    labels.group_by(&:name).map{ |key, value| [key, value.count] }.to_h
+    #labels.group_by(&:name).map{ |key, value| [key, value.count] }.to_h
+  end
+  #=> {'html' => 3, 'css' => 1}
+
+  # def today_count
+  #   today_count = todolists.where(created_at: Time.zone.now.all_day).count )
+  # end
+
 
   def followed_by?(user)
     # フォローされているpassiveユーザーの中から、引数に渡されたuserがいるかどうかjudge
