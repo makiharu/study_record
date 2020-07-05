@@ -102,6 +102,9 @@
 											<%= f.hidden_field :content, :value => todolist.content %>
 
 											<%= f.submit '達成', class: 'btn btn-outline-info btn-sm' %>
+
+										<!--リセットボタン-->
+
 										<% end %>
 									</td>
 									<td>
@@ -115,6 +118,7 @@
 							</tbody>
 						</table>
 						<span class="text-right">
+
 							<p><%= link_to '完了報告', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-info' %></p>
 						</span>
 
