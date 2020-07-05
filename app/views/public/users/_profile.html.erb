@@ -1,86 +1,81 @@
 <table class="table table-hover">
-				<thead class="thead">
-				<tr>
-					<th><h4><i class="fas fa-user-graduate"></i>    プロフィール</h4></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th><%= attachment_image_tag user, :profile_image, :fill, 200, 200, size: '50x50', fallback: 'no_image.jpg' %></th>
-				</tr>
-				<tr>
-					<td>名前:  <%= user.name %></td>
-				</tr>
-				<tr>
-					<td>自己紹介: <%= user.introduction %></td>
-				</tr>
-				<tr>
-					<td>登録日: <%= l user.created_at %></td>
-				</tr>
-				<tr>
-					<td>本日の達成リスト数 :
-			<!-- 		<%# @today_count = Todolist.where(created_at: Time.zone.now.all_day).count %>
-				<%#= @today_count %> -->
-					</td>
-				</tr>
-				<tr>
-					<td>
-						達成リスト数<span class="badge badge-dark"><%= @done_list_sum %></span>
-						<%#= user.todolists.count %>
-						<%#= user.todolists.pluck(:done).count %>
-						<%#= Todolist.where(done: true).pluck(:done).count %>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						合計リスト数<span class="badge badge-dark"><%= user.todolists.count %></span>
-					</td>
-				</tr>
-				<tr>
-					<td>お気に入り投稿一覧</td>
-				</tr>
-				<tr>
-					<td>
-						投稿数<span class="badge badge-dark"><%= user.boards.count %></span>
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
-					<% if user.followings.count != 0 %>
-						  フォローリスト<span class="badge badge-info"><%= link_to user.followings.count, follows_public_user_path %></span>
-					<% else %>
-						  フォローリスト<span class="badge badge-dark"><%= user.followings.count %></span>
-					<% end %>
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<% if user.followers.count != 0 %>
-						  フォロワーリスト<span class="badge badge-info"><%= link_to user.followers.count, follows_public_user_path %></span>
-					<% else %>
-						  フォロワーリスト<span class="badge badge-dark"><%= user.followers.count %></span>
-					<% end %>
-					</td>
-				</tr>
-				<!--adminはページアクセスのみなので、ここは非表示-->
-				<% if user != current_admin %>
-				<tr>
-					<!------------フォローボタン----------------------------------->
-					<span id="follow_buttons_<%= user.id %>">
-						<%= render partial: 'public/relationships/follow', locals: { user: user } %>
-					</span>
-					<!------------フォローボタン----------------------------------->
-				</tr>
-				<tr>
-					<th class="col-3">
-					<%= link_to edit_public_user_path(user), class: 'btn btn-outline-success btn-block' do %>
-						<span>設定
-							<i class="fas fa-cogs"></i>
-						</span>
-					<% end %>
-					</th>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
+	<thead class="thead">
+		<tr>
+			<th><h4><i class="fas fa-user-graduate"></i>    プロフィール</h4></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th><%= attachment_image_tag user, :profile_image, :fill, 200, 200, size: '50x50', fallback: 'no_image.jpg' %></th>
+		</tr>
+		<tr>
+			<td>名前:  <%= user.name %></td>
+		</tr>
+		<tr>
+			<td>自己紹介: <%= user.introduction %></td>
+		</tr>
+		<tr>
+			<td>登録日: <%= l user.created_at %></td>
+		</tr>
+		<tr>
+			<td>本日の達成リスト数 : <%= user.today_list_count %></td>
+		</tr>
+		<tr>
+			<td>
+				過去の達成リスト数: <span class="badge badge-dark">
+					<%= user.done_list_sum %></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				合計リスト数<span class="badge badge-dark"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>お気に入り投稿一覧</td>
+		</tr>
+		<tr>
+			<td>
+				投稿数<span class="badge badge-dark"><%= user.boards.count %></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
+			<% if user.followings.count != 0 %>
+				  フォローリスト<span class="badge badge-info"><%= link_to user.followings.count, follows_public_user_path %></span>
+			<% else %>
+				  フォローリスト<span class="badge badge-dark"><%= user.followings.count %></span>
+			<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<% if user.followers.count != 0 %>
+				  フォロワーリスト<span class="badge badge-info"><%= link_to user.followers.count, follows_public_user_path %></span>
+			<% else %>
+				  フォロワーリスト<span class="badge badge-dark"><%= user.followers.count %></span>
+			<% end %>
+			</td>
+		</tr>
+		<!--adminはページアクセスのみなので、ここは非表示-->
+		<% if user != current_admin %>
+		<tr>
+			<!------------フォローボタン----------------------------------->
+			<span id="follow_buttons_<%= user.id %>">
+				<%= render partial: 'public/relationships/follow', locals: { user: user } %>
+			</span>
+			<!------------フォローボタン----------------------------------->
+		</tr>
+		<tr>
+			<th class="col-3">
+			<%= link_to edit_public_user_path(user), class: 'btn btn-outline-success btn-block' do %>
+				<span>設定
+					<i class="fas fa-cogs"></i>
+				</span>
+			<% end %>
+			</th>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

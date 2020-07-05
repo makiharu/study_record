@@ -36,7 +36,7 @@ class User < ApplicationRecord
 
   # user紐づくtodolists取得する
   # 各todolist紐づく複数ラベル取得
-  def hoge
+  def get_labels
     #labels
     #=> [ label<id: 1, name: 'html'>, label<id: 2, name: 'css', label<id: 1, name: 'html'> ]
     #done_todolists = todolists.only_done
@@ -46,11 +46,18 @@ class User < ApplicationRecord
     labels.group_by(&:name).map{ |key, value| [key, value.count] }.to_h
     #labels.group_by(&:name).map{ |key, value| [key, value.count] }.to_h
   end
-  #=> {'html' => 3, 'css' => 1}
 
-  # def today_count
-  #   today_count = todolists.where(created_at: Time.zone.now.all_day).count )
-  # end
+  def done_list_sum #達成したtodoリストの数
+    #get_labels.flatten.length
+    done_todolist = todolists.only_done
+    done_todolist.pluck(:done).count
+  end
+
+
+  def today_list_count #そのその日達成したtodoリストの数
+    today_lists = todolists.only_done
+    today_lists.where(created_at: Time.zone.now.all_day).count
+  end
 
 
   def followed_by?(user)

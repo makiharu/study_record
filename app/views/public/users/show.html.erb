@@ -31,47 +31,6 @@
 			</div>
 		</div>
 
-
-
-<!----------------------テスト------------------------------------->
-<h2>テスト</h2>
-	<!--1-1 userに紐づく全てのラベルの数-->
-	<p>userに紐づくリストの、ラベルの合計数:  <%= @user.todolists.count %></p>
-	<p><%#= @user.todolists.pluck %></p>
-
-
-<h3>テスト2</h3>
-<p>userに紐づくリストの、ラベル名全て: </p>
-<% @user.todolists.each do |todolist| %>
-
-	<% todolist.label_lists.each do |label_list| %>
-	<!--2 userに紐づくリストのラベルの名前全て-->
-	<p><%= label_list.label.name %></p>
-	<% end %>
-<% end %>
-
-
-<h2>テスト3</h2>
-	<!--3-1 userに紐づくラベルの内、リストが達成されている（done:true）ものの合計-->
-	<!--コントローラ:  @user.todolists.where(done: true).pluck(:done).count -->
-	<p>userに紐づくラベルの内、リストが達成されている（done:true）ものの合計</p>
-	<p><%= @done_list_sum %></p>
-
-	<!-- 3-2 userに紐づくラベルの内、リストが達成されている（done:true）もののリスト名-->
-	<!--3-3 userに紐づくラベルの内、リストが達成されているもの（done:true)の、リスト名ごとの数-->
-	<% @done_lists.each do |done_list| %>
-		<%= done_list.label_lists.count %>
-
-
-		<% done_list.label_lists.each do |label_list| %>
-		<!--3-2--><p><%= label_list.label.name %></p>
-		<!--3-3--><p><%#= label_list.labels.count %></p>
-		<% end %>
-	<% end %>
-
-<%= @user.hoge %>
-<!----------------------テスト------------------------------------->
-
 	</div>
 
 
@@ -84,36 +43,45 @@
 			</div>
 
 			<div class="card-body">
-				<div class="card-text">
-					<p>テスト１: 直接データ投入</p>
-				</div>
-				<%= pie_chart @user.hoge %>
+          <%#= render 'public/users/graph' %>
+      </div>
 
-				 <%= line_chart @example %>
+
+
+      <div class="card-body">
+				<div class="card-text">
+					<p>達成したTo doリストのラベル比率</p>
+				</div>
+					<%= pie_chart @user.get_labels, label: 'ラベル', name: 'ラベル比率' %>
+					<%#= line_chart @user.hoge, messages: {empty: "No data"} %>
+					<%#= line_chart User.group_by_day(:created_at).count %>
+
+					<%#= column_chart @user.todolists.pluck(:created_at, :id),
+                 id: 'total-attendance-chart',
+                 width: '400px',
+                 height: '500px',
+                 colors: ['#b00'] %>
 			</div>
 
 
 			<div class="card-body">
 				<div class="card-text">
-					<p>テスト２　:モデルから取得したデータをコントローラで定義</p>
+          <p>達成したTo doリストのラベル比率</p>
+					<p>1日ごとのタスク達成数/ 率</p>
 				</div>
 				<div class="card-body">
-				<%= pie_chart @chart_one %>
-				 <%= line_chart @data_one %>
 
-
-				 <%= pie_chart @chart_second %>
-				 <%= line_chart @data_second %>
-
-
-				<%= pie_chart @chart,
+				<%#= pie_chart @chart,
 					id: 'data-chart',
 	                 width: '300px',
 	                 height: '300px',
 	                 colors: [['#adff2f'],['#ffd700'],['#00bfff']] %>
-	            </div>
+        <%= column_chart @user.get_labels, stacked: true %>
 
-	        </div>
+        <%= line_chart @user.get_labels %>
+	       </div>
+
+	     </div>
 		</div>
 	</div>
 
@@ -124,5 +92,40 @@
 
 
 
+<!----------------------テスト------------------------------------->
+<!-- <h2>テスト</h2>
+  --1-1 userに紐づく全てのラベルの数-->
+  <p>userに紐づくリストの、ラベルの合計数:  <%= @user.todolists.count %></p>
+  <p><%#= @user.todolists.pluck %></p>
 
+
+<h3>テスト2</h3>
+<p>userに紐づくリストの、ラベル名全て: </p>
+<% @user.todolists.each do |todolist| %>
+
+  <% todolist.label_lists.each do |label_list| %>
+  <!--2 userに紐づくリストのラベルの名前全て-->
+  <p><%= label_list.label.name %></p>
+  <% end %>
+<% end %>
+
+
+<h2>テスト3</h2>
+  <!--3-1 userに紐づくラベルの内、リストが達成されている（done:true）ものの合計-->
+  コントローラ:  @user.todolists.where(done: true).pluck(:done).count 
+  <p>userに紐づくラベルの内、リストが達成されている（done:true）ものの合計</p>
+  <p><%#= @done_list_sum %></p>
+
+  <!-- 3-2 userに紐づくラベルの内、リストが達成されている（done:true）もののリスト名-->
+  <!--3-3 userに紐づくラベルの内、リストが達成されているもの（done:true)の、リスト名ごとの数-->
+  <%# @done_lists.each do |done_list| %>
+    <%# #done_list.label_lists.each do |label_list| %>
+    <!--3-2--><p><%#= label_list.label.name %></p>
+    <!--3-3--><p><%#= label_list.labels.count %></p>
+    <%# end %>
+  <%# end %>
+
+<!----------------------テスト------------------------------------->
+
+<%= @user.get_labels %>
 

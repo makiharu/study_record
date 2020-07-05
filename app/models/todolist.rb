@@ -9,7 +9,7 @@ class Todolist < ApplicationRecord
 
   enum time_category: { today: 0, week: 1, month: 2 }
 
-#   scope :only_done, -> { where(done: true) }
+  scope :only_done, -> { where(done: true) }
 
 
 # todolists
@@ -29,7 +29,7 @@ class Todolist < ApplicationRecord
 # 200 | '私用'
 
 
-# "SELECT \"labels\".* FROM \"labels\" 
+# "SELECT \"labels\".* FROM \"labels\"
 # INNER JOIN \"label_lists\" ON \"labels\".\"id\" = \"label_lists\".\"label_id\" 
 # INNER JOIN \"todolists\" ON \"label_lists\".\"todolist_id\" = \"todolists\".\"id\" 
 # WHERE \"todolists\".\"user_id\" = 51"
