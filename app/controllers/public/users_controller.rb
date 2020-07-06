@@ -10,8 +10,8 @@ class Public::UsersController < ApplicationController
   def show
     @chart = User.where(is_deleted: false).group("date(created_at)").count
 
-    @from = Time.now.in_time_zone("Tokyo").beginning_of_day
-    @to = Time.now.in_time_zone("Tokyo").end_of_day
+    # from = Time.now.in_time_zone("Tokyo").beginning_of_day
+    # to = Time.now.in_time_zone("Tokyo").end_of_day
     @oneday_lists = Todolist.only_done.where(update_date: @from..@to)
 
     #@day_count = @oneday.group("YEAR(created_at)").group("MONTH(created_at)").count
