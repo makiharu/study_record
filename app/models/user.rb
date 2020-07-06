@@ -28,8 +28,8 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  validates :name, presence: true
-
+  validates :name, presence: true, length: {minimum: 2, maximum: 20}
+  validates :introduction, length: {maximum: 50}
 #  def self.hoge
 #    where(done: true)
 #  end
@@ -44,7 +44,6 @@ class User < ApplicationRecord
     #=> ['html', 'css', 'html', 'html']
     #labels.group_by(&:itself).map{ |key, value| [key, value.count] }.to_h
     labels.group_by(&:name).map{ |key, value| [key, value.count] }.to_h
-    #labels.group_by(&:name).map{ |key, value| [key, value.count] }.to_h
   end
 
   def done_list_sum #達成したtodoリストの数

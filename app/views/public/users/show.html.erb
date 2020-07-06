@@ -37,51 +37,48 @@
 
 	<!--todolist完了で受け取った値をグラフで表示する-->
 	<div class="col-md-8">
-		<div class="card">
+		<div class="card card-default">
 			<div class="card-header">
 				<h5>ユーザーグラフ</h5>
 			</div>
-
-      <div class="card-body">
+	    	<div class="card-body">
 				<div class="card-text">
 					<p>達成したTo doリストのラベル比率</p>
 				</div>
-					<%= pie_chart @user.get_labels, label: 'ラベル', name: 'ラベル比率' %>
-          <%= column_chart @user.get_labels, messages: {empty: "No data"}, stacked: true %>
-			</div>
-
-
+				<%= pie_chart @user.get_labels, label: 'ラベル', name: 'ラベル比率' %>
+	          	<%= column_chart @user.get_labels, messages: {empty: "No data"}, stacked: true %>
+		 	</div>
 			<div class="card-body">
 				<div class="card-text">
-          <p>達成したTo doリストのラベル比率</p>
+          			<p>達成したTo doリストのラベル比率</p>
 					<p>1日ごとのタスク達成数/ 率</p>
 				</div>
-				<div class="card-body">
-
-				<%#= pie_chart @chart,
-					id: 'data-chart',
-	                 width: '300px',
-	                 height: '300px',
-	                 colors: [['#adff2f'],['#ffd700'],['#00bfff']] %>
-        <%= column_chart @user.get_labels, stacked: true %>
-
-        <%= line_chart @user.get_labels, discrete: true %>
-
-        <!--discrete: true: 入力していない日付を除く-->
+		        <%#= column_chart @user.get_labels, stacked: true %>
+		        <%#= line_chart @user.get_labels, discrete: true %>
+        		<!--discrete: true: 入力していない日付を除く-->
 	       </div>
-
 	     </div>
-		</div>
 	</div>
-
 </div>
+
 
 
 <!----------------------テスト------------------------------------->
 テスト１ グラフの横軸に日付を表示したい
 <p>
 
-<%= column_chart [
+<p><%= @oneday %></p>
+
+<p><%= @user.today_list_sum %></p>
+
+<p><%= @from %></p>
+<p><%= @to %></p>
+
+
+ <%#= line_chart  %>
+
+
+<%#= column_chart [
        {name: "Accepted", data: @number_charges_accepted },
        {name: "Declined", data: @number_charges_declined }
        ],
@@ -102,9 +99,7 @@
 <p><%= @user.get_labels %></p>
 
 <p>
- <%= line_chart @data.group(:created_at).count, library: { hAxis: { format: 'MM/dd' } } %>
-
- <%= line_chart @testdata.group(:created_at).count %>
+ <%#= line_chart @data.group(:created_at).count, library: { hAxis: { format: 'MM/dd' } } %>
 </p>
 
 <!----------------------テスト------------------------------------->
