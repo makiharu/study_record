@@ -1,49 +1,49 @@
 <!--mr-1 :0.25rem /mr/mt/mb/ml-->
 <div class="d-flex align-items-center mt-3 mb-2">
-  <div class="mr-auto p-1">
-    <h2>掲示板詳細</h2>
-  </div>
+  <h2>掲示板詳細</h2>
+  <!--掲示板お気に入りボタンAjax化---------------------------->
+   <span id="likes_buttons_<%= @board.id %>", class="text-right">
+     <%= render partial: 'public/board_likes/like', locals: { board: @board} %>
+  </span>
+    <!--掲示板お気に入りボタン---------------------------->
   <div class="ml-auto">
-    <%= link_to '一覧', public_boards_path, class: 'btn btn-outline-dark' %>
-    <%= link_to '編集', edit_public_board_path(@board), class: 'btn btn-outline-dark' %>
+    <%= link_to '掲示板一覧', public_boards_path, class: 'btn btn-outline-dark' %>
+    <%= link_to '編集', edit_public_board_path(@board), class: 'btn btn-outline-success' %>
   </div>
 </div>
 
 
-<div class="form-set">
-  <div class="board-heading">
-    <div class="text-left">
-      <h4><%= @board.title %></h4>
-      <% @board.tags.each do |tag| %>
+
+<div class="card card-default">
+  <div class="card-header">
+    <h4><%= @board.title %></h4>
+  </div>
+  <div class="card-text mt-3 ml-2">
+    <% @board.tags.each do |tag| %>
         <span class="badge badge-info"><%= tag.name %></span>
-      <% end %>
-    </div>
-      <div class="text-right">
-        <!--掲示板お気に入りボタンAjax化---------------------------->
-         <div id="likes_buttons_<%= @board.id %>">
-           <%= render partial: 'public/board_likes/like', locals: { board: @board} %>
-         </div>
-        <!--掲示板お気に入りボタン---------------------------->
+    <% end %>
+  </div>
 
-      </div>
+
+  <div class="card-body">
+    <span><%= simple_format(@board.body) %></span>
   </div>
-  <div class="board-body">
-      <p class="board-text"><%= simple_format(@board.body) %></p>
-  </div>
-  <div class="board-profile">
+  <div class="card-body">
+    <div class="card-text text-right">
       <span id="time">投稿日時: <%= l @board.created_at %></span>
-      <p class="text-right font-weight-bold mr-10">
-        <%= link_to public_user_path(@board.user) do %>
-          <%= @board.user.name %>
-          <%= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
-        <% end %>
-     </p>
-     <span class="border-left" style="padding:10px;"></span>
+      <p class="font-weight-bold mt-2">
+          <%= link_to public_user_path(@board.user) do %>
+            <%= @board.user.name %>
+            <%= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
+          <% end %>
+      </p>
+    </div>
   </div>
-  <!--左ボーダー -->
 </div>
 
 
+<!--コメントが存在している時のみ一覧を表示する-->
+<% if @board_comments.exists? %>
 <div class="comments">
   <div class="form-set">
     <div class="comment-heading">
@@ -74,38 +74,37 @@
           </div>
         </div>
       <% end %>
-
-
     </div>
   </div>
 </div>
-
+<% end %>
 
 
 <!--パーシャルで設定 回答フォーム-------------------->
-<!--namespaceを使用しているためか、パーシャルがうまくいかない-->
+
 <%#= render partial: 'board_comments/form', local: {board: @board, new_comment: @new_comment} %>
-    <div class="comment-form">
-        <h4>コメントを書き込む</h4>
-    </div>
-    <div class="comment-form">
-      <%= form_with model: [:public, @board, @new_comment], local: true do |f| %>
 
-         <%#= f.hidden_field :board_id %>
-        <div class="form-group">
-          <%= f.text_area :comment, class: 'form-control', rows: 6 %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit '送信する', class: 'btn btn-outline-info' %>
-          <%= link_to '戻る', public_boards_path, class: 'btn btn-outline-dark' %>
-        </div>
-
-      <% end %>
-
-    </div>
-
+<div class="comment-header">
+    <h4>回答フォーム</h4>
 </div>
+<div class="comment-form">
+  <%= form_with model: [:public, @board, @new_comment], local: true do |f| %>
+
+     <%#= f.hidden_field :board_id %>
+    <div class="form-group">
+      <%= f.text_area :comment, class: 'form-control', rows: 6 %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit '送信する', class: 'btn btn-outline-info' %>
+      <%= link_to '戻る', public_boards_path, class: 'btn btn-outline-dark' %>
+    </div>
+  <% end %>
+</div>
+
+
+
+
 
 
 

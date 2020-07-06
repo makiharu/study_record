@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :manage do
+    get 'labels/index'
+  end
   root 'home#top'
   get 'home/about', to: 'home#about'
 
@@ -45,7 +48,7 @@ Rails.application.routes.draw do
     get 'home/top'
     resources :users, except: [:destroy]
     resources :boards, only: %i[index show update]
-    resources :todolists, except: [:show]
+    resources :labels, except: [:show]
     resources :tags, except: [:show]
 
     get 'search/search'

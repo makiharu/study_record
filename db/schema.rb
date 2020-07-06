@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_30_070313) do
+ActiveRecord::Schema.define(version: 2020_07_04_070338) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -63,6 +63,20 @@ ActiveRecord::Schema.define(version: 2020_06_30_070313) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "label_lists", force: :cascade do |t|
+    t.integer "todolist_id"
+    t.integer "label_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "name"
+    t.boolean "is_void", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "following_id"
     t.integer "follower_id"
@@ -81,15 +95,8 @@ ActiveRecord::Schema.define(version: 2020_06_30_070313) do
     t.integer "user_id"
     t.string "content"
     t.integer "time_category", default: 0
-    t.integer "label", default: 0
     t.boolean "done", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_lists", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "todolist_id"
+    t.datetime "update_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

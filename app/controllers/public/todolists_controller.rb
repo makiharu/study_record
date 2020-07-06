@@ -22,6 +22,7 @@ class Public::TodolistsController < ApplicationController
 
   def index
     @todolist = Todolist.new
+    @todolist.label_lists.build
     # ラジオボタンで場合分けをするよりも変数名を別にした方がわかりやすい
     @today_todolists = Todolist.where(time_category: 'today')
     # @week_todolists = Todolist.where(time_category: 'week')
@@ -55,22 +56,8 @@ class Public::TodolistsController < ApplicationController
     redirect_to public_todolists_path, danger: "１日分のリストを全てリセットしました"
   end
 
-  # def finish
-  #   # binding.pry
-  #   # タスクが完了したら、そのデータを非表示にする
-  #   @finished_list = Todolist.new(finished_params)
-  #   @finished_list.user_id = current_user.id
-  #   if @finished_list.save
-  #     redirect_to public_todolists_complete_path
-  #     flash[:notice] = "報告完了しました"
-  #   else
-  #     redirect_to public_todolists_path
-  #     flash[:alert] = "もう一度やり直してください"
-  #   end
-  # end
-
   def compelte
-    bindign.pry
+   # bindign.pry
     @completed_list = Todolist.new(completed_params)
     @compeleted_list.save
     # @finished_lists = Todolist.where(time_category: "today")
@@ -80,7 +67,7 @@ class Public::TodolistsController < ApplicationController
   private
 
   def todolist_params
-    params.require(:todolist).permit(:content, :time_category, :done)
+    params.require(:todolist).permit(:content, :time_category, :updated_date,:done, label_lists_attributes: [:label_id])
   end
 
   def completed_params

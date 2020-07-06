@@ -1,0 +1,84 @@
+<div class="row">
+<div class="col-md-3">
+	<h4 class="board-head">掲示板一覧</h4>
+	<div class="card card-default">
+		<div class="card-heading thead">
+			<h5 class="text-center">掲示板内検索</h5>
+		</div>
+		<table class="table">
+		   <!--タイトルと本文の検索-->
+		   <!--orでつなげることで複数のカラムが検索できる-->
+		   <%= search_form_for(@search, url: public_boards_path, html: {class: 'form-inline'}) do |f| %>
+		   	<%#= f.label :title_or_body_cont, '検索はこちら' %>
+		   <p><%= f.search_field :title_or_body_cont, class: 'searchform', placeholder: '検索はこちら' %>
+
+		   </p>
+			   <%#= button_tag type="submit", class: 'btn btn-primary' do %>
+				<i class="fas fa-search"><%= f.submit %></i>
+			   <%# end %>
+			<% end %>
+			<tbody>
+				<% @tags.each do |tag| %>
+				<% if tag.is_void == false %>
+					<tr>
+						<td>
+							<%= link_to public_boards_path do  %>
+							<%= tag.name %>
+							<span class="badge badge-info"><%= tag.board_tags.count %></span>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+<div class="col-md-9">
+	<div class="board-title">
+	<p class="text-right">
+		<%= link_to '新規作成 +', new_public_board_path, class: "btn btn-outline-dark" %>
+		<%= link_to "+", new_public_board_path, class: "btn btn-info", style: "border-radius: 50%" %>
+	</p>
+	</div>
+
+	<table class="table table-hover table-responsive">
+		<thead class="thead">
+		<!-- 	<th>画像</th> -->
+			<th>ユーザー名</th>
+			<th>タイトル</th>
+			<th>タグ</th>
+			<th>投稿日時</th>
+			<th>詳細</th>
+		</thead>
+		<tbody>
+			<% @boards.each do |board| %>
+			<%# @board_tags.each do |board_tag| %>
+			<tr>
+				<!-- <td><%#= attachment_image_tag(board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td> -->
+				<td><%= link_to board.user.name, public_user_path(board.user) %></td>
+				<td>
+					<%= board.title %>
+				</td>
+				<td>
+					<% board.board_tags.each do |board_tag| %>
+					<span class="badge badge-secondary">
+						<%= board_tag.tag.name %>
+					</span>
+					<% end %>
+				</td>
+				<td><%= l board.created_at %></td>
+				<td><%= link_to '詳細', public_board_path(board), class: 'btn btn-outline-info' %></td>
+			</tr>
+			<% end %>
+		</tbody>
+
+	</table>
+
+<%#= paginate @page_boards %>
+
+	</div>
+</div>

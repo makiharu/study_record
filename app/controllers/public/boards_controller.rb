@@ -1,5 +1,6 @@
 class Public::BoardsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, unless: :login_admin
+  before_action :authenticate_admin!, if: :login_admin
   before_action :set_board, only: %i[show edit update]
 
   def new
@@ -22,16 +23,22 @@ class Public::BoardsController < ApplicationController
     @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
     @search = Board.ransack(params[:q])
     @searchboards = @search.result
-    @page_boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
-
-    # @board = Board.all
-    #  @board_tags = BoardTag.all
+    #@page_boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
+    @tags = Tag.all
+    @board_tags = BoardTag.all
+    @new_boards = Board.order(created_at: :desc).limit(3)
+    if params[:tag_id]
+      tag = Tag.find(params[:tag_id])
+      @boards = tag.boards.page(params[:page]).per(10)
+    end
   end
 
   def show
     @new_comment = BoardComment.new
     @new_comment.board_id = @board.id
+    if current_user.present?
     @new_comment.user_id = current_user.id
+    end
 
     @board_comments = @board.board_comments
   end

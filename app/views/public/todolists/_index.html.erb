@@ -2,9 +2,8 @@
 	<thead>
 		<th>No.</th>
 		<th>リスト名</th>
-		<th>種別</th>
+		<th>ラベル</th>
 		<th>編集</th>
-		<th></th>
 	</thead>
 
 	<tbody>
@@ -14,7 +13,9 @@
 			<th><%= "#{i + 1}: " %></th>
 			<td ><%= todolist.content %></td>
 			<td>
-				<span class="badge badge-secondary""><%= todolist.label %></span>
+			<% todolist.label_lists.each do |label_list| %>
+				<span class="badge badge-secondary"><%= label_list.label.name %></span>
+			<% end %>
 			</td>
 			<td>
 				<%= link_to edit_public_todolist_path(todolist), class: 'btn btn-sm btn-outline-success', style: 'border-radius: 30%' do %>

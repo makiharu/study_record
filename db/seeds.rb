@@ -46,6 +46,25 @@ Tag.create([
              { name: 'その他' }
            ])
 
+# label_list
+Label.create([
+             { name: 'HTML & CSS' },
+             { name: 'JavaScript' },
+             { name: 'jQuery' },
+             { name: 'Ruby' },
+             { name: 'Ruby on Rails' },
+             { name: 'PHP' },
+             { name: 'Java' },
+             { name: 'Python' },
+             { name: 'Command Line' },
+             { name: 'Git' },
+             { name: 'SQL' },
+             { name: 'Sass' },
+             { name: 'React' },
+             { name: 'Node.js' },
+             { name: 'その他' }
+           ])
+
 if Rails.env == 'development'
 
   # 50boards

@@ -1,10 +1,6 @@
-* {
-	box-sizing: border-box;
-}
 
 body {
-   margin: 0;
-   padding: 0;
+
    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
    background-color: #ffffff;/*ベースは白色*/
 }
@@ -27,7 +23,7 @@ body {
 
 
 
-a {
+ a {
   text-decoration: none;/*aタグの文字色と、余計なアンダーラインを消す*/
   color: #4b4b4b;
 }

@@ -1,4 +1,4 @@
-<div class="todolist-form">
+<div class="form-horizontal">
 	<%= form_with model: [:public, todolist], local: true do |f| %>
 		<%= render 'shared/error_messages', obj: todolist %>
 		<div class="form-group">
@@ -6,10 +6,16 @@
 			<%= f.text_field :content, class: 'form-control' %>
 		</div>
 		<div class="form-group">
-			<%= f.label :種別 %>
-			<%= f.collection_select :label, Todolist.all,:id, :label, :include_blank => true %>
-			<%#= f.collection_select :delivery_id, current_end_user.deliveries, :id, :view_address_and_name,:include_blank => true %>
-			 <%#= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+
+			<!--属性追加-->
+			<%= f.fields_for :label_lists do |list| %>
+				<%= list.label :ラベル, class: 'label_id' %>
+				<%#= list.label :label_id %>
+				<%= list.collection_select :label_id, Label.all, :id, :name, :include_blank => true %>
+			<% end %>
+
+			<%#= f.collection_select :label_id, Label.where(is_void: false), :id, :name, :include_blank => true %>
+
 		</div>
 		<!--編集ページの時のみ表示する-->
 		<% if controller.action_name == 'edit' %>
@@ -33,6 +39,7 @@
 		</div>
 		<div class="action">
 			<%= f.submit '保存する', class: 'btn btn-outline-info' %>
+			<%= f.submit "clear", type: :reset %>
 		</div>
 
 	<% end %>
