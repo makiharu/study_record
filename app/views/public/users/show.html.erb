@@ -42,19 +42,17 @@
 				<h5>ユーザーグラフ</h5>
 			</div>
 
-			<div class="card-body">
-          <%#= render 'public/users/graph' %>
-      </div>
-
-
-
       <div class="card-body">
 				<div class="card-text">
 					<p>達成したTo doリストのラベル比率</p>
 				</div>
 					<%= pie_chart @user.get_labels, label: 'ラベル', name: 'ラベル比率' %>
-					<%#= line_chart @user.hoge, messages: {empty: "No data"} %>
-					<%#= line_chart User.group_by_day(:created_at).count %>
+          <%= line_chart @user.get_labels, messages: {empty: "No data"} %>
+
+
+
+          <%#= line_chart @chart.group_by_day(:created_at).count %>
+          <%= line_chart @chart %>
 
 					<%#= column_chart @user.todolists.pluck(:created_at, :id),
                  id: 'total-attendance-chart',
@@ -78,7 +76,9 @@
 	                 colors: [['#adff2f'],['#ffd700'],['#00bfff']] %>
         <%= column_chart @user.get_labels, stacked: true %>
 
-        <%= line_chart @user.get_labels %>
+        <%= line_chart @user.get_labels, discrete: true %>
+
+        <!--discrete: true: 入力していない日付を除く-->
 	       </div>
 
 	     </div>
@@ -88,6 +88,13 @@
 </div>
 
 
+テスト１
+<p><%#= @user.today_list_count.group("date(created_at)").count %></p>
+<p><%= @user.today_list_count %></p>
+<!-- { 20200706 => 3, 20200707 => 20, .....}-->
+
+<p><%= @user.get_labels %></p>
+
 
 
 
@@ -95,19 +102,19 @@
 <!----------------------テスト------------------------------------->
 <!-- <h2>テスト</h2>
   --1-1 userに紐づく全てのラベルの数-->
-  <p>userに紐づくリストの、ラベルの合計数:  <%= @user.todolists.count %></p>
+  <!-- <p>userに紐づくリストの、ラベルの合計数:  <%= @user.todolists.count %></p> -->
   <p><%#= @user.todolists.pluck %></p>
 
 
 <h3>テスト2</h3>
 <p>userに紐づくリストの、ラベル名全て: </p>
-<% @user.todolists.each do |todolist| %>
+<%# @user.todolists.each do |todolist| %>
 
-  <% todolist.label_lists.each do |label_list| %>
+  <%# todolist.label_lists.each do |label_list| %>
   <!--2 userに紐づくリストのラベルの名前全て-->
-  <p><%= label_list.label.name %></p>
-  <% end %>
-<% end %>
+  <p><%#= label_list.label.name %></p>
+  <%# end %>
+<%# end %>
 
 
 <h2>テスト3</h2>
@@ -127,5 +134,4 @@
 
 <!----------------------テスト------------------------------------->
 
-<%= @user.get_labels %>
 

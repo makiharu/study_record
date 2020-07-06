@@ -10,8 +10,7 @@ class Public::UsersController < ApplicationController
   def show
     @chart = { @user.name => @user.todolists.count }
 
-    # @chart_one = User.where(is_deleted: false).group("date(created_at)").count
-    # @chart_second = Todolist.where(done: true).group("date(created_at)").count
+    @chart = User.where(is_deleted: false).group("date(created_at)").count
 
     #userに紐づくラベルの内、リストが達成されている（done:true）ものの合計
     # @done_list_sum = @user.todolists.where(done: true).pluck(:done).count
@@ -19,13 +18,8 @@ class Public::UsersController < ApplicationController
     # @done_lists = @user.todolists.where(done: true)
 
     #@user_data= User.where(payment_result: 1).group("date(created_at)").count
-    #折れ線グラフ
-    #・項目:  ユーザーが達成したラベルの数
-    #・値：　ユーザーが達成したリストの数
 
     # @data = {'ラベル名' => 達成したリストの数...}
-    # @label_names = @user.todolists.where(done: true)
-
     @week_todolists = Todolist.where(time_category: 'week') # add
     @month_todolists = Todolist.where(time_category: 'month')
   end
