@@ -67,7 +67,7 @@ class Public::TodolistsController < ApplicationController
   private
 
   def todolist_params
-    params.require(:todolist).permit(:content, :time_category, :done, label_lists_attributes: [:label_id])
+    params.require(:todolist).permit(:content, :time_category, :updated_date,:done, label_lists_attributes: [:label_id])
   end
 
   def completed_params

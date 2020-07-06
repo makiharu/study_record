@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_070338) do
     t.string "content"
     t.integer "time_category", default: 0
     t.boolean "done", default: false
+    t.datetime "update_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

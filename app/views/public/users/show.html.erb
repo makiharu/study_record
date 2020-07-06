@@ -65,9 +65,17 @@
 
 <!----------------------テスト------------------------------------->
 テスト１ グラフの横軸に日付を表示したい
-<p>
+<p><%= line_chart @oneday_lists.group_by(&:update_date).map{ |key, value| [key, value.count] }.to_h %></p>
 
-<p><%= @oneday %></p>
+
+
+
+
+<p><% @oneday_lists.each do |oneday_list| %>
+	  <%= l oneday_list.update_date %>
+
+	<% end %>
+</p>
 
 <p><%= @user.today_list_sum %></p>
 
@@ -75,9 +83,11 @@
 <p><%= @to %></p>
 
 
- <%#= line_chart  %>
+ update_dateカラム
 
-
+    @from = Time.now.in_time_zone(“Tokyo”).beginning_of_day
+    @to = Time.now.in_time_zone(“Tokyo”).end_of_day
+    @oneday_lists = Todolist.only_done.where(update_date: @from..@to)
 <%#= column_chart [
        {name: "Accepted", data: @number_charges_accepted },
        {name: "Declined", data: @number_charges_declined }
