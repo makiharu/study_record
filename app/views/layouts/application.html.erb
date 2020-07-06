@@ -14,28 +14,22 @@
 
     <!--ヘッダーをadminかユーザーログインかで切替表示-->
 
-    <div class="header">
+    <header class="header">
       <% if admin_signed_in? %>
         <%= render 'shared/admin_header' %>
       <% else %>
         <%= render 'shared/header' %>
       <% end %>
-    </div>
-
+    </header>
 
       <%= render 'shared/flash_messages' %>
 
     <div class="container">
       <%= yield %>
-
     </div>
 
-    <!--リスト作ってパーシャルでかく-->
-    <!--   <div class="footer">
-        <span>運営情報</span>
-        この書き方だと色が変わらないので修正必要
-        <span><%#= link_to '運営情報', '#' %></span>
-      </div>
- -->
+      <%= render 'shared/footer' %>
+
+
   </body>
 </html>
