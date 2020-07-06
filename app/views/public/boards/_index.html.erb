@@ -1,0 +1,20 @@
+<div class="card-box">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>タイトル</th>
+	<!-- 			<th>ユーザー</th> -->
+				<th>投稿日時</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% boards.each do |board| %>
+		<tr>
+			<td><%= link_to board.title, public_board_path(board) %></td>
+	<!-- 		<td><%#= board.user.name %></td> -->
+			<td><%= l board.created_at %></td>
+		</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>

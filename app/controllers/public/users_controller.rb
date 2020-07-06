@@ -12,11 +12,12 @@ class Public::UsersController < ApplicationController
 
     @chart = User.where(is_deleted: false).group("date(created_at)").count
 
+    @testdata = @user.todolists
+    @data = User.all
     #userに紐づくラベルの内、リストが達成されている（done:true）ものの合計
     # @done_list_sum = @user.todolists.where(done: true).pluck(:done).count
     # #userに紐づくラベルの内、リストが達成されている（done:true）もの
     # @done_lists = @user.todolists.where(done: true)
-
     #@user_data= User.where(payment_result: 1).group("date(created_at)").count
 
     # @data = {'ラベル名' => 達成したリストの数...}

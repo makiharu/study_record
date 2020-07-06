@@ -54,7 +54,7 @@ class User < ApplicationRecord
   end
 
 
-  def today_list_count #そのその日達成したtodoリストの数
+  def today_list_sum #その日達成したtodoリストの数
     today_lists = todolists.only_done
     today_lists.where(created_at: Time.zone.now.all_day).count
   end

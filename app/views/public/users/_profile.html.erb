@@ -18,17 +18,12 @@
 			<td>登録日: <%= l user.created_at %></td>
 		</tr>
 		<tr>
-			<td>本日の達成リスト数 : <%= user.today_list_count %></td>
+			<td>本日の達成リスト数 : <span class="badge badge-info"><%= user.today_list_sum %></span></td>
 		</tr>
 		<tr>
 			<td>
-				過去の達成リスト数: <span class="badge badge-dark">
+				過去の達成リスト数: <span class="badge badge-info">
 					<%= user.done_list_sum %></span>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				合計リスト数<span class="badge badge-dark"></span>
 			</td>
 		</tr>
 		<tr>
@@ -36,7 +31,7 @@
 		</tr>
 		<tr>
 			<td>
-				投稿数<span class="badge badge-dark"><%= user.boards.count %></span>
+				投稿数<span class="badge badge-info"><%= user.boards.count %></span>
 			</td>
 		</tr>
 		<tr>

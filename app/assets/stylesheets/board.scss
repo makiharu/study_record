@@ -4,6 +4,15 @@
 	margin-top: 30px;
 }
 
+a {
+  text-decoration: none;/*aタグの文字色と、余計なアンダーラインを消す*/
+  color: #17A2B8;
+}
+
+.badge-info a{
+  color: white;
+}
+
 
 .board-head { /*掲示板一覧見出し　ページ左側*/
   margin-bottom: 28px;
@@ -43,4 +52,12 @@
 	float: right;
 }
 
+
+.card-text badge {
+  margin-top: 20px;
+}
+
+.card {
+  margin-bottom: 60px;
+}
 

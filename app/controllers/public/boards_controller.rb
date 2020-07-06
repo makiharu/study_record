@@ -20,16 +20,16 @@ class Public::BoardsController < ApplicationController
 
   def index
     # @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
-    @boards = Board.all.order(created_at: :desc).page(params[:page]).per(15)
+    @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
     @search = Board.ransack(params[:q])
     @searchboards = @search.result
     #@page_boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
     @tags = Tag.all
     @board_tags = BoardTag.all
-
+    @new_boards = Board.order(created_at: :desc).limit(3)
     if params[:tag_id]
       tag = Tag.find(params[:tag_id])
-      @boards = tag.boards.page(params[:page]).per(15)
+      @boards = tag.boards.page(params[:page]).per(10)
     end
   end
 

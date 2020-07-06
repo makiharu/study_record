@@ -47,18 +47,7 @@
 					<p>達成したTo doリストのラベル比率</p>
 				</div>
 					<%= pie_chart @user.get_labels, label: 'ラベル', name: 'ラベル比率' %>
-          <%= line_chart @user.get_labels, messages: {empty: "No data"} %>
-
-
-
-          <%#= line_chart @chart.group_by_day(:created_at).count %>
-          <%= line_chart @chart %>
-
-					<%#= column_chart @user.todolists.pluck(:created_at, :id),
-                 id: 'total-attendance-chart',
-                 width: '400px',
-                 height: '500px',
-                 colors: ['#b00'] %>
+          <%= column_chart @user.get_labels, messages: {empty: "No data"}, stacked: true %>
 			</div>
 
 
@@ -88,49 +77,35 @@
 </div>
 
 
-テスト１
-<p><%#= @user.today_list_count.group("date(created_at)").count %></p>
-<p><%= @user.today_list_count %></p>
+<!----------------------テスト------------------------------------->
+テスト１ グラフの横軸に日付を表示したい
+<p>
+
+<%= column_chart [
+       {name: "Accepted", data: @number_charges_accepted },
+       {name: "Declined", data: @number_charges_declined }
+       ],
+       stacked: true,
+       xtitle: "Date",
+       ytitle: "Transactions",
+       # Additions I've tried:
+       library: {
+       format: 'MM/YY'
+       },
+       discrete: true
+%>
+
+  <%#= @user.today_list_count.group("date(created_at)").count %></p>
+<p><%= @user.today_list_sum %></p>
 <!-- { 20200706 => 3, 20200707 => 20, .....}-->
 
 <p><%= @user.get_labels %></p>
 
+<p>
+ <%= line_chart @data.group(:created_at).count, library: { hAxis: { format: 'MM/dd' } } %>
 
-
-
-
-<!----------------------テスト------------------------------------->
-<!-- <h2>テスト</h2>
-  --1-1 userに紐づく全てのラベルの数-->
-  <!-- <p>userに紐づくリストの、ラベルの合計数:  <%= @user.todolists.count %></p> -->
-  <p><%#= @user.todolists.pluck %></p>
-
-
-<h3>テスト2</h3>
-<p>userに紐づくリストの、ラベル名全て: </p>
-<%# @user.todolists.each do |todolist| %>
-
-  <%# todolist.label_lists.each do |label_list| %>
-  <!--2 userに紐づくリストのラベルの名前全て-->
-  <p><%#= label_list.label.name %></p>
-  <%# end %>
-<%# end %>
-
-
-<h2>テスト3</h2>
-  <!--3-1 userに紐づくラベルの内、リストが達成されている（done:true）ものの合計-->
-  コントローラ:  @user.todolists.where(done: true).pluck(:done).count 
-  <p>userに紐づくラベルの内、リストが達成されている（done:true）ものの合計</p>
-  <p><%#= @done_list_sum %></p>
-
-  <!-- 3-2 userに紐づくラベルの内、リストが達成されている（done:true）もののリスト名-->
-  <!--3-3 userに紐づくラベルの内、リストが達成されているもの（done:true)の、リスト名ごとの数-->
-  <%# @done_lists.each do |done_list| %>
-    <%# #done_list.label_lists.each do |label_list| %>
-    <!--3-2--><p><%#= label_list.label.name %></p>
-    <!--3-3--><p><%#= label_list.labels.count %></p>
-    <%# end %>
-  <%# end %>
+ <%= line_chart @testdata.group(:created_at).count %>
+</p>
 
 <!----------------------テスト------------------------------------->
 
