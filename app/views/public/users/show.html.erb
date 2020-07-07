@@ -1,12 +1,14 @@
 <div class="row">
 	<div class="col-md-4">
+		<div class="card card-default mr-5">
 		<!--プロフィール-->
 		<%= render 'public/users/profile', user: @user %>
+		</div>
 
 
 		<div class="card">
-		  <div class="card-header">
-		    <h5>今週のTo doリスト</h5>
+		  <div class="card-heading thead">
+		    <h5 class="text-center p-2">今週のTo doリスト</h5>
 		  </div>
 		  <div class="card-body">
 		    <% if @week_todolists.exists? %>
@@ -19,8 +21,8 @@
 
 
 		<div class="card">
-			<div class="card-header">
-			  <h5>今月のTo doリスト</h5>
+			<div class="card-heading thead">
+			  <h5 class="text-center p-2">今月のTo doリスト</h5>
 			</div>
 			<div class="card-body">
 				<% if @month_todolists.exists? %>
@@ -37,9 +39,9 @@
 
 	<!--todolist完了で受け取った値をグラフで表示する-->
 	<div class="col-md-8">
-		<div class="card card-default">
-			<div class="card-header">
-				<h5>ユーザーグラフ</h5>
+		<div class="card card-default mr-2">
+			<div class="card-heading thead">
+				<h5 class="text-center p-4">ユーザーグラフ  <i class="fas fa-chart-bar"></i></h5>
 			</div>
 	    	<div class="card-body mb-5">
 				<div class="card-text">

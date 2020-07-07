@@ -16,4 +16,13 @@ class Board < ApplicationRecord
   def board_liked_by?(user)
     board_likes.where(user_id: user.id).exists?
   end
+
+  def self.create_rankings
+    Board.find(BoardLike.group(:board_id).order('count(board_id) desc').limit(3).pluck(:board_id))
+  end
+
+  def self.new_order
+    Board.all.order(created_at: :desc).limit(3)
+  end
+
 end

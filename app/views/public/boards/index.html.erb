@@ -1,15 +1,18 @@
 <div class="row">
 	<div class="mx-auto">
-	<%= image_tag 'image04.jpg', :width => '500', :height => '400', :alt => 'top-image' %>
+		<h2 class="mb-3 text-center">掲示板一覧</h2>
+		<div class="introduction">
+			<p class="text-center">学習の悩みなど気軽に投稿してみましょう。</p>
+		</div>
+		<div class="todo-image pl-2">
+			<%= image_tag 'image04.jpg', :width => '400', :height => '300', :alt => 'top-image' %>
+		</div>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-md-3">
-	<h4 class="board-head p-2">掲示板一覧
-		<%= link_to "+", new_public_board_path, class: "btn btn-info", style: "border-radius: 50%" %>
-	</h4>
-		<div class="card card-default">
+		<div class="card card-default mt-5">
 			<div class="card-heading thead">
 				<h5 class="text-center p-2">掲示板内検索</h5>
 			</div>
@@ -49,7 +52,7 @@
 	<div class="col-md-9">
 		<div class="board-title">
 			<p class="text-right">
-				<%= link_to '新規作成フォーム +', new_public_board_path, class: "btn btn-outline-dark" %>
+				<%= link_to '新規作成フォーム +', new_public_board_path, class: "btn btn-warning" %>
 			</p>
 		</div>
 		<% if !params[:tag_id] %>
@@ -69,14 +72,14 @@
 					<div class="card-heading thead">
 						<h5 class="text-center p-2">人気投稿  <i class="fas fa-crown"></i></h5>
 					</div>
-					<%= render 'index', boards: @new_boards %>
+					<%= render 'index', boards: @board_ranking %>
 				</div>
 			</div>
 		<% end %>
 
 
 		<div class="card card-default">
-			<div class="card-header">
+			<div class="card-heading thead p-2">
 				<h5 class="text-center">掲示板一覧  <i class="far fa-list-alt"></i></h5>
 			</div>
 			<%= render 'index', boards: @boards, board_tags: @board_tags %>

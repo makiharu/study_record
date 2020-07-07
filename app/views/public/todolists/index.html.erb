@@ -1,12 +1,10 @@
 <div class="row">
-<!-- <section class="py-2"> -->
-	<div class="mx-auto">
+	<div class="mx-auto mb-2">
 		<h2 class="mb-3 text-center">To doリスト設定ページ</h2>
 		<div class="introduction">
 			<p class="text-center">リストの内容をクリアしたら、達成ボタンを押して、進捗をグラフで確認してみましょう。</p>
 		</div>
 		<div class="todo-image pl-5 ml-5">
-		<%#= image_tag 'image01.jpg', :width => '500', :height => '300', :alt => 'top-image' %>
 			<%= image_tag 'image01.jpg', :width => '400', :height => '300', :alt => 'top-image' %>
 		</div>
 	</div>
@@ -14,12 +12,12 @@
 
 
 
+
 <div class="row">
-	<!--todolistフォーム-->
 	<div class="col-md-5">
-		<div class="card" style="width: 20rem;">
-			<div class="card-header">
-				To doリスト作成
+		<div class="card card-default mt-4" style="width: 22rem;">
+			<div class="card-heading thead">
+				<h5 class="text-center p-2">To doリスト作成</h5>
 			</div>
 	  		<div class="card-body">
 				<p class="card-text"></p>
@@ -40,10 +38,9 @@
 
 		<div class="tab-content">
 			<div id="list-tab1" class="tab-pane active">
-		<!-- 		<div class="form-set"> -->
 				<div class="card">
-					<div class="card-header">
-						<h5>本日のTo do リスト</h5>
+					<div class="card-heading thead">
+						<h5 class="text-center p-2">本日のTo do リスト</h5>
 					</div>
 					<div class="card-body">
 
@@ -51,9 +48,6 @@
 					<!--ここから--------------------------------------------------------------->
 					<% if @today_todolists.exists? %>
 						<div class="text-right">
-							<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#demoNormalModal">
-							    リセット
-							</button>
 
 							<!-- モーダルダイアログ -->
 							<div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
@@ -124,14 +118,14 @@
 							<% end %>
 							</tbody>
 						</table>
-						<span class="text-right">
+<!-- 						<span class="text-right">
 
-							<p><%= link_to '完了報告', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-info' %></p>
+							<p><%#= link_to '完了報告', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-info' %></p>
 						</span>
 
 						<span class="text-right">
-							<p><%= link_to 'リセット', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-danger', style: 'border-radius:50%' %></p>
-						</span>
+							<p><%#= link_to 'リセット', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-danger', style: 'border-radius:50%' %></p>
+						</span> -->
 					<% else %>
 					<!--todoリストをまだ一つも作成していない場合-->
 						Todoリストをまだ設定していませんか？<br />
