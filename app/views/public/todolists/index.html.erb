@@ -43,100 +43,13 @@
 					<div class="card-heading thead">
 						<h5 class="text-center p-2">本日のTo do リスト</h5>
 					</div>
-					<% if @today_todolists.exists? %>
-					<div class="card-body">
-
-						<%#= render 'public/todolists/index', todolists: @todolists %>
-					<!--ここから--------------------------------------------------------------->
 					<%# if @today_todolists.exists? %>
-						<div class="text-right">
-
-							<!-- モーダルダイアログ -->
-							<div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-							    <div class="modal-dialog" role="document">
-							        <div class="modal-content">
-							            <div class="modal-header">
-							                <h5 class="modal-title" id="demoModalTitle">確認</h5>
-							                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							                    <span aria-hidden="true">&times;</span>
-							                </button>
-							            </div>
-							            <div class="modal-body">
-							                リスト内容が全て失われます。よろしいですか？
-							            </div>
-							            <div class="modal-footer">
-							                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-							                <%= link_to 'OK', public_todolists_delete_path, method: :delete ,class: 'btn btn-danger' %>
-							            </div>
-							        </div>
-							    </div>
-							</div>
-						</div>
-
-						<table class="table table-hover table-responsive">
-							<thead>
-								<th>No.</th>
-								<th>リスト名</th>
-								<th>ラベル</th>
-								<th>テスト用</th>
-								<th>チェック</th>
-								<th>編集</th>
-							</thead>
-							<tbody>
-							<% @today_todolists.each_with_index do |todolist, i| %>
-								<% if todolist.done == false %>
-								<tr>
-									<th><%= "#{i + 1}: " %></th>
-									<td><%= todolist.content.truncate(30) %></td>
-									<td>
-									<!--問題箇所------------------------------------------->
-										<% todolist.label_lists.each do |label_list| %>
-											<span class="badge badge-secondary"><%= label_list.label.name %></span>
-										<% end %>
-									<!--問題箇所------------------------------------------->
-									</td>
-									<!--テスト用-->
-									<td><%= todolist.done %></td>
-									<td>
-										<%= form_with model: [:public, todolist], local: true do |f| %>
-											<%#= f.hidden_field :label, :value => todolist.label %>
-											<%= f.hidden_field :done, :value => true %><!--完了:trueを送りたい-->
-											<%= f.hidden_field :time_category, :value => todolist.time_category %>
-											<%= f.hidden_field :content, :value => todolist.content %>
-
-											<%= f.submit '達成', class: 'btn btn-outline-info btn-sm' %>
-
-										<!--リセットボタン-->
-
-										<% end %>
-									</td>
-									<td>
-										<%= link_to edit_public_todolist_path(todolist), class: 'btn btn-outline-success', style: 'border-radius: 30%' do %>
-											<i class="fas fa-cogs"></i>
-										<% end %>
-									</td>
-								</tr>
-								<% end %>
-							<% end %>
-							</tbody>
-						</table>
-						<span class="text-right">
-
-							<p><%#= link_to '完了報告', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-info' %></p>
-						</span>
-
-						<span class="text-right">
-							<p><%#= link_to 'リセット', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-danger', style: 'border-radius:50%' %></p>
-						</span>
-					<% else %>
-					<!--todoリストをまだ一つも作成していない場合-->
-						Todoリストをまだ設定していませんか？<br />
-						To doリスト作成欄からTo doリストを作成してみましょう！
-					<% end %>
-					<!--ここまで--------------------------------------------------------------->
+					<div class="card-body">
+						<%= render 'public/todolists/tab', todolists: @today_todolists %>
 					</div>
 				</div>
 			</div>
+
 
 			<div id="list-tab2" class="tab-pane">
 				<div class="card">

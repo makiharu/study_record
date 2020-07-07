@@ -1,36 +1,10 @@
 <table class="table table-hover table-responsive">
-<!-- 	<thead>
-		<th>No.</th>
-		<th>リスト名</th>
-		<th>ラベル</th>
-		<th>編集</th>
-	</thead> -->
 	<tbody>
 		<% todolists.each_with_index do |todolist, i| %>
-		<!-- <div class="time_category_lists"> -->
 		<tr>
-			<th><%= "#{i + 1}: " %></th>
+			<td><%= "#{i + 1}: " %></td>
 			<td ><%= link_to todolist.content, edit_public_todolist_path(todolist) %></td>
-<!-- 			<td>
-			<%# todolist.label_lists.each do |label_list| %>
-				<span class="badge badge-secondary"><%#= label_list.label.name %></span>
-			<%# end %>
-			</td> -->
-<!-- 			<td><%#= form_with model: [:public, todolist], local: true do |f| %>
-				<%#= f.hidden_field :label, :value => todolist.label %>
-				<%#= f.hidden_field :done, :value => false %><-未完了:falseを送りたい-->
-				<%#= f.hidden_field :time_category, :value => todolist.time_category %>
-				<%#= f.hidden_field :content, :value => todolist.content %>
-
-				<%#= f.submit '達成', class: 'btn btn-outline-info btn-sm' %>
-				<%# end %><!-- </td>-->
-			<td>
-			<%#= link_to edit_public_todolist_path(todolist), class: 'btn btn-sm btn-outline-success', style: 'border-radius: 30%' do %>
-	<!-- 		<i class="fas fa-cogs"></i> -->
-			<%# end %>
-			</td>
 		</tr>
-<!-- 		</div> -->
 		<% end %>
 	</tbody>
 </table>
