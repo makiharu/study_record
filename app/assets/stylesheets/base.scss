@@ -1,11 +1,12 @@
 
 body {
-
-   font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-family: "Kokoro";
    background-color: #ffffff;/*ベースは白色*/
+   color: #333
 }
 
 
+.wf-hannari { font-family: "Hannari"; }
 
 #logo {
 	font-family: 'Nothing You Could Do', cursive;
@@ -154,3 +155,5 @@ footer p {
   border-right: 15px solid #ffd700;
   z-index: 0;
 }
+
+

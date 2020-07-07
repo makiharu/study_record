@@ -41,16 +41,15 @@
 			<div class="card-header">
 				<h5>ユーザーグラフ</h5>
 			</div>
-	    	<div class="card-body">
+	    	<div class="card-body mb-5">
 				<div class="card-text">
 					<p>達成したTo doリストのラベル比率</p>
 				</div>
 				<%= pie_chart @user.get_labels, label: 'ラベル', name: 'ラベル比率' %>
-	          	<%= column_chart @user.get_labels, messages: {empty: "No data"}, stacked: true %>
+	          	<%#= column_chart @user.get_labels, messages: {empty: "No data"}, stacked: true %>
 		 	</div>
-			<div class="card-body">
+			<div class="card-body mt-5">
 				<div class="card-text">
-          			<p>達成したTo doリストのラベル比率</p>
 					<p>1日ごとのタスク達成数/ 率</p>
 				</div>
 				<%= line_chart @user.oneday_list_sum %>
@@ -58,7 +57,7 @@
 	     </div>
 	</div>
 </div>
-
+テスト
 <%= @user.oneday_list_sum %>
 
 

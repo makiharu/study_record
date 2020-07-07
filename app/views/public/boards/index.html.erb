@@ -1,11 +1,17 @@
 <div class="row">
+	<div class="mx-auto">
+	<%= image_tag 'image04.jpg', :width => '500', :height => '400', :alt => 'top-image' %>
+	</div>
+</div>
+
+<div class="row">
 	<div class="col-md-3">
-	<h4 class="board-head">掲示板一覧
+	<h4 class="board-head p-2">掲示板一覧
 		<%= link_to "+", new_public_board_path, class: "btn btn-info", style: "border-radius: 50%" %>
 	</h4>
 		<div class="card card-default">
 			<div class="card-heading thead">
-				<h5 class="text-center">掲示板内検索</h5>
+				<h5 class="text-center p-2">掲示板内検索</h5>
 			</div>
 			<table class="table">
 			   <!--タイトルと本文の検索-->
@@ -52,7 +58,7 @@
 				<!--新着投稿一覧　3件-->
 				<div class="card card-default">
 					<div class="card-heading thead">
-						<h5 class="text-center">新着投稿  <i class="far fa-newspaper"></i></h5>
+						<h5 class="text-center p-2">新着投稿  <i class="far fa-newspaper"></i></h5>
 					</div>
 					<%= render 'index', boards: @new_boards, board_tags: @new_board_tags %>
 				</div>
@@ -61,7 +67,7 @@
 				<!--人気投稿一覧-->
 				<div class="card card-default">
 					<div class="card-heading thead">
-						<h5 class="text-center">人気投稿  <i class="fas fa-crown"></i></h5>
+						<h5 class="text-center p-2">人気投稿  <i class="fas fa-crown"></i></h5>
 					</div>
 					<%= render 'index', boards: @new_boards %>
 				</div>

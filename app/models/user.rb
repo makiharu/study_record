@@ -68,9 +68,6 @@ class User < ApplicationRecord
     end.to_h
     # 時間でgroup_byし、mapメソッドのブロックの中で各日付の個数を集計している
     # 最後に配列から扱いやすいハッシュへ変換(to_h)
-    # result = access_logs.group_by { |a| a.strftime('%H') }.map do |hour, array|
-    #   [hour, array.count]
-    # end.to_h
   end
 
 
