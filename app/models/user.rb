@@ -58,16 +58,35 @@ class User < ApplicationRecord
     today_lists.where(created_at: Time.zone.now.all_day).count
   end
 
-  def oneday_list_sum
-    from = Time.now.in_time_zone('Tokyo').beginning_of_day
-    to = Time.now.in_time_zone('Tokyo').end_of_day
-    #access_logs = AccessLog.where(created_at: start_date..end_date).pluck(:created_at)
-    day_lists = todolists.only_done.where(update_date: from..to).pluck(:update_date)
-    result = day_lists.group_by { |a| a.strftime('%m/%d/%Y') }.map do |day, array|
-      [day, array.count]
-    end.to_h
+  # def oneday_list_sum
+  #   from = Time.now.in_time_zone('Tokyo').beginning_of_day
+  #   to = Time.now.in_time_zone('Tokyo').end_of_day
+  #   #access_logs = AccessLog.where(created_at: start_date..end_date).pluck(:created_at)
+  #   day_lists = todolists.only_done.where(update_date: from..to).pluck(:update_date)
+  #   result = day_lists.group_by { |a| a.strftime('%m/%d/%Y') }.map do |day, array|
+  #     [day, array.count]
+  #   end.to_h
+
+  #   {"7/6/2020" => "5", "7/7/2020" => "3"}
+  # end
+
+  def week_list
     # 時間でgroup_byし、mapメソッドのブロックの中で各日付の個数を集計している
     # 最後に配列から扱いやすいハッシュへ変換(to_h)
+    count_hash = Hash.new
+    now = Time.now.in_time_zone('Tokyo')
+    6.downto(0) do |n|
+      past_day = now.ago(n.days)
+      from = past_day.beginning_of_day
+      to = past_day.end_of_day
+      day_lists = todolists.only_done.where(update_date: from..to).pluck(:update_date)
+      result = day_lists.group_by { |a| a.strftime('%m/%d/%Y') }.map do |day, array|
+        [day, array.count]
+      end.to_h
+      p "==#{result}"
+      count_hash.merge!(result)
+    end
+    count_hash
   end
 
 
