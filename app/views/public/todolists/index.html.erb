@@ -11,8 +11,6 @@
 </div>
 
 
-
-
 <div class="row">
 	<div class="col-md-5">
 		<div class="card card-default mt-4" style="width: 22rem;">
@@ -29,10 +27,13 @@
 	<div class="col-md-7">
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-				<a href="#list-tab1" class="nav-link active" data-toggle="tab">未達成</a>
+				<a href="#list-tab1" class="nav-link active" data-toggle="tab">本日</a>
 			</li>
 			<li class="nav-item">
-				<a href="#list-tab2" class="nav-link" data-toggle="tab">達成済み</a>
+				<a href="#list-tab2" class="nav-link" data-toggle="tab">今週</a>
+			</li>
+			<li class="nav-item">
+				<a href="#list-tab3" class="nav-link" data-toggle="tab">今月</a>
 			</li>
 		</ul>
 
@@ -42,11 +43,12 @@
 					<div class="card-heading thead">
 						<h5 class="text-center p-2">本日のTo do リスト</h5>
 					</div>
+					<% if @today_todolists.exists? %>
 					<div class="card-body">
 
 						<%#= render 'public/todolists/index', todolists: @todolists %>
 					<!--ここから--------------------------------------------------------------->
-					<% if @today_todolists.exists? %>
+					<%# if @today_todolists.exists? %>
 						<div class="text-right">
 
 							<!-- モーダルダイアログ -->
@@ -118,14 +120,14 @@
 							<% end %>
 							</tbody>
 						</table>
-<!-- 						<span class="text-right">
+						<span class="text-right">
 
 							<p><%#= link_to '完了報告', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-info' %></p>
 						</span>
 
 						<span class="text-right">
 							<p><%#= link_to 'リセット', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-danger', style: 'border-radius:50%' %></p>
-						</span> -->
+						</span>
 					<% else %>
 					<!--todoリストをまだ一つも作成していない場合-->
 						Todoリストをまだ設定していませんか？<br />
@@ -138,11 +140,22 @@
 
 			<div id="list-tab2" class="tab-pane">
 				<div class="card">
-					<div class="card-header">
-						<h5>達成済みリスト</h5>
+					<div class="card-heading thead">
+						<h5 class="text-center p-2">今週のリスト</h5>
 					</div>
 					<div class="card-body">
-						<%= render 'public/todolists/tab', todolists: @todolists %>
+						<%= render 'public/todolists/tab', todolists: @week_todolists %>
+					</div>
+				</div>
+			</div>
+
+			<div id="list-tab3" class="tab-pane">
+				<div class="card">
+					<div class="card-heading thead">
+						<h5 class="text-center p-2">今月のリスト</h5>
+					</div>
+					<div class="card-body">
+						<%= render 'public/todolists/tab', todolists: @month_todolists %>
 					</div>
 				</div>
 			</div>
@@ -150,3 +163,4 @@
 		</div>
 	</div>
 </div>
+
