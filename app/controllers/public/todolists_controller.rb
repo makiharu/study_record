@@ -25,8 +25,8 @@ class Public::TodolistsController < ApplicationController
     @todolist.label_lists.build
     # ラジオボタンで場合分けをするよりも変数名を別にした方がわかりやすい
     @today_todolists = Todolist.where(time_category: 'today')
-    # @week_todolists = Todolist.where(time_category: 'week')
-    # @month_todolists = Todolist.where(time_category: 'month')
+    @week_todolists = Todolist.where(time_category: 'week')
+    @month_todolists = Todolist.where(time_category: 'month')
   end
 
   def edit; end

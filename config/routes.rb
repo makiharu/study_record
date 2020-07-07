@@ -32,6 +32,8 @@ Rails.application.routes.draw do
       get :followers, on: :member
     end
 
+    put '/users/:id/hide' => 'users#hide', as:'users_hide'
+
     get 'todolists/complete'
     post 'todolists/complete', as: 'todolists_compelte'
 

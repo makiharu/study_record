@@ -23,10 +23,12 @@ class Public::BoardsController < ApplicationController
     @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
     @search = Board.ransack(params[:q])
     @searchboards = @search.result
-    #@page_boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
+    @board_ranking = Board.create_rankings
+
     @tags = Tag.all
     @board_tags = BoardTag.all
-    @new_boards = Board.order(created_at: :desc).limit(3)
+    @new_boards = Board.new_order
+    @new_board_tags = BoardTag.new_tag_order
     if params[:tag_id]
       tag = Tag.find(params[:tag_id])
       @boards = tag.boards.page(params[:page]).per(10)

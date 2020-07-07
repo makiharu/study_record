@@ -1,18 +1,21 @@
 <div class="row">
-	<section class="py-2">
+	<div class="mx-auto mb-2">
 		<h2 class="mb-3 text-center">To doリスト設定ページ</h2>
 		<div class="introduction">
 			<p class="text-center">リストの内容をクリアしたら、達成ボタンを押して、進捗をグラフで確認してみましょう。</p>
 		</div>
-	</section>
+		<div class="todo-image pl-5 ml-5">
+			<%= image_tag 'image01.jpg', :width => '400', :height => '300', :alt => 'top-image' %>
+		</div>
+	</div>
 </div>
 
+
 <div class="row">
-	<!--todolistフォーム-->
 	<div class="col-md-5">
-		<div class="card" style="width: 20rem;">
-			<div class="card-header">
-				To doリスト作成
+		<div class="card card-default mt-4" style="width: 22rem;">
+			<div class="card-heading thead">
+				<h5 class="text-center p-2">To doリスト作成</h5>
 			</div>
 	  		<div class="card-body">
 				<p class="card-text"></p>
@@ -24,124 +27,48 @@
 	<div class="col-md-7">
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-				<a href="#list-tab1" class="nav-link active" data-toggle="tab">未達成</a>
+				<a href="#list-tab1" class="nav-link active" data-toggle="tab">本日</a>
 			</li>
 			<li class="nav-item">
-				<a href="#list-tab2" class="nav-link" data-toggle="tab">達成済み</a>
+				<a href="#list-tab2" class="nav-link" data-toggle="tab">今週</a>
+			</li>
+			<li class="nav-item">
+				<a href="#list-tab3" class="nav-link" data-toggle="tab">今月</a>
 			</li>
 		</ul>
 
 		<div class="tab-content">
 			<div id="list-tab1" class="tab-pane active">
-		<!-- 		<div class="form-set"> -->
 				<div class="card">
-					<div class="card-header">
-						<h5>本日のTo do リスト</h5>
+					<div class="card-heading thead">
+						<h5 class="text-center p-2">本日のTo do リスト</h5>
 					</div>
+					<%# if @today_todolists.exists? %>
 					<div class="card-body">
-
-						<%#= render 'public/todolists/index', todolists: @todolists %>
-					<!--ここから--------------------------------------------------------------->
-					<% if @today_todolists.exists? %>
-						<div class="text-right">
-							<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#demoNormalModal">
-							    リセット
-							</button>
-
-							<!-- モーダルダイアログ -->
-							<div class="modal fade" id="demoNormalModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-							    <div class="modal-dialog" role="document">
-							        <div class="modal-content">
-							            <div class="modal-header">
-							                <h5 class="modal-title" id="demoModalTitle">確認</h5>
-							                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							                    <span aria-hidden="true">&times;</span>
-							                </button>
-							            </div>
-							            <div class="modal-body">
-							                リスト内容が全て失われます。よろしいですか？
-							            </div>
-							            <div class="modal-footer">
-							                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-							                <%= link_to 'OK', public_todolists_delete_path, method: :delete ,class: 'btn btn-danger' %>
-							            </div>
-							        </div>
-							    </div>
-							</div>
-						</div>
-
-						<table class="table table-hover table-responsive">
-							<thead>
-								<th>No.</th>
-								<th>リスト名</th>
-								<th>ラベル</th>
-								<th>テスト用</th>
-								<th>チェック</th>
-								<th>編集</th>
-							</thead>
-							<tbody>
-							<% @today_todolists.each_with_index do |todolist, i| %>
-								<% if todolist.done == false %>
-								<tr>
-									<th><%= "#{i + 1}: " %></th>
-									<td><%= todolist.content.truncate(30) %></td>
-									<td>
-									<!--問題箇所------------------------------------------->
-										<% todolist.label_lists.each do |label_list| %>
-											<span class="badge badge-secondary"><%= label_list.label.name %></span>
-										<% end %>
-									<!--問題箇所------------------------------------------->
-									</td>
-									<!--テスト用-->
-									<td><%= todolist.done %></td>
-									<td>
-										<%= form_with model: [:public, todolist], local: true do |f| %>
-											<%#= f.hidden_field :label, :value => todolist.label %>
-											<%= f.hidden_field :done, :value => true %><!--完了:trueを送りたい-->
-											<%= f.hidden_field :time_category, :value => todolist.time_category %>
-											<%= f.hidden_field :content, :value => todolist.content %>
-
-											<%= f.submit '達成', class: 'btn btn-outline-info btn-sm' %>
-
-										<!--リセットボタン-->
-
-										<% end %>
-									</td>
-									<td>
-										<%= link_to edit_public_todolist_path(todolist), class: 'btn btn-outline-success', style: 'border-radius: 30%' do %>
-											<i class="fas fa-cogs"></i>
-										<% end %>
-									</td>
-								</tr>
-								<% end %>
-							<% end %>
-							</tbody>
-						</table>
-						<span class="text-right">
-
-							<p><%= link_to '完了報告', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-info' %></p>
-						</span>
-
-						<span class="text-right">
-							<p><%= link_to 'リセット', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-danger', style: 'border-radius:50%' %></p>
-						</span>
-					<% else %>
-					<!--todoリストをまだ一つも作成していない場合-->
-						Todoリストをまだ設定していませんか？<br />
-						To doリスト作成欄からTo doリストを作成してみましょう！
-					<% end %>
-					<!--ここまで--------------------------------------------------------------->
+						<%= render 'public/todolists/tab', todolists: @today_todolists %>
 					</div>
 				</div>
 			</div>
 
+
 			<div id="list-tab2" class="tab-pane">
 				<div class="card">
-					<div class="card-header">
-						<h5>達成済みリスト</h5>
+					<div class="card-heading thead">
+						<h5 class="text-center p-2">今週のリスト</h5>
 					</div>
 					<div class="card-body">
-						<%= render 'public/todolists/tab', todolists: @todolists %>
+						<%= render 'public/todolists/tab', todolists: @week_todolists %>
+					</div>
+				</div>
+			</div>
+
+			<div id="list-tab3" class="tab-pane">
+				<div class="card">
+					<div class="card-heading thead">
+						<h5 class="text-center p-2">今月のリスト</h5>
+					</div>
+					<div class="card-body">
+						<%= render 'public/todolists/tab', todolists: @month_todolists %>
 					</div>
 				</div>
 			</div>
@@ -149,3 +76,4 @@
 		</div>
 	</div>
 </div>
+

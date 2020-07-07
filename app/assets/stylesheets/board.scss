@@ -14,6 +14,12 @@ a {
 }
 
 
+.board-title a{
+  color: #223a70; /*新規作成ボタン文字色:紺色*/
+}
+
+
+
 .board-head { /*掲示板一覧見出し　ページ左側*/
   margin-bottom: 28px;
 }
@@ -61,3 +67,6 @@ a {
   margin-bottom: 60px;
 }
 
+.thead {
+  background-color: #a0d8ef;
+}

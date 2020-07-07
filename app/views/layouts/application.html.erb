@@ -8,34 +8,32 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/8fbcbbf547.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
   </head>
 
   <body>
 
     <!--ヘッダーをadminかユーザーログインかで切替表示-->
 
-    <div class="header">
+    <header class="header">
+<!--  <img src="/assets/image02.jpg" class="hoge" size="50x50"> -->
+      <%#= image_tag 'image01.jpg', :width => '50', :height => '50', :alt => 'logo' %>
+      <%#= image_tag 'logo.png', :width => '200', :height => '140', :alt => 'logo' %>
       <% if admin_signed_in? %>
         <%= render 'shared/admin_header' %>
       <% else %>
         <%= render 'shared/header' %>
       <% end %>
-    </div>
-
+    </header>
 
       <%= render 'shared/flash_messages' %>
 
     <div class="container">
       <%= yield %>
-
     </div>
 
-    <!--リスト作ってパーシャルでかく-->
-    <!--   <div class="footer">
-        <span>運営情報</span>
-        この書き方だと色が変わらないので修正必要
-        <span><%#= link_to '運営情報', '#' %></span>
-      </div>
- -->
+      <%= render 'shared/footer' %>
+
+
   </body>
 </html>

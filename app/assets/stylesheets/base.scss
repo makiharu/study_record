@@ -1,11 +1,12 @@
 
 body {
-
-   font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-family: "Kokoro";
    background-color: #ffffff;/*ベースは白色*/
+   color: #333
 }
 
 
+.wf-hannari { font-family: "Hannari"; }
 
 #logo {
 	font-family: 'Nothing You Could Do', cursive;
@@ -21,14 +22,12 @@ body {
 }
 
 
-
-
  a {
   text-decoration: none;/*aタグの文字色と、余計なアンダーラインを消す*/
   color: #4b4b4b;
 }
 
-.header {
+header {
 	width: 100%;
 	padding: 20px 4% 10px;/*header内側の余白*/
 	background-color: #ffffff;/*背景色 #009966*/
@@ -37,7 +36,7 @@ body {
 	align-items: center;/*縦方向の中心*/
 }
 
-.header::after {
+header::after {
 	content: "";
 	display: block;
 	clear: both;
@@ -70,29 +69,31 @@ nav {
 
 
 .pagination {
+	margin-bottom: 40px;
 	justify-content: center;/*ページネーション全体に適用*/
 }
 
 
 
-.footer {
+footer {
 	width: 100%;
-	padding: 20px 4% 10px;/*header内側の余白*/
-	background-color: rgba(0,0,0,0.8);
+	padding: 20px 4% 10px;/*footer内側の余白*/
 	position: relative;
 	bottom: 0;
+	margin-top: 50px;
 	display: flex;/*header直下の子要素のレイアウト*/
 	align-items: center;/*縦方向の中心*/
-	color:white;
+	background-color: #3E3E3E3E;
 }
 
-.footer span {
-	color:white;
+footer p {
+	color: white;
 }
 
 
 
-.flash-messages { /*フラッシュメッセージ cssが効かない*/
+
+.flash-messages { /*フラッシュメッセージ */
     position: fixed;
     top: 60px;
     color: black;
@@ -154,3 +155,5 @@ nav {
   border-right: 15px solid #ffd700;
   z-index: 0;
 }
+
+
