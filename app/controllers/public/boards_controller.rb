@@ -27,6 +27,7 @@ class Public::BoardsController < ApplicationController
     @tags = Tag.all
     @board_tags = BoardTag.all
     @new_boards = Board.order(created_at: :desc).limit(3)
+    @new_board_tags = BoardTag.order(created_at: :desc).limit(3)
     if params[:tag_id]
       tag = Tag.find(params[:tag_id])
       @boards = tag.boards.page(params[:page]).per(10)
