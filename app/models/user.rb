@@ -79,6 +79,11 @@ class User < ApplicationRecord
     passive_relationships.find_by(following_id: user.id).present?
   end
 
+  #ログイン時に退会済み(is_deleted==true)ユーザーを弾く
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
+
   def self.find_for_oauth(auth)
     # user = User.where(uid: auth.uid, provider: auth.provider).first
 

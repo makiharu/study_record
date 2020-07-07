@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, unless: :login_admin
   before_action :authenticate_admin!, if: :login_admin
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update hide]
 
   def index
     @users = User.all
@@ -34,7 +34,13 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def complete; end
+  def hide
+    @user.update(is_deleted: true)
+    #logout
+    reset_session
+    flash[:notice] = "退会済みです。"
+    redirect_to root_path
+  end
 
   def follows
     @user = User.find(params[:id])
