@@ -1,18 +1,14 @@
-<% if todolists.exists? %>
-
-<table class="table table-hover table-responsive">
-	<%# if todolists.only_done.nil? %>
-<!--todoリストがdoneのものが存在していたら-->
-		<thead>
-			<th>No.</th>
-			<th>リスト名</th>
-			<th>ラベル</th>
-			<th>チェック</th>
-			<th>編集</th>
-		</thead>
-		<tbody>
-		<% todolists.each_with_index do |todolist, i| %>
-		    <% if todolist.done == false %>
+<% if todolists.not_done.exists? %>
+	<table class="table table-hover table-responsive">
+			<thead>
+				<th>No.</th>
+				<th>リスト名</th>
+				<th>ラベル</th>
+				<th>チェック</th>
+				<th>編集</th>
+			</thead>
+			<tbody>
+			<% todolists.not_done.each_with_index do |todolist, i| %>
 			<tr>
 				<th><%= "#{i + 1}: " %></th>
 				<td><%= todolist.content.truncate(30) %></td>
@@ -38,15 +34,13 @@
 				</td>
 			</tr>
 			<% end %>
-		<% end %>
-		</tbody>
-	</table>
-	<span class="text-right">
-		<p><%= link_to '非表示（リセットボタン)', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-info' %></p>
-	</span>
-
+			</tbody>
+		</table>
+<!-- 	<span class="text-right">
+		<p><%#= link_to '非表示（リセットボタン)', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-info' %></p>
+	</span> -->
 <% else %>
-<!--todoリストをまだ一つも作成していない場合-->
+<!--todoリストが全て完了した場合-->
 	Todoリストをまだ設定していませんか？<br />
 	To doリスト作成欄からTo doリストを作成してみましょう！
 <% end %>
