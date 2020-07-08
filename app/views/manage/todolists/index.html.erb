@@ -29,7 +29,7 @@
 					<tr>
 						<td><%= todolist.id %></td>
 						<td><%#= todolist.label, edit_manage_todolist_path(todolist) %></td>
-						<td><%= l todolist.created_at %></td>
+						<td class="small"><%= l todolist.created_at %></td>
 						<!--boolean型の日本語化、これでもok-->
 						<td><%#= todolist.done ? '無効' : '有効' %></td>
 						<td><%= link_to "変更", edit_manage_todolist_path(todolist), class: 'btn btn-outline-success', style: "border-radius: 50%" %></td>

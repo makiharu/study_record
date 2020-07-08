@@ -34,13 +34,8 @@ Rails.application.routes.draw do
 
     put '/users/:id/hide' => 'users#hide', as:'users_hide'
 
-    get 'todolists/complete'
-    post 'todolists/complete', as: 'todolists_compelte'
-
     resources :todolists, except: [:show]
 
-    # todolistの中身をリセットさせるために追加
-    delete '/todolists_delete', to: 'todolists#empty', as: 'todolists_delete'
 
     # get 'board_comments/index'
     # get 'board_comments/edit'
@@ -56,5 +51,4 @@ Rails.application.routes.draw do
     get 'search/search'
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -8,7 +8,6 @@ class Manage::BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
-    @board.user_id = current_user.id
     if @board.save
       redirect_to public_board_path(@board)
       flash[:notice] = "success"
@@ -18,15 +17,16 @@ class Manage::BoardsController < ApplicationController
   end
 
   def index
-    # @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
     @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
     @search = Board.ransack(params[:q])
     @searchboards = @search.result
     #@page_boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
     @tags = Tag.all
-
-    # @board = Board.all
     @board_tags = BoardTag.all
+    if params[:tag_id]
+      tag = Tag.find(params[:tag_id])
+      @boards = tag.boards.page(params[:page]).per(10)
+    end
   end
 
   def show
@@ -40,7 +40,7 @@ class Manage::BoardsController < ApplicationController
   end
 
   def edit
-    @board.user_id = current_user.id
+    # @board.user_id = current_user.id
   end
 
   def update

@@ -25,11 +25,11 @@
 		    <h5 class="text-center p-2">今週のTo doリスト</h5>
 		  </div>
 		  <div class="card-body">
-		    <% if @week_todolists.exists? %>
+<!-- 		    <%#if @week_todolists.exists? %> -->
 				<%= render 'public/todolists/index', todolists: @week_todolists %>
-			<% else %>
-				<%= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
-			<% end %>
+			<%# else %>
+				<%#= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
+			<%# end %>
 		  </div>
 		</div>
 
@@ -39,11 +39,11 @@
 			  <h5 class="text-center p-2">今月のTo doリスト</h5>
 			</div>
 			<div class="card-body">
-				<% if @month_todolists.exists? %>
+				<%# if @month_todolists.exists? %>
 					<%= render 'public/todolists/index', todolists: @month_todolists %>
-				<% else %>
-					<%= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
-				<% end %>
+				<%# else %>
+					<%#= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
+				<%# end %>
 			</div>
 		</div>
 

@@ -49,30 +49,30 @@ class Public::TodolistsController < ApplicationController
     end
   end
 
-  def empty
-    user = User.find(current_user.id)
-    today_todolists = Todolist.where(time_category: 'today', user_id: user.id)
-    today_todolists.destroy_all
-    redirect_to public_todolists_path, danger: "１日分のリストを全てリセットしました"
-  end
+  # def empty
+  #   user = User.find(current_user.id)
+  #   today_todolists = Todolist.where(time_category: 'today', user_id: user.id)
+  #   today_todolists.destroy_all
+  #   redirect_to public_todolists_path, danger: "１日分のリストを全てリセットしました"
+  # end
 
-  def compelte
-   # bindign.pry
-    @completed_list = Todolist.new(completed_params)
-    @compeleted_list.save
-    # @finished_lists = Todolist.where(time_category: "today")
-    # @finishe_list = Todolist.find_by(done: params[:todolist][:time_category])
-  end
+  # def compelte
+  #  # bindign.pry
+  #   @completed_list = Todolist.new(completed_params)
+  #   @compeleted_list.save
+  #   # @finished_lists = Todolist.where(time_category: "today")
+  #   # @finishe_list = Todolist.find_by(done: params[:todolist][:time_category])
+  # end
 
   private
 
   def todolist_params
-    params.require(:todolist).permit(:content, :time_category, :updated_date,:done, label_lists_attributes: [:label_id])
+    params.require(:todolist).permit(:content, :time_category, :update_date,:done, label_lists_attributes: [:label_id])
   end
 
-  def completed_params
-    params.require(:todolist).permit(:id, :content, :time_category, :label)
-  end
+  # def completed_params
+  #   params.require(:todolist).permit(:id, :content, :time_category, :label)
+  # end
 
   def set_todolist
     @todolist = Todolist.find(params[:id])
