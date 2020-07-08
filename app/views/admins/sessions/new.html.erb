@@ -1,36 +1,37 @@
-<div class="row">
-  <div class="col-md-6 offset-md-6">
-    <h2><i class="fas fa-user-cog"></i>管理者ログイン</h2>
+  <div class="row">
+    <div class="col-md-7 offset-md-3">
+      <div class="admin-session p-3">
+      <h2 class="text-center"><i class="fas fa-user-cog"></i>管理者ログイン</h2>
 
-    <div class="form-horizontal">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-horizontal mt-5">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-         <div class="form-group">
-          <i class="far fa-envelope"></i>
-          <%= f.label :メールアドレス %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control",placeholder:"メールアドレス入力" %>
-        </div>
+           <div class="form-group">
+            <i class="far fa-envelope"></i>
+            <%= f.label :メールアドレス %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control",placeholder:"メールアドレス入力" %>
+          </div>
 
-         <div class="form-group">
-          <i class="fa fa-lock"></i>
-          <%= f.label :パスワード %><br />
-          <%= f.password_field :password, autocomplete: "current-password", class:"form-control",placeholder:"パスワード入力" %>
-        </div>
+           <div class="form-group">
+            <i class="fa fa-lock"></i>
+            <%= f.label :パスワード %><br />
+            <%= f.password_field :password, autocomplete: "current-password", class:"form-control",placeholder:"パスワード入力" %>
+          </div>
 
-        <% if devise_mapping.rememberable? %>
-          <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "ログイン", class: "btn btn-info form-control" %>
           </div>
         <% end %>
 
-        <div class="actions">
-          <%= f.submit "ログイン", class: "btn btn-outline-primary form-control" %>
-        </div>
-      <% end %>
-
-      <%= render "admins/shared/links" %>
-    </div>
-
-  </div>
+        <%= render "admins/shared/links" %>
+      </div>
 </div>
+    </div>
+  </div>
