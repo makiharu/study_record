@@ -1,0 +1,49 @@
+<div class="card card-default mt-5 mr-4">
+	<div class="card-heading thead">
+		<h5 class="text-center p-2">掲示板内検索</h5>
+	</div>
+	<table class="table">
+	   <!--タイトルと本文の検索-->
+	   <!--orでつなげることで複数のカラムが検索できる-->
+	   <%= search_form_for(search, url: public_boards_path, html: {class: 'form-inline'}) do |f| %>
+	   	<%#= f.label :title_or_body_cont, '検索はこちら' %>
+	   <p><%= f.search_field :title_or_body_cont, class: 'searchform', placeholder: '検索はこちら' %>
+	   </p>
+			<i class="fas fa-search"><%= f.submit %></i>
+		<% end %>
+		<tbody>
+		<tr>
+			<td>
+			<% if admin_signed_in? %>
+				<%= link_to manage_boards_path do %>
+					<span>全記事(<%= Board.all.count %>)</span>
+				<% end %>
+			<% else %>
+				<%= link_to public_boards_path do %>
+					<span>全記事(<%= Board.all.count %>)</span>
+				<% end %>
+			<% end %>
+
+			</td>
+		</tr>
+		<% tags.each do |tag| %>
+			<!--件数が0件のものとステータスが無効なものはサイドバーに表示させない-->
+			<% if tag.board_tags.count != 0 && tag.is_void == false %>
+			<tr>
+				<td class="tag-name">
+				<% if admin_signed_in? %>
+					<%= link_to manage_boards_path(tag_id: tag.id) do  %>
+						<span><%= tag.name %>(<%= tag.board_tags.count %>)</span>
+					<% end %>
+				<% else %>
+					<%= link_to public_boards_path(tag_id: tag.id) do  %>
+						<span><%= tag.name %>(<%= tag.board_tags.count %>)</span>
+					<% end %>
+				<% end %>
+				</td>
+			</tr>
+			<% end %>
+		<% end %>
+		</tbody>
+	</table>
+</div>

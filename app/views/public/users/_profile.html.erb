@@ -38,6 +38,7 @@
 		</tr>
 		<tr>
 			<td>
+	<% if user_signed_in? %>
 			<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
 			<% if user.followings.count != 0 %>
 				  フォローリスト<span class="badge badge-info"><%= link_to user.followings.count, follows_public_user_path %></span>
@@ -45,6 +46,7 @@
 				  フォローリスト<span class="badge badge-dark"><%= user.followings.count %></span>
 			<% end %>
 			</td>
+
 		</tr>
 		<tr>
 			<td>
@@ -56,7 +58,7 @@
 			</td>
 		</tr>
 		<!--adminはページアクセスのみなので、ここは非表示-->
-		<% if user != current_admin %>
+		<%# if user != current_admin %>
 		<tr>
 			<!------------フォローボタン----------------------------------->
 			<span id="follow_buttons_<%= user.id %>">
@@ -64,6 +66,7 @@
 			</span>
 			<!------------フォローボタン----------------------------------->
 		</tr>
+		<%#end %>
 		<tr>
 			<th class="col-3">
 			<%= link_to edit_public_user_path(user), class: 'btn btn-outline-success btn-block' do %>
