@@ -11,4 +11,5 @@ class Todolist < ApplicationRecord
 
   scope :only_done, -> { where(done: true) }
 
+
 end

@@ -23,12 +23,12 @@
 				</td>
 				<td>
 					<%= form_with model: [:public, todolist], local: true do |f| %>
-						<%#= f.hidden_field :label, :value => todolist.label %>
 						<%= f.hidden_field :done, :value => true %><!--完了:を送りたい-->
 						<%= f.hidden_field :time_category, :value => todolist.time_category %>
 						<%= f.hidden_field :content, :value => todolist.content %>
-
-						<%= f.submit '達成', class: 'btn btn-outline-info btn-sm' %>
+						<!--追加、カラムを追加する必要ないのでは-->
+						<%#= f.hidden_field :update_date, :value => todolist.updated_at %>
+						<%= f.submit '完了', class: 'btn btn-outline-info btn-sm' %>
 					<% end %>
 				</td>
 				<td>

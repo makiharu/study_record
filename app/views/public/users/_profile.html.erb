@@ -29,16 +29,18 @@
 			</td>
 		</tr>
 		<tr>
-			<td>お気に入り投稿一覧</td>
+			<td>
+				投稿数: <span class="badge badge-info"><%= user.boards.count %></span>
+			</td>
 		</tr>
 		<tr>
-			<td>
-				投稿数<span class="badge badge-info"><%= user.boards.count %></span>
+			<td>お気に入り投稿数: <span class="badge badge-info">
+				<%= user.board_likes.count %></span>
 			</td>
 		</tr>
 		<tr>
 			<td>
-	<% if user_signed_in? %>
+		<% if user_signed_in? %>
 			<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
 			<% if user.followings.count != 0 %>
 				  フォローリスト<span class="badge badge-info"><%= link_to user.followings.count, follows_public_user_path %></span>

@@ -5,6 +5,9 @@
 			<td><%= "#{i + 1}: " %></td>
 			<td ><%= link_to todolist.content, edit_public_todolist_path(todolist) %></td>
 		</tr>
+		<p>テスト:達成日時を取得したい <%= l todolist.update_date %></p>
+		<p>テスト:更新日時 <%= l todolist.updated_at %></p>
+		<p>テスト:作成日時 <%= l todolist.created_at %></p>
 		<% end %>
 	</tbody>
 </table>

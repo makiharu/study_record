@@ -6,7 +6,6 @@
 		</div>
 		<div class="todo-image pl-5 ml-5 mb-3">
 			<%= image_tag 'image05.jpg', :width => '500', :height => '250', :alt => 'top-image' %>
-			<%#= image_tag 'image01.jpg', :width => '400', :height => '300', :alt => 'top-image' %>
 		</div>
 	</div>
 </div>
@@ -44,7 +43,6 @@
 					<div class="card-heading thead">
 						<h5 class="text-center p-2">本日のTo do リスト</h5>
 					</div>
-					<%# if @today_todolists.exists? %>
 					<div class="card-body">
 						<%= render 'public/todolists/tab', todolists: @today_todolists %>
 					</div>
