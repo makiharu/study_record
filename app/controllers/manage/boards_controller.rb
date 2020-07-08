@@ -8,7 +8,6 @@ class Manage::BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
-    @board.user_id = current_user.id
     if @board.save
       redirect_to public_board_path(@board)
       flash[:notice] = "success"
@@ -41,7 +40,7 @@ class Manage::BoardsController < ApplicationController
   end
 
   def edit
-    @board.user_id = current_user.id
+    # @board.user_id = current_user.id
   end
 
   def update

@@ -1,51 +1,54 @@
 <div class="row">
+	<div class="mx-auto">
+		<h2 class="text mr-5">掲示板一覧</h2>
+	</div>
+</div>
+<div class="row">
 	<div class="col-md-3">
 		<!--掲示板サイドバー-->
 		<%= render 'public/boards/sidebar', search: @search, tags: @tags %>
 	</div>
 
-<div class="col-md-9">
-	<div class="board-title">
-	<p class="text-right">
-		<%= link_to '新規作成 +', new_public_board_path, class: "btn btn-outline-dark" %>
-		<%= link_to "+", new_public_board_path, class: "btn btn-info", style: "border-radius: 50%" %>
-	</p>
+	<div class="col-md-9 mt-4">
+		<div class="board-title">
+		<p class="text-right">
+			<%#= link_to 'トップページ +', new_public_board_path, class: "btn btn-outline-dark" %>
+		</p>
+		</div>
+
+		<table class="table table-hover">
+			<thead class="thead">
+				<th>ユーザー</th>
+				<th>タイトル</th>
+				<th>タグ</th>
+				<td>投稿日時</td>
+				<td>詳細</td>
+			</thead>
+			<tbody>
+			<% @boards.each do |board| %>
+				<tr>
+					<td><%= link_to board.user.name, public_user_path(board.user) %></td>
+					<td>
+						<%= board.title %>
+					</td>
+					<td>
+						<% board.board_tags.each do |board_tag| %>
+						<span class="badge badge-secondary">
+							<%= board_tag.tag.name %>
+						</span>
+						<% end %>
+					</td>
+					<td class="small"><%= l board.created_at %></td>
+					<td><%= link_to '詳細', manage_board_path(board), class: 'btn btn-outline-info' %></td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
 	</div>
+<div class="mx-auto mt-4">
+<%= paginate @boards %>
+</div>
 
-	<table class="table table-hover table-responsive">
-		<thead class="thead">
-			<th>ユーザー名</th>
-			<th>タイトル</th>
-			<th>タグ</th>
-			<th>投稿日時</th>
-			<th>詳細</th>
-		</thead>
-		<tbody>
-		<% @boards.each do |board| %>
-			<tr>
-				<td><%= link_to board.user.name, public_user_path(board.user) %></td>
-				<td>
-					<%= board.title %>
-				</td>
-				<td>
-					<% board.board_tags.each do |board_tag| %>
-					<span class="badge badge-secondary">
-						<%= board_tag.tag.name %>
-					</span>
-					<% end %>
-				</td>
-				<td><%= l board.created_at %></td>
-				<td><%= link_to '詳細', manage_board_path(board), class: 'btn btn-outline-info' %></td>
-			</tr>
-		<% end %>
-		</tbody>
-
-	</table>
-
-<%#= paginate @page_boards %>
-
-
-	</div>
 </div>
 
 

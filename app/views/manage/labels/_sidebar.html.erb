@@ -1,0 +1,26 @@
+<div class="card card-default mt-5 mr-4">
+	<div class="card-heading thead">
+		<h5 class="text-center p-2">ラベル検索</h5>
+	</div>
+	<!--セレクトタグで切り替え表示ができるようにしたい-->
+	<table class="table">
+		<tbody>
+		<tr>
+			<td>
+				<%= link_to manage_labels_path do %>
+					<span>全記事(<%= Board.all.count %>)</span>
+				<% end %>
+			</td>
+		</tr>
+		<% labels.each do |label| %>
+		<tr>
+			<td class="label-name">
+				<%#= link_to manage_boards_path(tag_id: tag.id) do  %>
+					<span><%= label.name %>(<%#= tag.board_tags.count %>)</span>
+				<%# end %>
+			</td>
+		</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>
