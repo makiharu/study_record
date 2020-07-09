@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
+
   def new
     @contact = Contact.new
   end
@@ -7,7 +9,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     if @contact.save
       ContactMailer.contact_mail(@contact).deliver
-      redirect_to root_path, notice: 'メールの送信が完了しました'
+      redirect_to public_user_path(current_user), notice: 'メールの送信が完了しました'
     else
       render :new
     end
