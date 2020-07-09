@@ -29,19 +29,8 @@ class Public::TodolistsController < ApplicationController
     @week_todolists = Todolist.where(time_category: 'week', user_id: current_user.id)
     @month_todolists = Todolist.where(time_category: 'month', user_id: current_user.id)
   end
-  # def show
-  #   # @user = User.find(params[:user_id])
-  #   @todolist = Todolist.new
-  #   @todolist.label_lists.build
-  #   # ラジオボタンで場合分けをするよりも変数名を別にした方がわかりやすい
-  #   @today_todolists = Todolist.where(time_category: 'today', user_id: current_user.id)
-  #   @week_todolists = Todolist.where(time_category: 'week', user_id: current_user.id)
-  #   @month_todolists = Todolist.where(time_category: 'month', user_id: current_user.id)
-  # end
 
   def edit
-    # @user = User.find(params[:user_id][:id]
-    # @todolist = Todolist.find(params[:id])
   end
 
   def update

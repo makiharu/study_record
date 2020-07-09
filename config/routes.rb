@@ -26,16 +26,13 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: %i[index show edit update] do
-      resources :todolists
+      resources :todolists, except: [:show]
       resources :relationships, only: %i[create destroy]
       get :follows, on: :member
       get :followers, on: :member
     end
 
     put '/users/:id/hide' => 'users#hide', as:'users_hide'
-
-    # resources :todolists, except: [:show]
-
 
     # get 'board_comments/index'
     # get 'board_comments/edit'
