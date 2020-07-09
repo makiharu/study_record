@@ -9,10 +9,7 @@
 		<div class="form-group">
 			<!--属性追加-->
 			<%= f.fields_for :label_lists do |list| %>
-				<%= list.label :ラベル, class: 'label_id' %>
-				<%#= list.label :label_id %>
-				<!--ステータス有効のもののみ選択させたい-->
-				<%#= list.collection_select :label_id, Label.all, :id, :name, {}, class: 'form-control-sm' %>
+				<%= list.label :選択, class: 'label_id' %>
 				<%= list.collection_select :label_id, Label.where(is_void: false), :id, :name, {}, class: 'form-control-sm' %>
 			<% end %>
 		</div>
@@ -70,7 +67,6 @@
 		</div>
 		<div class="action">
 			<%= f.submit '保存する', class: 'btn btn-outline-info' %>
-			<%= f.submit "clear", type: :reset %>
 		</div>
 	<% end %>
 <% end %>

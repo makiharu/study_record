@@ -1,17 +1,17 @@
-<!--mr-1 :0.25rem /mr/mt/mb/ml-->
 <div class="d-flex align-items-center mt-3 mb-2">
   <div class="mr-auto p-1">
-    <h2>掲示板詳細</h2>
+    <h2>掲示板詳細 :
+    <span><%= link_to '削除', manage_board_path(@board), method: :delete, data: { confirm: '本当に削除しますか？'},class: 'btn btn-danger btn-lg' %></span>
+    </h2>
   </div>
   <div class="ml-auto">
-    <%= link_to '一覧', manage_boards_path, class: 'btn btn-outline-dark' %>
-    <%= link_to '編集', edit_manage_board_path(@board), class: 'btn btn-outline-dark' %>
+    <%= link_to '一覧に戻る', manage_boards_path, class: 'btn btn-outline-dark' %>
   </div>
 </div>
 
 
 <div class="form-set">
-  <div class="board-heading">
+  <div class="board-head">
     <div class="text-left">
       <h4><%= @board.title %></h4>
       <% @board.tags.each do |tag| %>
@@ -61,7 +61,7 @@
                 <% end %>
             </span>
 
-            <%= link_to '削除', public_board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
+            <%= link_to '削除', manage_board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
 
             <!--コメントに対するいいねボタン Ajax化-->
             <div id="comment_likes_buttons_<%= comment.id %>">

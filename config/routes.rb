@@ -33,15 +33,12 @@ Rails.application.routes.draw do
     end
 
     put '/users/:id/hide' => 'users#hide', as:'users_hide'
-
-    # get 'board_comments/index'
-    # get 'board_comments/edit'
   end
 
   namespace :manage do
     get 'home/top'
     resources :users, except: [:destroy]
-    resources :boards, only: %i[index show update edit]
+    resources :boards, only: %i[index show update edit destroy]
     resources :labels, except: [:show]
     resources :tags, except: [:show]
 

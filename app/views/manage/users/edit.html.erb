@@ -24,11 +24,7 @@
 			<div class="form-group">
 				<%= f.label :会員ステータス %>
 
-				<!--退会処理をここでもできるようにする-->
-				<!--管理人はユーザーを退会させる権限を持つ-->
 				<% if @user.is_deleted == false %>
-				<%#= f.check_box :is_deleted, {}, 'false', 'true' %>
-
 				<%= f.radio_button :is_deleted, :false %>
 				  <span class="badge badge-primary">有効会員</span>
 				<%= f.radio_button :is_deleted, :true %>

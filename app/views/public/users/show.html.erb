@@ -5,7 +5,6 @@
 			<p class="text-center">日々の進捗をグラフでチェックしましょう。</p>
 		</div>
 		<div class="todo-image pl-5">
-			<%#= image_tag 'image05.jpg', :width => '300', :height => '250', :alt => 'top-image' %>
 			<%= image_tag 'image01.jpg', :width => '400', :height => '300', :alt => 'top-image' %>
 		</div>
 	</div>
@@ -21,35 +20,25 @@
 
 
 		<div class="card">
-		  <div class="card-heading thead">
-		    <h5 class="text-center p-2">今週のTo doリスト</h5>
-		  </div>
-		  <div class="card-body">
-<!-- 		    <%#if @week_todolists.exists? %> -->
-				<%= render 'public/todolists/index', todolists: @week_todolists %>
-			<%# else %>
-				<%#= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
-			<%# end %>
-		  </div>
+			<div class="card-heading thead">
+		  		<h5 class="text-center p-2">今週のTo doリスト</h5>
+		  	</div>
+		  	<div class="card-body">
+		  		<%= render 'public/todolists/index', todolists: @week_todolists %>
+		  	</div>
 		</div>
 
 
 		<div class="card">
 			<div class="card-heading thead">
-			  <h5 class="text-center p-2">今月のTo doリスト</h5>
+				<h5 class="text-center p-2">今月のTo doリスト</h5>
 			</div>
 			<div class="card-body">
-				<%# if @month_todolists.exists? %>
-					<%= render 'public/todolists/index', todolists: @month_todolists %>
-				<%# else %>
-					<%#= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
-				<%# end %>
+				<%= render 'public/todolists/index', todolists: @month_todolists %>
 			</div>
 		</div>
 
 	</div>
-
-
 
 	<!--todolist完了で受け取った値をグラフで表示する-->
 	<div class="col-md-8">
@@ -66,16 +55,13 @@
 		 	</div>
 			<div class="card-body mt-5">
 				<div class="card-text">
-					<p>1日ごとのタスク達成数/ 率</p>
+					<p>1日ごとのタスク達成数</p>
 				</div>
-				<%#= line_chart @user.oneday_list_sum %>
 				<%= line_chart @user.week_list %>
 			</div>
 	     </div>
 	</div>
 </div>
-
-
 
 
 
