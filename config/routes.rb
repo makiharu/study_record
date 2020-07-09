@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  namespace :manage do
-    get 'labels/index'
-  end
+
+  # namespace :manage do
+  #   get 'labels/index'
+  # end
   root 'home#top'
   get 'home/about', to: 'home#about'
+  resources :contacts, only: %i[new create]
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',

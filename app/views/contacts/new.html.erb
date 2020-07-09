@@ -1,0 +1,35 @@
+<h1>お問い合わせフォーム</h1>
+
+<%= form_with(model: @contact, local: true) do |f| %>
+<%= render 'shared/error_messages', obj: @contact %>
+<!--   <%# if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%#= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <%# contact.errors.full_messages.each do |message| %>
+        <li><%#= message %></li>
+      <%# end %>
+      </ul>
+    </div>
+  <%# end %> -->
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit '送信する' %>
+  </div>
+<% end %>
