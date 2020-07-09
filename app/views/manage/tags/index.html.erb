@@ -11,8 +11,21 @@
 				</button>
 				<%= render 'form', tag: @tag, obj: @tag %>
 			</div>
-
 		</div>
+
+ <div class="ml-auto boards__linkBox">
+ 	<!--selectタグを使って有効無効を切り替えられるようにする-->
+
+    <%= form_tag manage_tags_path, method: :get, class: 'tags__searchForm' do %>
+
+    <%= select_tag 'is_void', options_for_select([["有効", "false"],["無効", "true"]]), :id=>"false" %>
+
+
+<% end %>
+
+
+  </div>
+
 
 		<table class="table table-hover">
 			<thead class="thead">

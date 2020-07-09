@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Userモデルのテスト', type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
-    # 名前が空欄で登録できない→名前を空欄で登録したらfalse
+  # 名前が空欄で登録できない→名前を空欄で登録したらfalse
   # バリデーションしていない状態で失敗→設定したら成功
   # 登録できるかできないか 登録できたら失敗
   # エラーメッセージがなければ失敗
@@ -33,5 +32,17 @@ RSpec.describe 'Userモデルのテスト', type: :model do
   			is_expected.to eq false
   		end
   	end
+
+    context "データが正しく保存される" do
+      before do
+        @user = User.new
+        @user.name = "hogeo"
+        @user.introduction = "今日も晴れです。"
+        @user.save
+      end
+      it "全て入力してあるので保存される" do
+        expect(@user).to be_valid
+      end
+    end
   end
 end

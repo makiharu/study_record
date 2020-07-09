@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  # namespace :manage do
-  #   get 'labels/index'
-  # end
   root 'home#top'
   get 'home/about', to: 'home#about'
   resources :contacts, only: %i[new create]
@@ -29,15 +26,13 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: %i[index show edit update] do
+      resources :todolists, except: [:show]
       resources :relationships, only: %i[create destroy]
       get :follows, on: :member
       get :followers, on: :member
     end
 
     put '/users/:id/hide' => 'users#hide', as:'users_hide'
-
-    resources :todolists, except: [:show]
-
 
     # get 'board_comments/index'
     # get 'board_comments/edit'
@@ -46,7 +41,7 @@ Rails.application.routes.draw do
   namespace :manage do
     get 'home/top'
     resources :users, except: [:destroy]
-    resources :boards, only: %i[index show update]
+    resources :boards, only: %i[index show update edit]
     resources :labels, except: [:show]
     resources :tags, except: [:show]
 

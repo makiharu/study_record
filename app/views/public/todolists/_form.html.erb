@@ -1,5 +1,40 @@
 <div class="form-horizontal">
-	<%= form_with model: [:public, todolist], local: true do |f| %>
+<% if controller.action_name == 'index' %>
+	<%= form_with model: [:public, todolist], url:  public_user_todolists_path, local: true do |f| %>
+				<%= render 'shared/error_messages', obj: todolist %>
+		<div class="form-group">
+			<%= f.label :内容 %>
+			<%= f.text_field :content, class: 'form-control' %>
+		</div>
+		<div class="form-group">
+			<!--属性追加-->
+			<%= f.fields_for :label_lists do |list| %>
+				<%= list.label :ラベル, class: 'label_id' %>
+				<%#= list.label :label_id %>
+				<!--ステータス有効のもののみ選択させたい-->
+				<%#= list.collection_select :label_id, Label.all, :id, :name, {}, class: 'form-control-sm' %>
+				<%= list.collection_select :label_id, Label.where(is_void: false), :id, :name, {}, class: 'form-control-sm' %>
+			<% end %>
+		</div>
+		<div class="form-group">
+			<%= f.radio_button :time_category, :today, {value: "today", style: 'display: inline-block;'} %>
+			<%= f.label :time_category_today, "本日", class: 'time_category' %>
+
+			<%= f.radio_button :time_category, :week, { value: "week", style: 'display: inline-block;'} %>
+			<%= f.label :time_category_week, "今週", class: 'time_category' %>
+
+			<%= f.radio_button :time_category, :month, { value: "month", style: 'display: inline-block;'} %>
+			<%= f.label :time_category_month, "今月", class: 'time_category' %>
+		</div>
+		<div class="action">
+			<%= f.submit '保存する', class: 'btn btn-outline-info' %>
+			<%= f.submit "clear", type: :reset %>
+		</div>
+	 <% end %>
+
+<!-- controller.action_name == 'edit'-->
+<% else %>
+	<%= form_with model: [:public, todolist], url:  public_user_todolist_path, local: true do |f| %>
 		<%= render 'shared/error_messages', obj: todolist %>
 		<div class="form-group">
 			<%= f.label :内容 %>
@@ -11,6 +46,7 @@
 				<%= list.label :ラベル, class: 'label_id' %>
 				<%#= list.label :label_id %>
 				<%= list.collection_select :label_id, Label.all, :id, :name, {}, class: 'form-control-sm' %>
+				<%= list.collection_select :label_id, Label.where(is_void: false), :id, :name, {}, class: 'form-control-sm' %>
 			<% end %>
 		</div>
 		<!--編集ページの時のみ表示する-->
@@ -36,8 +72,8 @@
 			<%= f.submit '保存する', class: 'btn btn-outline-info' %>
 			<%= f.submit "clear", type: :reset %>
 		</div>
-
 	<% end %>
+<% end %>
 </div>
 
 

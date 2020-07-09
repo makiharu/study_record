@@ -1,52 +1,34 @@
-<%#= form_with(model: board, url: public_board_path, local: true) do |f| %>
-
+<div class="form-horizontal">
 <%= form_for [:public, board] do |f| %>
-
 	<%= render 'shared/error_messages', obj: board %>
-
-	<div class="form-group">
+	<div class="form-group mt-4">
 		<%= f.label :タイトル %>
 		<%= f.text_field :title, class: 'form-control' %>
 	</div>
-
-	<div class="form-group">
+	<div class="form-group mt-5">
 		<%= f.label :本文 %>
-		<%= f.text_area :body, class: 'form-control', rows: 8 %>
+		<%= f.text_area :body, class: 'form-control', rows: 12 %>
 	</div>
-
 	<div class="form-group">
 		<%= f.attachment_field :image, placeholder: 'プロフィール画像', class: 'board-image-form' %>
 	</div>
-
 	<div class="form-group">
     <span>タグ</span>
-    <!--多対多のアソシエーションの設定により、boardオブジェクトにtag_idsというプロパティが追加されており、
-    	このtag_idsにタグIDのリストを渡すことで、掲示板に複数のタグを紐づけることができる-->
-
-    <!--第二引数には、tagオブジェクトのリストを渡してる-->
-    <!--第三引数には、checkboxのvalueに渡すプロパティを指定している。ここでは第二引数で、tagオブジェクトを渡しているので、
-    	個々のtagオブジェクトのidの値がcheckboxのvalueにセットされる-->
-    <!--第四引数には、各チェックボックスのラベル名として、tagオブジェクトのnameプロパティの値をラベル名として指定している-->
-
-    <!--無効のものは表示させないようにする-->
-	    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+    	<!--メソッドを作ること-->
+	    <%= f.collection_check_boxes(:tag_ids, Tag.where(is_void: false), :id, :name) do |tag| %>
 	      <div class="form-check">
 	        <%= tag.label class: 'form-check-label' do %>
-	        <!--tag.labelの中に、check_boxとtextを設定-->
 	          <%= tag.check_box class: 'form-check-input' %>
-	           <!--tag.textのtextは、先ほど、第四引数に指定したnameが表示される-->
 	          <%= tag.text %>
 	        <% end %>
 	      </div>
 	    <% end %>
   	</div>
-
-
 	<div class="actions">
-		<!--ボタンサイズ調整-->
 		<%= f.submit '投稿する', class: 'btn btn-outline-info form-control' %>
 	</div>
 
 <% end %>
+</div>
 
 

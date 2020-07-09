@@ -11,7 +11,7 @@ class Public::TodolistsController < ApplicationController
     @todolist = Todolist.new(todolist_params)
     @todolist.user_id = current_user.id
     if @todolist.save
-      redirect_to public_todolists_path
+      redirect_to public_user_todolists_path
       flash[:notice] = "リストを作成しました"
     else
       @todolists = Todolist.all
@@ -21,19 +21,22 @@ class Public::TodolistsController < ApplicationController
   end
 
   def index
+    @user = current_user
     @todolist = Todolist.new
     @todolist.label_lists.build
     # ラジオボタンで場合分けをするよりも変数名を別にした方がわかりやすい
-    @today_todolists = Todolist.where(time_category: 'today')
-    @week_todolists = Todolist.where(time_category: 'week')
-    @month_todolists = Todolist.where(time_category: 'month')
+    @today_todolists = Todolist.where(time_category: 'today', user_id: current_user.id)
+    @week_todolists = Todolist.where(time_category: 'week', user_id: current_user.id)
+    @month_todolists = Todolist.where(time_category: 'month', user_id: current_user.id)
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
+    @todolist.user_id = current_user.id
     if @todolist.update(todolist_params)
-      redirect_to public_todolists_path
+      redirect_to public_user_todolists_path
       flash[:notice] = "内容を保存しました"
     else
       render :edit
@@ -42,37 +45,19 @@ class Public::TodolistsController < ApplicationController
 
   def destroy
     if @todolist.destroy
-      redirect_to public_todolists_path
+      redirect_to public_user_todolists_path
       flash[:alert] = "削除しました"
     else
       render :edit
     end
   end
 
-  # def empty
-  #   user = User.find(current_user.id)
-  #   today_todolists = Todolist.where(time_category: 'today', user_id: user.id)
-  #   today_todolists.destroy_all
-  #   redirect_to public_todolists_path, danger: "１日分のリストを全てリセットしました"
-  # end
-
-  # def compelte
-  #  # bindign.pry
-  #   @completed_list = Todolist.new(completed_params)
-  #   @compeleted_list.save
-  #   # @finished_lists = Todolist.where(time_category: "today")
-  #   # @finishe_list = Todolist.find_by(done: params[:todolist][:time_category])
-  # end
 
   private
 
   def todolist_params
     params.require(:todolist).permit(:content, :time_category, :update_date,:done, label_lists_attributes: [:label_id])
   end
-
-  # def completed_params
-  #   params.require(:todolist).permit(:id, :content, :time_category, :label)
-  # end
 
   def set_todolist
     @todolist = Todolist.find(params[:id])
