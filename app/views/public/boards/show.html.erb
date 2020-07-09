@@ -63,8 +63,10 @@
                 <% end %>
             </span>
 
-            <%= link_to '編集', edit_public_board_board_comment_path(comment.id), class: 'btn btn-outline-success' %>
-            <%= link_to '削除', public_board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
+            <% if comment.user_id == current_user %>
+              <%= link_to '編集', edit_public_board_board_comment_path(comment.id), class: 'btn btn-outline-success' %>
+              <%= link_to '削除', public_board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
+            <% end %>
 
             <!--コメントに対するいいねボタン Ajax化-->
             <div id="comment_likes_buttons_<%= comment.id %>">
@@ -80,9 +82,6 @@
 <% end %>
 
 
-<!--パーシャルで設定 回答フォーム-------------------->
-
-<%#= render partial: 'board_comments/form', local: {board: @board, new_comment: @new_comment} %>
 
 <div class="comment-header">
     <h4>回答フォーム</h4>
