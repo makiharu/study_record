@@ -12,8 +12,6 @@
   </div>
 </div>
 
-
-
 <div class="card card-default">
   <div class="card-header">
     <h4><%= @board.title %></h4>
@@ -29,6 +27,8 @@
     <span><%= simple_format(@board.body) %></span>
   </div>
   <div class="card-body">
+    <!--画像のプレビュー機能が必要-->
+    <%= attachment_image_tag @board, :image, :fill, 200, 200, fallback: 'no_image.jpg', size: '200x150' %>
     <div class="card-text text-right">
       <span id="time">投稿日時: <%= l @board.created_at %></span>
       <p class="font-weight-bold mt-2">

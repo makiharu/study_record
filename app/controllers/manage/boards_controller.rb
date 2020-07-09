@@ -25,7 +25,6 @@ class Manage::BoardsController < ApplicationController
     @board_comments = @board.board_comments
   end
 
-
   def destroy
     if @board.destroy
       redirect_to manage_boards_path
@@ -40,5 +39,6 @@ class Manage::BoardsController < ApplicationController
   def set_board
     @board = Board.find(params[:id])
   end
+
 end
 
