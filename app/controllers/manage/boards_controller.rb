@@ -37,15 +37,8 @@ class Manage::BoardsController < ApplicationController
 
   private
 
-  # def board_params
-  #   params.require(:board).permit(:title, :body, tag_ids: [])
-  #   # 複数のモデルが渡ってくるので、配列として、このような書き方
-  #   # モデル名の単数形_ids 従属するモデルのid（主キー）の配列を返す
-  # end
-
   def set_board
     @board = Board.find(params[:id])
-    # @name = action_name
   end
 end
 
