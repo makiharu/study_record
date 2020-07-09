@@ -1,12 +1,11 @@
 <!--フォローボタン-->
 <% if user != current_user %>
-
 	<% if user.followed_by?(current_user) %>
 		<th>フォロー済:
 			<%= link_to public_user_relationship_path(user.id), method: :delete, remote: true do %>
 			  <i class="far fa-thumbs-up fa-lg"><%= user.followers.count %></i>
 			<% end %>
-		</th>>
+		</th>
 	<% else %>
 		<th>
 			フォローする:
