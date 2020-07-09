@@ -5,7 +5,7 @@
   </div>
   <div class="ml-auto">
     <%= link_to '一覧', manage_boards_path, class: 'btn btn-outline-dark' %>
-    <%#= link_to '編集', edit_manage_board_path(@board), class: 'btn btn-outline-dark' %>
+    <%= link_to '編集', edit_manage_board_path(@board), class: 'btn btn-outline-dark' %>
   </div>
 </div>
 
@@ -38,9 +38,7 @@
           <%= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
         <% end %>
      </p>
-     <span class="border-left" style="padding:10px;"></span>
   </div>
-  <!--左ボーダー -->
 </div>
 
 
@@ -63,7 +61,6 @@
                 <% end %>
             </span>
 
-            <%= link_to '編集', edit_public_board_board_comment_path(comment.id), class: 'btn btn-outline-success' %>
             <%= link_to '削除', public_board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
 
             <!--コメントに対するいいねボタン Ajax化-->
@@ -81,31 +78,6 @@
 </div>
 
 
-
-<!--パーシャルで設定 回答フォーム-------------------->
-<!--namespaceを使用しているためか、パーシャルがうまくいかない-->
-<%#= render partial: 'board_comments/form', local: {board: @board, new_comment: @new_comment} %>
-    <div class="comment-form">
-        <h4>コメントを書き込む</h4>
-    </div>
-    <div class="comment-form">
-      <%= form_with model: [:public, @board, @new_comment], local: true do |f| %>
-
-         <%#= f.hidden_field :board_id %>
-        <div class="form-group">
-          <%= f.text_area :comment, class: 'form-control', rows: 6 %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit '送信する', class: 'btn btn-outline-info' %>
-          <%= link_to '戻る', public_boards_path, class: 'btn btn-outline-dark' %>
-        </div>
-
-      <% end %>
-
-    </div>
-
-</div>
 
 
 

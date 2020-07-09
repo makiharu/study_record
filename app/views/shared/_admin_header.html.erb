@@ -11,9 +11,8 @@
 
         <li><%= link_to '  会員一覧', manage_users_path, class: 'glyphicon glyphicon-log-in' %></li>
         <li><%= link_to '  掲示板一覧', manage_boards_path, class: 'glyphicon glyphicon-log-in' %></li>
-        <li><%= link_to '  タグ一覧', manage_tags_path, class: 'glyphicon glyphicon-log-in' %></li>
+        <li><%= link_to '  タグ一覧(掲示板)', manage_tags_path, class: 'glyphicon glyphicon-log-in' %></li>
         <li><%= link_to 'ラベル一覧(To doリスト)', manage_labels_path, class: 'glyphicon glyphicon-log-in' %></li>
-        <li><%#= link_to '  使い方ガイド修正フォーム', home_about_path, class: 'glyphicon glyphicon-log-in' %></li>
         <li><%= link_to '  ログアウト', destroy_admin_session_path, method: :delete, class: 'glyphicon glyphicon-log-in' %></li>
 
       <% else %>

@@ -3,7 +3,7 @@
 		<thead>
 			<tr>
 				<th>タイトル</th>
-				<th>カテゴリ</th>
+				<th>カテゴリー</th>
 				<td>投稿日時</td>
 				<td>詳細</td>
 			</tr>
@@ -21,7 +21,7 @@
 					</span>
 				<% end %>
 				</td>
-				<td><%= l board.created_at %></td>
+				<td class="small"><%= l board.created_at %></td>
 				<td>
 				<% if user_signed_in? %>
 	  				<% if board.board_liked_by?(current_user) %>

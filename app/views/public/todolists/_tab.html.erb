@@ -1,34 +1,34 @@
 <% if todolists.not_done.exists? %>
 	<table class="table table-hover table-responsive">
 			<thead>
-				<th>No.</th>
-				<th>リスト名</th>
-				<th>ラベル</th>
-				<th>チェック</th>
-				<th>編集</th>
+				<td>No.</td>
+				<td>リスト名</td>
+				<td>ラベル</td>
+				<td>チェック</td>
+				<td>編集</td>
 			</thead>
 			<tbody>
 			<% todolists.not_done.each_with_index do |todolist, i| %>
 			<tr>
 				<th><%= "#{i + 1}: " %></th>
 				<td><%= todolist.content.truncate(30) %></td>
-				<td>
+				<td class="small">
 					<% todolist.label_lists.each do |label_list| %>
 						<span class="badge badge-secondary"><%= label_list.label.name %></span>
 					<% end %>
 				</td>
 				<td>
-					<%= form_with model: [:public, todolist], local: true do |f| %>
+					<%= form_with(model: [:public, todolist.user, todolist], local: true) do |f| %>
 						<%= f.hidden_field :done, :value => true %><!--完了:を送りたい-->
 						<%= f.hidden_field :time_category, :value => todolist.time_category %>
 						<%= f.hidden_field :content, :value => todolist.content %>
 						<!--追加、カラムを追加する必要ないのでは-->
-						<%#= f.hidden_field :update_date, :value => todolist.updated_at %>
+						<%= f.hidden_field :update_date, :value => todolist.updated_at %>
 						<%= f.submit '完了', class: 'btn btn-outline-info btn-sm' %>
 					<% end %>
 				</td>
-				<td>
-					<%= link_to edit_public_todolist_path(todolist), class: 'btn btn-outline-success', style: 'border-radius: 30%' do %>
+				<td class="small">
+					<%= link_to edit_public_user_todolist_path(current_user, todolist), class: 'btn btn-outline-success', style: 'border-radius: 30%' do %>
 						<i class="fas fa-cogs"></i>
 					<% end %>
 				</td>
@@ -36,9 +36,6 @@
 			<% end %>
 			</tbody>
 		</table>
-<!-- 	<span class="text-right">
-		<p><%#= link_to '非表示（リセットボタン)', public_todolists_delete_path, method: :delete, data: {confirm: 'リスト内容が全て失われます。よろしいですか？'},class: 'btn btn-outline-info' %></p>
-	</span> -->
 <% else %>
 <!--todoリストが全て完了した場合-->
 	Todoリストをまだ設定していませんか？<br />

@@ -45,7 +45,7 @@ class Manage::BoardsController < ApplicationController
 
   def update
     if @board.update(board_params)
-      redirect_to public_board_path(@board)
+      redirect_to manage_board_path(@board)
       flash[:notice] = "successful"
     else
       render :edit

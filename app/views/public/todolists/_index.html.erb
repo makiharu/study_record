@@ -4,13 +4,14 @@
 			<% todolists.not_done.each_with_index do |todolist, i| %>
 			<tr>
 				<td><%= "#{i + 1}: " %></td>
-				<td ><%= link_to todolist.content, edit_public_todolist_path(todolist) %></td>
+				<td ><%= link_to todolist.content, edit_public_user_todolist_path(todolist.user) %></td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
 <% else %>
 	<div class="text-center p-3">
-		<%= link_to '設定はこちらから', public_todolists_path, class: 'btn btn-outline-info' %>
+		修正
+		<%= link_to '設定はこちらから', public_user_todolists_path(current_user), class: 'btn btn-outline-info' %>
 	</div>
 <% end %>
