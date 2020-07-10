@@ -1,6 +1,6 @@
 class Manage::LabelsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_label, only: %i[edit update destroy]
+  before_action :set_label, only: %i[edit update]
 
   def new; end
 
@@ -33,15 +33,6 @@ class Manage::LabelsController < ApplicationController
     if @label.update(label_params)
       redirect_to manage_labels_path
       flash[:notice] = "タグの変更を保存しました"
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    if @label.destroy
-      redirect_to manage_labels_path
-      flash[:danger] = "タグを削除しました"
     else
       render :edit
     end

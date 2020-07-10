@@ -1,6 +1,6 @@
 class Manage::TagsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_tag, only: %i[edit update destroy]
+  before_action :set_tag, only: %i[edit update]
 
   def new; end
 
@@ -39,15 +39,6 @@ class Manage::TagsController < ApplicationController
     end
   end
 
-  def destroy
-    if @tag.destroy
-      redirect_to manage_tags_path
-      flash[:danger] = "タグを削除しました"
-    else
-      render :edit
-    end
-  end
-
   private
 
   def tag_params
@@ -57,4 +48,5 @@ class Manage::TagsController < ApplicationController
   def set_tag
     @tag = Tag.find(params[:id])
   end
+
 end
