@@ -54,7 +54,7 @@
                 <% end %>
             </span>
 
-            <%#= link_to '削除', manage_board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
+            <%= link_to '削除',  manage_board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
 
             <!--コメントに対するいいねボタン Ajax化-->
             <div id="comment_likes_buttons_<%= comment.id %>">
