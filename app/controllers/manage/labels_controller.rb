@@ -18,8 +18,14 @@ class Manage::LabelsController < ApplicationController
   def index
     @label = Label.new
     @labels = Label.all.order(created_at: :desc).page(params[:page]).per(20)
-    @valid = @labels.where(is_void: false)
-    @invalid = @labels.where(is_void: true)
+
+    if params[:is_void] == "false"
+      @tags = Tag.valid.page(params[:page]).per(20)
+    elsif params[:is_void] == "true"
+      @tags = Tag.invalid.page(params[:page]).per(20)
+    else
+      @tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
+    end
   end
 
   def edit; end

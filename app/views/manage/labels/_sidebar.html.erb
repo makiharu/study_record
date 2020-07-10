@@ -1,25 +1,25 @@
 <div class="card card-default mt-5 mr-4">
 	<div class="card-heading thead">
-		<h5 class="text-center p-2">ラベル検索</h5>
+		<h5 class="text-center p-2">ラベル件数</h5>
 	</div>
 	<table class="table">
 		<tbody>
 		<tr>
 			<td>
 				<%= link_to manage_labels_path do %>
-					<span>全件 (<%= labels.count %>)</span>
+					<h5><span class="badge badge-secondary">全件 (<%= Label.all.count %>)</span></h5>
 				<% end %>
 			</td>
 		</tr>
 		<tr>
-			<td><%= link_to manage_tags_path do %>
-					<span>有効 (<%= @valid.count %>)</span>
+			<td><%= link_to manage_labels_path(is_void: "false") do %>
+					<h5><span class="badge badge-primary">有効 (<%= Label.all.valid.count %>)</span></h5>
 				<% end %>
 			</td>
 		</tr>
 		<tr>
-			<td><%= link_to manage_tags_path do %>
-					<span>無効 (<%= @invalid.count %>)</span>
+			<td><%= link_to manage_labels_path(is_void: "true") do %>
+					<h5><span class="badge badge-danger">無効 (<%= Tag.all.invalid.count %>)</span></h5>
 				<% end %>
 			</td>
 		</tr>

@@ -31,7 +31,6 @@ class Manage::TagsController < ApplicationController
   def edit; end
 
   def update
-    # binding.pry
     if @tag.update(tag_params)
       redirect_to manage_tags_path
       flash[:notice] = "タグの変更を保存しました"

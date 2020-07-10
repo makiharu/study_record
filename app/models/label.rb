@@ -4,5 +4,8 @@ class Label < ApplicationRecord
 
 	validates :name, presence: true
 	validates :is_void, inclusion: { in: [true, false] }
-end
 
+	scope :valid, -> { where(is_void: false) }
+	scope :invalid, -> { where(is_void: true)}
+
+end
