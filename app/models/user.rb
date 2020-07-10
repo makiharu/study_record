@@ -85,15 +85,16 @@ class User < ApplicationRecord
     super && (self.is_deleted == false)
   end
 
-  def self.find_for_oauth(auth)
-    # user = User.where(uid: auth.uid, provider: auth.provider).first
+  def self.guest #login
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.name = 'ゲスト(かんたんログイン)'
+      user.password = SecureRandom.urlsafe_base64
+      # パスワードランダム生成
+    end
+  end
 
-    # user ||= User.create(
-    #   uid: auth.uid,
-    #   provider: auth.provider,
-    #   email: auth.info.email,
-    #   password: Devise.friendly_token[0, 20]
-    # )
+
+  def self.find_for_oauth(auth)
     User.where(uid: auth.uid, provider: auth.provider).first
 
     User.create(

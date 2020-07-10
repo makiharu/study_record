@@ -11,6 +11,14 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks' # SNS認証時のコールバック処理
   }
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+  end
+
+  devise_scope :admin do
+    post 'admins/guest_sign_in', to: 'admins/sessions#new_guest'
+  end
+
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     passwords: 'admins/passwords'
@@ -30,7 +38,7 @@ Rails.application.routes.draw do
       resources :relationships, only: %i[create destroy]
       get :follows, on: :member
       get :followers, on: :member
-      get 'users/password', to: 'users#edit_password'   #パスワード変更用
+      get 'users/password', to: 'users#edit_password' #パスワード変更用
       put 'users/password', to: 'users#update_password'
     end
 
