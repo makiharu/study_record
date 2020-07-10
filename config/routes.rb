@@ -34,13 +34,15 @@ Rails.application.routes.draw do
       put 'users/password', to: 'users#update_password'
     end
 
-    put '/users/:id/hide' => 'users#hide', as:'users_hide'
+      put '/users/:id/hide' => 'users#hide', as:'users_hide'
   end
 
   namespace :manage do
     get 'home/top'
     resources :users, except: [:destroy]
-    resources :boards, only: %i[index show update edit destroy]
+    resources :boards, only: %i[index show update edit destroy] do
+      resource :board_comment, only: [:destroy]
+    end
     resources :labels, except: [:show]
     resources :tags, except: [:show]
 

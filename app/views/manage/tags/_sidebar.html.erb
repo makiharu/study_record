@@ -1,26 +1,28 @@
 <div class="card card-default mt-5 mr-4">
 	<div class="card-heading thead">
-		<h5 class="text-center p-2">タグ件数</h5>
+		<h5 class="text-center p-2">タグ検索</h5>
 	</div>
 	<table class="table table-hover">
 		<tbody>
 		<tr>
 			<td>
-				<%= link_to manage_tags_path do %>
-					<h5><span class="badge badge-secondary">全件 (<%= Tag.all.count %>)</span></h5>
-				<% end %>
+			<%= link_to manage_tags_path do %>
+				<h5><span class="badge badge-secondary">全件 (<%= Tag.all.count %>)</span></h5>
+			<% end %>
 			</td>
 		</tr>
 		<tr>
-			<td><%= link_to manage_tags_path(is_void: "false") do %>
-					<h5><span class="badge badge-primary">有効 (<%= Tag.all.valid.count %>)</span></h5>
-				<% end %>
+			<td>
+			<%= link_to manage_tags_path(is_void: "false") do %>
+				<h5><span class="badge badge-primary">有効 (<%= Tag.all.valid.count %>)</span></h5>
+			<% end %>
 			</td>
 		</tr>
 		<tr>
-			<td><%= link_to manage_tags_path(is_void: "true") do %>
-					<h5><span class="badge badge-danger">無効 (<%= Tag.all.invalid.count %>)</span></h5>
-				<% end %>
+			<td>
+			<%= link_to manage_tags_path(is_void: "true") do %>
+				<h5><span class="badge badge-danger">無効 (<%= Tag.all.invalid.count %>)</span></h5>
+			<% end %>
 			</td>
 		</tr>
 		</tbody>

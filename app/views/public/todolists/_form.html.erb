@@ -1,7 +1,7 @@
 <div class="form-horizontal">
 <% if controller.action_name == 'index' %>
 	<%= form_with model: [:public, todolist], url:  public_user_todolists_path, local: true do |f| %>
-				<%= render 'shared/error_messages', obj: todolist %>
+		<%= render 'shared/error_messages', obj: todolist %>
 		<div class="form-group">
 			<%= f.label :内容 %>
 			<%= f.text_field :content, class: 'form-control' %>

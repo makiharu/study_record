@@ -13,12 +13,7 @@
 
   <body>
 
-    <!--ヘッダーをadminかユーザーログインかで切替表示-->
-
     <header class="header">
-<!--  <img src="/assets/image02.jpg" class="hoge" size="50x50"> -->
-      <%#= image_tag 'image01.jpg', :width => '50', :height => '50', :alt => 'logo' %>
-      <%#= image_tag 'logo.png', :width => '200', :height => '140', :alt => 'logo' %>
       <% if admin_signed_in? %>
         <%= render 'shared/admin_header' %>
       <% else %>
@@ -33,7 +28,5 @@
     </div>
 
       <%= render 'shared/footer' %>
-
-
   </body>
 </html>

@@ -37,7 +37,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>お気に入り投稿数: <span class="badge badge-info">
+			<td>お気に入り記事: <span class="badge badge-info">
 				<%= user.board_likes.count %></span>
 			</td>
 		</tr>
@@ -55,7 +55,7 @@
 		<tr>
 			<td>
 			<% if user.followers.count != 0 %>
-				  フォロワーリスト<span class="badge badge-info"><%= link_to user.followers.count, follows_public_user_path %></span>
+				  フォロワーリスト<span class="badge badge-info"><%= link_to user.followers.count, followers_public_user_path %></span>
 			<% else %>
 				  フォロワーリスト<span class="badge badge-dark"><%= user.followers.count %></span>
 			<% end %>

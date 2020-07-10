@@ -75,7 +75,6 @@ class User < ApplicationRecord
     count_hash
   end
 
-
   def followed_by?(user)
     # フォローされているpassiveユーザーの中から、引数に渡されたuserがいるかどうかjudge
     passive_relationships.find_by(following_id: user.id).present?

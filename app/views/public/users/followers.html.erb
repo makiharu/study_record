@@ -1,25 +1,48 @@
 <div class="row">
+	<div class="mx-auto">
+		<h2 class="mb-2 text-center">フォロワーリスト</h2>
+	</div>
+</div>
 
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>画像</th>
-				<th>ユーザー名</th>
-				<th>登録日時</th>
-				<th>ユーザーページ</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @users.each do |user| %>
-			<tr>
-				<td><%= attachment_image_tag(user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '60x60') %></td>
-				<td><%= user.name %></td>
-				<td><%= l user.created_at %></td>
-				<td><%= link_to '詳細', public_user_path(user), class: 'btn btn-outline-success' %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+<div class="row">
+	<div class="col-md-4">
+		<div class="card card-default mr-5 mt-5">
+		<!--プロフィール-->
+		<%= render 'public/users/profile', user: @user %>
+		</div>
+	</div>
 
+	<div class="col-md-8">
+		<div class="board-title">
+			<p class="text-right">
+				<%= link_to 'マイページへ戻る', public_user_path(@user), class: "btn btn-warning" %>
+			</p>
+		</div>
 
+		<div class="card card-default">
+			<div class="card-heading thead p-2">
+				<h5 class="text-center">フォロワーリスト  <i class="far fa-list-alt"></i></h5>
+			</div>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>画像</th>
+					<th>ユーザー名</th>
+					<th>登録日時</th>
+					<th>ユーザーページ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @users.each do |user| %>
+				<tr>
+					<td><%= attachment_image_tag(user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '50x50') %></td>
+					<td><%= user.name %></td>
+					<td><%= l user.created_at %></td>
+					<td><%= link_to '詳細', public_user_path(user), class: 'btn btn-outline-info' %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
 </div>

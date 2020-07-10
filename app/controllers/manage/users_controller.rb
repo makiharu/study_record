@@ -23,8 +23,6 @@ class Manage::UsersController < ApplicationController
     end
   end
 
-  def hide; end
-
   private
 
   def user_params
