@@ -37,7 +37,7 @@ class Public::BoardCommentsController < ApplicationController
   def update
     board_comment = BoardComment.find(params[:board_id])
     if board_comment.update(board_comment_params)
-      redirect_back(fallback_location: root_path)
+      redirect_to public_board_path(board_comment.board.id)
       flash[:success] = 'コメントの内容を保存しました'
     else
       rendirect_to public_board_path(params[:board_id])

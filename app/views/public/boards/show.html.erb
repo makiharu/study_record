@@ -63,14 +63,16 @@
                 <% end %>
             </span>
 
-            <% if comment.user_id == current_user %>
+            <% if comment.user_id == current_user.id %>
               <%= link_to '編集', edit_public_board_board_comment_path(comment.id), class: 'btn btn-outline-success' %>
               <%= link_to '削除', public_board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
             <% end %>
 
             <!--コメントに対するいいねボタン Ajax化-->
-            <div id="comment_likes_buttons_<%= comment.id %>">
-              <%= render partial: 'public/comment_likes/like', locals: { comment: comment} %>
+            <div class="comment_likes_body p-2">
+              <div id="comment_likes_buttons_<%= comment.id %>">
+                <%= render partial: 'public/comment_likes/like', locals: { comment: comment} %>
+              </div>
             </div>
             <!--コメントに対するいいねボタン--------->
           </div>

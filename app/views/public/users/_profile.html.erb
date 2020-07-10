@@ -28,8 +28,7 @@
 		</tr>
 		<tr>
 			<td>
-				過去の達成リスト数: <span class="badge badge-info">
-					<%= user.done_list_sum %></span>
+				過去の達成リスト数: <span class="badge badge-info"><%= user.done_list_sum %></span>
 			</td>
 		</tr>
 		<tr>
@@ -62,8 +61,6 @@
 			<% end %>
 			</td>
 		</tr>
-		<!--adminはページアクセスのみなので、ここは非表示-->
-		<%# if user != current_admin %>
 		<tr>
 			<!------------フォローボタン----------------------------------->
 			<span id="follow_buttons_<%= user.id %>">
@@ -71,7 +68,6 @@
 			</span>
 			<!------------フォローボタン----------------------------------->
 		</tr>
-		<%#end %>
 		<tr>
 			<% if user == current_user %>
 			<th class="col-3">
