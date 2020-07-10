@@ -2,9 +2,14 @@
 	<div class="mx-auto">
 		<h2 class="text mr-5">タグ一覧</h2>
 	</div>
-	<div class="col-md-12">
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<!--サイドバー-->
+		<%= render 'sidebar', tags: @tags, obj: @tag %>
+	</div>
+	<div class="col-md-9 mt-4">
 		<div class="text-right">
-
 			<div class="tag-form">
 				<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
 					タグ新規作成 +
@@ -12,20 +17,6 @@
 				<%= render 'form', tag: @tag, obj: @tag %>
 			</div>
 		</div>
-
- <div class="ml-auto boards__linkBox">
- 	<!--selectタグを使って有効無効を切り替えられるようにする-->
-
-    <%= form_tag manage_tags_path, method: :get, class: 'tags__searchForm' do %>
-
-    <%= select_tag 'is_void', options_for_select([["有効", "false"],["無効", "true"]]), :id=>"false" %>
-
-
-<% end %>
-
-
-  </div>
-
 
 		<table class="table table-hover">
 			<thead class="thead">
@@ -41,7 +32,6 @@
 					<td><%= tag.id %></td>
 					<td><%= link_to tag.name, edit_manage_tag_path(tag) %></td>
 					<td><%= l tag.created_at %></td>
-					<!--boolean型の日本語化、これでもok-->
 					<td>
 						<% if tag.is_void == false %>
 							<span class='badge badge-primary'><%= tag.is_void ? '無効' : '有効' %></span>
@@ -58,7 +48,6 @@
 				<% end %>
 			</tbody>
 		</table>
-
 			<%= paginate @tags %>
 	</div>
 </div>

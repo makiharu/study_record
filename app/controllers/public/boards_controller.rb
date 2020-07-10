@@ -2,6 +2,7 @@ class Public::BoardsController < ApplicationController
   before_action :authenticate_user!, unless: :login_admin
   before_action :authenticate_admin!, if: :login_admin
   before_action :set_board, only: %i[show edit update]
+  before_action :correct_board, only: %i[edit update]
 
   def new
     @board = Board.new
@@ -19,10 +20,9 @@ class Public::BoardsController < ApplicationController
   end
 
   def index
-    # @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
     @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
-    @search = Board.ransack(params[:q])
-    @searchboards = @search.result
+    # @search = Board.ransack(params[:q])
+    # @boards = @search.result
     @board_ranking = Board.create_rankings
 
     @tags = Tag.all
@@ -69,5 +69,12 @@ class Public::BoardsController < ApplicationController
   def set_board
     @board = Board.find(params[:id])
     # @name = action_name
+  end
+
+  def correct_board
+    user = User.find(params[:id])
+    if user != current_user
+      redirect_to public_boards_path
+    end
   end
 end

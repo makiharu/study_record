@@ -20,7 +20,6 @@ class Manage::UsersController < ApplicationController
       flash[:notice] = '変更内容を保存しました'
     else
       render :edit
-
     end
   end
 

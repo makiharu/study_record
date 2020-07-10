@@ -1,0 +1,29 @@
+<div class="card card-default mt-5 mr-4">
+	<div class="card-heading thead">
+		<h5 class="text-center p-2">カテゴリー別</h5>
+	</div>
+	<table class="table table-hover">
+		<tbody>
+		<tr>
+			<td>
+			<%= link_to manage_boards_path do %>
+				<span>全記事(<%= Board.all.count %>)</span>
+			<% end %>
+			</td>
+		</tr>
+		<% tags.each do |tag| %>
+		<tr>
+			<td class="tag-name">
+			<% if tag.board_tags.count != 0 %>
+				<%= link_to manage_boards_path(tag_id: tag.id) do  %>
+					<span><%= tag.name %>(<%= tag.board_tags.count %>)</span>
+				<% end %>
+			<% else %>
+				<span><%= tag.name %>(<%= tag.board_tags.count %>)</span>
+			<% end %>
+			</td>
+		</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>

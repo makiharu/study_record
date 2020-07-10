@@ -11,7 +11,11 @@
 			<th><%= attachment_image_tag user, :profile_image, :fill, 200, 200, size: '50x50', fallback: 'no_image.jpg' %></th>
 		</tr>
 		<tr>
+		<% if admin_signed_in? %>
+			<td>名前:  <%= link_to user.name, manage_user_path(user) %></td>
+		<% else %>
 			<td>名前:  <%= user.name %></td>
+		<% end %>
 		</tr>
 		<tr>
 			<td>自己紹介: <%= user.introduction %></td>
@@ -24,8 +28,7 @@
 		</tr>
 		<tr>
 			<td>
-				過去の達成リスト数: <span class="badge badge-info">
-					<%= user.done_list_sum %></span>
+				過去の達成リスト数: <span class="badge badge-info"><%= user.done_list_sum %></span>
 			</td>
 		</tr>
 		<tr>
@@ -39,8 +42,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
 		<% if user_signed_in? %>
+			<td>
 			<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
 			<% if user.followings.count != 0 %>
 				  フォローリスト<span class="badge badge-info"><%= link_to user.followings.count, follows_public_user_path %></span>
@@ -48,7 +51,6 @@
 				  フォローリスト<span class="badge badge-dark"><%= user.followings.count %></span>
 			<% end %>
 			</td>
-
 		</tr>
 		<tr>
 			<td>
@@ -59,8 +61,6 @@
 			<% end %>
 			</td>
 		</tr>
-		<!--adminはページアクセスのみなので、ここは非表示-->
-		<%# if user != current_admin %>
 		<tr>
 			<!------------フォローボタン----------------------------------->
 			<span id="follow_buttons_<%= user.id %>">
@@ -68,15 +68,16 @@
 			</span>
 			<!------------フォローボタン----------------------------------->
 		</tr>
-		<%#end %>
 		<tr>
+			<% if user == current_user %>
 			<th class="col-3">
-			<%= link_to edit_public_user_path(user), class: 'btn btn-outline-success btn-block' do %>
-				<span>設定
-					<i class="fas fa-cogs"></i>
-				</span>
-			<% end %>
+				<%= link_to edit_public_user_path(user), class: 'btn btn-outline-success btn-block' do %>
+					<span>設定
+						<i class="fas fa-cogs"></i>
+					</span>
+				<% end %>
 			</th>
+			<% end %>
 		</tr>
 		<% end %>
 	</tbody>

@@ -6,17 +6,14 @@
   <nav class="pc-nav">
     <ul>
       <% if admin_signed_in? %>
-      　<li><%= "ようこそ、管理人さん！" %>
-      </li>
-
-        <li><%= link_to '  会員一覧', manage_users_path, class: 'glyphicon glyphicon-log-in' %></li>
-        <li><%= link_to '  掲示板一覧', manage_boards_path, class: 'glyphicon glyphicon-log-in' %></li>
-        <li><%= link_to '  タグ一覧(掲示板)', manage_tags_path, class: 'glyphicon glyphicon-log-in' %></li>
-        <li><%= link_to 'ラベル一覧(To doリスト)', manage_labels_path, class: 'glyphicon glyphicon-log-in' %></li>
-        <li><%= link_to '  ログアウト', destroy_admin_session_path, method: :delete, class: 'glyphicon glyphicon-log-in' %></li>
-
+      　<li><%= "ようこそ、管理人さん！" %></li>
+        <li><%= link_to '  トップページ', manage_home_top_path %></li>
+        <li><%= link_to '  会員一覧', manage_users_path %></li>
+        <li><%= link_to '  掲示板一覧', manage_boards_path %></li>
+        <li><%= link_to '  タグ一覧(掲示板)', manage_tags_path %></li>
+        <li><%= link_to 'ラベル一覧(To doリスト)', manage_labels_path %></li>
+        <li><%= link_to '  ログアウト', destroy_admin_session_path, method: :delete %></li>
       <% else %>
-        <li><%#= link_to '  ', '#', class: 'glyphicon glyphicon-log-in' %></li>
         <li><%= link_to '  ログイン(管理者)', new_admin_session_path, class: 'glyphicon glyphicon-log-in' %></li>
     　<% end %>
     </ul>

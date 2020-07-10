@@ -5,5 +5,7 @@ class Tag < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :is_void, inclusion: { in: [true, false] }
 
-  # enum is_void: { "有効" => false, "無効" => true }
+  scope :valid, -> { where(is_void: false) }
+  scope :invalid, -> { where(is_void: true) }
+
 end
