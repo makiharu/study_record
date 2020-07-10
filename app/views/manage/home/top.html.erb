@@ -1,2 +1,52 @@
-<h1>Admin::Home#top</h1>
-<p>Find me in app/views/admin/home/top.html.erb</p>
+<div style="display: flex;">
+  <div style="flex: 1;">
+      <%= image_tag 'image08.jpg', :width => '550', :height => '500', :alt => 'top-image' %>
+  </div>
+
+  <div style="flex: 2;">
+    <h3 class="text-center">管理者ページ <i class="fas fa-tools"></i></h3>
+
+    <div class="card card-default mt-5 mr-4">
+		<div class="card-heading thead">
+			<h5 class="text-center p-2">各種設定</h5>
+		</div>
+		<table class="table table-hover table-responsive">
+			<tr>
+				<td>
+				<%= link_to manage_users_path do %>
+					<span>会員一覧</span><br />
+				<% end %>
+				<span>(  -会員詳細  -会員編集  -会員ステータスの変更  ユーザーページ)</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<%= link_to manage_boards_path do %>
+					<span>掲示板一覧</span><br />
+				<% end %>
+				<span>(  -掲示板詳細  -掲示板削除  -コメント一覧)</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<%= link_to manage_tags_path do %>
+					<span>タグ一覧</span><br />
+				<% end %>
+				<span>(  -タグ詳細  -タグ編集  -ステータスの変更)</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<%= link_to manage_tags_path do %>
+					<span>ラベル一覧</span><br />
+				<% end %>
+				<span>(  -ラベル詳細  -ラベル編集  -ステータスの変更)</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+  </div>
+</div>
+
+
+
