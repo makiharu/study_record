@@ -3,7 +3,7 @@ class Manage::BoardsController < ApplicationController
   before_action :set_board, only: %i[show destroy]
 
   def index
-    @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
+    @boards = Board.all.order(created_at: :desc).page(params[:page]).per(15)
     @search = Board.ransack(params[:q])
     @searchboards = @search.result
     #@page_boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)

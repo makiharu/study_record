@@ -2,25 +2,27 @@
 	<div class="card-heading thead">
 		<h5 class="text-center p-2">ラベル検索</h5>
 	</div>
-	<!--セレクトタグで切り替え表示ができるようにしたい-->
 	<table class="table">
 		<tbody>
 		<tr>
 			<td>
 				<%= link_to manage_labels_path do %>
-					<span>全記事(<%= Board.all.count %>)</span>
+					<span>全件 (<%= labels.count %>)</span>
 				<% end %>
 			</td>
 		</tr>
-		<% labels.each do |label| %>
 		<tr>
-			<td class="label-name">
-				<%#= link_to manage_boards_path(tag_id: tag.id) do  %>
-					<span><%= label.name %>(<%#= tag.board_tags.count %>)</span>
-				<%# end %>
+			<td><%= link_to manage_tags_path do %>
+					<span>有効 (<%= @valid.count %>)</span>
+				<% end %>
 			</td>
 		</tr>
-		<% end %>
+		<tr>
+			<td><%= link_to manage_tags_path do %>
+					<span>無効 (<%= @invalid.count %>)</span>
+				<% end %>
+			</td>
+		</tr>
 		</tbody>
 	</table>
 </div>

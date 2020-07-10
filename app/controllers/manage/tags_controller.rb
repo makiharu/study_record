@@ -18,6 +18,14 @@ class Manage::TagsController < ApplicationController
   def index
     @tag = Tag.new
     @tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
+
+    if params[:is_void] == "false"
+      @tags = Tag.all.where(is_void: false).page(params[:page]).per(20)
+    elsif params[:is_void] == "true"
+      @tags = Tag.all.where(is_void: true).page(params[:page]).per(20)
+    else
+      @tags = Tag.all.order(created_at: :desc).page(params[:page]).per(20)
+    end
   end
 
   def edit; end
