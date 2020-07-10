@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       resources :relationships, only: %i[create destroy]
       get :follows, on: :member
       get :followers, on: :member
+      get 'users/password', to: 'users#edit_password'   #パスワード変更用
+      put 'users/password', to: 'users#update_password'
     end
 
     put '/users/:id/hide' => 'users#hide', as:'users_hide'

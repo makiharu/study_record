@@ -44,6 +44,19 @@ class Public::UsersController < ApplicationController
     @users = @user.followings
   end
 
+  def edit_password
+    @user = User.new
+    @pass_user = User.find(params[:user_id])
+  end
+
+  def update_password
+    if current_user.update_with_password(pass_params)
+        redirect_to root_path, success: 'パスワードを変更しました。再度ログインしてご利用くださいませ。'
+      else
+        render :edit_password
+    end
+  end
+
   private
 
   def user_params
@@ -59,6 +72,11 @@ class Public::UsersController < ApplicationController
     if current_user != user
       redirect_to public_user_path(current_user)
     end
+  end
+
+    #パスワード変更用
+  def pass_params
+      params.require(:user).permit(:password, :password_confirmation, :current_password)
   end
 
 end

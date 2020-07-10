@@ -22,6 +22,7 @@
 				<%= render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
 			</div>
 		</div>
+		<%= link_to 'マイプロフィールへ戻る', public_user_path(current_user.id), class: 'btn btn-outline-success' %>
 	</div>
 
 	<div class="col-md-7">
