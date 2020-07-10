@@ -5,6 +5,12 @@ class Users::SessionsController < Devise::SessionsController
 
   before_action :reject_user, only: [:create]
 
+  def new_guest
+    user = User.guest　#Userモデル
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザー(かんたんログイン)としてログインしました。'
+  end
+
   protected
 
   def reject_user
@@ -17,6 +23,7 @@ class Users::SessionsController < Devise::SessionsController
         flash[:alert] = '必須項目を入力してください'
       end
   end
+
 
   # GET /resource/sign_in
   # def new
