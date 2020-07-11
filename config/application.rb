@@ -16,6 +16,7 @@ module StudyRecord
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :ja # タイムゾーンの設定
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
+    config.action_view.automatically_disable_submit_tag = false
   end
 
   # Settings in config/environments/* take precedence over those specified here.

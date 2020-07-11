@@ -9,23 +9,22 @@ class Public::TodolistsController < ApplicationController
   end
 
   def create
-    @todolist = Todolist.new(todolist_params)
-    @todolist.user_id = current_user.id
-    if @todolist.save
-      redirect_to public_user_todolists_path
-      flash[:notice] = "リストを作成しました"
-    else
-      @todolists = Todolist.all
-      redirect_back(fallback_location: root_path)
-      flash[:warning] = "作成できませんでした。リスト内容は30文字以内です。"
-    end
+    todolist = Todolist.new(todolist_params)
+    todolist.user_id = current_user.id
+    todolist.save
+    # Ajax 追加
+    @todolist = Todolist.new
+    @todolist.label_lists.build
+    @today_todolists = Todolist.where(time_category: 'today', user_id: current_user.id)
+    @week_todolists = Todolist.where(time_category: 'week', user_id: current_user.id)
+    @month_todolists = Todolist.where(time_category: 'month', user_id: current_user.id)
+    @label = Label.valid
   end
 
   def index
-    @user = current_user
+    @user = User.find(params[:user_id])#add
     @todolist = Todolist.new
     @todolist.label_lists.build
-    # ラジオボタンで場合分けをするよりも変数名を別にした方がわかりやすい
     @today_todolists = Todolist.where(time_category: 'today', user_id: current_user.id)
     @week_todolists = Todolist.where(time_category: 'week', user_id: current_user.id)
     @month_todolists = Todolist.where(time_category: 'month', user_id: current_user.id)
