@@ -9,7 +9,7 @@ class Public::BoardCommentsController < ApplicationController
     board_comment = current_user.board_comments.new(board_comment_params)
     board_comment.board_id = board.id
     if board_comment.save
-      redirect_to public_board_path(board)
+      redirect_to board_path(board)
       flash[:notice] = "投稿しました"
     else
       redirect_back(fallback_location: root_path)
@@ -37,10 +37,10 @@ class Public::BoardCommentsController < ApplicationController
   def update
     board_comment = BoardComment.find(params[:board_id])
     if board_comment.update(board_comment_params)
-      redirect_to public_board_path(board_comment.board.id)
+      redirect_to board_path(board_comment.board.id)
       flash[:success] = 'コメントの内容を保存しました'
     else
-      rendirect_to public_board_path(params[:board_id])
+      rendirect_to board_path(params[:board_id])
     end
   end
 
@@ -53,14 +53,14 @@ class Public::BoardCommentsController < ApplicationController
   def correct_comment
     user = User.find(params[:id])
     if user != current_user
-      redirect_to public_boards_path
+      redirect_to boards_path
     end
   end
 
   def correct_comment
     board_comment = BoardComment.find(params[:board_id])
     if board_comment.user_id != current_user.id
-      redirect_to public_board_path(board_comment.board.id)
+      redirect_to board_path(board_comment.board.id)
     end
    end
 

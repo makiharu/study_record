@@ -46,7 +46,7 @@
 			<td>
 			<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
 			<% if user.followings.count != 0 %>
-				  フォローリスト<span class="badge badge-info"><%= link_to user.followings.count, follows_public_user_path %></span>
+				  フォローリスト<span class="badge badge-info"><%= link_to user.followings.count, follows_user_path %></span>
 			<% else %>
 				  フォローリスト<span class="badge badge-dark"><%= user.followings.count %></span>
 			<% end %>
@@ -55,7 +55,7 @@
 		<tr>
 			<td>
 			<% if user.followers.count != 0 %>
-				  フォロワーリスト<span class="badge badge-info"><%= link_to user.followers.count, followers_public_user_path %></span>
+				  フォロワーリスト<span class="badge badge-info"><%= link_to user.followers.count, followers_user_path %></span>
 			<% else %>
 				  フォロワーリスト<span class="badge badge-dark"><%= user.followers.count %></span>
 			<% end %>
@@ -71,7 +71,7 @@
 		<tr>
 			<% if user == current_user %>
 			<th class="col-3">
-				<%= link_to edit_public_user_path(user), class: 'btn btn-outline-success btn-block' do %>
+				<%= link_to edit_user_path(user), class: 'btn btn-outline-success btn-block' do %>
 					<span>設定
 						<i class="fas fa-cogs"></i>
 					</span>

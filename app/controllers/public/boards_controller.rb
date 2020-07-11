@@ -12,7 +12,7 @@ class Public::BoardsController < ApplicationController
     @board = Board.new(board_params)
     @board.user_id = current_user.id
     if @board.save
-      redirect_to public_board_path(@board)
+      redirect_to board_path(@board)
       flash[:notice] = "success"
     else
       render :new
@@ -21,8 +21,6 @@ class Public::BoardsController < ApplicationController
 
   def index
     @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
-    # @search = Board.ransack(params[:q])
-    # @boards = @search.result
     @board_ranking = Board.create_rankings
 
     @tags = Tag.all
@@ -51,7 +49,7 @@ class Public::BoardsController < ApplicationController
 
   def update
     if @board.update(board_params)
-      redirect_to public_board_path(@board)
+      redirect_to board_path(@board)
       flash[:notice] = "successful"
     else
       render :edit
@@ -68,13 +66,12 @@ class Public::BoardsController < ApplicationController
 
   def set_board
     @board = Board.find(params[:id])
-    # @name = action_name
   end
 
   def correct_board
     user = User.find(params[:id])
     if user != current_user
-      redirect_to public_boards_path
+      redirect_to boards_path
     end
   end
 end

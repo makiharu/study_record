@@ -1,0 +1,7 @@
+$('#todolist_area').html("<%= j(render 'public/todolists/tab', todolists: @today_todolists) %>");
+$('#todolist_area_week').html("<%= j(render 'public/todolists/tab', todolists: @week_todolists) %>");
+$('#todolist_area_month').html("<%= j(render 'public/todolists/tab', todolists: @month_todolists) %>");
+$('#todolist_form').html("<%= j(render 'public/todolists/form',  todolist: @todolist) %>");
+
+
+

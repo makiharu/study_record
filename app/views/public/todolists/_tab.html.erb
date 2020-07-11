@@ -1,41 +1,37 @@
 <% if todolists.not_done.exists? %>
 	<table class="table table-hover table-responsive">
-			<thead>
-				<td>No.</td>
-				<td>リスト名</td>
-				<td>ラベル</td>
-				<td>チェック</td>
-				<td>編集</td>
-			</thead>
-			<tbody>
-			<% todolists.not_done.each_with_index do |todolist, i| %>
-			<tr>
-				<th><%= "#{i + 1}: " %></th>
-				<td><%= todolist.content.truncate(30) %></td>
-				<td class="small">
-					<% todolist.label_lists.each do |label_list| %>
-						<span class="badge badge-secondary"><%= label_list.label.name %></span>
-					<% end %>
-				</td>
-				<td>
-					<%= form_with(model: [:public, todolist.user, todolist], local: true) do |f| %>
-						<%= f.hidden_field :done, :value => true %><!--完了:を送りたい-->
-						<%= f.hidden_field :time_category, :value => todolist.time_category %>
-						<%= f.hidden_field :content, :value => todolist.content %>
-						<!--追加、カラムを追加する必要ないのでは-->
-						<%= f.hidden_field :update_date, :value => todolist.updated_at %>
-						<%= f.submit '完了', class: 'btn btn-outline-info btn-sm' %>
-					<% end %>
-				</td>
-				<td class="small">
-					<%= link_to edit_public_user_todolist_path(current_user, todolist), class: 'btn btn-outline-success', style: 'border-radius: 30%' do %>
-						<i class="fas fa-cogs"></i>
-					<% end %>
-				</td>
-			</tr>
-			<% end %>
-			</tbody>
-		</table>
+		<thead>
+			<td>No.</td>
+			<td>リスト名</td>
+			<td>ラベル</td>
+			<td>チェック</td>
+			<td>編集</td>
+		</thead>
+		<tbody>
+		<% todolists.not_done.each_with_index do |todolist, i| %>
+		<tr id="todolist_<%= todolist.id %>">
+			<th><%= "#{i + 1}: " %></th>
+			<td><%= todolist.content.truncate(30) %></td>
+			<td class="small">
+				<% todolist.label_lists.each do |label_list| %>
+					<span class="badge badge-secondary"><%= label_list.label.name %></span>
+				<% end %>
+			</td>
+			<td>
+				<%= link_to todolists_clear_path(todolist.id), method: :patch, remote: true do %>
+					<i class="far fa-check-square fa-2x"></i>
+				<% end %>
+			</td>
+			<!-------Ajax追加部分-------------------------------->
+			<td class="small">
+				<%= link_to edit_todolist_path(todolist), class: 'btn btn-outline-success', style: 'border-radius: 30%' do %>
+					<i class="fas fa-cogs"></i>
+				<% end %>
+			</td>
+		</tr>
+		<% end %>
+		</tbody>
+	</table>
 <% else %>
 <!--todoリストが全て完了した場合-->
 	Todoリストをまだ設定していませんか？<br />

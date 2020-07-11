@@ -18,11 +18,12 @@
 				<h5 class="text-center p-2">To doリスト作成</h5>
 			</div>
 	  		<div class="card-body">
-				<p class="card-text"></p>
-				<%= render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
+				<div id="todolist_form">
+					<%= render 'public/todolists/form', todolist: @todolist, label: @label %>
+				</div>
 			</div>
 		</div>
-		<%= link_to 'マイプロフィールへ戻る', public_user_path(current_user.id), class: 'btn btn-outline-success' %>
+		<%= link_to 'マイプロフィールへ戻る', user_path(current_user.id), class: 'btn btn-outline-success' %>
 	</div>
 
 	<div class="col-md-7">
@@ -45,7 +46,9 @@
 						<h5 class="text-center p-2">本日のTo do リスト</h5>
 					</div>
 					<div class="card-body">
-						<%= render 'public/todolists/tab', todolists: @today_todolists %>
+						<div id="todolist_area">
+							<%= render 'public/todolists/tab', todolists: @today_todolists %>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -57,7 +60,9 @@
 						<h5 class="text-center p-2">今週のリスト</h5>
 					</div>
 					<div class="card-body">
-						<%= render 'public/todolists/tab', todolists: @week_todolists %>
+						<div id="todolist_area_week">
+							<%= render 'public/todolists/tab', todolists: @week_todolists %>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -68,7 +73,9 @@
 						<h5 class="text-center p-2">今月のリスト</h5>
 					</div>
 					<div class="card-body">
-						<%= render 'public/todolists/tab', todolists: @month_todolists %>
+						<div id="todolist_area_month">
+							<%= render 'public/todolists/tab', todolists: @month_todolists %>
+						</div>
 					</div>
 				</div>
 			</div>

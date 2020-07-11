@@ -2,14 +2,14 @@
 <% if user_signed_in? %>
 	<% if comment.comment_liked_by?(current_user) %>
 	  <li>
-	    <%= link_to public_board_board_comment_comment_likes_path(comment.board_id, comment.id), method: :delete, remote: true do %>
+	    <%= link_to board_board_comment_comment_likes_path(comment.board_id, comment.id), method: :delete, remote: true do %>
 	    <i class="far fa-thumbs-up">いいね</i>
 	    <%= comment.comment_likes.count %>
 	    <% end %>
 	  </li>
 	<% else %>
 	  <li>
-	    <%= link_to public_board_board_comment_comment_likes_path(comment.board_id, comment.id), method: :post, remote: true do %>
+	    <%= link_to board_board_comment_comment_likes_path(comment.board_id, comment.id), method: :post, remote: true do %>
 	    <i class="far fa-thumbs-up"></i>いいね</i>
 	    <%= comment.comment_likes.count %>
 	    <% end %>

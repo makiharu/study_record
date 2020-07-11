@@ -5,11 +5,7 @@
 			<tr>
 				<td><%= "#{i + 1}: " %></td>
 				<td >
-				<% if admin_signed_in? %>
 					<%= todolist.content %>
-				<% else %>
-					<%= link_to todolist.content, edit_public_user_todolist_path(todolist.user) %>
-				<% end %>
 				</td>
 			</tr>
 			<% end %>
@@ -18,7 +14,7 @@
 <% else %>
 	<div class="text-center p-3">
 		<% if user_signed_in? %>
-			<%= link_to '設定はこちらから', public_user_todolists_path(current_user), class: 'btn btn-outline-info' %>
+			<%= link_to '設定はこちらから', todolists_path, class: 'btn btn-outline-info' %>
 		<% else %>
 			<span>ユーザーは未設定です</span>
 		<% end %>
