@@ -118,6 +118,10 @@ ActiveRecord::Schema.define(version: 2020_07_11_131621) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_deleted", default: false
+    t.string "profile_image_id"
+    t.string "uid"
+    t.string "provider"
     t.string "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

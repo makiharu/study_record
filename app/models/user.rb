@@ -81,9 +81,9 @@ class User < ApplicationRecord
   end
 
   #ログイン時に退会済み(is_deleted==true)ユーザーを弾く
-  def active_for_authentication?
-    super && (self.is_deleted == false)
-  end
+  # def active_for_authentication?
+  #   super && (self.is_deleted == false)
+  # end
 
   def self.guest_user
     find_or_create_by!(email: 'guest@test.com') do |user|

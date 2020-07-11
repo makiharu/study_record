@@ -1,7 +1,6 @@
 class Public::TodolistsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_todolist, only: %i[edit update destroy clear]
-  #before_action :correct_todolist, only: %i[edit update destroy]
 
   def new
     @todolist = Todolist.new

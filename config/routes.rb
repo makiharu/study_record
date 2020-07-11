@@ -32,14 +32,12 @@ Rails.application.routes.draw do
       end
       get 'search/search'
     end
-
     resources :users, only: %i[index show edit update] do
       resources :relationships, only: %i[create destroy]
       get :follows, on: :member
       get :followers, on: :member
       get 'users/password', to: 'users#edit_password' #パスワード変更用
       put 'users/password', to: 'users#update_password'
-      # patch 'todolists/:id/clear', to: 'todolists#clear', as:'todolists_clear' #Ajax
     end
       resources :todolists, except: [:show]
       patch 'todolists/:id/clear', to: 'todolists#clear', as:'todolists_clear' #Ajax
@@ -47,14 +45,16 @@ Rails.application.routes.draw do
   end
 
   namespace :manage do
-    get 'home/top'
     resources :users, except: [:destroy]
     resources :boards, only: %i[index show update edit destroy] do
       resource :board_comment, only: [:destroy]
     end
+  end
+
+  scope module: :manage do
+    get 'home/top'
     resources :labels, except: [:show]
     resources :tags, except: [:show]
-
     get 'search/search'
   end
 

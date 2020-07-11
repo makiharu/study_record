@@ -9,7 +9,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     if @contact.save
       ContactMailer.contact_mail(@contact).deliver
-      redirect_to public_user_path(current_user), notice: 'メールの送信が完了しました'
+      redirect_to user_path(current_user), notice: 'メールの送信が完了しました'
     else
       render :new
     end

@@ -7,7 +7,7 @@ class Manage::TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     if @tag.save
-      redirect_to manage_tags_path
+      redirect_to tags_path
       flash[:notice] = "タグを追加しました"
     else
       redirect_back(fallback_location: root_path)
@@ -32,7 +32,7 @@ class Manage::TagsController < ApplicationController
 
   def update
     if @tag.update(tag_params)
-      redirect_to manage_tags_path
+      redirect_to tags_path
       flash[:notice] = "タグの変更を保存しました"
     else
       render :edit

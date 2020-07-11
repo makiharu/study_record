@@ -1,5 +1,5 @@
 <div class="form-horizontal">
-<%= form_for [:public, board] do |f| %>
+<%= form_with model:board do |f| %>
 	<%= render 'shared/error_messages', obj: board %>
 	<div class="form-group mt-4">
 		<%= f.label :タイトル %>
@@ -26,7 +26,7 @@
 	<div class="actions">
 		<%= f.submit '投稿する', class: 'btn btn-outline-info form-control' %>
 	</div>
-	<%= link_to '戻る', public_boards_path, class: 'btn btn-outline-secondary' %>
+	<%= link_to '戻る', boards_path, class: 'btn btn-outline-secondary' %>
 <% end %>
 </div>
 

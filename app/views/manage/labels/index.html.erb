@@ -33,9 +33,9 @@
 				<% @labels.each do |label| %>
 				<tr>
 					<td><%= label.id %></td>
-					<td><%= link_to label.name, edit_manage_label_path(label) %></td>
+					<td><%= link_to label.name, edit_label_path(label) %></td>
 					<td><%= l label.created_at %></td>
-					<!--boolean型の日本語化、これでもok-->
+					<!--boolean型の日本語化-->
 					<td>
 						<% if label.is_void == false %>
 							<span class='badge badge-primary'><%= label.is_void ? '無効' : '有効' %></span>
@@ -44,7 +44,7 @@
 						<% end %>
 					</td>
 					<td>
-						<%= link_to edit_manage_label_path(label), class: 'btn btn-outline-success' do %>
+						<%= link_to edit_label_path(label), class: 'btn btn-outline-success' do %>
 						  変更<i class="fas fa-cogs"><%= render 'form', label: @label, obj: @label %></i>
 						<% end %>
 					</td>

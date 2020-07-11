@@ -44,14 +44,12 @@
 			</div>
 		<% end %>
 
-
 		<div class="card card-default">
 			<div class="card-heading thead p-2">
 				<h5 class="text-center">掲示板一覧  <i class="far fa-list-alt"></i></h5>
 			</div>
 			<%= render 'index', boards: @boards, board_tags: @board_tags %>
 		</div>
-
 		<%= paginate @boards %>
 	</div>
 </div>

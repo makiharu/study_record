@@ -13,7 +13,7 @@ class Public::BoardsController < ApplicationController
     @board.user_id = current_user.id
     if @board.save
       redirect_to board_path(@board)
-      flash[:notice] = "success"
+      flash[:notice] = "投稿しました"
     else
       render :new
     end
@@ -34,11 +34,12 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
+    @board = Board.find(params[:id])
     @new_comment = BoardComment.new
     @new_comment.board_id = @board.id
-    if current_user.present?
+    #if current_user.present?
     @new_comment.user_id = current_user.id
-    end
+    #end
 
     @board_comments = @board.board_comments
   end
@@ -50,7 +51,7 @@ class Public::BoardsController < ApplicationController
   def update
     if @board.update(board_params)
       redirect_to board_path(@board)
-      flash[:notice] = "successful"
+      flash[:notice] = "変更内容を保存しました"
     else
       render :edit
     end

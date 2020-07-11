@@ -6,17 +6,19 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<h4>会員検索</h4>
+		<div class="card card-default">
+			<h4>会員検索</h4>
+		</div>
 
-		<div class="form-set">
-		   <%= search_form_for(@search, url: manage_users_path, html: {class: 'form-inline'}) do |f| %>
-			   <%= f.label :name_or_email_cont, '検索はこちらから' %>
-			   <%= f.search_field :name_or_email_cont %>
+
+<!-- 		   <%#= search_form_for(@search, url: manage_users_path, html: {class: 'form-inline'}) do |f| %>
+			   <%#= f.label :name_or_email_cont, '検索はこちらから' %>
+			   <%#= f.search_field :name_or_email_cont %>
 			   <div class="actions">
-			   <%= f.submit '検索する', class: 'btn-outline-primary' %>
-			   </div>
-		   <% end %>
-	    </div>
+			   <%#= f.submit '検索する', class: 'btn-outline-primary' %> -->
+
+		   <%# end %>
+
 	</div>
 	<div class="col-md-9">
 	<table class="table table-hover">
@@ -29,9 +31,7 @@
 				<th>ステータス</th>
 				<th>詳細</th>
 			</tr>
-
 		</thead>
-
 		<tbody>
 		<% if @users.any? %>
 			<% @users.each do |user| %>
@@ -57,7 +57,7 @@
 		</tbody>
 	</table>
 
-	<%#= paginate @pagers %>
+	<%= paginate @users %>
 	</div>
 </div>
 

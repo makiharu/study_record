@@ -9,7 +9,6 @@ class Public::UsersController < ApplicationController
   end
 
   def show
-    @chart = User.where(is_deleted: false).group("date(created_at)").count
     @oneday_lists = Todolist.only_done.where(update_date: @from..@to)
     @week_todolists = Todolist.where(time_category: 'week') # add
     @month_todolists = Todolist.where(time_category: 'month')

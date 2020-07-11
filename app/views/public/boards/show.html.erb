@@ -27,13 +27,13 @@
     <span><%= simple_format(@board.body) %></span>
   </div>
   <div class="card-body">
-    <%= attachment_image_tag @board, :image, :fill, 200, 200, fallback: 'no_image.jpg', size: '200x150' %>
+    <%= attachment_image_tag @board, :image, :fill, 200, 200, size: '200x150' %>
     <div class="card-text text-right">
       <span id="time">投稿日時: <%= l @board.created_at %></span>
       <p class="font-weight-bold mt-2">
           <%= link_to user_path(@board.user) do %>
-            <%= @board.user.name %>
-            <%= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
+            <%#= @board.user.name %>
+            <%#= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
           <% end %>
       </p>
     </div>
@@ -56,15 +56,34 @@
           <div class="comment-bottom">
             <span id="time"><%= l comment.created_at %></span>
             <span>
-                <%= link_to user_path(comment.user) do %>
-                  <%= comment.user.name %>
-                  <%= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
-                <% end %>
+                <%#= link_to user_path(comment.user) do %>
+                  <%#= comment.user.name %>
+                  <%#= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
+                <%# end %>
             </span>
 
             <% if comment.user_id == current_user.id %>
               <%= link_to '編集', edit_board_board_comment_path(comment.id), class: 'btn btn-outline-success' %>
-              <%= link_to '削除', board_board_comment_path(comment.id), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger' %>
+
+            <!--モーダルウィンドウ-->
+            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#Modal">削除</button>
+            <!-- ボタン・リンククリック後に表示される画面の内容 -->
+            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>削除確認画面</h3>
+                        </div>
+                        <div class="modal-body m-3">
+                            <h5 class="text-left">本当に削除しますか？</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                            <button type="button" class="btn btn-outline-danger"> <%= link_to '削除', board_board_comment_path(comment.id), method: :delete, class: 'btn btn-outline-danger' %></button>
+                        </div>
+                    </div>
+                </div>
+              </div>
             <% end %>
 
             <!--コメントに対するいいねボタン Ajax化-->
@@ -86,12 +105,10 @@
 <div class="comment-header">
     <h4>回答フォーム</h4>
 </div>
-<div class="comment-form">
+<div class="answer-form">
   <%= form_with model: [@board, @new_comment], local: true do |f| %>
-
-     <%#= f.hidden_field :board_id %>
     <div class="form-group">
-      <%= f.text_area :comment, class: 'form-control', rows: 6 %>
+      <%= f.text_area :comment, class: 'form-control', rows: 10 %>
     </div>
 
     <div class="actions">
