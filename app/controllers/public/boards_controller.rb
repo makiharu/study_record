@@ -34,11 +34,12 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
+    @board = Board.find(params[:id])
     @new_comment = BoardComment.new
     @new_comment.board_id = @board.id
-    if current_user.present?
+    #if current_user.present?
     @new_comment.user_id = current_user.id
-    end
+    #end
 
     @board_comments = @board.board_comments
   end

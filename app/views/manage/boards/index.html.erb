@@ -10,11 +10,11 @@
 	</div>
 
 	<div class="col-md-9 mt-4">
-		<div class="board-title">
+<!-- 		<div class="board-title">
 		<p class="text-right">
 			<%#= link_to 'トップページ +', new_public_board_path, class: "btn btn-outline-dark" %>
 		</p>
-		</div>
+		</div> -->
 
 		<table class="table table-hover">
 			<thead class="thead">
@@ -38,7 +38,7 @@
 						<% end %>
 					</td>
 					<td class="small"><%= l board.created_at %></td>
-					<td class="small"><%= link_to board.user.name, public_user_path(board.user) %></td>
+					<td class="small"><%= link_to board.user.name, user_path(board.user) %></td>
 					<td><%= link_to '詳細', manage_board_path(board), class: 'btn btn-outline-info' %></td>
 				</tr>
 			<% end %>
