@@ -19,7 +19,7 @@ class Public::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to public_user_path(@user)
+      redirect_to user_path(@user)
       flash[:notice] = "変更内容を保存しました"
     else
       render :edit
@@ -70,7 +70,7 @@ class Public::UsersController < ApplicationController
   def correct_user
     user = User.find(params[:id])
     if current_user != user
-      redirect_to public_user_path(current_user)
+      redirect_to user_path(current_user)
     end
   end
 

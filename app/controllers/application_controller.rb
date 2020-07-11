@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     when Admin
       manage_home_top_path
     when User
-      public_user_path(current_user)
+      user_path(current_user)
     end
   end
 

@@ -85,8 +85,8 @@ class User < ApplicationRecord
     super && (self.is_deleted == false)
   end
 
-  def self.guest #login
-    find_or_create_by!(email: 'guest@example.com') do |user|
+  def self.guest_user
+    find_or_create_by!(email: 'guest@test.com') do |user|
       user.name = 'ゲスト(かんたんログイン)'
       user.password = SecureRandom.urlsafe_base64
       # パスワードランダム生成

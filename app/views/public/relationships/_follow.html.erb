@@ -3,14 +3,14 @@
 	<% if user.followed_by?(current_user) %>
 		<th>
 			フォロー済:
-			<%= link_to public_user_relationship_path(user.id), method: :delete, remote: true do %>
+			<%= link_to user_relationship_path(user.id), method: :delete, remote: true do %>
 			  <i class="fas fa-biking fa-lg">  <%= user.followers.count %></i>
 			<% end %>
 		</th>
 	<% else %>
 		<th>
 			フォローする:
-			<%= link_to public_user_relationships_path(user.id), method: :post, remote: true do %>
+			<%= link_to user_relationships_path(user.id), method: :post, remote: true do %>
 		  	  <i class="fas fa-biking fa-lg">  <%= user.followings.count %></i>
 		  	<% end %>
 		</th>

@@ -1,18 +1,18 @@
 <div class="comment-form">
     <h4>コメントを書き込む</h4>
     <div class="float-right">
-      <%= link_to '戻る', public_boards_path, class: 'btn btn-outline-dark' %>
+      <%= link_to '戻る', boards_path, class: 'btn btn-outline-dark' %>
 	</div>
 
 </div>
 <div class="comment-form">
-  <%= form_for([:public, @board, @new_comment], local: true) do |f| %>
+  <%= form_for [@board, @new_comment], local: true) do |f| %>
     <div class="form-group">
       <%= f.text_area :comment, class: 'form-control', rows: 6 %>
     </div>
     <div class="actions">
       <%= f.submit '送信する', class: 'btn btn-outline-info' %><hr />
-       <%= link_to '戻る', public_boards_path, class: 'btn btn-outline-dark' %>
+       <%= link_to '戻る', boards_path, class: 'btn btn-outline-dark' %>
     </div>
   <% end %>
 </div>
