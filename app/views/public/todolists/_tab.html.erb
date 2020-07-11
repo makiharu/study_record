@@ -9,7 +9,6 @@
 		</thead>
 		<tbody>
 		<% todolists.not_done.each_with_index do |todolist, i| %>
-		<!-------Ajax追加部分------>
 		<tr id="todolist_<%= todolist.id %>">
 			<th><%= "#{i + 1}: " %></th>
 			<td><%= todolist.content.truncate(30) %></td>
@@ -19,19 +18,13 @@
 				<% end %>
 			</td>
 			<td>
-				<%= form_with(model: [:public, todolist.user, todolist], remote: true) do |f| %>
-					<%= f.hidden_field :done, :value => true %><!--完了:を送りたい-->
-					<%= f.hidden_field :time_category, :value => todolist.time_category %>
-					<%= f.hidden_field :content, :value => todolist.content %>
-					<!--追加、カラムを追加する必要ないのでは-->
-					<%= f.hidden_field :update_date, :value => todolist.updated_at %>
-					<%= f.button :type => "submit", style: 'border-style: none;' do %>
-				  		<i class="far fa-check-square fa-2x"></i>
-					<% end %>
+				<%= link_to todolists_clear_path(todolist.id), method: :patch, remote: true do %>
+					<i class="far fa-check-square fa-2x"></i>
 				<% end %>
 			</td>
+			<!-------Ajax追加部分-------------------------------->
 			<td class="small">
-				<%= link_to edit_public_user_todolist_path(current_user, todolist), class: 'btn btn-outline-success', style: 'border-radius: 30%' do %>
+				<%= link_to edit_todolist_path(todolist), class: 'btn btn-outline-success', style: 'border-radius: 30%' do %>
 					<i class="fas fa-cogs"></i>
 				<% end %>
 			</td>

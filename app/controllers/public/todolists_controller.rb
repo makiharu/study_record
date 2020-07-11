@@ -1,7 +1,7 @@
 class Public::TodolistsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_todolist, only: %i[edit update destroy]
-  before_action :correct_todolist, only: %i[index edit update destroy]
+  before_action :set_todolist, only: %i[edit update destroy clear]
+  #before_action :correct_todolist, only: %i[edit update destroy]
 
   def new
     @todolist = Todolist.new
@@ -22,7 +22,6 @@ class Public::TodolistsController < ApplicationController
   end
 
   def index
-    @user = User.find(params[:user_id])#add
     @todolist = Todolist.new
     @todolist.label_lists.build
     @today_todolists = Todolist.where(time_category: 'today', user_id: current_user.id)
@@ -36,16 +35,26 @@ class Public::TodolistsController < ApplicationController
   def update
     @todolist.user_id = current_user.id
     if @todolist.update(todolist_params)
-      redirect_to public_user_todolists_path
+      redirect_to todolists_path
       flash[:notice] = "内容を保存しました"
     else
       render :edit
     end
   end
 
+  def clear # Ajax 追加
+    @todolist.update(done: true, update_date: Time.now)
+    @todolist.label_lists.build
+    @today_todolists = Todolist.where(time_category: 'today', user_id: current_user.id)
+    @week_todolists = Todolist.where(time_category: 'week', user_id: current_user.id)
+    @month_todolists = Todolist.where(time_category: 'month', user_id: current_user.id)
+    @label = Label.valid
+  end
+
+
   def destroy
     if @todolist.destroy
-      redirect_to public_user_todolists_path
+      redirect_to todolists_path
       flash[:alert] = "削除しました"
     else
       render :edit
@@ -63,10 +72,4 @@ class Public::TodolistsController < ApplicationController
     @todolist = Todolist.find(params[:id])
   end
 
-  def correct_todolist
-    user = User.find(params[:user_id])
-    if user != current_user
-      redirect_to public_user_todolists_path(current_user)
-    end
-  end
 end

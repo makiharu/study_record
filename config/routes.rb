@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords'
   }
 
-  namespace :public do
+  scope module: :public do
     resources :boards, only: %i[new create index edit show update] do
       resource :board_likes, only: %i[create destroy]
       resources :board_comments, only: %i[create destroy edit update destroy] do
@@ -34,14 +34,15 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: %i[index show edit update] do
-      resources :todolists, except: [:show]
       resources :relationships, only: %i[create destroy]
       get :follows, on: :member
       get :followers, on: :member
       get 'users/password', to: 'users#edit_password' #パスワード変更用
       put 'users/password', to: 'users#update_password'
+      # patch 'todolists/:id/clear', to: 'todolists#clear', as:'todolists_clear' #Ajax
     end
-
+      resources :todolists, except: [:show]
+      patch 'todolists/:id/clear', to: 'todolists#clear', as:'todolists_clear' #Ajax
       put '/users/:id/hide' => 'users#hide', as:'users_hide'
   end
 

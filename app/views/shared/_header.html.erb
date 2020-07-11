@@ -1,6 +1,6 @@
  <% if user_signed_in? %>
 <h1>
-   <%= link_to "Study record", public_user_path(current_user), id: "logo" %>
+   <%= link_to "Study record", user_path(current_user), id: "logo" %>
 </h1>
 <% end %>
 
@@ -8,9 +8,9 @@
   <ul>
     <% if user_signed_in? %>
     　<li><%= "ようこそ、#{current_user.name}さん！" %></li>
-      <li><%= link_to '  マイページ', public_user_path(current_user.id), class: 'glyphicon glyphicon-log-in' %></li>
-      <li><%= link_to '  Todoリスト　', public_user_todolists_path(current_user), class: 'glyphicon glyphicon-log-in' %></li>
-      <li><%= link_to '  掲示板一覧', public_boards_path, class: 'glyphicon glyphicon-log-in' %></li>
+      <li><%= link_to '  マイページ', user_path(current_user.id), class: 'glyphicon glyphicon-log-in' %></li>
+      <li><%= link_to '  Todoリスト　', todolists_path, class: 'glyphicon glyphicon-log-in' %></li>
+      <li><%= link_to '  掲示板一覧', boards_path, class: 'glyphicon glyphicon-log-in' %></li>
       <li><%= link_to '  使い方ガイド', home_about_path, class: 'glyphicon glyphicon-log-in' %></li>
       <li><%= link_to '  ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-in' %></li>
 

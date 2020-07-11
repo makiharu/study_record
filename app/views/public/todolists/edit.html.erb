@@ -5,13 +5,11 @@
                 <h5>To doリスト編集</h5>
             </div>
             <div class="card-body">
-              <!--ルーティング設定を変えたら、パーシャルがうまく行かなくなった-->
-              <%#= render 'public/todolists/update_form', todolist: @todolist, obj: @todolist %>
-              <%= render 'public/todolists/edit_form', todolist: @todolist, obj: @todolist %>
+              <%= render 'public/todolists/form', todolist: @todolist, obj: @todolist %>
 
               <div class="float-right">
                 <div class="button-group mt-3 ml-1">
-                    <%= link_to '戻る', public_user_todolists_path(current_user), class: 'btn btn-dark' %>
+                    <%= link_to '戻る', todolists_path, class: 'btn btn-dark' %>
 
                     <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">
                         削除する
@@ -32,7 +30,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                                    <%= link_to '削除する',  public_user_todolist_path(@todolist.user, @todolist),method: :delete, class: 'btn btn-outline-danger' %>
+                                    <%= link_to '削除する',  todolist_path(@todolist),method: :delete, class: 'btn btn-outline-danger' %>
                                 </div>
                             </div>
                         </div>
