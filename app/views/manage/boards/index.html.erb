@@ -38,7 +38,7 @@
 						<% end %>
 					</td>
 					<td class="small"><%= l board.created_at %></td>
-					<td class="small"><%= link_to board.user.name, user_path(board.user) %></td>
+					<td><%= link_to board.user.name, user_path(board.user) %></td>
 					<td><%= link_to '詳細', manage_board_path(board), class: 'btn btn-outline-info' %></td>
 				</tr>
 			<% end %>

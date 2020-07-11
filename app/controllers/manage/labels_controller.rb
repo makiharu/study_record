@@ -7,7 +7,7 @@ class Manage::LabelsController < ApplicationController
   def create
     @label = Label.new(label_params)
     if @label.save
-      redirect_to manage_labels_path
+      redirect_to labels_path
       flash[:notice] = "ラベルを追加しました"
     else
       redirect_back(fallback_location: root_path)
@@ -31,7 +31,7 @@ class Manage::LabelsController < ApplicationController
 
   def update
     if @label.update(label_params)
-      redirect_to manage_labels_path
+      redirect_to labels_path
       flash[:notice] = "タグの変更を保存しました"
     else
       render :edit

@@ -2,11 +2,11 @@ ja:
   activerecord:
     attributes:
       user:
+        name: 名前
         email: メールアドレス
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: 次回から自動的にログイン
-
 
       board:
         title: タイトル
@@ -20,3 +20,5 @@ ja:
         name: 名前
         email: メールアドレス
         content: 内容
+
+

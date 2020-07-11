@@ -21,14 +21,13 @@ class Manage::BoardsController < ApplicationController
     if current_user.present?
     @new_comment.user_id = current_user.id
     end
-
     @board_comments = @board.board_comments
   end
 
   def destroy
     if @board.destroy
       redirect_to manage_boards_path
-      flash[:notice] = "投稿内容を削除しました"
+      flash[:warning] = "投稿内容を削除しました"
     else
       render :show
     end

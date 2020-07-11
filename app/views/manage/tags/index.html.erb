@@ -30,7 +30,7 @@
 				<% @tags.each do |tag| %>
 				<tr>
 					<td><%= tag.id %></td>
-					<td><%= link_to tag.name, edit_manage_tag_path(tag) %></td>
+					<td><%= link_to tag.name, edit_tag_path(tag) %></td>
 					<td><%= l tag.created_at %></td>
 					<td>
 						<% if tag.is_void == false %>
@@ -40,7 +40,7 @@
 						<% end %>
 					</td>
 					<td>
-						<%= link_to edit_manage_tag_path(tag), class: 'btn btn-outline-success' do %>
+						<%= link_to edit_tag_path(tag), class: 'btn btn-outline-success' do %>
 						  変更<i class="fas fa-cogs"><%= render 'form', tag: @tag, obj: @tag %></i>
 						<% end %>
 					</td>

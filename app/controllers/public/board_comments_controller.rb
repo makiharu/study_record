@@ -22,7 +22,7 @@ class Public::BoardCommentsController < ApplicationController
     board = Board.find_by(params[:board_id])
     if board_comment.destroy
       redirect_back(fallback_location: root_path)
-      flash[:alert] = "投稿を削除しました"
+      flash[:warning] = "投稿を削除しました"
     else
       redirect_back(fallback_location: root_path)
       flash[:alert] = "削除ができませんでした"
