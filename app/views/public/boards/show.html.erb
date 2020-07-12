@@ -8,7 +8,9 @@
     <!--掲示板お気に入りボタン---------------------------->
   <div class="ml-auto">
     <%= link_to '掲示板一覧', boards_path, class: 'btn btn-outline-dark' %>
-    <%= link_to '編集', edit_board_path(@board), class: 'btn btn-outline-success' %>
+    <% if @board.user = current_user %>
+      <%= link_to '編集', edit_board_path(@board), class: 'btn btn-outline-success' %>
+    <% end %>
   </div>
 </div>
 
@@ -32,8 +34,8 @@
       <span id="time">投稿日時: <%= l @board.created_at %></span>
       <p class="font-weight-bold mt-2">
           <%= link_to user_path(@board.user) do %>
-            <%#= @board.user.name %>
-            <%#= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
+            <%= @board.user.name %>
+            <%= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
           <% end %>
       </p>
     </div>
@@ -56,10 +58,10 @@
           <div class="comment-bottom">
             <span id="time"><%= l comment.created_at %></span>
             <span>
-                <%#= link_to user_path(comment.user) do %>
-                  <%#= comment.user.name %>
-                  <%#= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
-                <%# end %>
+                <%= link_to user_path(comment.user) do %>
+                  <%= comment.user.name %>
+                  <%= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
+                <% end %>
             </span>
 
             <% if comment.user_id == current_user.id %>

@@ -33,10 +33,10 @@ a {
 }
 
 .comment-heading h4 {
-  border-bottom: solid 5px yellow; /*色が途中で変わるような線*/
+  background: linear-gradient(transparent 50%, yellow 70%); /*コメント一覧見出し*/
   position: relative;
   padding-bottom: 3px;
-  width: 30%;
+  width: 15%;
 }
 
 
