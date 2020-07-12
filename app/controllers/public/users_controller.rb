@@ -73,6 +73,7 @@ class Public::UsersController < ApplicationController
     end
   end
 
+
     #パスワード変更用
   def pass_params
       params.require(:user).permit(:password, :password_confirmation, :current_password)

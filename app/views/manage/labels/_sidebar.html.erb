@@ -19,7 +19,7 @@
 		</tr>
 		<tr>
 			<td><%= link_to labels_path(is_void: "true") do %>
-					<h5><span class="badge badge-danger">無効 (<%= Tag.all.invalid.count %>)</span></h5>
+					<h5><span class="badge badge-danger">無効 (<%= Label.all.invalid.count %>)</span></h5>
 				<% end %>
 			</td>
 		</tr>

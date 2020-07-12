@@ -32,8 +32,13 @@
 		<% end %>
 		</tbody>
 	</table>
+	<div class="graph-link">
+		<span class="text-right"><%= link_to 'マイグラフを確認する', user_path(current_user.id), class: 'btn btn-outline-success btn-sm' %></span>
+	</div>
 <% else %>
 <!--todoリストが全て完了した場合-->
-	Todoリストをまだ設定していませんか？<br />
-	To doリスト作成欄からTo doリストを作成してみましょう！
+	<p>Todoリストをまだ設定していませんか？<br />
+	To doリスト作成欄からTo doリストを作成してみましょう！</p><br />
+	<p>To doリストを達成したら、マイページにあるグラフで自分の進捗を確認してみましょう。</p>
+	<%= link_to 'マイグラフを確認する', user_path(current_user.id), class: 'btn btn-outline-success' %>
 <% end %>
