@@ -5,7 +5,7 @@ class Admins::SessionsController < Devise::SessionsController
   def new_guest
     admin = Admin.guest
     sign_in admin
-    redirect_to root_path, notice: '管理人(かんたんログイン)としてログインしました。'
+    redirect_to home_top_path, notice: '管理人(かんたんログイン)としてログインしました。'
   end
 
   # GET /resource/sign_in

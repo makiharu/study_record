@@ -15,7 +15,6 @@ class User < ApplicationRecord
   has_many :done_todolists, -> { where(done: true) }, class_name: 'Todolist'
 
   has_many :labels, through: :done_todolists
-  #has_many :done_labels, through: :done_todolists, class_name: 'Label', source: :label_id
 
   # follow-follower
   has_many :active_relationships, class_name: 'Relationship', foreign_key: :following_id
