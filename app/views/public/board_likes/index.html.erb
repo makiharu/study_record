@@ -2,14 +2,14 @@
 	<div class="col-xs-4">
 		<div class="card card-default mr-5 mt-5">
 		<!--プロフィール-->
-		<%= render 'public/users/profile', user: current_user %>
+		<%= render 'public/users/profile', user: @user %>
 		</div>
 	</div>
 
 	<div class="col-xs-8">
 		<div class="board-title">
 			<p class="text-right">
-				<%= link_to 'マイページへ戻る', user_path(current_user), class: "btn btn-warning" %>
+				<%= link_to 'マイページへ戻る', user_path(@user), class: "btn btn-warning" %>
 			</p>
 		</div>
 
@@ -18,33 +18,37 @@
 				<h5 class="text-center">お気に入り記事一覧  <i class="far fa-list-alt"></i></h5>
 			</div>
 
-		<table class="table table-hover table-responsive">
-		<% if @board_likes.any? %>
-			<thead>
-				<tr>
-					<td>タイトル</td>
-					<td>本文</td>
-					<td>ユーザー名</td>
-					<td>詳細</td>
-				</tr>
-			</thead>
-			<tbody>
-				<% @board_likes.each do |board_like| %>
-				<tr>
-					<td><%= board_like.board.title %></td>
-					<td><%= board_like.board.body.truncate(23) %></td>
-					<td><%= l board_like.board.created_at %></td>
-					<td><%= link_to '詳細', board_path(board_like.board), class: 'btn btn-outline-info' %></td>
-				</tr>
+			<div class="card-body">
+				<table class="table table-hover">
+				<% if @board_likes.any? %>
+					<thead>
+						<tr>
+							<td>タイトル</td>
+							<td>本文</td>
+							<td>ユーザー名</td>
+							<td>投稿日時</td>
+							<td>詳細</td>
+						</tr>
+					</thead>
+					<tbody>
+						<% @board_likes.each do |board_like| %>
+						<tr>
+							<td><%= board_like.board.title %></td>
+							<td><%= board_like.board.body.truncate(23) %></td>
+							<td><%= board_like.user.name %></td>
+							<td><%= l board_like.board.created_at %></td>
+							<td><%= link_to '詳細', board_path(board_like.board), class: 'btn btn-outline-info' %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				<% else %>
+					<div class="no_content m-5">
+						<span>まだお気に入りに追加した記事がありません。<br />
+						気になる記事を見つけて、気になるボタンを押してみましょう</span>
+					</div>
 				<% end %>
-			</tbody>
-		<% else %>
-			<div class="no_content m-5">
-				<span>まだお気に入りに追加した記事がありません。<br />
-				気になる記事を見つけて、気になるボタンを押してみましょう</span>
+				</table>
 			</div>
-		<% end %>
-		</table>
 		</div>
 	</div>
 </div>
