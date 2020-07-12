@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Userモデルのテスト', type: :model do
-  # 名前が空欄で登録できない→名前を空欄で登録したらfalse
-  # バリデーションしていない状態で失敗→設定したら成功
-  # 登録できるかできないか 登録できたら失敗
-  # エラーメッセージがなければ失敗
 
   describe 'バリデーションのテスト' do
     let(:user) { build(:user) }
@@ -33,4 +29,6 @@ RSpec.describe 'Userモデルのテスト', type: :model do
       end
     end
   end
+
+
 end

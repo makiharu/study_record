@@ -44,7 +44,7 @@ group :development, :test do
   gem 'dotenv-rails' # 環境変数としてgitの外で管理する
   gem 'pry-byebug'
   gem 'rubocop', require: false # オプションfalse
-  gem 'rspec-rails', '~> 4.0.0'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -66,6 +66,7 @@ group :test do
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
   gem 'chromedriver-helper'
+  gem 'rspec-rails', '~> 4.0.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
