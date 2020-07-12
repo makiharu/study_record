@@ -9,6 +9,7 @@ class Public::BoardLikesController < ApplicationController
 
   def index
     @board_likes = current_user.board_likes
+    @user = current_user
   end
 
   def destroy
