@@ -44,11 +44,10 @@ class Public::BoardsController < ApplicationController
     @board_comments = @board.board_comments
   end
 
-  def edit
-    @board.user_id = current_user.id
-  end
+  def edit; end
 
   def update
+    @board.user_id = current_user.id
     if @board.update(board_params)
       redirect_to board_path(@board)
       flash[:notice] = "変更内容を保存しました"
@@ -70,9 +69,10 @@ class Public::BoardsController < ApplicationController
   end
 
   def correct_board
-    user = User.find(params[:id])
-    if user != current_user
+    board = Board.find(params[:id])
+    if board.user_id != current_user.id
       redirect_to boards_path
     end
   end
+
 end

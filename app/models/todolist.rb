@@ -5,7 +5,7 @@ class Todolist < ApplicationRecord
 
   accepts_nested_attributes_for :label_lists
 
-  validates :content, presence: true, length: { maximum: 50 }
+  validates :content, presence: true, length: { maximum: 30 }
 
   enum time_category: { today: 0, week: 1, month: 2 }
 

@@ -5,9 +5,9 @@
       <i class="fas fa-user-cog"></i>
     </h3>
     <div class="text-right">
-      <%= link_to "マイページの確認", user_path(@user), class: "btn btn-outline-dark" %>
+      <%= link_to "マイページの確認", user_path(@user), class: "btn btn-outline-info" %>
     </div>
-    <div class="form-set">
+    <div class="form-set mt-3">
 
       <div class="form-horizontal">
       <%= form_with model: @user, local: true do |f| %>
@@ -35,14 +35,19 @@
 
         <div class="form-group">
           パスワード変更設定<hr />
-          <%= link_to "パスワード変更", user_users_password_path(@user), class: "btn btn-outline-dark" %>
+          <%= link_to "パスワード変更", user_users_password_path(@user), class: "btn btn-outline-success btn-block" %><hr />
         </div>
 
         <div class="actions">
-          <%= f.submit "変更を保存する", class: "btn btn-outline-primary" %>
+          <%= f.submit "変更を保存する", class: "btn btn-outline-primary btn-block" %>
+        </div>
+        <div class="button">
           <%= link_to "戻る", user_path(@user), class: "btn btn-outline-dark" %>
-          <div class="user-button">
-            <%= link_to "退会", users_hide_path(@user), method: :put, data: { confirm: '本当に退会しますか？'}, class: 'btn btn-outline-danger' %>
+          <!--かんたんログインユーザーには表示しない-->
+          <% if current_user.email != 'guest@test.com' %>
+            <%= link_to "退会確認ページへ", users_hide_path(@user), method: :put, data: { confirm: '本当に退会しますか？'}, class: 'btn btn-outline-danger' %>
+          <% end %>
+          <!--かんたんログインユーザーには表示しない-->
           </div>
         </div>
 
