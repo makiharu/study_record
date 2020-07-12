@@ -33,7 +33,8 @@
   </div>
 </div>
 
-
+<!--コメントが存在している時のみ一覧を表示する-->
+<% if @board_comments.exists? %>
 <div class="comments">
   <div class="comment-form">
     <div class="comment-heading">
@@ -78,6 +79,7 @@
     </div>
   </div>
 </div>
+<% end %>
 
 
 

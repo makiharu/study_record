@@ -1,5 +1,4 @@
-<div class="form-horizontal">
-<%= form_with model:board do |f| %>
+<%= form_with model: board, local: true do |f| %>
 	<%= render 'shared/error_messages', obj: board %>
 	<div class="form-group mt-4">
 		<%= f.label :タイトル %>
@@ -14,7 +13,8 @@
 	</div>
 	<div class="form-group">
     <span>タグ</span>
-	    <%= f.collection_check_boxes(:tag_ids, Tag.where(is_void: false), :id, :name) do |tag| %>
+	    <%#= f.collection_check_boxes(:tag_ids, Tag.where(is_void: false), :id, :name) do |tag| %>
+	    <%= f.collection_check_boxes(:tag_ids, Tag.valid, :id, :name) do |tag| %>
 	      <div class="form-check">
 	        <%= tag.label class: 'form-check-label' do %>
 	          <%= tag.check_box class: 'form-check-input' %>
@@ -28,6 +28,6 @@
 	</div>
 	<%= link_to '戻る', boards_path, class: 'btn btn-outline-secondary' %>
 <% end %>
-</div>
+
 
 
