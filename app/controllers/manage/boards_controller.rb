@@ -18,9 +18,9 @@ class Manage::BoardsController < ApplicationController
   def show
     @new_comment = BoardComment.new
     @new_comment.board_id = @board.id
-    #if current_user.present?
-    @new_comment.user_id = current_user.id
-   #end
+    if current_user.present?
+      @new_comment.user_id = current_user.id
+    end
     @board_comments = @board.board_comments
   end
 
