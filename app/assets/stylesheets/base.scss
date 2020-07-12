@@ -81,7 +81,7 @@ footer {
 	position: relative;
 	bottom: 0;
 	margin-top: 50px;
-	display: flex;/*header直下の子要素のレイアウト*/
+	display: inline-block;
 	align-items: center;/*縦方向の中心*/
 	background-color: #3E3E3E3E;
 }
@@ -92,16 +92,49 @@ footer p {
 
 
 
+.footer-logo {
+  font-size: 32px;
+  float:left;
+  padding:50px;
+  font-family: 'Ruda', sans-serif;
+}
+
+.footer-list {
+  float:right;
+  padding: 30px;
+}
+
+.contact-link {
+	font-size: 18px;
+  margin-top: 10px;
+}
+
+
+/*SNSリンク*/
+.icon-instagram {
+margin-right: 5px;
+}
+
+
+.icon-twitter {
+margin-right: 5px;
+}
+
+.icon-facebook {
+margin-right: 5px;
+}
+
+
+
 
 .flash-messages { /*フラッシュメッセージ */
     position: fixed;
     top: 60px;
     color: black;
-
 }
 
 
-.thead {
+.thead { /*全体の見出し*/
   	background-color: #f5f5f5;
 }
 
@@ -110,11 +143,10 @@ footer p {
 }
 
 .form-set { /*全体のフォームに適用*/
-	border: 2px solid gray;
+	border: 2px solid #dcd7d7;
 	padding: 20px;
 	background-color: white;
 }
-
 
 
 .form-group {
@@ -155,4 +187,14 @@ footer p {
   border-right: 15px solid #ffd700;
   z-index: 0;
 }
+
+
+
+
+
+.field_with_errors {
+  display: contents;  /*エラーメッセージ*/
+}
+
+
 

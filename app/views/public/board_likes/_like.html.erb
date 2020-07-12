@@ -2,14 +2,14 @@
   <% if board.board_liked_by?(current_user) %>
   <li>お気に入り:
     <%= link_to board_board_likes_path(board), method: :delete, remote: true do %>
-    <i class="far fa-surprise fa-2x"></i>
+    <i class="far fa-surprise fa-2x faa-ring animated-hover"></i>
     <span class="balloon3-left"><%= board.board_likes.count %></span>
     <% end %>
   </li>
   <% else %>
   <li>お気に入り:
     <%= link_to board_board_likes_path(board), method: :post, remote: true do %>
-    <i class="far fa-surprise fa-2x"></i>
+    <i class="far fa-surprise fa-2x  faa-ring animated-hover"></i>
     <span class="balloon3-left"><%= board.board_likes.count %></span>
     <% end %>
   </li>
