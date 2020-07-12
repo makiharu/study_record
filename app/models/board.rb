@@ -10,7 +10,6 @@ class Board < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :body, presence: true, length: { maximum: 1500 }
-  #validates :display, inclusion: { in: [true, false] }
 
   #  	#引数で渡されたユーザidがテーブル内に存在するかどうか判定
   def board_liked_by?(user)

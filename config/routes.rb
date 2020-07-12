@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       get 'users/password', to: 'users#edit_password' #パスワード変更用
       put 'users/password', to: 'users#update_password'
     end
+      resources :board_likes, only: [:index]
       resources :todolists, except: [:show]
       patch 'todolists/:id/clear', to: 'todolists#clear', as:'todolists_clear' #Ajax
       put '/users/:id/hide' => 'users#hide', as:'users_hide'

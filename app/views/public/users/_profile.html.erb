@@ -8,7 +8,7 @@
 	</thead>
 	<tbody>
 		<tr>
-			<th>
+			<th class="text-left pl-5">
 			<%= attachment_image_tag user, :profile_image, :fill, 200, 200, size: '50x50', fallback: 'no_image.jpg' %>
 			</th>
 		</tr>
@@ -39,12 +39,12 @@
 			</td>
 		</tr>
 		<tr>
+		<% if user_signed_in? %>
 			<td>お気に入り記事: <span class="badge badge-info">
-				<%= user.board_likes.count %></span>
+				<%= link_to user.board_likes.count, board_likes_path %></span>
 			</td>
 		</tr>
 		<tr>
-		<% if user_signed_in? %>
 			<td>
 			<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
 			<% if user.followings.count != 0 %>
