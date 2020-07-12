@@ -11,6 +11,7 @@
       <li><%= link_to '  マイページ', user_path(current_user.id), class: 'glyphicon glyphicon-log-in' %></li>
       <li><%= link_to '  Todoリスト　', todolists_path, class: 'glyphicon glyphicon-log-in' %></li>
       <li><%= link_to '  掲示板一覧', boards_path, class: 'glyphicon glyphicon-log-in' %></li>
+      <li><%= link_to '  お気に入り', board_likes_path %></li>
       <li><%= link_to '  使い方ガイド', home_about_path, class: 'glyphicon glyphicon-log-in' %></li>
       <li><%= link_to '  ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-in' %></li>
 

@@ -34,13 +34,9 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
-    @board = Board.find(params[:id])
     @new_comment = BoardComment.new
     @new_comment.board_id = @board.id
-    #if current_user.present?
     @new_comment.user_id = current_user.id
-    #end
-
     @board_comments = @board.board_comments
   end
 
@@ -59,7 +55,7 @@ class Public::BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:title, :body, tag_ids: [])
+    params.require(:board).permit(:title, :body, :image_id, tag_ids: [])
     # 複数のモデルが渡ってくるので、配列として、このような書き方
     # モデル名の単数形_ids 従属するモデルのid（主キー）の配列を返す
   end
