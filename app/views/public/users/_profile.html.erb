@@ -53,8 +53,8 @@
 			<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
 			<% if user.followings.count != 0 %>
 				  <%= link_to follows_user_path(user)do %>
-				  フォローリスト: <span class="badge badge-info faa-bounce animated-hover"></span>
-				  <%= user.followings.count %>
+				  フォローリスト: <span class="badge badge-info faa-bounce animated-hover">
+				  <%= user.followings.count %></span>
 				  <% end %>
 			<% else %>
 				  フォローリスト: <span class="badge badge-dark"><%= user.followings.count %></span>
@@ -65,8 +65,8 @@
 			<td>
 			<% if user.followers.count != 0 %>
 				<%= link_to followers_user_path(user) do %>
-				フォロワーリスト: <span class="badge badge-info faa-bounce animated-hover"></span>
-				<%= user.followers.count %>
+				フォロワーリスト: <span class="badge badge-info">
+				<%= user.followers.count %></span>
 				<% end %>
 			<% else %>
 				  フォロワーリスト: <span class="badge badge-dark"><%= user.followers.count %></span>
