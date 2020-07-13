@@ -10,8 +10,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @oneday_lists = Todolist.only_done.where(update_date: @from..@to)
-    @week_todolists = Todolist.where(time_category: 'week') # add
-    @month_todolists = Todolist.where(time_category: 'month')
+    @week_todolists = @user.todolists.where(time_category: 'week') # add
+    @month_todolists = @user.todolists.where(time_category: 'month')
   end
 
   def edit; end
