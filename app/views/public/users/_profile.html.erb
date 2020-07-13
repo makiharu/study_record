@@ -35,32 +35,41 @@
 		</tr>
 		<tr>
 			<td>
-				投稿数: <span class="badge badge-info badge badge-info faa-bounce animated-hover">
+				記事投稿数: <span class="badge badge-info badge badge-info faa-bounce animated-hover">
 					<%= user.boards.count %></span>
 			</td>
 		</tr>
 		<tr>
 		<% if user_signed_in? %>
-			<td>お気に入り記事: <span class="badge badge-info faa-bounce animated-hover">
-				<%= link_to user.board_likes.count, board_likes_path %></span>
+			<td><%= link_to board_likes_path do %>
+				お気に入り記事: <span class="badge badge-info faa-bounce animated-hover">
+				<%= user.board_likes.count %></span>
+				<% end %>
 			</td>
+
 		</tr>
 		<tr>
 			<td>
 			<!--フォロー、フォロワーの数が０だった場合、リンク先に飛べないように設定-->
 			<% if user.followings.count != 0 %>
-				  フォローリスト<span class="badge badge-info faa-bounce animated-hover"><%= link_to user.followings.count, follows_user_path %></span>
+				  <%= link_to follows_user_path(user)do %>
+				  フォローリスト: <span class="badge badge-info faa-bounce animated-hover"></span>
+				  <%= user.followings.count %>
+				  <% end %>
 			<% else %>
-				  フォローリスト<span class="badge badge-dark"><%= user.followings.count %></span>
+				  フォローリスト: <span class="badge badge-dark"><%= user.followings.count %></span>
 			<% end %>
 			</td>
 		</tr>
 		<tr>
 			<td>
 			<% if user.followers.count != 0 %>
-				  フォロワーリスト<span class="badge badge-info faa-bounce animated-hover"><%= link_to user.followers.count, followers_user_path %></span>
+				<%= link_to followers_user_path(user) do %>
+				フォロワーリスト: <span class="badge badge-info faa-bounce animated-hover"></span>
+				<%= user.followers.count %>
+				<% end %>
 			<% else %>
-				  フォロワーリスト<span class="badge badge-dark"><%= user.followers.count %></span>
+				  フォロワーリスト: <span class="badge badge-dark"><%= user.followers.count %></span>
 			<% end %>
 			</td>
 		</tr>

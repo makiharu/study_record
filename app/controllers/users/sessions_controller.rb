@@ -8,7 +8,7 @@ class Users::SessionsController < Devise::SessionsController
   def new_guest
     user = User.guest_user
     sign_in user
-    redirect_to root_path, notice: 'ゲストユーザー(かんたんログイン)としてログインしました。'
+    redirect_to user_path(current_user), notice: 'ゲストユーザー(かんたんログイン)としてログインしました。'
   end
 
   protected

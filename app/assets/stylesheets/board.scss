@@ -20,10 +20,10 @@ a {
 
 
 
+
 .board-head { /*掲示板一覧見出し　ページ左側*/
   margin-bottom: 28px;
 }
-
 
 .board-heading h4 {/*蛍光マーカー風*/
   background: linear-gradient(transparent 70%, yellow 70%);
@@ -52,7 +52,6 @@ a {
 }
 
 .board-profile p {
-	background: linear-gradient(transparent 50%, deepskyblue 70%);
 	padding: 3px;
 	width: 25%;
 	float: right;
