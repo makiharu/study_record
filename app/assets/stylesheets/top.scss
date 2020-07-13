@@ -1,7 +1,33 @@
-.start-button {
-	margin-top: 220px;
+.image2 {
+  background-image: url(image02.jpg);
+}
+.image3 {
+  background-image: url(image03.jpg);
+}
+.image4 {
+  background-image: url(image04.jpg);
+}
+.image5 {
+  background-image: url(image05.jpg);
 }
 
+#container{
+  height: 600px;
+  width: 1100px;
+}
+
+
+.start-button {
+	margin-top: 120px;
+	margin-bottom: 120px;
+}
+
+.top-heading {
+	padding-top: 0;
+}
+.top-heading h1 {
+	font-size: 48px;
+}
 /*aboutページ*/
 .about_heading {
 	margin-top: 100px;
