@@ -1,15 +1,16 @@
 .image2 {
-  background-image: url(image02.jpg);
+  background-image: image-url(image02.jpg);
 }
 .image3 {
-  background-image: url(image03.jpg);
+  background-image: image-url(image03.jpg);
 }
 .image4 {
-  background-image: url(image04.jpg);
+  background-image: image-url(image04.jpg);
 }
 .image5 {
-  background-image: url(image05.jpg);
+  background-image: image-url(image05.jpg);
 }
+
 
 #container{
   height: 600px;
