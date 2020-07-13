@@ -41,7 +41,7 @@
 			</div>
 	    	<div class="card-body mb-5">
 				<div class="card-text">
-					<h5 class="text-center">達成したTo doリストのラベル比率</h5>
+					<h5 class="text-center">~ 言語別の達成リスト ~</h5>
 				</div>
 				<%= pie_chart @user.get_labels,
 					label: 'ラベル', name: 'ラベル比率',
@@ -51,7 +51,7 @@
 		 	</div>
 			<div class="card-body mt-5">
 				<div class="card-text">
-					<h5 class="text-center">1週間分のタスク達成度</h5>
+					<h5 class="text-center">~ 1週間ごとのタスク達成数 ~</h5>
 				</div>
 				<%= area_chart @user.week_list,
 				 	colors: ["#0096f3"],

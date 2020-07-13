@@ -20,6 +20,9 @@
 				<div class="actions">
 					<%= f.submit '保存する', class: 'btn btn-outline-primary btn-block' %>
 				</div>
+				<div class="actions">
+					<%= link_to '削除する', label_path(@label), method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger btn-block' %>
+				</div>
 				<%= link_to '戻る', labels_path, class: 'btn btn-outline-secondary btn-block' %>
 				<% end %>
 			</div>

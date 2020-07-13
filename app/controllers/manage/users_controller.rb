@@ -4,8 +4,6 @@ class Manage::UsersController < ApplicationController
 
   def index
     @users = User.all.order(created_at: :desc).page(params[:page]).per(15)
-    # @search = User.ransack(params[:q])
-    # @users = @search.result
   end
 
   def show; end
