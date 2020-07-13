@@ -19,11 +19,11 @@
 			</div>
 
 			<div class="card-body">
-				<table class="table table-hover">
+				<table class="table table-hover table-responsive">
 				<% if @board_likes.any? %>
 					<thead>
 						<tr>
-							<td>タイトル  </td>
+							<td>タイトル</td>
 							<td>ユーザー名</td>
 							<td>投稿日時</td>
 							<td>詳細</td>
@@ -33,7 +33,7 @@
 						<% @board_likes.each do |board_like| %>
 						<tr>
 							<td><%= board_like.board.title %></td>
-							<td><%= board_like.user.name %></td>
+							<td class="small"><%= board_like.user.name %></td>
 							<td class="small"><%= l board_like.board.created_at %></td>
 							<td><%= link_to '詳細', board_path(board_like.board), class: 'btn btn-outline-info' %></td>
 						</tr>

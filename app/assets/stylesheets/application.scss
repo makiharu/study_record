@@ -27,3 +27,25 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+
+.image2 {
+  background-image: url(image02.jpg);
+}
+.image3 {
+  background-image: url(image03.jpg);
+}
+.image4 {
+  background-image: url(image04.jpg);
+}
+.image5 {
+  background-image: url(image05.jpg);
+}
+
+#container{
+  height: 550px;
+  width: 1000px;
+}
+
+.start-button {
+	margint-bottom: 150px;
+}

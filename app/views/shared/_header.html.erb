@@ -8,18 +8,33 @@
   <ul>
     <% if user_signed_in? %>
     　<li><%= "ようこそ、#{current_user.name}さん！" %></li>
-      <li><%= link_to '  マイページ', user_path(current_user.id), class: 'glyphicon glyphicon-log-in' %></li>
-      <li><%= link_to '  Todoリスト　', todolists_path, class: 'glyphicon glyphicon-log-in' %></li>
-      <li><%= link_to '  掲示板一覧', boards_path, class: 'glyphicon glyphicon-log-in' %></li>
-      <li><%= link_to '  お気に入り', board_likes_path %></li>
-      <li><%= link_to '  使い方ガイド', home_about_path, class: 'glyphicon glyphicon-log-in' %></li>
-      <li><%= link_to '  ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-in' %></li>
+      <li><%= link_to user_path(current_user.id) do %>
+          <i class="fas fa-user-graduate"> マイページ</i>
+          <% end %>
+      </li>
+      <li><%= link_to todolists_path do %>
+          <i class="far fa-edit">  To do</i>
+          <% end %>
+      </li>
+      <li><%= link_to boards_path do %>
+          <i class="fas fa-list-ul"> 掲示板</i>
+          <% end %>
+      </li>
+      <li><%= link_to board_likes_path do %>
+          <i class="far fa-surprise"> 気になる記事</i>
+          <% end %>
+      </li>
+      <li><%= link_to home_about_path do %>
+          <i class="fas fa-eject"> 使い方</i>
+          <% end %>
+      </li>
+      <li><%= link_to '  ログアウト', destroy_user_session_path, method: :delete %></li>
 
     <% else %>
-      <li><%= link_to '  ホーム', root_path, class: 'glyphicon glyphicon-log-in' %></li>
-      <li><%= link_to '  ログイン', new_user_session_path, class: 'glyphicon glyphicon-log-in' %></li>
-      <li><%= link_to '  新規登録', new_user_registration_path, class: 'glyphicon glyphicon-log-in' %></li>
-      <li><%= link_to '  ログイン(管理者)', new_admin_session_path, class: 'glyphicon glyphicon-log-in' %></li>
+      <li><%= link_to '  ホーム', root_path %></li>
+      <li><%= link_to '  ログイン', new_user_session_path %></li>
+      <li><%= link_to '  新規登録', new_user_registration_path %></li>
+      <li><%= link_to '  ログイン(管理者)', new_admin_session_path %></li>
 
   　<% end %>
   </ul>
