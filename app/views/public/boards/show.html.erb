@@ -33,9 +33,9 @@
     <div class="card-text text-right">
       <span id="time">投稿日時: <%= l @board.created_at %></span>
       <p class="font-weight-bold mt-2">
-          <%= link_to user_path(@board.user) do %>
-            <%= @board.user.name %>
-            <%= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
+          <%= link_to user_path(@user) do %>
+            <%= @user.name %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
           <% end %>
       </p>
     </div>

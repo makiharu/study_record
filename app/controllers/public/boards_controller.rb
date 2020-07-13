@@ -1,6 +1,4 @@
 class Public::BoardsController < ApplicationController
-  before_action :authenticate_user!, unless: :login_admin
-  before_action :authenticate_admin!, if: :login_admin
   before_action :set_board, only: %i[show edit update]
   before_action :correct_board, only: %i[edit update]
 
@@ -34,6 +32,7 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     @new_comment = BoardComment.new
     @new_comment.board_id = @board.id
     @new_comment.user_id = current_user.id
