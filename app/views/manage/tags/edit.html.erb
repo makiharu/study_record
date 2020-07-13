@@ -1,16 +1,11 @@
 <div class='row'>
 	<div class="col-md-6 offset-md-2">
-		<div class="float-right">
-			<%= link_to '一覧画面に戻る', tags_path, class: 'btn btn-secondary' %>
-		</div>
-		<h3>編集画面</h3>
 
-		<div class="form-set">
-			<div class="tag-heading">
-				<h5>タグ編集</h5>
+		<div class="card card-default">
+			<div class="card-head thead">
+				<h4 class="text-center mb-3">タグ編集</h4>
 			</div>
-			<div class="tag-body">
-
+			<div class="card-body">
 				<%= form_with model: @tag, local: true do |f| %>
 					<%= render partial: 'shared/error_messages', locals: { obj: @tag} %>
 
@@ -26,9 +21,14 @@
 				<div class="actions">
 					<%= f.submit '保存する', class: 'btn btn-outline-primary btn-block' %>
 				</div>
+				<div class="actions">
+					<%= link_to '削除する', tag_path(@tag), method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger btn-block' %>
+				</div>
+				<%= link_to '戻る', tags_path, class: 'btn btn-outline-secondary btn-block' %>
 				<% end %>
 			</div>
 		</div>
 	</div>
 </div>
+
 

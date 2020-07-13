@@ -1,6 +1,6 @@
 class Manage::TagsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_tag, only: %i[edit update]
+  before_action :set_tag, only: %i[edit update destroy]
 
   def new; end
 
@@ -36,6 +36,13 @@ class Manage::TagsController < ApplicationController
       flash[:notice] = "タグの変更を保存しました"
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @tag.destroy
+      redirect_to tags_path
+      flash[:alert] = "タグを削除しました"
     end
   end
 
