@@ -14,11 +14,13 @@
 //= require jquery3
 //= require bootstrap
 //= require popper
+//= require turbolinks
 //= require activestorage
 //= require chartkick
 //= require Chart.bundle
 //= require_tree .
 
+$(document).on('turbolinks:request-start', function() {　});
 $(document).ready(function () {
   $("#theTarget").skippr({
     // スライドショーの変化 ("fade" or "slide")
