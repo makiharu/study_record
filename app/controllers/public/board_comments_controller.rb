@@ -1,5 +1,6 @@
 class Public::BoardCommentsController < ApplicationController
   before_action :authenticate_user!
+  #before_action :set_board_comment, only: %i[update destroy]
   before_action :correct_comment, only: %i[edit update destroy]
 
   def index; end
@@ -18,7 +19,6 @@ class Public::BoardCommentsController < ApplicationController
   end
 
   def destroy
-    board_comment = BoardComment.find(params[:board_id])
     board = Board.find_by(params[:board_id])
     if board_comment.destroy
       redirect_back(fallback_location: root_path)
@@ -30,12 +30,12 @@ class Public::BoardCommentsController < ApplicationController
   end
 
   def edit
+    # viewで渡す変数のため、@が必要。correct_commentでは不可。
     @board_comment = BoardComment.find(params[:board_id])
     @board_comment.user_id = current_user.id
   end
 
   def update
-    board_comment = BoardComment.find(params[:board_id])
     if board_comment.update(board_comment_params)
       redirect_to board_path(board_comment.board.id)
       flash[:success] = 'コメントの内容を保存しました'
@@ -49,13 +49,6 @@ class Public::BoardCommentsController < ApplicationController
 
   def board_comment_params
     params.require(:board_comment).permit(:comment)
-  end
-
-  def correct_comment
-    user = User.find(params[:id])
-    if user != current_user
-      redirect_to boards_path
-    end
   end
 
   def correct_comment
