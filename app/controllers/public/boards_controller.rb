@@ -32,7 +32,7 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     @new_comment = BoardComment.new
     @new_comment.board_id = @board.id
     @new_comment.user_id = current_user.id
