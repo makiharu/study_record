@@ -8,7 +8,7 @@
     <!--掲示板お気に入りボタン---------------------------->
   <div class="ml-auto">
     <%= link_to '掲示板一覧', boards_path, class: 'btn btn-outline-dark' %>
-    <% if @board.user = current_user %>
+    <% if @board.user == current_user %>
       <%= link_to '編集', edit_board_path(@board), class: 'btn btn-outline-success' %>
     <% end %>
   </div>
@@ -107,16 +107,7 @@
     <h4>回答フォーム</h4>
 </div>
 <div class="answer-form">
-  <%= form_with model: [@board, @new_comment], local: true do |f| %>
-    <div class="form-group">
-      <%= f.text_area :comment, class: 'form-control', rows: 10 %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit '送信する', class: 'btn btn-outline-info' %>
-      <%= link_to '戻る', boards_path, class: 'btn btn-outline-dark' %>
-    </div>
-  <% end %>
+  <%= render 'public/board_comments/form', board: @board, new_comment: @new_comment %>
 </div>
 
 
