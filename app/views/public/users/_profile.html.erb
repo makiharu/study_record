@@ -34,9 +34,10 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				記事投稿数: <span class="badge badge-dark faa-bounce">
+			<td><%= link_to user_user_boards_path(current_user.id) do %>
+				過去の記事: <span class="badge badge-info faa-bounce animated-hover">
 					<%= user.boards.count %></span>
+				<% end %>
 			</td>
 		</tr>
 		<tr>

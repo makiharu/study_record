@@ -43,18 +43,23 @@ class Public::UsersController < ApplicationController
     @users = @user.followers
   end
 
-  def edit_password
+  def edit_password #password_change
     @user = User.new
     @pass_user = User.find(params[:user_id])
   end
 
-  def update_password
+  def update_password #password_change
     if current_user.update_with_password(pass_params)
         redirect_to root_path, success: 'パスワードを変更しました。再度ログインしてご利用くださいませ。'
       else
         render :edit_password
     end
   end
+
+  def user_boards
+    @boards = current_user.boards
+  end
+
 
   private
 
