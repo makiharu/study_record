@@ -40,7 +40,7 @@ class Public::BoardCommentsController < ApplicationController
       redirect_to board_path(board_comment.board.id)
       flash[:success] = 'コメントの内容を保存しました'
     else
-      redirect_to board_path(params[:board_id])
+      redirect_to board_path(board_comment.board.id)
       flash[:alert] = '変更内容を保存できませんでした'
     end
   end
