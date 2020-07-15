@@ -4,16 +4,15 @@
 		<th>
 			フォロー済:
 			<%= link_to user_relationship_path(user.id), method: :delete do %>
-			  <i class="fas fa-biking fa-lg">  <%= user.followers.count %></i>
+			  <i class="far fa-star unfollow-btn"></i>  <%= user.followers.count %></i>
 			<% end %>
 		</th>
 	<% else %>
 		<th>
 			フォローする:
 			<%= link_to user_relationships_path(user.id), method: :post do %>
-		  	  <i class="fas fa-biking fa-lg">  <%= user.followings.count %></i>
+		  	  <i class="far fa-star follow-btn"></i>  <%= user.followings.count %></i>
 		  	<% end %>
 		</th>
 	<% end %>
 <% end %>
-

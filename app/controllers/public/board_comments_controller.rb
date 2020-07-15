@@ -1,6 +1,5 @@
 class Public::BoardCommentsController < ApplicationController
   before_action :authenticate_user!
-  #before_action :set_board_comment, only: %i[update destroy]
   before_action :correct_comment, only: %i[edit update destroy]
 
   def index; end

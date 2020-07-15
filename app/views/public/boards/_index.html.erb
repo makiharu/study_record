@@ -1,3 +1,5 @@
+<!--boardランキングの時だけ処理を変えたい-->
+
 <div class="card-box">
 	<table class="table table-hover">
 		<% unless boards.empty? %>
@@ -25,11 +27,7 @@
 					</td>
 					<td class="small"><%= l board.created_at %></td>
 					<td>
-					<% if user_signed_in? %>
-		  				<% if board.board_liked_by?(current_user) %>
-						　　<i class="far fa-surprise"><%= board.board_likes.count %></i>
-						<% end %>
-					<% end %>
+						<i class="far fa-surprise"> <%= board.board_likes.count %></i>
 					</td>
 					<td><%= link_to '詳細', board_path(board), class: 'btn btn-outline-info' %></td>
 				</tr>
