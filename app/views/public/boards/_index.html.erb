@@ -1,6 +1,6 @@
 <div class="card-box">
 	<table class="table table-hover">
-		<%# if boards.any? %>
+		<% unless boards.empty? %>
 		<thead>
 			<tr>
 				<th>タイトル</th>
@@ -35,10 +35,10 @@
 				</tr>
 			<% end %>
 		</tbody>
-		<%# else %>
-<!-- 		<div class="no_content m-5">
+		<% else %>
+		<div class="no_content m-5">
 			<span>まだ追加した記事がありません。</span>
-		</div> -->
-		<%# end %>
+		</div>
+		<% end %>
 	</table>
 </div>
