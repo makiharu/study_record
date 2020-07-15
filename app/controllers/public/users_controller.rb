@@ -58,7 +58,6 @@ class Public::UsersController < ApplicationController
     @boards = current_user.boards
   end
 
-
   private
 
   def user_params

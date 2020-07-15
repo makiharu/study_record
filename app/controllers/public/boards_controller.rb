@@ -20,7 +20,6 @@ class Public::BoardsController < ApplicationController
   def index
     @boards = Board.all.order(created_at: :desc).page(params[:page]).per(10)
     @board_ranking = Board.create_rankings
-
     @tags = Tag.all
     @board_tags = BoardTag.all
     @new_boards = Board.new_order
@@ -32,10 +31,7 @@ class Public::BoardsController < ApplicationController
   end
 
   def show
-    #@user = User.find(params[:id])
     @new_comment = BoardComment.new
-    # @new_comment.board_id = @board.id
-    # @new_comment.user_id = current_user.id
     @board_comments = @board.board_comments
   end
 
@@ -50,7 +46,6 @@ class Public::BoardsController < ApplicationController
       render :edit
     end
   end
-
 
   private
 
