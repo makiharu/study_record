@@ -30,5 +30,14 @@ RSpec.describe 'Userモデルのテスト', type: :model do
     end
   end
 
+  describe 'アソシエーションのテスト' do
+    context 'Boardモデルとの関係' do
+      it '1:Nとなっている' do
+        expect(User.reflect_on_association(:boards).macro).to eq :has_many
+      end
+    end
+  end
 
 end
+#トップレベルの describe で「Calc」のようにクラス名を指定した場合、
+#そのクラスのインスタンスを「subject」で代用することが可能

@@ -1,7 +1,7 @@
 class Public::TodolistsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_todolist, only: %i[edit update destroy clear]
-
+  before_action :time_todolist, only: %i[create index clear]
   def new
     @todolist = Todolist.new
     @todolists = Todolist.all
@@ -14,24 +14,12 @@ class Public::TodolistsController < ApplicationController
     # Ajax 追加
     @todolist = Todolist.new
     @todolist.label_lists.build
-    @today_todolists = Todolist.where(time_category: 'today', user_id: current_user.id)
-    @week_todolists = Todolist.where(time_category: 'week', user_id: current_user.id)
-    @month_todolists = Todolist.where(time_category: 'month', user_id: current_user.id)
-    # @today_todolists = Todolist.today
-    # @week_todolists = Todolist.week
-    # @month_todolists = Todolist.month
     @label = Label.valid
   end
 
   def index
     @todolist = Todolist.new
     @todolist.label_lists.build
-    @today_todolists = Todolist.where(time_category: 'today', user_id: current_user.id)
-    @week_todolists = Todolist.where(time_category: 'week', user_id: current_user.id)
-    @month_todolists = Todolist.where(time_category: 'month', user_id: current_user.id)
-    # @today_todolists = Todolist.today
-    # @week_todolists = Todolist.week
-    # @month_todolists = Todolist.month
   end
 
   def edit
@@ -50,12 +38,6 @@ class Public::TodolistsController < ApplicationController
   def clear # Ajax 追加
     @todolist.update(done: true, update_date: Time.now)
     @todolist.label_lists.build
-    # @today_todolists = Todolist.today
-    # @week_todolists = Todolist.week
-    # @month_todolists = Todolist.month
-    @today_todolists = Todolist.where(time_category: 'today', user_id: current_user.id)
-    @week_todolists = Todolist.where(time_category: 'week', user_id: current_user.id)
-    @month_todolists = Todolist.where(time_category: 'month', user_id: current_user.id)
     @label = Label.valid
   end
 
@@ -78,6 +60,12 @@ class Public::TodolistsController < ApplicationController
 
   def set_todolist
     @todolist = Todolist.find(params[:id])
+  end
+
+  def time_todolist
+    @today_todolists = current_user.todolists.today
+    @week_todolists = current_user.todolists.week
+    @month_todolists = current_user.todolists.month
   end
 
 end
