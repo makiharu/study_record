@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, unless: :login_admin
   before_action :authenticate_admin!, if: :login_admin
-  before_action :set_user, only: %i[show edit update hide]
+  before_action :set_user, only: %i[show edit update hide follows followers]
   before_action :correct_user, only: %i[edit update]
 
   def index
@@ -10,8 +10,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @oneday_lists = Todolist.only_done.where(update_date: @from..@to)
-    @week_todolists = @user.todolists.where(time_category: 'week') # add
-    @month_todolists = @user.todolists.where(time_category: 'month')
+    @week_todolists = @user.todolists.week
+    @month_todolists = @user.todolists.month
   end
 
   def edit; end
@@ -34,12 +34,10 @@ class Public::UsersController < ApplicationController
   end
 
   def follows
-    @user = User.find(params[:id])
     @users = @user.followings
  end
 
   def followers
-    @user = User.find(params[:id])
     @users = @user.followers
   end
 
@@ -77,7 +75,6 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-
 
     #パスワード変更用
   def pass_params
