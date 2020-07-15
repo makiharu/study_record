@@ -11,11 +11,11 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks' # SNS認証時のコールバック処理
   }
 
-  devise_scope :user do
+  devise_scope :user do #kantan login
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
 
-  devise_scope :admin do
+  devise_scope :admin do #kantan login
     post 'admins/guest_sign_in', to: 'admins/sessions#new_guest'
   end
 
@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       get :followers, on: :member
       get 'users/password', to: 'users#edit_password' #パスワード変更用
       put 'users/password', to: 'users#update_password'
+      get :user_boards, only: [:index] #add past_user_boards/view
     end
       resources :board_likes, only: [:index]
       resources :todolists, except: [:show]

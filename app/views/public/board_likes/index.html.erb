@@ -17,9 +17,11 @@
 			<div class="card-heading thead p-2">
 				<h5 class="text-center">お気に入り記事一覧  <i class="far fa-list-alt"></i></h5>
 			</div>
+			<%#= render 'public/boards/index', boards: @boards %>
 
 			<div class="card-body">
 				<table class="table table-hover table-responsive">
+				<!--パーシャル化-->
 				<% if @board_likes.any? %>
 					<thead>
 						<tr>

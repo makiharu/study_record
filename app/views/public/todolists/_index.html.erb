@@ -5,7 +5,7 @@
 			<tr>
 				<td><%= "#{i + 1}: " %></td>
 				<td >
-					<%= todolist.content %>
+					<%= link_to todolist.content, todolists_path %>
 				</td>
 			</tr>
 			<% end %>

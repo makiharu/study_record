@@ -11,5 +11,9 @@ class Todolist < ApplicationRecord
 
   scope :only_done, -> { where(done: true) }
   scope :not_done, -> { where(done: false) }
+   #リファクタリング
+  # scope :today, -> { where(time_category: 'today', user_id: current_user.id) }
+  # scope :week, -> { where(time_category: 'week', user_id: current_user.id) }
+  # scope :month, -> { where(time_category: 'month', user_id: current_user.id) }
 
 end
