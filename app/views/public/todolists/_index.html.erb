@@ -13,8 +13,10 @@
 	</table>
 <% else %>
 	<div class="text-center p-3">
-		<% if user_signed_in? %>
-			<%= link_to '設定はこちらから', todolists_path, class: 'btn btn-outline-info' %>
+		<% if user_signed_in?%>
+			<% unless user == current_user %>
+				<%= link_to '設定はこちらから', todolists_path, class: 'btn btn-outline-info' %>
+			<% end %>
 		<% else %>
 			<span>非公開です</span>
 		<% end %>
