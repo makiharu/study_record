@@ -21,7 +21,7 @@
 		  		<h5 class="text-center p-2">今週のTo doリスト</h5>
 		  	</div>
 		  	<div class="card-body">
-		  		<%= render 'public/todolists/index', todolists: @week_todolists %>
+		  		<%= render 'public/todolists/index', todolists: @week_todolists, user: @user %>
 		  	</div>
 		</div>
 		<div class="card">
@@ -29,7 +29,7 @@
 				<h5 class="text-center p-2">今月のTo doリスト</h5>
 			</div>
 			<div class="card-body">
-				<%= render 'public/todolists/index', todolists: @month_todolists %>
+				<%= render 'public/todolists/index', todolists: @month_todolists, user: @user %>
 			</div>
 		</div>
 	</div>
