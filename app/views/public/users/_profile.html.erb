@@ -34,14 +34,14 @@
 			</td>
 		</tr>
 		<tr>
-			<td><%= link_to user_user_boards_path(current_user.id) do %>
+		<% if user_signed_in? %>
+			<td><%= link_to user_user_boards_path(user) do %>
 				過去の記事: <span class="badge badge-info faa-bounce animated-hover">
 					<%= user.boards.count %></span>
 				<% end %>
 			</td>
 		</tr>
 		<tr>
-		<% if user_signed_in? %>
 			<td><%= link_to board_likes_path do %>
 				お気に入り記事: <span class="badge badge-info faa-bounce animated-hover">
 				<%= user.board_likes.count %></span>
