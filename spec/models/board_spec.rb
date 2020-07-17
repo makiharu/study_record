@@ -4,7 +4,7 @@ RSpec.describe 'Boardモデルのテスト', type: :model do
 	describe 'バリデーションのテスト' do
 		#buildとcreateについて
 	  let(:user) { create(:user) }
-	  let(:board) { build(:board, user_id: user.id)}
+	  let(:board) { build(:board, user_id: user.id) }
 
 	  context 'titleカラム' do
 	  	it '空欄でないこと' do
