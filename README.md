@@ -3,7 +3,7 @@
 
 
 ## サイト概要
-日々の学習記録を楽しく、記録・管理できるアプリ。プログラミング学習版。
+日々のプログラミング学習を楽しく、記録・管理できるアプリ。  
 日々のタスクを設定し、そのタスクの達成度合いに応じて、それをグラフで表すことで、学習の達成度を目で分かりやすい指標に変える。
 掲示板としての機能も持っており、学習における悩みなども投稿することができる。
 
@@ -24,17 +24,16 @@
 日々の学習管理。
 
 ### 使用技術
-Ruby 2.5.7, Rails 5.2.4.3
-MySQL 5.5.62
-Nginx, Puma
-AWS(EC2, RDS)
-Capistrano
-RSpec
-Bootstrap, jQuery
+Ruby 2.5.7, Rails 5.2.4.3  
+MySQL 5.5.62  
+Nginx, Puma  
+AWS(EC2, RDS) 
+Capistrano  
+RSpec  
+Bootstrap, jQuery  
 
 ## 設計書
+https://drive.google.com/drive/folders/15oZK4UPQE_ZlT0--FG8TolQuAGSbtHAI
 
-
-
-### 機能一覧
+## 機能一覧
 https://docs.google.com/spreadsheets/d/1VXXK2aaEtTotuBBTq_cba7Fc8ofdQfr5OiF6ub-zRdE/edit#gid=0
