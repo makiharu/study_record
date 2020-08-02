@@ -30,7 +30,6 @@ Rails.application.routes.draw do
       resources :board_comments, only: %i[create destroy edit update destroy] do
         resource :comment_likes, only: %i[create destroy]
       end
-      get 'search/search'
     end
     resources :users, only: %i[index show edit update] do
       resources :relationships, only: %i[create destroy]
@@ -57,7 +56,6 @@ Rails.application.routes.draw do
     get 'home/top'
     resources :labels, except: [:show]
     resources :tags, except: [:show]
-    get 'search/search'
   end
 
 end

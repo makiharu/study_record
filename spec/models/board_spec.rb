@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Boardモデルのテスト', type: :model do
 	describe 'バリデーションのテスト' do
-		#buildとcreateについて
 	  let(:user) { create(:user) }
 	  let(:board) { build(:board, user_id: user.id) }
 
@@ -38,6 +37,3 @@ RSpec.describe 'Boardモデルのテスト', type: :model do
 	end
 end
 
-
-
-#example の中ではインスタンス変数を使わない方がよい

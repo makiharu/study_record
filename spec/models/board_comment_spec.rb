@@ -17,5 +17,19 @@ RSpec.describe 'BoardCommentモデルのテスト', type: :model do
 				expect(board_comment.valid?).to eq false;
 			end
 		end
+
+		describe 'アソシーエーションのテスト' do
+			context 'Userモデルとの関係' do
+				it 'N:1となっている' do
+					expext(BoardComment.reflect_on_association(:user).macro).to eq :belongs_to
+				end
+			end
+
+			context 'Boardモデルとの関係' do
+				it '1:Nとなっている' do
+					expext(BoardComment.reflect_on_association(:board).macro).to eq :belongs_to
+				end
+			end
+		end
 	end
 end
