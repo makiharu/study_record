@@ -1,5 +1,5 @@
 # study_record
-
+![study_record20E200802-172231](https://user-images.githubusercontent.com/62270611/89118927-d33f6280-d4e4-11ea-8919-18fb05ae5fe6.png)
 
 
 ## サイト概要
