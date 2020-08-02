@@ -32,7 +32,7 @@ Capistrano
 RSpec  
 Bootstrap, jQuery  
 
-## 設計書
+## 設計書一覧
 https://drive.google.com/drive/folders/15oZK4UPQE_ZlT0--FG8TolQuAGSbtHAI
 
 ## 機能一覧
