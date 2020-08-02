@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+
+@import "bootstrap";
+@import "base";
+@import "board";
+@import "board_comment";
+@import "tag";
+@import "todolist";
+@import "user";
+@import "top";
+@import "relationship";
+
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+

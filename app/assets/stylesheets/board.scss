@@ -1,0 +1,84 @@
+
+/*掲示板フォームの画像投稿*/
+.board-image-form {
+	margin-top: 30px;
+}
+
+a {
+  text-decoration: none;/*aタグの文字色と、余計なアンダーラインを消す*/
+  color: #17A2B8;
+}
+
+.badge-info a{
+  color: white;
+}
+
+
+.board-title a{
+  color: #223a70; /*新規作成ボタン文字色:紺色*/
+}
+
+
+
+
+.board-head { /*掲示板一覧見出し　ページ左側*/
+  margin-bottom: 28px;
+}
+
+.board-heading h4 {/*蛍光マーカー風*/
+  background: linear-gradient(transparent 70%, yellow 70%);
+  position: relative;
+  padding-bottom: 3px;
+  width: 30%;
+}
+
+.comment-heading h4 {
+  background: linear-gradient(transparent 50%, yellow 70%); /*コメント一覧見出し*/
+  position: relative;
+  padding-bottom: 3px;
+  width: 15%;
+}
+
+
+
+.board-body {
+  padding: 3px 0 5px 0;
+
+}
+
+.board-profile {
+  margin-top: 15px; /*質問の投稿者*/
+  padding-bottom: 15px;
+}
+
+.board-profile p {
+	padding: 3px;
+	width: 25%;
+	float: right;
+}
+
+
+.card-text badge {
+  margin-top: 20px;
+}
+
+.card {
+  margin-bottom: 60px;
+}
+
+.thead {
+  background-color:#59b9c6;
+}
+
+.fa-crown {
+  color: #fcc800;
+}
+
+.fa-newspaper {
+  color: #efefef;
+}
+
+.fa-list-alt {
+  color: #ffedab;
+}
+

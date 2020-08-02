@@ -1,0 +1,25 @@
+ <% if user_signed_in? %>
+<h1>
+   <%= link_to "Study record", user_path(current_user), id: "logo" %>
+</h1>
+<% end %>
+
+<nav class="pc-nav">
+  <ul>
+    <% if user_signed_in? %>
+    　<li><%= "ようこそ、#{current_user.name}さん！" %></li>
+      <li><%= link_to ' マイページ', user_path(current_user.id) %>
+      </li>
+      <li><%= link_to ' To do', todolists_path %></li>
+      <li><%= link_to ' 掲示板', boards_path %></li>
+      <li><%= link_to  '気になる記事', board_likes_path %></li>
+      <li><%= link_to ' 使い方', home_about_path %></li>
+      <li><%= link_to '  ログアウト', destroy_user_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to '  ホーム', root_path %></li>
+      <li><%= link_to '  ログイン', new_user_session_path %></li>
+      <li><%= link_to '  新規登録', new_user_registration_path %></li>
+      <li><%= link_to '  ログイン(管理者)', new_admin_session_path %></li>
+  　<% end %>
+  </ul>
+</nav>

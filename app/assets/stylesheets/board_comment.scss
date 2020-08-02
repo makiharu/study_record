@@ -1,0 +1,52 @@
+
+/*コメント関連*/
+
+
+/*borders/show*/
+
+.comments { /*コメント一覧枠*/
+  margin-bottom: 80px;
+  margin-top: 80px;
+
+}
+
+.board-heading {
+  margin-bottom: 50px;
+}
+
+
+
+.comment-list { /*コメントの仕切り*/
+  padding: 15px;
+  border-bottom: 2px dotted #dfdfdf;
+}
+
+.comment-bottom {
+  font-size: 15px;
+  text-align: right; /*名前とプロフ画像を右に設定*/
+
+  > span {
+    font-size: 15px;
+    margin: 0 12px;
+  }
+  > span#time {
+    font-size: 10px; /*投稿日時*/
+  }
+}
+
+
+li {
+  list-style: none;
+}
+
+
+.comment-header {
+  margin-top:60px;
+}
+
+.comment-form { /*コメントフォーム*/
+  border: 2px solid gray;
+  padding: 20px;
+  background-color: white;
+}
+

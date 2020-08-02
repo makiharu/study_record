@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  todolist_id: 1
+  label_id: 1
+
+two:
+  todolist_id: 1
+  label_id: 1

@@ -1,0 +1,18 @@
+<!--フォローボタン-->
+<% if user != current_user %>
+	<% if user.followed_by?(current_user) %>
+		<th>
+			フォロー済
+			<%= link_to user_relationship_path(user.id), method: :delete do %>
+			  <i class="fas fa-star unfollow-btn faa-bounce animated-hover"></i>  <%#= user.followers.count %></i>
+			<% end %>
+		</th>
+	<% else %>
+		<th>
+			フォローしますか？
+			<%= link_to user_relationships_path(user.id), method: :post do %>
+		  	  <i class="far fa-star follow-btn faa-bounce animated-hover"></i>  <%#= user.followings.count %></i>
+		  	<% end %>
+		</th>
+	<% end %>
+<% end %>

@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="mx-auto">
+		<h2 class="mb-3 text-center">掲示板一覧</h2>
+		<div class="introduction">
+			<p class="text-center">学習の悩みなど気軽に投稿してみましょう。</p>
+		</div>
+		<div class="todo-image pl-2">
+			<%= image_tag 'image04.jpg', :width => '350', :height => '300' %>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-3">
+		<!--掲示板サイドバー-->
+		<%= render 'public/boards/sidebar', boards: @boards, tags: @tags %>
+	</div>
+
+	<div class="col-md-9">
+		<div class="board-title">
+			<p class="text-right">
+				<%= link_to '新規作成フォーム +', new_board_path, class: "btn btn-warning" %>
+			</p>
+		</div>
+		<% if !params[:tag_id] %>
+			<!--入子構造-->
+			<div class="col-xs-6">
+				<!--新着投稿一覧　3件-->
+				<div class="card card-default">
+					<div class="card-heading thead">
+						<h5 class="text-center p-2">新着投稿  <i class="far fa-newspaper"></i></h5>
+					</div>
+					<%= render 'index', boards: @new_boards, board_tags: @new_board_tags %>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<!--人気投稿一覧-->
+				<div class="card card-default">
+					<div class="card-heading thead">
+						<h5 class="text-center p-2">人気投稿  <i class="fas fa-crown"></i></h5>
+					</div>
+					<%= render 'index', boards: @board_ranking %>
+				</div>
+			</div>
+		<% end %>
+
+		<div class="card card-default">
+			<div class="card-heading thead p-2">
+				<h5 class="text-center">掲示板一覧  <i class="far fa-list-alt"></i></h5>
+			</div>
+			<%= render 'index', boards: @boards, board_tags: @board_tags %>
+		</div>
+		<%= paginate @boards %>
+	</div>
+</div>
+

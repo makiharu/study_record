@@ -1,0 +1,209 @@
+
+body {
+   font-family: "Kokoro";
+   background-color: #ffffff;/*ベースは白色*/
+   color: #333
+}
+
+
+.wf-hannari { font-family: "Hannari"; }
+
+#logo {
+	font-family: 'Ruda', sans-serif;
+	text-decoration: none;
+  color: rgb(33, 150, 243);
+}
+
+
+
+.container {
+  padding-top: 20px; /*上部に余白を作る*/
+
+}
+
+
+ a {
+  text-decoration: none;/*aタグの文字色と、余計なアンダーラインを消す*/
+  color: #4b4b4b;
+}
+
+header {
+	width: 100%;
+	padding: 20px 4% 10px;/*header内側の余白*/
+	background-color: #ffffff;/*背景色 #009966*/
+	top: 0;
+	display: flex;/*header直下の子要素のレイアウト*/
+	align-items: center;/*縦方向の中心*/
+}
+
+header::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+
+h1 {
+//ロゴの大きさ調整
+	margin: 0;
+	padding: 0;
+	font-size: 50px;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	display: flex;/*横並びに*/
+}
+
+li {
+	margin: 0 0 0 15px;/*余白の調整*/
+	font-size: 16px;/*文字の大きさ調整*/
+}
+
+
+nav {
+	margin: 0 0 0 auto;/*左マージンにauto*/
+}
+
+.pc-nav {
+  color: rgb(33, 150, 243);
+}
+
+.pc-nav a{
+  color: rgb(33, 150, 243);
+}
+
+
+.pagination {
+	margin-bottom: 40px;
+	justify-content: center;/*ページネーション全体に適用*/
+}
+
+
+
+footer {
+	width: 100%;
+	padding: 20px 4% 10px;/*footer内側の余白*/
+	position: relative;
+	bottom: 0;
+	margin-top: 50px;
+	display: inline-block;
+	align-items: center;/*縦方向の中心*/
+	background-color: #3E3E3E3E;
+}
+
+footer p {
+	color: white;
+}
+
+
+
+.footer-logo {
+  font-size: 32px;
+  float:left;
+  padding:50px;
+  font-family: 'Ruda', sans-serif;
+}
+
+.footer-list {
+  float:right;
+  padding: 30px;
+}
+
+.contact-link {
+	font-size: 18px;
+  margin-top: 10px;
+}
+
+
+/*SNSリンク*/
+.icon-instagram {
+margin-right: 5px;
+}
+
+
+.icon-twitter {
+margin-right: 5px;
+}
+
+.icon-facebook {
+margin-right: 5px;
+}
+
+
+
+
+.flash-messages { /*フラッシュメッセージ */
+    position: fixed;
+    top: 60px;
+    color: black;
+}
+
+
+.thead { /*全体の見出し*/
+  	background-color: #f5f5f5;
+}
+
+.table-hover tbody { /*全体のテーブルbodyの色*/
+	background-color: white;
+}
+
+.form-set { /*全体のフォームに適用*/
+	border: 2px solid #dcd7d7;
+	padding: 20px;
+	background-color: white;
+}
+
+
+.form-group {
+	margin-bottom: 40px;
+}
+
+.actions { /*formボタン*/
+	margin-top: 40px;
+	margin-bottom: 50px;
+  margin-right: 10px;
+}
+
+
+
+.balloon3-left { /*吹き出し*/
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 0 5px;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  color: #FFF;
+  font-size: 20px;
+  font-weight: bold;
+  background: #ffd700;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.balloon3-left:before { /*吹き出し*/
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -25px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #ffd700;
+  z-index: 0;
+}
+
+
+
+
+
+.field_with_errors {
+  display: contents;  /*エラーメッセージ*/
+}
+
+
+

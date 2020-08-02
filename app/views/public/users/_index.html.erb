@@ -1,0 +1,22 @@
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>画像</th>
+			<th>ユーザー名</th>
+			<th>登録日時</th>
+			<th>ユーザーページ</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= attachment_image_tag(user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '50x50') %></td>
+			<td><%= user.name %></td>
+			<td><%= l user.created_at %></td>
+			<td><%= link_to '詳細', user_path(user), class: 'btn btn-outline-info' %></td>
+			<td></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

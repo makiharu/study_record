@@ -1,0 +1,28 @@
+<div class="card card-default mt-5 mr-4">
+	<div class="card-heading thead">
+		<h5 class="text-center p-2">カテゴリー別</h5>
+	</div>
+	<table class="table">
+		<tbody>
+		<tr>
+			<td>
+			<%= link_to boards_path do %>
+				<span>全記事(<%= Board.all.count %>)</span>
+			<% end %>
+			</td>
+		</tr>
+		<% tags.each do |tag| %>
+			<!--件数が0件のものとステータスが無効なものはサイドバーに表示させない-->
+			<% if tag.board_tags.count != 0 && tag.is_void == false %>
+			<tr>
+				<td class="tag-name">
+				<%= link_to boards_path(tag_id: tag.id) do  %>
+					<span><%= tag.name %>(<%= tag.board_tags.count %>)</span>
+				<% end %>
+				</td>
+			</tr>
+			<% end %>
+		<% end %>
+		</tbody>
+	</table>
+</div>

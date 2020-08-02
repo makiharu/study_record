@@ -1,0 +1,54 @@
+<div class="row">
+	<div class="col-md-4">
+		<div class="card card-default mr-5 mt-5">
+		<!--プロフィール-->
+		<%= render 'public/users/profile', user: @user %>
+		</div>
+	</div>
+
+	<div class="col-md-8">
+		<div class="board-title">
+			<p class="text-right">
+				<%= link_to 'マイページへ戻る', user_path(@user), class: "btn btn-warning" %>
+			</p>
+		</div>
+
+		<div class="card card-default">
+			<div class="card-heading thead p-2">
+				<h5 class="text-center">お気に入り記事一覧  <i class="far fa-list-alt"></i></h5>
+			</div>
+			<%#= render 'public/boards/index', boards: @boards %>
+
+			<div class="card-body">
+				<table class="table table-hover table-responsive">
+				<!--パーシャル化-->
+				<% if @board_likes.any? %>
+					<thead>
+						<tr>
+							<td>タイトル</td>
+							<td>ユーザー名</td>
+							<td>投稿日時</td>
+							<td>詳細</td>
+						</tr>
+					</thead>
+					<tbody>
+						<% @board_likes.each do |board_like| %>
+						<tr>
+							<td><%= board_like.board.title %></td>
+							<td class="small"><%= board_like.user.name %></td>
+							<td class="small"><%= l board_like.board.created_at %></td>
+							<td><%= link_to '詳細', board_path(board_like.board), class: 'btn btn-outline-info' %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				<% else %>
+					<div class="no_content m-5">
+						<span>まだお気に入りに追加した記事がありません。<br />
+						気になる記事を見つけて、気になるボタンを押してみましょう</span>
+					</div>
+				<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

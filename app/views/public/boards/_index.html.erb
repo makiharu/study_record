@@ -1,0 +1,42 @@
+<!--boardランキングの時だけ処理を変えたい-->
+
+<div class="card-box">
+	<table class="table table-hover">
+		<% unless boards.empty? %>
+		<thead>
+			<tr>
+				<th>タイトル</th>
+				<th>カテゴリー</th>
+				<td>投稿日時</td>
+				<td>気になる</td>
+				<td>詳細</td>
+			</tr>
+		</thead>
+		<tbody>
+			<% boards.each do |board| %>
+				<tr>
+					<td>
+					  <%= link_to board.title, board_path(board) %>
+					</td>
+					<td>
+					<% board.board_tags.each do |board_tag| %>
+						<span class="badge badge-secondary">
+							<%= board_tag.tag.name %>
+						</span>
+					<% end %>
+					</td>
+					<td class="small"><%= l board.created_at %></td>
+					<td>
+						<i class="far fa-surprise"> <%= board.board_likes.count %></i>
+					</td>
+					<td><%= link_to '詳細', board_path(board), class: 'btn btn-outline-info' %></td>
+				</tr>
+			<% end %>
+		</tbody>
+		<% else %>
+		<div class="no_content m-5">
+			<span>まだ追加した記事がありません。</span>
+		</div>
+		<% end %>
+	</table>
+</div>

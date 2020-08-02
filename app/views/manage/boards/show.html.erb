@@ -1,0 +1,97 @@
+<div class="d-flex align-items-center mt-3 mb-2">
+  <div class="mr-auto p-1">
+    <h2>掲示板詳細 :
+      <span><%= link_to '削除', manage_board_path(@board), method: :delete, data: { confirm: '本当に削除しますか？'},class: 'btn btn-danger btn-lg' %></span>
+    </h2>
+  </div>
+  <div class="ml-auto">
+    <%= link_to '一覧に戻る', manage_boards_path, class: 'btn btn-outline-dark' %>
+  </div>
+</div>
+
+
+
+<div class="card card-default">
+  <div class="card-header">
+    <h3><%= @board.title %></h3>
+  </div>
+  <div class="card-text mt-3 ml-2">
+    <% @board.tags.each do |tag| %>
+        <span class="badge badge-info"><%= tag.name %></span>
+    <% end %>
+  </div>
+
+
+  <div class="card-body">
+    <span><%= simple_format(@board.body) %></span>
+  </div>
+  <div class="card-body">
+    <%= attachment_image_tag @board, :image, :fill, 200, 200, size: '200x150' %>
+    <div class="card-text text-right">
+      <span id="time">投稿日時: <%= l @board.created_at %> </span>
+      <span class="font-weight-bold mt-2">
+          <%= link_to user_path(@board.user) do %>
+            <%= @board.user.name %>
+            <%= attachment_image_tag @board.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
+          <% end %>
+      </span>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="comments">
+  <div class="comment-form">
+    <div class="comment-heading">
+      <h4>コメント一覧</h4>
+      <!--コメントが存在している時のみ一覧を表示する-->
+      <% if @board_comments.exists? %>
+      <!--each_with_indexは回したときにそれぞれの要素が何番目か返してくれるメソッド-->
+        <% @board_comments.each_with_index do |comment, i| %>
+        <div class="comment-list">
+
+          <p>NO. <%= i + 1 %></p>
+          <p><%= simple_format(comment.comment) %></p>
+          <div class="comment-bottom">
+            <span id="time"><%= l comment.created_at %></span>
+            <span>
+              <%= link_to user_path(comment.user) do %>
+              <%= comment.user.name %>
+              <%= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
+              <% end %>
+            </span>
+
+            <!--モーダルウィンドウ-->
+            <button type="button" class="btn btn-danger mb-12" data-toggle="modal" data-target="#Modal">削除</button>
+            <!-- ボタン・リンククリック後に表示される画面の内容 -->
+            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3>削除確認画面</h3>
+                  </div>
+                  <div class="modal-body m-3">
+                    <h5 class="text-left">本当に削除しますか？</h5>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                    <button type="button" class="btn btn-default"><%= link_to '削除',  manage_board_board_comment_path(comment.id), method: :delete, class: 'btn btn-outline-danger' %></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <h5 class="p-5">コメントはありません</h5>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+

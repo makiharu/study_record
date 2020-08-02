@@ -1,0 +1,51 @@
+<div class="row">
+	<div class="col-md-8 offset-1">
+		<div class="float-right">
+			<%= link_to '戻る', manage_users_path, class: 'btn btn-dark' %>
+		</div>
+
+		<h3>会員情報編集</h3>
+
+		<div class="form-set">
+
+		<%= form_with model: [:manage, @user], local: true do |f| %>
+			<%= render partial: 'shared/error_messages', locals: { obj: @user} %>
+
+			<div class="form-group">
+				<%= f.label :氏名 %>
+				<%= f.text_field :name, class: 'form-control' %><hr />
+			</div>
+
+			<div class="form-group">
+				<%= f.label :メールアドレス %>
+				<%= f.email_field :email, class: 'form-control' %><hr />
+			</div>
+
+			<div class="form-group">
+				<%= f.label :会員ステータス %>
+
+				<% if @user.is_deleted == false %>
+				<%= f.radio_button :is_deleted, :false %>
+				  <span class="badge badge-primary">有効会員</span>
+				<%= f.radio_button :is_deleted, :true %>
+				　 <span class="badge badge-danger">退会済み</span>
+				<% else %>
+				<%= f.radio_button :is_deleted, :false %>
+				   <span class="badge badge-primary">有効会員</span>
+				<%= f.radio_button :is_deleted, :true %>
+				　　<span class="badge badge-danger">退会済み</span>
+				<% end %><hr />
+			</div>
+
+			<div class="actions">
+				<div style="text-align:center;">
+				<%= f.submit '変更を保存する', class: 'btn btn-outline-success btn-block' %>
+			  </div>
+			</div>
+		<% end %>
+
+		</div>
+
+	</div>
+
+</div>

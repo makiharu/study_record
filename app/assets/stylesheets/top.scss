@@ -1,0 +1,94 @@
+.image2 {
+  background-image: image-url("image02.jpg");
+}
+.image3 {
+  background-image: image-url("image03.jpg");
+}
+.image4 {
+  background-image: image-url("image04.jpg");
+}
+.image5 {
+  background-image: image-url("image05.jpg");
+}
+
+
+#container{
+  height: 600px;
+  width: 1100px;
+}
+
+
+.start-button {
+	margin-top: 120px;
+	margin-bottom: 120px;
+}
+
+.top-heading {
+	padding-top: 0;
+}
+.top-heading h1 {
+	font-size: 48px;
+}
+/*aboutページ*/
+.about_heading {
+	margin-top: 100px;
+}
+
+.about_introduction {
+	margin-top: 100px;
+}
+
+.about_intro {
+	margin-bottom: 30px;
+}
+
+.about_guide {
+	margin-top: 180px;
+}
+
+
+.about-guide-child-contents {
+	margin-top: 70px;
+}
+
+.about-guide-one {
+	margin: 50px;
+}
+
+.about-guide-second {
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+
+.about-guide-third {
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+
+.about-guide-fourth {
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+
+.about-guide-one-image {
+	padding-top: 180px;
+}
+
+
+.about-guide-second-image {
+	padding-top: 200px;
+	margin-right: 100px;
+}
+
+.about-guide-third-image {
+	padding-top: 180px;
+}
+
+.image-one {
+	border-radius: 80%;
+}
+
+
+.about-guide-fourth-image {
+	padding-top: 130px;
+}

@@ -1,0 +1,33 @@
+<div class="text-left py-2">
+	<div class="footer-logo">Study Record</div>
+</div>
+<div class="footer-list mb-3">
+	<ul class="text-right">
+		<span>  各種SNSリンク</span>
+		<%= link_to '#' do %>
+		<li class="faa-parent animated-hover">
+			<i class="fab fa-instagram-square faa-pulse fa-fw fa-2x icon-instagram"></i>
+		</li>
+		<% end %>
+
+		<%= link_to '#' do %>
+		<li class="faa-parent animated-hover">
+			<i class="fab fa-twitter faa-wrench  fa-fw fa-2x icon-twitter"></i>
+		</li>
+		<% end %>
+		<%= link_to '#' do %>
+		<li class="faa-parent animated-hover">
+			<i class="fab fa-facebook faa-spin fa-fw fa-2x icon-facebook"></i>
+		<% end %>
+		</li>
+	</ul>
+	<hr />
+	<% if user_signed_in? %>
+	<div class="contact-link text-right mb-3">
+		<span><%= link_to new_contact_path do %>
+			お問い合わせフォーム<i class="far fa-paper-plane"></i>
+			<% end %>
+		</span>
+	　</div>
+	<% end %>
+</div>

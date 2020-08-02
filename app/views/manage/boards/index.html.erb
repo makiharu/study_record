@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="mx-auto">
+		<h2 class="text mr-5">掲示板一覧</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<!--掲示板サイドバー-->
+		<%= render 'manage/boards/sidebar', search: @search, tags: @tags %>
+	</div>
+
+	<div class="col-md-9 mt-4">
+<!-- 		<div class="board-title">
+		<p class="text-right">
+			<%#= link_to 'トップページ +', new_public_board_path, class: "btn btn-outline-dark" %>
+		</p>
+		</div> -->
+
+		<table class="table table-hover">
+			<thead class="thead">
+				<th>タイトル</th>
+				<th>カテゴリー</th>
+				<td>投稿日時</td>
+				<th>名前</th>
+				<td>詳細内容</td>
+			</thead>
+			<tbody>
+			<% @boards.each do |board| %>
+				<tr>
+					<td>
+						<%= board.title %>
+					</td>
+					<td>
+						<% board.board_tags.each do |board_tag| %>
+						<span class="badge badge-secondary">
+							<%= board_tag.tag.name %>
+						</span>
+						<% end %>
+					</td>
+					<td class="small"><%= l board.created_at %></td>
+					<td><%= link_to board.user.name, user_path(board.user) %></td>
+					<td><%= link_to '詳細', manage_board_path(board), class: 'btn btn-outline-info' %></td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="mx-auto mt-4">
+	<%= paginate @boards %>
+	</div>
+
+</div>
+
+
+
+

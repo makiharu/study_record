@@ -1,0 +1,44 @@
+<% if todolists.not_done.exists? %>
+	<table class="table table-hover table-responsive">
+		<thead>
+			<td>No.</td>
+			<td>リスト名</td>
+			<td>ラベル</td>
+			<td>チェック</td>
+			<td>編集</td>
+		</thead>
+		<tbody>
+		<% todolists.not_done.each_with_index do |todolist, i| %>
+		<tr id="todolist_<%= todolist.id %>">
+			<th><%= "#{i + 1}: " %></th>
+			<td><%= todolist.content.truncate(30) %></td>
+			<td class="small">
+				<% todolist.label_lists.each do |label_list| %>
+					<span class="badge badge-secondary"><%= label_list.label.name %></span>
+				<% end %>
+			</td>
+			<td>
+				<%= link_to todolists_clear_path(todolist.id), method: :patch, remote: true do %>
+					<i class="far fa-check-square fa-2x"></i>
+				<% end %>
+			</td>
+			<!-------Ajax追加部分-------------------------------->
+			<td class="small">
+				<%= link_to edit_todolist_path(todolist), class: 'btn btn-outline-success', style: 'border-radius: 30%' do %>
+					<i class="fas fa-cogs"></i>
+				<% end %>
+			</td>
+		</tr>
+		<% end %>
+		</tbody>
+	</table>
+	<div class="graph-link">
+		<span class="text-right"><%= link_to 'マイグラフを確認する', user_path(current_user.id), class: 'btn btn-outline-success btn-sm' %></span>
+	</div>
+<% else %>
+<!--todoリストが全て完了した場合-->
+	<p>Todoリストをまだ設定していませんか？<br />
+	To doリスト作成欄からTo doリストを作成してみましょう！</p><br />
+	<p>To doリストを達成したら、マイページにあるグラフで自分の進捗を確認してみましょう。</p>
+	<%= link_to 'マイグラフを確認する', user_path(current_user.id), class: 'btn btn-outline-success' %>
+<% end %>

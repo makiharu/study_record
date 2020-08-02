@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="mx-auto">
+    <div class="p-top-mv mb-4">
+      <%= image_tag 'image11.jpg', :width => '1200', :height => '350' %>
+    </div>
+      <div class="about_heading">
+        <h1 class="text-center">はじめに</h1>
+      </div>
+      <div class="about_introduction text-center">
+        <h2 class="about_into">Study recordは、プログラミング初学者の学習のサポートをするサイトです。<br /></h2>
+      <div class="about_introduction text-center">
+        <h2 class="about_into">みなさまの日々の学習が、より楽しく継続できるように、<br /></h2>
+      </div>
+      <div class="about_introduction text-center">
+        <h2 class="about_into">ささやかながらサポートをいたします。</h2>
+      </div>
+
+
+      <div class="about_guide">
+        <h1 class="text-center">使い方ガイド</h1>
+      </div>
+      <div class="about-guide-child-contents">
+        <div style="display: flex;">
+          <div style="flex: 2;">
+          <section>
+            <h2 class="about-guide-one">1. To doリストを使って目標を立てる</h2>
+          </section>
+              <h4 class="about-text p-3">このサイトでは、To doリストを作成、管理することができます。</h4>
+              <h4>To doリストは、時間別に管理できるようになっており,</h4>
+              <h4 class="about-text p-3">「今日のリスト」「今週のリスト」「今月のリスト」と、</h4>
+              <h4 class="about-text p-3">カテゴリごとに分けられます。</h4>
+              <h4 class="about-text p-3">学習の目標は細かく、明確に。</h4>
+              <h4 class="about-text p-3">達成しやすいリストを作成するのがポイントです。</h4>
+          </div>
+          <div style="flex: 1;">
+            <div class="about-guide-one-image">
+             <%= image_tag 'image05.jpg', :width => '350', :height => '300', class:"image-one" %>
+           </div>
+          </div>
+        </div>
+
+        <div style="display: flex;">
+          <div style="flex: 1;">
+            <div class="about-guide-second-image">
+             <%= image_tag 'image03.jpg', :width => '350', :height => '300', class:"image-one" %>
+           </div>
+          </div>
+          <div style="flex: 2;">
+            <section>
+              <h2 class="about-guide-second">2. グラフで日々の進捗を確認する</h2>
+            </section>
+                <h4 class="about-text p-3">To doリストを完了したら、マイページでグラフを確認してみましょう。</h4>
+                <h4 class="about-text p-3">一日ごとのリスト達成数をグラフで確認することができます。</h4>
+                <h4 class="about-text p-3">目標をこまめに立てて、たくさんリストをクリアしていきましょう。</h4>
+                <h4 class="about-text p-3">また、To doリストは、学習言語のラベルをつけて、管理することができます。</h4>
+                <h4 class="about-text p-3">自分がどの言語を、どれだけ勉強しているかを、</h4>
+                <h4 class="about-text p-3">客観的にみてみましょう。</h4>
+          </div>
+      </div>
+
+        <div style="display: flex;">
+          <div style="flex: 2;">
+          <section>
+            <h2 class="about-guide-third">3. 掲示板を使って、悩みを相談してみましょう。</h2>
+          </section>
+              <h4 class="about-text p-3">共有したい記事や悩みなど気軽に投稿してみましょう。</h4>
+              <h4 class="about-text p-3">同じ目線だからこそわかることがあります。</h4>
+              <h4 class="about-text p-3">気になる記事には、お気に入りボタンを押して、チェックをしてみましょう。</h4>
+          </div>
+          <div style="flex: 1;">
+            <div class="about-guide-third-image">
+              <%= image_tag 'image04.jpg', :width => '350', :height => '300', class:"image-one" %>
+           </div>
+          </div>
+        </div>
+
+        <div style="display: flex;">
+          <div style="flex: 1;">
+            <div class="about-guide-fourth-image">
+              <%= image_tag 'image07.jpg', :width => '350', :height => '300', class:"image-one" %>
+           </div>
+          </div>
+          <div style="flex: 2;">
+            <section>
+              <h2 class="about-guide-fourth">その他. お問い合わせ</h2>
+            </section>
+                <h4 class="about-text p-3">わからないこと、改善してほしいことがございましたら、</h4>
+                <h4 class="about-text p-3">
+                  <%= link_to new_contact_path do %>
+                    お問い合わせページ<i class="far fa-paper-plane"></i>
+                  <% end %>からお気軽にご連絡くださいませ。
+                </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

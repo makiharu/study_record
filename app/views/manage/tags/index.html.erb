@@ -1,0 +1,57 @@
+<div class="row">
+	<div class="mx-auto">
+		<h2 class="text mr-5">タグ一覧</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<!--サイドバー-->
+		<%= render 'sidebar', tags: @tags, obj: @tag %>
+	</div>
+	<div class="col-md-9 mt-3">
+		<div class="text-right">
+			<div class="tag-form">
+				<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal">
+					タグ新規作成 +
+				</button>
+				<%= render 'form', tag: @tag, obj: @tag %>
+			</div>
+		</div>
+
+		<table class="table table-hover">
+			<thead class="thead">
+				<th>タグID</th>
+				<th>タグ名</th>
+				<th>作成日時</th>
+				<th>ステータス</th>
+				<th></th>
+			</thead>
+			<tbody>
+				<% @tags.each do |tag| %>
+				<tr>
+					<td><%= tag.id %></td>
+					<td><%= link_to tag.name, edit_tag_path(tag) %></td>
+					<td><%= l tag.created_at %></td>
+					<td>
+						<% if tag.is_void == false %>
+							<span class='badge badge-primary'><%= tag.is_void ? '無効' : '有効' %></span>
+						<% else %>
+							<span class='badge badge-danger'><%= tag.is_void ? '無効' : '有効' %></span>
+						<% end %>
+					</td>
+					<td>
+						<%= link_to edit_tag_path(tag), class: 'btn btn-outline-success' do %>
+						  変更<i class="fas fa-cogs"><%= render 'form', tag: @tag, obj: @tag %></i>
+						<% end %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+			<%= paginate @tags %>
+	</div>
+</div>
+
+
+
+

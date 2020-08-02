@@ -1,0 +1,10 @@
+<%= form_with model: [board, new_comment], local: true do |f| %>
+  <div class="form-group">
+    <%= f.text_area :comment, class: 'form-control', rows: 10 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit '送信する', class: 'btn btn-outline-info' %>
+    <%= link_to '戻る', boards_path, class: 'btn btn-outline-dark' %>
+  </div>
+<% end %>

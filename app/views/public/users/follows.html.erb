@@ -1,0 +1,30 @@
+<div class="row">
+	<div class="mx-auto">
+		<h2 class="mb-2 text-center">フォローリスト</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		<div class="card card-default mr-5 mt-5">
+		<!--プロフィール-->
+		<%= render 'public/users/profile', user: @user %>
+		</div>
+	</div>
+
+	<div class="col-md-8">
+		<div class="board-title">
+			<p class="text-right">
+				<%= link_to 'マイページへ戻る', user_path(@user), class: "btn btn-warning" %>
+			</p>
+		</div>
+
+		<div class="card card-default">
+			<div class="card-heading thead p-2">
+				<h5 class="text-center">フォローリスト  <i class="far fa-list-alt"></i></h5>
+			</div>
+			<!--リスト一覧-->
+			<%= render 'public/users/index', users: @users %>
+		</div>
+	</div>
+</div>

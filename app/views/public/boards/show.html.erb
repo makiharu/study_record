@@ -1,0 +1,118 @@
+<!--mr-1 :0.25rem /mr/mt/mb/ml-->
+<div class="d-flex align-items-center mt-3 mb-2">
+  <h2>掲示板詳細</h2>
+  <!--掲示板お気に入りボタンAjax化---------------------------->
+   <span id="likes_buttons_<%= @board.id %>", class="text-right">
+     <%= render partial: 'public/board_likes/like', locals: { board: @board} %>
+  </span>
+    <!--掲示板お気に入りボタン---------------------------->
+  <div class="ml-auto">
+    <%= link_to '掲示板一覧', boards_path, class: 'btn btn-outline-dark' %>
+    <% if @board.user == current_user %>
+      <%= link_to '編集', edit_board_path(@board), class: 'btn btn-outline-success' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="card card-default">
+  <div class="card-header">
+    <h4><%= @board.title %></h4>
+  </div>
+  <div class="card-text mt-3 ml-2">
+    <% @board.tags.each do |tag| %>
+        <span class="badge badge-info"><%= tag.name %></span>
+    <% end %>
+  </div>
+
+
+  <div class="card-body">
+    <span><%= simple_format(@board.body) %></span>
+  </div>
+  <div class="card-body">
+    <%= attachment_image_tag @board, :image, :fill, 200, 200, size: '200x150' %>
+    <div class="card-text text-right">
+      <span id="time">投稿日時: <%= l @board.created_at %></span>
+      <p class="font-weight-bold mt-2">
+          <%= link_to user_path(@board.user) do %>
+            <%= @board.user.name %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40' %>
+          <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!--コメントが存在している時のみ一覧を表示する-->
+<% if @board_comments.exists? %>
+<div class="comments">
+  <div class="form-set">
+    <div class="comment-heading">
+      <h4>コメント一覧</h4>
+      <!--each_with_indexは回したときにそれぞれの要素が何番目か返してくれるメソッド-->
+      <% @board_comments.each_with_index do |comment, i| %>
+        <div class="comment-list">
+
+          <p>NO. <%= i + 1 %></p>
+          <p><%= simple_format(comment.comment) %></p>
+          <div class="comment-bottom">
+            <span id="time"><%= l comment.created_at %></span>
+            <span>
+                <%= link_to user_path(comment.user) do %>
+                  <%= comment.user.name %>
+                  <%= attachment_image_tag(comment.user, :profile_image, :fill, 200, 200, fallback: 'no_image.jpg', size: '40x40') %>
+                <% end %>
+            </span>
+
+            <% if comment.user_id == current_user.id %>
+              <%= link_to '編集', edit_board_board_comment_path(comment.id), class: 'btn btn-outline-success' %>
+
+            <!--モーダルウィンドウ-->
+            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#Modal">削除</button>
+            <!-- ボタン・リンククリック後に表示される画面の内容 -->
+            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>削除確認画面</h3>
+                        </div>
+                        <div class="modal-body m-3">
+                            <h5 class="text-left">本当に削除しますか？</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                            <button type="button" class="btn btn-outline-danger"> <%= link_to '削除', board_board_comment_path(comment.id), method: :delete, class: 'btn btn-outline-danger' %></button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            <% end %>
+
+            <!--コメントに対するいいねボタン Ajax化-->
+            <div class="comment_likes_body p-2">
+              <div id="comment_likes_buttons_<%= comment.id %>">
+                <%= render partial: 'public/comment_likes/like', locals: { comment: comment} %>
+              </div>
+            </div>
+            <!--コメントに対するいいねボタン--------->
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+<div class="comment-header">
+    <h4>回答フォーム</h4>
+</div>
+<div class="answer-form">
+  <%= render 'public/board_comments/form', board: @board, new_comment: @new_comment %>
+</div>
+
+
+
+
+
+
+

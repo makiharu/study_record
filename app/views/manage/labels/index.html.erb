@@ -1,0 +1,61 @@
+<div class="row">
+	<div class="mx-auto">
+		<h2 class="text mr-5">ラベル一覧</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-3">
+		<!--サイドバー-->
+		<%= render 'manage/labels/sidebar', labels: @labels %>
+	</div>
+	<div class="col-md-9 mt-3">
+		<div class="text-right">
+
+			<div class="tag-form">
+				<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal">
+					ラベル新規作成 +
+				</button>
+				<%= render 'form', label: @label, obj: @label %>
+			</div>
+
+		</div>
+
+		<table class="table table-hover">
+			<thead class="thead">
+				<th>ラベルID</th>
+				<th>ラベル名</th>
+				<th>作成日時</th>
+				<th>ステータス</th>
+				<th></th>
+			</thead>
+			<tbody>
+				<% @labels.each do |label| %>
+				<tr>
+					<td><%= label.id %></td>
+					<td><%= link_to label.name, edit_label_path(label) %></td>
+					<td><%= l label.created_at %></td>
+					<!--boolean型の日本語化-->
+					<td>
+						<% if label.is_void == false %>
+							<span class='badge badge-primary'><%= label.is_void ? '無効' : '有効' %></span>
+						<% else %>
+							<span class='badge badge-danger'><%= label.is_void ? '無効' : '有効' %></span>
+						<% end %>
+					</td>
+					<td>
+						<%= link_to edit_label_path(label), class: 'btn btn-outline-success' do %>
+						  変更<i class="fas fa-cogs"><%= render 'form', label: @label, obj: @label %></i>
+						<% end %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+			<%= paginate @labels %>
+	</div>
+</div>
+
+
+
+

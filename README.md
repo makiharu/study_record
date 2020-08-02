@@ -1,24 +1,30 @@
-# README
+# study_record
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## サイト概要
+日々の学習記録を楽しく、記録・管理できるアプリ。プログラミング学習版。
+日々のタスクを設定し、そのタスクの達成度合いに応じて、それをグラフで表すことで、学習の達成度を目で分かりやすい指標に変える。
 
-* Ruby version
+掲示板としての機能も持っており、学習における悩みなども投稿することができる。
 
-* System dependencies
 
-* Configuration
+### サイトテーマ
+日々の学習進捗を可視化して管理することで、モチベーションの維持を図る。
 
-* Database creation
+### テーマを選んだ理由
+元々記録をつけることが好きなため、楽しみながら、手軽に記録管理をしてみたかったため。
+また、他人の学習記録も見れるようにすることで、刺激を受けられるようにしている。
 
-* Database initialization
 
-* How to run the test suite
+### ターゲットユーザ
+駆け出しエンジニア
 
-* Services (job queues, cache servers, search engines, etc.)
+### 主な利用シーン
+日々の学習記録管理。
 
-* Deployment instructions
+## 設計書
 
-* ...
+
+
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1VXXK2aaEtTotuBBTq_cba7Fc8ofdQfr5OiF6ub-zRdE/edit#gid=0

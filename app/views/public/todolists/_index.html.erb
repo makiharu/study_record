@@ -1,0 +1,24 @@
+<% if todolists.not_done.exists? %>
+	<table class="table table-hover table-responsive">
+		<tbody>
+			<% todolists.not_done.each_with_index do |todolist, i| %>
+			<tr>
+				<td><%= "#{i + 1}: " %></td>
+				<td >
+					<%= link_to todolist.content, todolists_path %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% else %>
+	<div class="text-center p-3">
+		<% if user_signed_in?%>
+			<% unless user == current_user %>
+				<%= link_to '設定はこちらから', todolists_path, class: 'btn btn-outline-info' %>
+			<% end %>
+		<% else %>
+			<span>非公開です</span>
+		<% end %>
+	</div>
+<% end %>
