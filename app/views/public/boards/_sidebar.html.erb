@@ -12,7 +12,6 @@
 			</td>
 		</tr>
 		<% tags.each do |tag| %>
-			<!--件数が0件のものとステータスが無効なものはサイドバーに表示させない-->
 			<% if tag.board_tags.count != 0 && tag.is_void == false %>
 			<tr>
 				<td class="tag-name">

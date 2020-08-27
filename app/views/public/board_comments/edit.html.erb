@@ -5,10 +5,7 @@
 				<h4 class="text-center p-2">コメント編集</h4>
 			</div>
 			<div class="card-body">
-			<%#= render 'board_comments/form', board_comment: @board_comment, obj: @board %>
 			<%= form_with model: @board_comment,url: board_board_comment_path, local: true do |f| %>
-
-				<%#= render 'shared/error_messages', obj: @board_comment %>
 				<div class="form-group">
 				</div>
 				<div class="form-group">
@@ -16,7 +13,6 @@
 					<%= f.text_area :comment, class: 'form-control', rows: 7 %>
 				</div>
 				<div class="actions">
-					<!--ボタンサイズ調整-->
 					<%= f.submit '投稿する', class: 'btn btn-outline-info form-control' %><hr />
 				</div>
 					<%= link_to '戻る', boards_path, class: 'btn btn-outline-dark' %>
