@@ -36,4 +36,8 @@ Bootstrap, jQuery
 https://drive.google.com/drive/folders/15oZK4UPQE_ZlT0--FG8TolQuAGSbtHAI
 
 ## 機能一覧
+<<<<<<< HEAD
 https://docs.google.com/spreadsheets/d/1VXXK2aaEtTotuBBTq_cba7Fc8ofdQfr5OiF6ub-zRdE/edit#gid=0
+=======
+https://docs.google.com/spreadsheets/d/1VXXK2aaEtTotuBBTq_cba7Fc8ofdQfr5OiF6ub-zRdE/edit#gid=0
+>>>>>>> 1b0e714c6bd6fde043c1d3d5b4c22c012fe2b900
