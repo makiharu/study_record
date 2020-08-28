@@ -23,11 +23,18 @@
 	margin-bottom: 120px;
 }
 
+
+
+
 .top-heading {
 	padding-top: 0;
 }
 .top-heading h1 {
 	font-size: 48px;
+}
+
+.text-title {
+	margin-left: 150px;
 }
 /*aboutページ*/
 .about_heading {
@@ -53,16 +60,30 @@
 
 .about-guide-one {
 	margin: 50px;
+	padding: 0.5em;
+  	color: #494949;
+  	background: #fffaf4;
+  	border-left: solid 5px #ffaf58;
 }
+
+
 
 .about-guide-second {
 	margin-top: 100px;
 	margin-bottom: 50px;
+	padding: 0.5em;
+  	color: #494949;
+  	background: #fffaf4;
+  	border-left: solid 5px #ffaf58;
 }
 
 .about-guide-third {
 	margin-top: 100px;
 	margin-bottom: 50px;
+	padding: 0.5em;
+  	color: #494949;
+  	background: #fffaf4;
+  	border-left: solid 5px #ffaf58;
 }
 
 .about-guide-fourth {
@@ -92,3 +113,5 @@
 .about-guide-fourth-image {
 	padding-top: 130px;
 }
+
+
