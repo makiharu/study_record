@@ -72,6 +72,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
 gem 'bootstrap', '~> 4.3.1'
 
 gem 'devise'
@@ -88,10 +92,6 @@ gem 'rails-i18n'
 
 gem 'faker'
 
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
-
 gem 'chartkick'
 gem 'font-awesome-sass'
 gem 'ransack'
@@ -100,3 +100,5 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+

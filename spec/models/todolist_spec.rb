@@ -18,6 +18,3 @@ RSpec.describe 'Todolistモデルのテスト', type: :model do
   	end
   end
 end
-
-#アソシエーションのテスト、追加
-#scopeテスト
