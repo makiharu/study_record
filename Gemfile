@@ -88,10 +88,6 @@ gem 'rails-i18n'
 
 gem 'faker'
 
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
-
 gem 'chartkick'
 gem 'font-awesome-sass'
 gem 'ransack'
